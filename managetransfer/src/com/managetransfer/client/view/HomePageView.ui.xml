@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel width="1174px">
+			<g:HorizontalPanel height="56px" width="1179px" verticalAlignment="ALIGN_MIDDLE" styleName="headerBackGrndBlue3">
+				<g:VerticalPanel height="53px" width="387px" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" styleName="homeHeaderText">
+					<g:Label text="ManageTransfer" height="100%" width="100%" styleName="homeHeaderText"/>
+				</g:VerticalPanel>
+						<g:VerticalPanel width="555px" horizontalAlignment="ALIGN_RIGHT" spacing="4">
+							<g:Label text="Sign Out" ui:field="logoutMessage" height="14px" width="135px" styleName="headerBackGrndGrey3" horizontalAlignment="ALIGN_CENTER"/>
+							<g:Label text="Welcome" ui:field="loginMessage" height="14px" width="135px" styleName="headerBackGrndGrey3" horizontalAlignment="ALIGN_CENTER"/>
+						</g:VerticalPanel>
+					</g:HorizontalPanel>
+			<g:HorizontalPanel width="1150px">
+			<g:VerticalPanel height="564px" styleName="whiteBackgroundBrdr">
+				<g:Tree width="193px"  height="570px" styleName="headerBackGrndGrey3NotShadow" >
+					<g:TreeItem text="Home" state="true" width="100%" height="404px" >
+						<g:Label ui:field="connections" text="Connections" styleName="headerBackGrndGrey3" height="21px" width="136px"/> 
+						<g:Label ui:field="expressions" text="Expressions" height="21px" styleName="headerBackGrndGrey3" width="136px"/>
+						<g:Label ui:field="mapdata" height="21px" styleName="headerBackGrndGrey3" text="Map Data" width="136px"/>
+						<g:Label ui:field="phases" text="Phases" width="136px" styleName="headerBackGrndGrey3" height="21px"/>
+						<g:Label ui:field="sequences" text="Sequences" width="136px" styleName="headerBackGrndGrey3" height="21px"/>
+						<g:Label ui:field="schedular" text="Schedular" width="136px" styleName="headerBackGrndGrey3" height="21px"/>
+						<g:TreeItem text="Reports" styleName="headerBackGrndGrey3" width="164px">
+							<g:Label ui:field="batchreport" text="Batches" width="117px" styleName="headerBackGrndGrey3" height="21px" horizontalAlignment="ALIGN_LEFT"/>
+							<g:Label ui:field="logreport" height="21px" horizontalAlignment="ALIGN_LEFT" styleName="headerBackGrndGrey3" text="Logs" width="117px"/>
+							<g:Label ui:field="throughputreport" height="21px" horizontalAlignment="ALIGN_LEFT" styleName="headerBackGrndGrey3" text="Throughput" width="117px"/>
+						</g:TreeItem>
+					</g:TreeItem>
+				</g:Tree>
+			</g:VerticalPanel>
+				<g:ScrollPanel width="978px" height="570px" verticalScrollPosition="0" alwaysShowScrollBars="true" styleName="whiteBackgroundBrdr">
+					<g:VerticalPanel width="962px" height="532px" ui:field="homeVerticalPaneCenter"/>
+				</g:ScrollPanel>
+		</g:HorizontalPanel>
+			<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" height="25px" styleName="whiteBackgroundBrdr" width="1178px">
+			<g:Label text="All Rights Reserved" width="1177px"/>
+		</g:HorizontalPanel>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,117 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:w="urn:import:com.google.gwt.widget.client" xmlns:p2="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="whiteBackgroundBrdrAnn" width="960px">
+		<g:VerticalPanel
+				horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE" width="962px" height="518px">
+				<g:VerticalPanel width="958px" verticalAlignment="ALIGN_MIDDLE" height="52px" spacing="20" styleName="bluePageHeader">
+					<g:Label text="Phases" height="19px" width="74px"  />
+				</g:VerticalPanel>
+				<g:TabLayoutPanel barHeight="2" barUnit="EM" width="945px" height="489px" ui:field="tabLayoutPanelMain">
+					<g:tab>
+						<g:header>Search</g:header>
+						<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" styleName="lightBlueBackGround">
+							<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER"
+								verticalAlignment="ALIGN_MIDDLE" width="5cm" height="52px" spacing="4">
+								<g:Label text="Phase Name" width="125px" />
+								<g:TextBox ui:field="searchString" />
+								<g:Button ui:field="searchButton" stylePrimaryName="blueButton" height="27px">Search</g:Button>
+							</g:HorizontalPanel>
+							<g:VerticalPanel width="5cm" horizontalAlignment="ALIGN_CENTER"
+								height="3cm">
+								<p1:SimplePager ui:field="simplePager" location="CENTER"
+									pageSize="10" />
+								<p1:CellTable ui:field="phaseTable" width="634px" />
+							</g:VerticalPanel>
+							<g:VerticalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="624px">
+								<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="118px" spacing="4" height="46px">
+								<g:Button styleName="blueButton" ui:field="searchAddButton" height="27px">Add</g:Button>
+								<g:Button text="Test" enabled="false" styleName="blueButton" ui:field="searchTestButton" height="27px"/>
+								<g:Button text="Edit" enabled="false" styleName="blueButton" ui:field="searchEditButton" height="27px">Edit</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchDetailsButton" height="27px">Details</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchDeleteButton" height="27px">Delete</g:Button>
+							</g:HorizontalPanel>
+							</g:VerticalPanel>
+							
+						</g:VerticalPanel>
+					</g:tab>
+					<g:tab>
+						<g:header>Details</g:header>
+						<g:DisclosurePanel ui:field="workAreaPanel"
+							animationEnabled="true" open="true" width="5cm" height="3cm">
+
+							<g:header>Work Area</g:header>
+							<g:TabLayoutPanel barHeight="2" barUnit="EM"
+								width="615px" height="311px" ui:field="tabLayoutPanelDetails">
+								<g:tab  ui:field="viewDetailsTab" >
+									<g:header>Details</g:header>
+									<g:Grid ui:field="viewDetailsGrid"  width="487px" height="267px">
+										<g:row>
+											<g:customCell>
+												<g:Label text="Phase Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newPhaseName"  />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Phase Type" width="88px" />
+											</g:customCell>
+											<g:customCell>
+												<g:ListBox  ui:field="newPhaseType"/>
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:HorizontalPanel height="46px" spacing="4" verticalAlignment="ALIGN_MIDDLE" width="118px">
+													<g:Button height="27px" styleName="blueButton" ui:field="addPhase">Add</g:Button>
+												</g:HorizontalPanel>
+											</g:customCell>
+										</g:row>
+										<g:row/>
+										<g:row/>
+										<g:row>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+
+										</g:row>
+									</g:Grid>
+								</g:tab>
+								<g:tab>
+									<g:header>New</g:header>
+									<g:VerticalPanel  width="616px" height="288px">
+										<g:HorizontalPanel spacing="1" width="107px" horizontalAlignment="ALIGN_RIGHT">
+													<g:Button styleName="blueButton" height="27px" text="Cancel" ui:field="cancelButton">Test</g:Button>
+													<g:Label text="   " width="5" />
+													<g:Button ui:field="saveButton" styleName="blueButton" height="27px">Save</g:Button>
+												</g:HorizontalPanel>
+										<g:VerticalPanel ui:field="addPhaseVerticalPanel" width="605px" height="250px"/>
+									</g:VerticalPanel>
+								</g:tab>
+							</g:TabLayoutPanel>
+						</g:DisclosurePanel>
+					</g:tab>
+				</g:TabLayoutPanel>
+				 
+
+			</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

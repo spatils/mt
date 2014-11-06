@@ -1,0 +1,42 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Source Object"/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox  ui:field="sourceObject"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Connection"/>
+				</g:customCell>
+				<g:customCell>
+					<g:ListBox ui:field="connectionList"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Host Name"/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="hostName"/>
+				</g:customCell>
+				 
+			</g:row>
+		</g:Grid>
+		<g:HorizontalPanel width="475px" verticalAlignment="ALIGN_MIDDLE">
+			<g:Label text="Export Query" width="81px"/>
+			<g:TextBox ui:field="exportQuery" width="384px" height="61px" />
+		</g:HorizontalPanel>
+		 
+		
+	</g:HTMLPanel>
+</ui:UiBinder> 

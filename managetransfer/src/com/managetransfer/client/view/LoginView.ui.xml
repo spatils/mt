@@ -1,0 +1,67 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client" xmlns:o="urn:import:com.sun.org.apache.xpath.internal.operations" xmlns:d="urn:import:com.google.gwt.dom.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		. {
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel width="486px" height="236px" verticalAlignment="ALIGN_MIDDLE" horizontalAlignment="ALIGN_CENTER">
+			<g:FlowPanel styleName="lightGreenBackGroundLogin">
+				<g:VerticalPanel width="330px" spacing="10">
+					<g:Label text="Sign-In" width="344px"/>
+				</g:VerticalPanel>
+				<g:Grid styleName="lightBlueBackGroundLogin" height="147px">
+				<g:row/>
+				<g:row>
+					<g:customCell>
+						<g:Label text=""/>
+					</g:customCell>
+					<g:customCell>
+						<g:Label text="Welcome To ManageTransfer"/>
+					</g:customCell>
+				</g:row>
+				<g:row>
+				 	<g:customCell>
+				 		<g:Label text="User Name:" horizontalAlignment="ALIGN_RIGHT"/>
+					</g:customCell>
+					<g:customCell>
+						<g:TextBox ui:field="userName" width="170px" alignment="LEFT"> </g:TextBox>
+					</g:customCell>
+				</g:row>
+				<g:row>
+				<g:customCell>
+					<g:Label text="Password:" width="100px"  horizontalAlignment="ALIGN_RIGHT"/>
+				</g:customCell>
+				<g:customCell>
+					<g:PasswordTextBox ui:field="usrPsw" width="172px" alignment="LEFT"/>
+				</g:customCell>
+				</g:row>
+				<g:row>
+				<g:customCell>
+					<g:Label text="" horizontalAlignment="ALIGN_RIGHT"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="" horizontalAlignment="ALIGN_RIGHT"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="" width="50px" horizontalAlignment="ALIGN_RIGHT"/>
+				</g:customCell>
+				</g:row>
+				<g:row/>
+			</g:Grid>
+				<g:VerticalPanel width="472px" horizontalAlignment="ALIGN_RIGHT" spacing="10" height="64px" verticalAlignment="ALIGN_MIDDLE">
+					<g:Button ui:field="loginButton" text="Login" focus="true" width="52px" styleName="blueButton" height="27px"  />
+				</g:VerticalPanel>
+			</g:FlowPanel>
+			
+			
+			
+			 
+		</g:VerticalPanel>
+				 
+	</g:HTMLPanel>
+</ui:UiBinder> 

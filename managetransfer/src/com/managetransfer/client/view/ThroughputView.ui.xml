@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+		.important {
+		font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel>
+			<g:VerticalPanel height="52px" spacing="20"
+				styleName="bluePageHeader" verticalAlignment="ALIGN_MIDDLE" width="962px">
+				<g:Label height="19px" text="Throughput" width="74px" />
+			</g:VerticalPanel>
+			<g:VerticalPanel width="959px" height="300px"
+				ui:field="throughputViewPanel" >
+				<p1:CellTable ui:field="sequenceViewCellTable" width="957px" height="129px"/>
+				<p1:CellTable ui:field="sequenceDetailsViewCellTable" width="957px"/>
+				<g:VerticalPanel ui:field="sequenceThroughputDisplayPanel" width="957px" height="181px"/>
+			</g:VerticalPanel>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
