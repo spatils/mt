@@ -1,5 +1,5 @@
 package com.managertransfer.common.job;
-//
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -17,7 +17,7 @@ public class Test {
 	String JSPURL1 = "http://localhost:8080/JobSchedular/JobSchedular.jsp?Action=GetJobDetails";
 	String JSPURL2 = "http://localhost:8080/JobSchedular2/JobSchedular.jsp?Action=RunJob&JobId=hello1";
 	
-	
+	String addedeVariable = new String("");
 	String BASE_URL = "http://localhost:8080/JobSchedular2/JobSchedular.jsp";
 	String ACTION = "?Action=StartJob";
 	String PARAMETER = "&JobId=hello2";
