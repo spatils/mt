@@ -23,5 +23,7 @@
 	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar"/>
 	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/gwt/lib/appengine-api-1.0-sdk-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/gwt/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
