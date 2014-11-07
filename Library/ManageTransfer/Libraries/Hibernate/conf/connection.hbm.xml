@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.dao.Connection" table="connection">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       
+      <id name="connectionName" type="string" column="connection_name" length="16">
+      </id>
+      <property name="connectionType" column="connectionType" type="string"/>
+      <property name="connectionUser" column="user_id" type="string"/>
+      <property name="connectionPassword" column="connection_password" type="string"/>
+      <property name="connectionURL" column="connection_url" type="string"/>
+      <property name="isUserName" column="is_user_name" type="boolean"/>
+	
+   </class>
+</hibernate-mapping>

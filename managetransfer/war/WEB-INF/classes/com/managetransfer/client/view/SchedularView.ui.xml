@@ -1,0 +1,52 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:w="urn:import:com.google.gwt.widget.client" xmlns:p2="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="whiteBackgroundBrdrAnn" width="960px">
+		<g:VerticalPanel
+				horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE" width="962px">
+				<g:VerticalPanel width="958px" verticalAlignment="ALIGN_MIDDLE" height="52px" spacing="20" styleName="bluePageHeader">
+					<g:Label text="Schedular" height="19px" width="74px"  />
+				</g:VerticalPanel>
+				<g:TabLayoutPanel barHeight="2" barUnit="EM" width="800px" height="489px" ui:field="tabLayoutPanelMain">
+					<g:tab>
+						<g:header>Search</g:header>
+						<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" styleName="lightBlueBackGround">
+							<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER"
+								verticalAlignment="ALIGN_MIDDLE" width="5cm" height="52px" spacing="4">
+								<g:Label text="Job Name" width="125px" />
+								<g:TextBox ui:field="searchString" />
+								<g:Button ui:field="searchButton" stylePrimaryName="blueButton" height="27px">Search</g:Button>
+							</g:HorizontalPanel>
+							<g:ScrollPanel alwaysShowScrollBars="true" width="700px" height="350px">
+								<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER"
+								height="100%">
+								<p1:SimplePager ui:field="simplePager" location="CENTER"
+									pageSize="10" />
+								<p1:CellTable ui:field="jobTable" width="634px" />
+							</g:VerticalPanel>
+							</g:ScrollPanel>
+							<g:VerticalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="624px">
+								<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="118px" spacing="4" height="46px">
+								<g:Button styleName="blueButton" ui:field="searchRefreshButton" height="27px">Refresh</g:Button>
+								<g:Button text="ChangeState" enabled="false" styleName="blueButton" ui:field="searchChangeSateButton" height="27px">Edit</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchRunButton" height="27px" text="Run">Details</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchDeleteButton" height="27px">Delete</g:Button>
+							</g:HorizontalPanel>
+							</g:VerticalPanel>
+							
+						</g:VerticalPanel>
+					</g:tab>
+					
+				</g:TabLayoutPanel>
+				 
+
+			</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

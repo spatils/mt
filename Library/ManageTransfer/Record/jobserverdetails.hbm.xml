@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.client.JobServerDetails" table="JobServerDetails">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       
+      <id name="JobServerName" type="string" column="job_server_name" length="16">
+      </id>
+      <property name="Server_url" type="string" column="server_url" />
+       
+   </class>
+   
+</hibernate-mapping>

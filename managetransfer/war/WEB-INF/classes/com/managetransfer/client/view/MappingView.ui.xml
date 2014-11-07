@@ -1,0 +1,140 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:w="urn:import:com.google.gwt.widget.client" xmlns:p2="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.leftBotton {
+		}
+		.rightButton {
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="whiteBackgroundBrdrAnn" width="960px">
+		<g:VerticalPanel
+				horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE" width="962px" height="563px">
+				<g:VerticalPanel width="979px" verticalAlignment="ALIGN_MIDDLE" height="52px" spacing="2" styleName="bluePageHeader">
+					<g:Label text="Mapping" height="19px" width="74px" styleName="homeHeaderWelcome"  />
+				</g:VerticalPanel>
+				<g:TabLayoutPanel barHeight="2" barUnit="EM" width="973px" height="505px" ui:field="tabLayoutPanelMain">
+					<g:tab>
+						<g:header>Search</g:header>
+						<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" styleName="lightBlueBackGround">
+							<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER"
+								verticalAlignment="ALIGN_MIDDLE" width="5cm" height="52px" spacing="4">
+								<g:Label text="Mapping Name" width="125px" />
+								<g:TextBox ui:field="searchString" />
+								<g:Button ui:field="searchButton" stylePrimaryName="blueButton" height="27px">Search</g:Button>
+							</g:HorizontalPanel>
+							<g:VerticalPanel width="5cm" horizontalAlignment="ALIGN_CENTER"
+								height="3cm">
+								<p1:SimplePager ui:field="simplePager" location="CENTER"
+									pageSize="10" />
+								<p1:CellTable ui:field="connectionTable" width="634px" />
+							</g:VerticalPanel>
+							<g:VerticalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="624px">
+								<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="118px" spacing="4" height="46px">
+								<g:Button styleName="blueButton" ui:field="searchAddButton" height="27px">Add</g:Button>
+								<g:Button text="Edit" enabled="false" styleName="blueButton" ui:field="searchEditButton" height="27px">Edit</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchDeleteButton" height="27px">Delete</g:Button>
+							</g:HorizontalPanel>
+							</g:VerticalPanel>
+							
+						</g:VerticalPanel>
+					</g:tab>
+					<g:tab>
+						<g:header>Details</g:header>
+						<g:VerticalPanel width="657px" height="239px" ui:field="trgObjectListAll">
+							<g:HorizontalPanel width="634px" verticalAlignment="ALIGN_MIDDLE">
+								<g:Label text="Mapping Name" height="31px"/>
+								<g:TextBox ui:field="newMappingName"/>
+							</g:HorizontalPanel>
+							<g:HorizontalPanel width="641px">
+								<g:VerticalPanel width="311px" styleName="whiteBackgroundBrdr" horizontalAlignment="ALIGN_CENTER">
+									<g:Label text="Source Object Mapping"/>
+									<g:HorizontalPanel width="232px" height="128px" spacing="10" verticalAlignment="ALIGN_MIDDLE">
+								<g:ListBox visibleItemCount="5" width="82px" ui:field="srcObjectListAll" multipleSelect="true"/>
+								<g:VerticalPanel spacing="4">
+									<g:Image ui:field="moveRight"/>
+									<g:Image ui:field="moveLeft"/>
+								</g:VerticalPanel>
+								<g:ListBox visibleItemCount="5" width="76px" ui:field="srcObjectListSelected" multipleSelect="true"/>
+							</g:HorizontalPanel>
+								</g:VerticalPanel>
+								<g:VerticalPanel width="330px" height="147px" styleName="whiteBackgroundBrdr" horizontalAlignment="ALIGN_CENTER">
+									<g:Label text="Target Object Mapping"/>
+									<g:HorizontalPanel width="287px" height="127px" verticalAlignment="ALIGN_MIDDLE" horizontalAlignment="ALIGN_CENTER">
+										<g:ListBox visibleItemCount="5" ui:field="trgObjectListAllList"/>
+										<g:VerticalPanel>
+											<g:Image ui:field="moveRightTrgObject"/>
+											<g:Image ui:field="moveLeftTrgObject"/>
+										</g:VerticalPanel>
+										<g:ListBox visibleItemCount="5" ui:field="trgObjectListSelected"/>
+									</g:HorizontalPanel>
+								</g:VerticalPanel>
+							</g:HorizontalPanel>
+							<g:VerticalPanel width="643px" horizontalAlignment="ALIGN_RIGHT">
+								<g:HorizontalPanel spacing="4">
+													<g:Button styleName="blueButton" height="27px" text="Map Data" ui:field="button">Test</g:Button>
+													<g:Label text="" width="5" />
+													<g:Button ui:field="saveButton" styleName="blueButton" height="27px">Save</g:Button>
+												</g:HorizontalPanel>
+							</g:VerticalPanel>
+						</g:VerticalPanel>
+					</g:tab>
+					 <g:tab>
+						<g:header>Attribute Mapping</g:header>
+						<g:VerticalPanel height="401px" width="964px">
+							<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" width="634px" horizontalAlignment="ALIGN_LEFT">
+								<g:Label height="31px" text="Expression Name"/>
+								<g:ListBox ui:field="expNameList"/>
+							</g:HorizontalPanel>
+							<g:Cell width="933px" height="168px">
+								<g:ScrollPanel alwaysShowScrollBars="true" width="933px" height="168px">
+								<g:HorizontalPanel width="915px" height="100%">
+								<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" styleName="whiteBackgroundBrdr" width="330px" height="147px">
+									<g:Label text="Source Attribute Mapping"/>
+									<g:HorizontalPanel height="128px" spacing="10" verticalAlignment="ALIGN_MIDDLE" width="232px" horizontalAlignment="ALIGN_CENTER">
+										<g:ListBox multipleSelect="true" visibleItemCount="5" width="63" ui:field="srcAttributeListAll" height="90"/>
+										<g:VerticalPanel spacing="4">
+											<g:Image ui:field="moveRightSrcAttribute"/>
+											<g:Image ui:field="moveLeftSrcAttribute"/>
+										</g:VerticalPanel>
+										<g:ListBox multipleSelect="true" visibleItemCount="5" width="63" ui:field="srcAttributeListSelected" height="90"/>
+									</g:HorizontalPanel>
+								</g:VerticalPanel>
+								<g:VerticalPanel height="147px" horizontalAlignment="ALIGN_CENTER" styleName="whiteBackgroundBrdr" width="330px">
+									<g:Label text="Target Attribute Mapping"/>
+									<g:HorizontalPanel height="127px" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" width="316px">
+										<g:ListBox visibleItemCount="5" ui:field="trgAttributeListAll"/>
+										<g:VerticalPanel>
+											<g:Image ui:field="moveRightTrgAttribute"/>
+											<g:Image ui:field="moveLeftTrgAttribute"/>
+										</g:VerticalPanel>
+										<g:ListBox visibleItemCount="5" ui:field="trgAttributeListSelected"/>
+									</g:HorizontalPanel>
+								</g:VerticalPanel>
+							</g:HorizontalPanel>
+							</g:ScrollPanel>
+							</g:Cell>
+							<g:VerticalPanel horizontalAlignment="ALIGN_LEFT" width="643px">
+								<g:HorizontalPanel spacing="4" horizontalAlignment="ALIGN_LEFT">
+									<g:Button height="27px" styleName="blueButton" text="Clear" ui:field="addAttributeButton"></g:Button>
+									<g:Button height="27px" styleName="blueButton" ui:field="saveAttributeButton">Save</g:Button>
+									<g:Button height="27px" styleName="blueButton" ui:field="deleteAttributeButton">Delete</g:Button>
+								</g:HorizontalPanel>
+							</g:VerticalPanel>
+							<g:VerticalPanel width="645px" height="162px" >
+								<p1:SimplePager location="CENTER" width="197px" ui:field="simplePagerAttribute"/>
+								<p1:CellTable ui:field="cellTableAttibuteList"/>
+							</g:VerticalPanel>
+						</g:VerticalPanel>
+					</g:tab>
+				</g:TabLayoutPanel>
+				 
+
+			</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

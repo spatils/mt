@@ -1,0 +1,60 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel>
+			<g:VerticalPanel height="52px" spacing="20" styleName="bluePageHeader" verticalAlignment="ALIGN_MIDDLE" width="962px">
+				<g:Label height="19px" text="Batches" width="74px"/>
+			</g:VerticalPanel>
+			<g:HorizontalPanel width="957px" height="316px">
+				<g:VerticalPanel ui:field="batchesGridViewPanel" height="224px" width="435px" horizontalAlignment="ALIGN_CENTER">
+					<p1:SimplePager location="CENTER" ui:field="simplePager" />
+					<p1:CellTable ui:field="batchDetailsCellTable" width="450px" height="193px"/>
+				</g:VerticalPanel>
+				<g:VerticalPanel width="400px" height="300px" ui:field="batchViewPanel" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_BOTTOM">
+					<g:HorizontalPanel ui:field="horizontalPanel">
+						<g:VerticalPanel ui:field="displayPieChart"/>
+					</g:HorizontalPanel>
+					<g:Grid ui:field="labelGrid"  >
+							<g:row >
+								<g:customCell styleName="dataGridCell">
+									<g:Label  text="Phase Name:"/>
+								</g:customCell>
+								<g:customCell styleName="dataGridCell">
+									<g:Label  ui:field="lblPhaseType" text="PhaseName"/>
+								</g:customCell>
+								<g:customCell styleName="dataGridCell">
+									<g:Label text="Machine Name:"/>
+								</g:customCell>
+								<g:customCell styleName="dataGridCell">
+									<g:Label ui:field="lblMachineName" text="MachineName"/>
+								</g:customCell>
+							</g:row>
+							<g:row > 
+								<g:customCell styleName="dataGridCell">
+									<g:Label text="Thread Size:"/>
+								</g:customCell>
+								<g:customCell styleName="dataGridCell">
+									<g:Label text="Threads" ui:field="lblThreadSize"/>
+								</g:customCell>
+								<g:customCell styleName="dataGridCell">
+									<g:Label text="Batch Size:"/>
+								</g:customCell>
+								<g:customCell styleName="dataGridCell">
+									<g:Label text="BatchSize" ui:field="lblBatchSize"/>
+								</g:customCell>
+							</g:row>
+						</g:Grid>
+					<g:VerticalPanel width="400px" horizontalAlignment="ALIGN_CENTER">
+						<g:Button ui:field="closeButton">Close</g:Button>
+					</g:VerticalPanel>
+				</g:VerticalPanel>
+			</g:HorizontalPanel>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

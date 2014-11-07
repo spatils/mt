@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.client.ExpressionsDetails" table="expressiondetails">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       
+      <id name="expressionsName" type="string" column="expressions_name" length="16">
+      </id>
+      <property name="expressionsType" column="expressions_type" type="string"/>
+      <property name="expression" column="expression" type="string" length="2000"/>
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel>
+			<g:VerticalPanel height="52px" spacing="20"
+				styleName="bluePageHeader" verticalAlignment="ALIGN_MIDDLE" width="962px">
+				<g:Label height="19px" text="Logs" width="74px" />
+			</g:VerticalPanel>
+			<g:TabLayoutPanel barHeight="2" barUnit="EM" width="958px"
+				height="404px" ui:field="logsViewTabLayoutPanel">
+				<g:tab>
+					<g:header>Search</g:header>
+					<g:VerticalPanel width="452px" height="310px">
+						<g:HorizontalPanel width="5cm" height="52px"
+							horizontalAlignment="ALIGN_CENTER" spacing="4" verticalAlignment="ALIGN_MIDDLE">
+							<g:Label text="ObjectType:" height="20px" width="75px"
+								horizontalAlignment="ALIGN_CENTER" />
+							<g:ListBox ui:field="objectTypeComboBox" width="150px" />
+							<g:Label height="20px" text="Attributes:" width="75px"
+								horizontalAlignment="ALIGN_CENTER" />
+							<g:ListBox ui:field="attributesComboBox" width="150px" />
+							<g:Label text="Value:" width="75px" height="20px"
+								horizontalAlignment="ALIGN_CENTER" />
+							<g:TextBox ui:field="attributeValueTextBox" width="150px"
+								height="20px" />
+							<g:Button ui:field="searchButton" stylePrimaryName="blueButton"
+								height="27px">Search</g:Button>
+						</g:HorizontalPanel>
+						<g:VerticalPanel height="311px" width="917px"
+							ui:field="searchResultPanel">
+							<p1:CellTable ui:field="searchResultCellTable"
+								width="451px" />
+						</g:VerticalPanel>
+					</g:VerticalPanel>
+				</g:tab>
+				<g:tab>
+					<g:header>Logs</g:header>
+					<g:HorizontalPanel height="377px" width="958px">
+						<g:VerticalPanel width="451px" height="308px"
+							ui:field="logsViewPanel" spacing="10">
+							<p1:CellTable ui:field="logsDetailsCellTable" width="414px"
+								height="206px" />
+						</g:VerticalPanel>
+						<g:VerticalPanel ui:field="columnChartPanel"
+							width="364px" height="303px" />
+					</g:HorizontalPanel>
+				</g:tab>
+			</g:TabLayoutPanel>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

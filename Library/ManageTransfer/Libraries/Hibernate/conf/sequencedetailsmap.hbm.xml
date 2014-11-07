@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.client.SequenceDetailsMapH" table="sequencedetailsmap" lazy="false">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+      <composite-id >
+            <key-property name="sequenceName" column="sequence_name" type="string"></key-property>
+            <key-property name="sequenceNumber" column="sequence_number" type="int"></key-property>
+      </composite-id>
+      <property name="cronFrequency" column="cron_frequency" type="string"/>
+      <property name="machineName" column="machine_Name" type="string"/>	
+      <property name="threadCount" column="thread_Count" type="int"/> 
+      <property name="phaseName" column="phase_name" type="string"/> 
+      <property name="commitCount" type="int" column="commit_count" />
+      <property name="batchSize" type="int" column="batch_size" /> 
+      <property name="dailySplit" type="int" column="daily_split" /> 	
+   </class>
+</hibernate-mapping>

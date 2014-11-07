@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.7.0_17\bin\wsimport"   -p Lists http://inchnsirisuap01:6607/_vti_bin/Lists.asmx?wsdl

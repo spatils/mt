@@ -1,0 +1,310 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:w="urn:import:com.google.gwt.widget.client" xmlns:p2="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="whiteBackgroundBrdrAnn" width="960px">
+		<g:VerticalPanel
+				horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE" width="962px">
+				<g:VerticalPanel width="966px" verticalAlignment="ALIGN_MIDDLE" height="52px" spacing="20" styleName="bluePageHeader">
+					<g:Label text="Connections" height="19px" width="74px" styleName="homeHeaderWelcome"  />
+				</g:VerticalPanel>
+				<g:TabLayoutPanel barHeight="2" barUnit="EM" width="660px" height="489px" ui:field="tabLayoutPanelMain">
+					<g:tab>
+						<g:header>Search</g:header>
+						<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" styleName="lightBlueBackGround">
+							<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER"
+								verticalAlignment="ALIGN_MIDDLE" width="5cm" height="52px" spacing="4">
+								<g:Label text="Connection Name" width="125px" />
+								<g:TextBox ui:field="searchString" />
+								<g:Button ui:field="searchButton" stylePrimaryName="blueButton" height="27px">Search</g:Button>
+							</g:HorizontalPanel>
+							<g:VerticalPanel width="5cm" horizontalAlignment="ALIGN_CENTER"
+								height="3cm">
+								<p1:SimplePager ui:field="simplePager" location="CENTER"
+									pageSize="10" />
+								<p1:CellTable ui:field="connectionTable" width="634px" />
+							</g:VerticalPanel>
+							<g:VerticalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="624px">
+								<g:HorizontalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="118px" spacing="4" height="46px">
+								<g:Button styleName="blueButton" ui:field="searchAddButton" height="27px">Add</g:Button>
+								<g:Button text="Test" enabled="false" styleName="blueButton" ui:field="searchTestButton" height="27px"/>
+								<g:Button text="Edit" enabled="false" styleName="blueButton" ui:field="searchEditButton" height="27px">Edit</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchDetailsButton" height="27px">Details</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchDeleteButton" height="27px">Delete</g:Button>
+							</g:HorizontalPanel>
+							</g:VerticalPanel>
+							
+						</g:VerticalPanel>
+					</g:tab>
+					<g:tab>
+						<g:header>Details</g:header>
+						<g:DisclosurePanel ui:field="workAreaPanel"
+							animationEnabled="true" open="true" width="5cm" height="412px">
+
+							<g:header>Work Area</g:header>
+							<g:TabLayoutPanel barHeight="2" barUnit="EM"
+								width="615px" height="363px" ui:field="tabLayoutPanelDetails">
+								<g:tab  ui:field="viewDetailsTab" >
+									<g:header>Details</g:header>
+									<g:Grid ui:field="viewDetailsGrid"  width="487px" height="154px">
+										<g:row>
+											<g:customCell>
+												<g:Label text="Connection Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewConnectionName" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Connection Type" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewConnectionType" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="User Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewUserName" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Repository" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewRepository" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										
+										<g:row >
+											<g:customCell>
+												<g:Label text="Domain" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewDomain" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										<g:row ui:field="viewRow2" visible="false">
+											<g:customCell>
+												<g:Label text="Port" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewPort" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										<g:row ui:field="viewRow1" visible="false">
+											<g:customCell>
+												<g:Label text="Connection URL" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="viewConnectionURL" readOnly="true" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:HorizontalPanel spacing="1">
+													<g:Button styleName="blueButton" height="27px">Test</g:Button>
+													<g:Label text="   " width="5" />
+													<g:Button ui:field="deleteButton" styleName="blueButton" height="27px">Delete</g:Button>
+												</g:HorizontalPanel>
+											</g:customCell>
+
+										</g:row>
+									</g:Grid>
+								</g:tab>
+								<g:tab  ui:field="editTab">
+									<g:header>Edit</g:header>
+									<g:Grid width="487px" height="154px">
+										<g:row>
+											<g:customCell>
+												<g:Label text="Connection Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="editConnectionName" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Connection Type" />
+											</g:customCell>
+											<g:customCell>
+												<g:ListBox  ui:field="editConnectionTypeList"/>
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="User Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="editUserName" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Password" />
+											</g:customCell>
+											<g:customCell>
+												<g:PasswordTextBox ui:field="editPsw" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Repository" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="editRepository" />
+											</g:customCell>
+										</g:row>
+										
+										<g:row>
+											<g:customCell>
+												<g:Label text="Domain" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="editDomain"  />
+											</g:customCell>
+										</g:row>
+										<g:row ui:field="editRow2" visible="false">
+											<g:customCell>
+												<g:Label text="Port" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="editPort"  />
+											</g:customCell>
+										</g:row>
+										<g:row  ui:field="editRow1" visible="false">
+											<g:customCell>
+												<g:Label text="Connection URL" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="editConnectionURL" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:HorizontalPanel spacing="1">
+													<g:Button styleName="blueButton" height="27px">Test</g:Button>
+													<g:Label text="" width="5" />
+													<g:Button ui:field="saveButton" styleName="blueButton" height="27px">Save</g:Button>
+												</g:HorizontalPanel>
+											</g:customCell>
+
+										</g:row>
+									</g:Grid>
+								</g:tab>
+								<g:tab  ui:field="newTab">
+									<g:header>New</g:header>
+									<g:Grid width="487px" height="154px">
+										<g:row>
+											<g:customCell>
+												<g:Label text="Connection Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newConnectionName" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Connection Type" />
+											</g:customCell>
+											<g:customCell>
+												<g:ListBox  ui:field="newConnectionTypeList"/>
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="User Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newUserName" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Password" />
+											</g:customCell>
+											<g:customCell>
+												<g:PasswordTextBox ui:field="newPsw" />
+											</g:customCell>
+										</g:row>
+										<g:row >
+											<g:customCell>
+												<g:Label text="Repository" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newRepository" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Domain" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newDomain" />
+											</g:customCell>
+										</g:row>
+										<g:row ui:field="newRow1" visible="false">
+											<g:customCell>
+												<g:Label text="Port" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newPort"  />
+											</g:customCell>
+										</g:row>
+										<g:row ui:field="newRow2" visible="false">
+											<g:customCell>
+												<g:Label text="Connection URL" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newConnectionURL" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:HorizontalPanel spacing="1">
+													<g:Button styleName="blueButton" height="27px">Test</g:Button>
+													<g:Label text="   " width="5" />
+													<g:Button ui:field="addButton" styleName="blueButton" height="27px">Add</g:Button>
+												</g:HorizontalPanel>
+											</g:customCell>
+
+										</g:row>
+									</g:Grid>
+								</g:tab>
+							</g:TabLayoutPanel>
+						</g:DisclosurePanel>
+					</g:tab>
+				</g:TabLayoutPanel>
+				 
+
+			</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

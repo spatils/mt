@@ -1,0 +1,173 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"  
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:w="urn:import:com.google.gwt.widget.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel width="960" height="576" styleName="whiteBackgroundBrdrAnn">
+		<g:VerticalPanel height="538px" width="962px" ui:field="verticalPanelSequence">
+				<g:VerticalPanel width="963px" spacing="20" horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE" styleName="bluePageHeader" height="52px">
+					<g:Label text="Sequences" height="21px" width="67px"/>
+				</g:VerticalPanel>
+				
+				<g:TabLayoutPanel barHeight="2" barUnit="EM" width="800px" height="452px" ui:field="tabLayoutPanelMain">
+					<g:tab>
+						<g:header>Search</g:header>
+						<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" styleName="whiteBackgroundBrdr">
+							<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER"
+								verticalAlignment="ALIGN_MIDDLE" width="5cm" height="52px" spacing="4" styleName="whiteBackgroundBrdr">
+								<g:Label text="Sequence Name" width="125px" />
+								<g:TextBox ui:field="searchString" />
+								<g:Button ui:field="searchButton" stylePrimaryName="blueButton" height="27px">Search</g:Button>
+							</g:HorizontalPanel>
+							<g:VerticalPanel width="5cm" horizontalAlignment="ALIGN_CENTER"
+								height="3cm">
+								<p1:SimplePager ui:field="simplePager" location="CENTER"
+									pageSize="10" />
+								<p1:CellTable ui:field="sequenceTable" width="634px" />
+							</g:VerticalPanel>
+							<g:VerticalPanel horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_BOTTOM" width="624px" >
+								<g:HorizontalPanel width="182px" spacing="1" height="46px" horizontalAlignment="ALIGN_RIGHT">
+								<g:Button styleName="blueButton" ui:field="searchAddButton" height="27px">Add</g:Button>
+								<g:Button text="Test" styleName="blueButton" ui:field="searchTestButton" height="27px" enabled="false"/>
+								<g:Button styleName="blueButton" ui:field="searchDetailsButton" height="27px" enabled="false">Details</g:Button>
+								<g:Button styleName="blueButton" ui:field="searchDeleteButton" height="27px" enabled="false">Delete</g:Button>
+							</g:HorizontalPanel>
+							</g:VerticalPanel>
+							
+						</g:VerticalPanel>
+					</g:tab>
+					<g:tab>
+						<g:header>Add</g:header>
+						<g:VerticalPanel styleName="whiteBackgroundBrdr">
+							<g:Grid ui:field="viewDetailsGrid"  width="487px" height="154px">
+										<g:row>
+											<g:customCell>
+												<g:Label text="Sequence Name" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newSequenceName" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="Number of Phases Type" />
+											</g:customCell>
+											<g:customCell>
+												<g:TextBox ui:field="newNumberOfPhases" />
+											</g:customCell>
+										</g:row>
+										<g:row>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:Label text="" />
+											</g:customCell>
+											<g:customCell>
+												<g:HorizontalPanel spacing="1">
+													<g:Button styleName="blueButton" height="27px" ui:field="addNewSequence">Add</g:Button>
+													<g:Label text="   " width="5" />
+												</g:HorizontalPanel>
+											</g:customCell>
+
+										</g:row>
+									</g:Grid>
+						</g:VerticalPanel>
+					</g:tab>
+					<g:tab>
+						<g:header>Details</g:header>
+						<g:VerticalPanel width="655px" height="422px">
+							<g:ScrollPanel height="238px" alwaysShowScrollBars="true" width="769px">
+								<g:VerticalPanel ui:field="drawingCanvas" height="223px" width="753px">
+									<g:Image url="WEB-INF/classes/com/xAdmin/resources/img/arrow.png" height="35px" width="47px"/>
+								</g:VerticalPanel>
+							</g:ScrollPanel>
+							<g:VerticalPanel styleName="whiteBackgroundBrdr" height="177px">
+								<g:Grid width="764px" height="154px">
+									<g:row>
+										<g:customCell>
+											<g:Label text="Phase Type" width="155px"  />
+										</g:customCell>
+										
+										<g:customCell>
+											<g:ListBox ui:field="phaseTypeList"/>
+										</g:customCell>
+										<g:customCell>
+											<g:Label text="Cron Frequency" ui:field="cr"/>
+										</g:customCell>
+										<g:customCell>
+											<g:TextBox ui:field="cronFreuency"/>
+										</g:customCell>
+									</g:row>
+									<g:row>
+										<g:customCell>
+											<g:Label text="Machine Name" width="155px"  />
+										</g:customCell>
+										<g:customCell>
+											<g:ListBox ui:field="machineNameList"/>
+										</g:customCell>
+										<g:customCell>
+											<g:Label text="Threads"/>
+										</g:customCell>
+										<g:customCell>
+											<g:TextBox ui:field="threadsField"/>
+										</g:customCell>
+									</g:row>
+									<g:row>
+										<g:customCell>
+											<g:Label text="Batch Size" width="155px"  />
+										</g:customCell>
+										<g:customCell>
+											<g:TextBox ui:field="batchSize"/>
+										</g:customCell>
+										<g:customCell>
+											<g:Label text="Commit Count"/>
+										</g:customCell>
+										<g:customCell>
+											<g:TextBox ui:field="commitCount"/>
+										</g:customCell>
+									</g:row>
+									<g:row>
+										<g:customCell>
+											<g:Label text="Is Daily Split Required" width="155px"  />
+										</g:customCell>
+										<g:customCell>
+											<g:CheckBox ui:field="dailySplit"/>
+										</g:customCell>
+										 
+									</g:row>
+									<g:row>
+										<g:customCell>
+											<g:Label text=""/>
+										</g:customCell>
+										<g:customCell>
+											<g:Label text=""/>
+										</g:customCell>
+										<g:customCell>
+											<g:Label text=""/>
+										</g:customCell>
+										<g:customCell>
+											<g:HorizontalPanel height="18px" width="165px" spacing="4">
+									<g:Button styleName="blueButton" height="27px">Test</g:Button>
+									<g:Button ui:field="addButton" styleName="blueButton" height="27px">Add</g:Button>
+									<g:Button ui:field="saveButton" styleName="blueButton" height="27px">Save</g:Button>
+									<g:Button ui:field="deleteButton" styleName="blueButton" height="27px">Delete</g:Button>
+								</g:HorizontalPanel>
+										</g:customCell>
+									</g:row>
+								</g:Grid>
+							</g:VerticalPanel>
+						</g:VerticalPanel>
+					</g:tab>
+					
+				</g:TabLayoutPanel>
+				
+				
+			</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

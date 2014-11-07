@@ -1,0 +1,44 @@
+<project name="Hibernate Tools for Ant - hbm2java" default="gensrc">
+    <property name="basepath"     value="D:\ManageTransfer"/>	
+    <path id="tools">
+	<path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/antlr-2.7.7.jar"/>
+        <path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/dom4j-1.6.1.jar"/>
+        <path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/hibernate-commons-annotations-4.0.1.Final.jar"/>
+        <path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/javassist-3.15.0-GA.jar"/>
+        <path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/jboss-logging-3.1.0.GA.jar"/>
+        <path location="${basepath}/hibernate-release-4.2.0.Final/lib/required/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+	<path location="${basepath}/hibernate-release-4.2.0.Final/lib/envers/hibernate-envers-4.2.0.Final.jar"/>
+	<path location="${basepath}/hibernate-release-4.2.0.Final/lib/jpa/hibernate-entitymanager-4.2.0.Final.jar"/>
+	<path location="${basepath}/hibernate-release-4.2.0.Final/lib/hibernate-tools-4.0.0.jar"/>
+
+
+
+antlr-2.7.7.jar
+dom4j-1.6.1.jar
+envers
+hibernate-commons-annotations-4.0.2.Final.jar
+hibernate-core-4.2.4.Final.jar
+hibernate-jpa-2.0-api-1.0.1.Final.jar
+hibernate-tools-4.0.0.jar
+javassist-3.15.0-GA.jar
+jboss-logging-3.1.0.GA.jar
+jboss-transaction-api_1.1_spec-1.0.1.Final.jar
+
+
+    </path>
+    <taskdef name="gen-src" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="tools"/>
+    <target name="gensrc">
+        <gen-src destdir="src/main/java">
+            <configuration
+                    configurationfile="${basepath}/Record/hibernate.cfg.xml">
+                <fileset dir="${basepath}/Record/">
+                    <include name="Claims.hbm.xml"/>
+		    <include name="Connection.hbm.xml"/>
+		    <include name="Policy.hbm.xml"/>
+                </fileset>
+            </configuration>
+            <hbm2java destdir="${basepath}/Record/src/"/>
+        </gen-src>
+    </target>
+</project>

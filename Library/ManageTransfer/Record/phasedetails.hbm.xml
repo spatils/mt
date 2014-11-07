@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+   
+
+   <class name="com.managetransfer.client.PhasesDetailsH" table="phasesdetails" lazy="false">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       
+      <id name="phaseName" type="string" column="phase_name" length="16">
+      </id>
+      <property name="phaseType" column="phase_type" type="string" length="20"/>
+      <map name="phaseDetailsString" cascade="all">
+          <key column="phase_name"/>
+	  <index column="parameter_name" type="string"/>
+         <one-to-many class="com.managetransfer.client.PhasesDetailsStringH"/>
+      </map>
+     <map name="phaseDetailsDate" cascade="all">
+          <key column="phase_name"/>
+	  <index column="parameter_name" type="string"/>
+         <one-to-many class="com.managetransfer.client.PhasesDetailsDateH"/>
+      </map>
+      <map name="phaseDetailsInt" cascade="all">
+          <key column="phase_name"/>
+	  <index column="parameter_name" type="string"/>
+         <one-to-many class="com.managetransfer.client.PhasesDetailsIntH"/>
+      </map>
+   </class>
+   
+</hibernate-mapping>
