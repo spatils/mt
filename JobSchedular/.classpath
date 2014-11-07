@@ -16,12 +16,12 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/DocumentumD6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SharePoint"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Transformation"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/c3p0-0.9.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/mysql-connector-java-5.1.26-bin.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/quartz-2.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/quartz-jobs-2.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/slf4j-api-1.6.6.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Quartz/lib/slf4j-log4j12-1.6.6.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/c3p0-0.9.1.1.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/quartz-2.2.0.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/quartz-jobs-2.2.0.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/slf4j-api-1.6.6.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Quartz/lib/slf4j-log4j12-1.6.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

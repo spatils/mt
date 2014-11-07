@@ -13,8 +13,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.persister.entity.AbstractEntityPersister;
 
-import com.managetransfer.record.Information;
-import com.managetransfer.record.KeyHandling;
+//import com.managetransfer.record.Information;
+//import com.managetransfer.record.KeyHandling;
  
 
 
@@ -32,7 +32,7 @@ public class GetRecordDetails {
 	private HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ; 
 	final Logger logger = Logger.getLogger(GetRecordDetails.class.getName()) ;
 	public static void main(String[] args) throws Exception {
-		
+		/**
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		GetRecordDetails grd = new GetRecordDetails();
 		Calendar startTime = Calendar.getInstance();
@@ -74,7 +74,7 @@ public class GetRecordDetails {
 		 
 		  
 		hc.commitBatchLevelTransaction();
-		
+		***/
 		 
 		
 	}

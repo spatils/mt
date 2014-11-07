@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.client.PhasesDetailsStringH" table="mtphasesdetailsstring" lazy="false">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       <composite-id >
+            <key-property name="phaseName" column="phase_name" type="string"></key-property>
+            <key-property name="parameterName" column="parameter_name" type="string"></key-property>
+      </composite-id>
+      <property name="parameterValue" column="parameter_value" type="string"/>
+	 
+   </class>
+</hibernate-mapping>

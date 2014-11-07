@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.client.BatchDetails" table="mtbatch_details">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       
+	  <id name="batchName" type="string" column="batch_name" length="400">
+      </id>
+      <property name="successCount" column="success_count" type="int"  />
+      <property name="failureCount" column="failure_count" type="int"  />  
+      <property name="modifyTime" column="modify_time" type="date"  />  
+      <property name="startTime" column="start_time" type="date"  /> 
+      <property name="batchStatus" column="batch_status" type="string" length="10"/>	
+      <property name="errorDescription" column="error_description" type="string" length="400"/>	
+      <property name="sequenceName" column="sequence_name" type="string" length="400"/>	
+      <property name="sequenceNumber" column="sequence_number" type="int" />		
+   </class>
+</hibernate-mapping>

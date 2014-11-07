@@ -3,6 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Hibernate"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Record/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

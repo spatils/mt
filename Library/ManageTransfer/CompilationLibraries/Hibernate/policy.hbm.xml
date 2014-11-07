@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.Policy" table="mtpolicy">
+      <meta attribute="class-description">
+         This class contains the policy object detail. 
+      </meta>
+      <id name="objectId" type="string" column="r_object_id" length="16">
+      </id>
+      <property name="policyNumber" column="policy_number" type="string" length="10"/>
+      <property name="objectName" column="object_name" type="string"/>
+      <property name="folderPath" column="folder_path" type="string"/>
+      <property name="ownerName" column="owner_name" type="string"/>
+      <property name="aclName" column="acl_name" type="string"/>
+      <property name="insuredName" column="insured_name" type="string" length="255"/>
+      <property name="endorsementId" column="endorsement_id" type="string"/>
+      <property name="expiryDate" column="expiry_date" type="date"/>
+      <property name="endorsementEffectiveDate" column="endorsement_effective_date" type="date"/>
+      <property name="documentState" column="document_state" type="string"/>
+      <property name="departmentType" column="department_type" type="string"/>
+      <property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
+      <property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
+      <property name="mtProcessId" column="mt_process_id" type="int" />	
+      <property name="mtCreateDate" column="mt_create_date" type="date"  />
+      <property name="mtModifyDate" column="mt_modify_date" type="date"  />
+      <property name="mtErrorDesc"  column="mt_error_description" type="string" length="255"/>
+      <property name="mtStatus"  column="mt_status" type="string" length="10"/>
+      <property name="mtRepositoryPath" column="mt_repo_path" type="string" length="255"/>
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.record.testPer" table="mttestper">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+      <id name="objectId" type="java.lang.String" column="r_object_id" length="16">
+      </id>
+      <property name="policyNumber" column="policy_number" type="java.lang.String" length="10"/>
+      <property name="objectName" column="object_name" type="java.lang.String"/>
+      
+   </class>
+</hibernate-mapping>
