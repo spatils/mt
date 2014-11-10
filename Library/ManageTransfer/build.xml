@@ -61,6 +61,7 @@
 				<attribute name="Main-Class" value="Record"/>
 			</manifest>
 		</jar>
+		<copy file="./build/jar/BusinessObject.jar" todir="./RunTimeBasePath/Project/lib"/>
 	</target>
 	<target name="CreateFrameWorkObjectJar">
 			<mkdir dir="./build/jar"/>
@@ -69,6 +70,7 @@
 					<attribute name="Main-Class" value="Record"/>
 				</manifest>
 			</jar>
+		    <copy file="./build/jar/FrameWorkObject.jar" todir="./RunTimeBasePath/Project/lib"/> 
 	</target>
 		
 	<target name="run">

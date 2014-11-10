@@ -1,7 +1,7 @@
 package com.managetransfer.client;
 // Generated Nov 7, 2014 7:09:07 AM by Hibernate Tools 4.0.0
 
-
+    
 import java.util.Date;
 
 /**
