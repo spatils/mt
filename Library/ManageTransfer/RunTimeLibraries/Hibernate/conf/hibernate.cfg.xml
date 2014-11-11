@@ -34,6 +34,6 @@
 	<mapping resource="mappingdetailsmap.hbm.xml"/>
 	<mapping resource="batchdetails.hbm.xml"/>
 	<mapping resource="jobserverdetails.hbm.xml"/>
-        <mapping resource="testpersistance.hbm.xml"/>
+         
 </session-factory>
 </hibernate-configuration>

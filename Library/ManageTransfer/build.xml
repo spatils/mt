@@ -1,7 +1,7 @@
 <project name="List of commands for ManagerTransfer" default="InitializeDatabase">
 	<property name="compilationBasePath"  value="./CompilationLibraries"/>
 	<property name="RunTimeBasePath"      value="./RunTimeLibraries"/>
-	<property name="RunTimeTargetPath"    value="./CompilationLibraries"/>
+	<property name="RunTimeTargetPath"    value="C:\ManageTransfer\ManageTransfer"/>
 	<path id="tools">
 		<path location="${compilationBasePath}/Hibernate/lib/antlr-2.7.7.jar"/>
 		<path location="${compilationBasePath}/Hibernate/lib/dom4j-1.6.1.jar"/>
@@ -17,10 +17,12 @@
 		<path location="${compilationBasePath}/Hibernate/lib/slf4j-api-1.6.1.jar" />
 		<path location="${compilationBasePath}/Hibernate/lib/freemarker-2.3.19.jar" />
 		<path location="${compilationBasePath}/Hibernate/lib/Hibernate.jar" />
-		<path location="${compilationBasePath}/Hibernate/lib/GenerateCode.jar" />
+		<path location="${compilationBasePath}/Common/lib/GenerateCode.jar" />
 		<path location="${compilationBasePath}/Hibernate/lib/log4j-1.2.16.jar" />
 		<path location="${compilationBasePath}/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar" />
 		<path location="${compilationBasePath}/Hibernate/lib/ojdbc14.jar" />
+		<path location="${RunTimeBasePath}/Project/lib/BusinessObject.jar" />
+		<path location="${RunTimeBasePath}/Project/lib/FrameworkObject.jar" />
 	</path>
 	<taskdef name="gen-src" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="tools"/>
 	<target name="InitializeDatabase">
@@ -36,13 +38,24 @@
 			</configuration>
 			<hbm2java destdir="./src/"/>
 		</gen-src>
+		<mkdir dir="./build/classes/com/managetransfer/dynamiccode/keyhandling/"/>
+		<mkdir dir="./src/com/managetransfer/dynamiccode/keyhandling/"/>
 		<java classname="com.managetransfer.generatecode.GenerateCodeRecord" classpathref="tools">
 			<classpath>
-				<path location="${compilationBasePath}/Hibernate/" />
-				<pathelement location="./build/jar/Record.jar"/>
+				<path location="${compilationBasePath}/Hibernate/"/>
+				<path location="${compilationBasePath}/Common/conf" />
 				<pathelement path="${java.class.path}"/>
 			</classpath>
 		</java>
+		<javac srcdir="src" destdir="./build/classes" classpathref="tools"/>
+		<delete file="./build/jar/KeyHandling.jar"/>
+		<jar destfile="./build/jar/KeyHandling.jar" basedir="./build/classes" includes="com/managetransfer/dynamiccode/keyhandling/*.*">
+			<manifest>
+				<attribute name="Main-Class" value="Record"/>
+			</manifest>
+		</jar>
+		<delete file="./RunTimeLibraries/Project/lib/KeyHandling.jar"/>
+		<copy file="./build/jar/KeyHandling.jar" todir="./RunTimeLibraries/Project/lib"/>
 	</target>
 
 	<target name="clean">
@@ -56,44 +69,75 @@
 
 	<target name="CreateBusinessObjectJar">
 		<mkdir dir="./build/jar"/>
-		<jar destfile="./build/jar/BusinessObject.jar" basedir="./build/classes/com/managetransfer/businessobject">
+		<delete file="./build/jar/BusinessObject.jar"/>
+		<jar destfile="./build/jar/BusinessObject.jar" basedir="./build/classes" includes="com/managetransfer/businessobject/*.*">
 			<manifest>
 				<attribute name="Main-Class" value="Record"/>
 			</manifest>
 		</jar>
-		<copy file="./build/jar/BusinessObject.jar" todir="./RunTimeBasePath/Project/lib"/>
+		<delete file="./RunTimeLibraries/Project/lib/BusinessObject.jar"/>
+		<copy file="./build/jar/BusinessObject.jar" todir="./RunTimeLibraries/Project/lib"/>
 	</target>
 	<target name="CreateFrameWorkObjectJar">
-			<mkdir dir="./build/jar"/>
-			<jar destfile="./build/jar/FrameWorkObject.jar" basedir="./build/classes/com/managetransfer/client">
-				<manifest>
-					<attribute name="Main-Class" value="Record"/>
-				</manifest>
-			</jar>
-		    <copy file="./build/jar/FrameWorkObject.jar" todir="./RunTimeBasePath/Project/lib"/> 
+		<mkdir dir="./build/jar"/>
+		<delete file="./build/jar/FrameWorkObject.jar"/>
+		<jar destfile="./build/jar/FrameWorkObject.jar" basedir="./build/classes" includes="com/managetransfer/client/*.*">
+			<fileset dir="./build/classes" includes="com/managetransfer/dao/*.*" />
+			<manifest>
+				<attribute name="Main-Class" value="Record"/>
+			</manifest>
+		</jar>
+		<delete file="./RunTimeLibraries/Project/lib/FrameWorkObject.jar"/>
+		<copy file="./build/jar/FrameWorkObject.jar" todir="./RunTimeLibraries/Project/lib"/>
 	</target>
-		
-	<target name="run">
+
+	<target name="GenerateKeyHandlingCode">
+		<mkdir dir="./build/classes/com/managetransfer/dynamiccode/keyhandling/"/>
+		<mkdir dir="./src/com/managetransfer/dynamiccode/keyhandling/"/>
 		<java classname="com.managetransfer.generatecode.GenerateCodeRecord" classpathref="tools">
 			<classpath>
-				<path location="${compilationBasePath}/Hibernate/" />
-				<pathelement location="./build/jar/Record.jar"/>
+				<path location="${compilationBasePath}/Hibernate/"/>
+				<path location="${compilationBasePath}/Common/conf" />
 				<pathelement path="${java.class.path}"/>
 			</classpath>
 		</java>
+		<javac srcdir="src" destdir="./build/classes" classpathref="tools"/>
+		<delete file="./build/jar/KeyHandling.jar"/>
+		<jar destfile="./build/jar/KeyHandling.jar" basedir="./build/classes" includes="com/managetransfer/dynamiccode/keyhandling/*.*">
+			<manifest>
+				<attribute name="Main-Class" value="Record"/>
+			</manifest>
+		</jar>
+		<delete file="./RunTimeLibraries/Project/lib/KeyHandling.jar"/>
+		<copy file="./build/jar/KeyHandling.jar" todir="./RunTimeLibraries/Project/lib"/>
 	</target>
-	<target name="gentran">
+	<target name="GenerateTransformationHandlingCode">
+		<mkdir dir="./build/classes/com/managetransfer/dynamiccode/transformation/"/>
+		<mkdir dir="./src/com/managetransfer/dynamiccode/transformation/"/>
 		<java classname="com.managetransfer.generatecode.GenerateCodeTransformation" classpathref="tools">
 			<classpath>
-				<path location="${compilationBasePath}/Hibernate/" />
-				<pathelement location="./build/jar/Record.jar"/>
-				<pathelement path="${java.class.path}"/>
-
+				<path location="${compilationBasePath}/Hibernate/"/>
+				<path location="${compilationBasePath}/Common/conf" />
 			</classpath>
 		</java>
+		<javac srcdir="src" destdir="./build/classes" classpathref="tools"/>
+		<delete file="./build/jar/TransformationImplementation.jar"/>
+		<jar destfile="./build/jar/TransformationImplementation.jar" basedir="./build/classes" includes="com/managetransfer/dynamiccode/transformation/*.*">
+			<manifest>
+				<attribute name="Main-Class" value="Record"/>
+			</manifest>
+		</jar>
+		<delete file="./RunTimeLibraries/Project/lib/TransformationImplementation.jar"/>
+		<copy file="./build/jar/TransformationImplementation.jar" todir="./RunTimeLibraries/Project/lib"/>
 	</target>
 	<target name="InitApp">
 		<InitializeDatabase/>
 		<run/>
+	</target>
+	<target name="DeployLibraries">
+		<delete dir="${RunTimeTargetPath}/*"/>
+		<copy todir="${RunTimeTargetPath}" >
+			<fileset dir="./RunTimeLibraries"/>
+		</copy>
 	</target>
 </project>

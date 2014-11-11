@@ -121,18 +121,19 @@ public class GenerateCodeRecord {
 	}
 	 
 	public void createStartClassFile() throws Exception{
-		String startString = new String("package com.managetransfer.dynamiccode;\n"+
+		String startString = new String("package com.managetransfer.dynamiccode.keyhandling;\n"+
 										"import java.util.Date;\n"+
 										"import java.util.HashMap;\n"+
-										"import com.managetransfer.businessobject;\n"+
+										"import com.managetransfer.businessobject.*;\n"+
 										"public class KeyHandling {\n" +
-										"HashMap<String,String> ohmString = new HashMap() ; \n" +
-										"HashMap<String,Integer> ohmInteger = new HashMap() ; \n" +
-										"HashMap<String,Date> ohmDate = new HashMap() ; \n" +
-										"HashMap<String,Long> ohmLong = new HashMap() ; \n");
+										"public HashMap<String,String> ohmString = new HashMap() ; \n" +
+										"public HashMap<String,Integer> ohmInteger = new HashMap() ; \n" +
+										"public HashMap<String,Date> ohmDate = new HashMap() ; \n" +
+										"public HashMap<String,Long> ohmLong = new HashMap() ; \n");
 		javaClassFile = new File(ReadProperty.getJavaClassPath());
 		 
 		// if file doesnt exists, then create it
+		System.out.println("javaClassFile"+javaClassFile.getPath());
 		if (!javaClassFile.exists()) {
 			javaClassFile.createNewFile();
 		}

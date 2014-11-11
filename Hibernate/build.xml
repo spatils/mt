@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Hibernate">
+              as the first entry and export the buildfile again. --><project basedir="." default="build-project" name="Hibernate">
     <property environment="env"/>
     <property name="Library.location" value="../Library"/>
     <property name="Records.location" value="../Records"/>
@@ -45,7 +45,8 @@
             <src path="src"/>
             <classpath refid="Hibernate.classpath"/>
         </javac>
-        <jar destfile="../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar" basedir="./bin">
+        <delete file="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
+        <jar destfile="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar" basedir="./bin" includes="com/managetransfer/hibernate/*">
 				<manifest>
 					<attribute name="Main-Class" value="Record"/>
 				</manifest>

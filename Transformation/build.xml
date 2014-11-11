@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Transformation">
+              as the first entry and export the buildfile again. --><project basedir="." default="build-project" name="Transformation">
     <property environment="env"/>
     <property name="Library.location" value="../Library"/>
     <property name="JobSchedular.location" value="../JobSchedular"/>
@@ -48,7 +48,8 @@
             <src path="src"/>
             <classpath refid="Transformation.classpath"/>
         </javac>
-        <jar destfile="../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/GenerateCodeTransformation.jar" basedir="./bin">
+        <delete file="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Transformation.jar"/>
+        <jar destfile="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Transformation.jar" basedir="./bin">
 				<manifest>
 					<attribute name="Main-Class" value="Record"/>
 				</manifest>

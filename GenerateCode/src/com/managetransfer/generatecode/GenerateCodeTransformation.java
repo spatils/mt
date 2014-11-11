@@ -166,11 +166,11 @@ public class GenerateCodeTransformation {
 	}
 	 
 	public void createStartClassFile() throws Exception{
-		String startString = new String("package com.managetransfer.dynamiccode;\n"+
+		String startString = new String("package com.managetransfer.dynamiccode.transformation;\n"+
 										"import java.util.Date;\n"+
 										"import java.util.HashMap;\n" +
 										"import java.util.ArrayList;\n"+
-										"import java.util.businessobject.*;\n"+
+										"import com.managetransfer.businessobject.*;\n"+
 										"public class Transformation {\n" +
 										"ArrayList<Object> sourceObject = new ArrayList<>();   \n" +
 										"private Object targetObject = null;  ; \n" +

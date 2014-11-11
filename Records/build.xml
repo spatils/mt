@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Records">
+              as the first entry and export the buildfile again. --><project basedir="." default="build-project" name="Records">
     <property environment="env"/>
     <property name="Library.location" value="../Library"/>
     <property name="ECLIPSE_HOME" value="../../../../../eclipse"/>
@@ -60,7 +60,8 @@
             <src path="src"/>
             <classpath refid="Records.classpath"/>
         </javac>
-        <jar destfile="../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar" basedir="./bin">
+        <delete file="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
+        <jar destfile="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar" basedir="./bin">
 				<manifest>
 					<attribute name="Main-Class" value="Record"/>
 				</manifest>
