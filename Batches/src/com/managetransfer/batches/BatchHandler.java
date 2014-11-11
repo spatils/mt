@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import com.managetransfer.client.BatchDetails;
 import com.managetransfer.hibernate.HibernateConnection;
- 
+
  
 
 public class BatchHandler {

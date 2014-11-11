@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Batches">
+              as the first entry and export the buildfile again. --><project basedir="." default="build-project" name="Batches">
     <property environment="env"/>
     <property name="SharePoint.location" value="../SharePoint"/>
     <property name="ECLIPSE_HOME" value="../../../../../eclipse"/>
@@ -37,7 +37,8 @@
             <src path="src"/>
             <classpath refid="Batches.classpath"/>
         </javac>
-        <jar destfile="../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Batches.jar" basedir="./bin">
+        <delete file="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
+        <jar destfile="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar" basedir="./bin">
 				<manifest>
 					<attribute name="Main-Class" value="Record"/>
 				</manifest>
