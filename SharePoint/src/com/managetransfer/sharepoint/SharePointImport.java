@@ -30,7 +30,7 @@ public class SharePointImport {
 	 */
 	private String SQLDrivingCursor = new String(
 			"from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$");
-    private String packageName = new String("com.managetransfer.record.");
+    private String packageName = new String("com.managetransfer.businessobject.");
 	private String recordType = new String("Information");
 	private RecordHandler rh = new RecordHandler();
 	private ArrayList<String> allColumns = new ArrayList<String>();

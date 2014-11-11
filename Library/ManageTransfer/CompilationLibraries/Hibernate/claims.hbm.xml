@@ -24,8 +24,8 @@
       <property name="departmentType" column="department_type" type="string"/>
       <property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
       <property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
-      <property name="mtCreateDate" column="mt_create_date" type="date"  />
-      <property name="mtModifyDate" column="mt_modify_date" type="date"  />
+      <property name="mtCreateDate" column="mt_create_date" type="time"  />
+      <property name="mtModifyDate" column="mt_modify_date" type="time"  />
       <property name="mtErrorDesc"  column="mt_error_description" type="string" length="255"/>
       <property name="mtStatus"  column="mt_status" type="string" length="10"/>
       <property name="mtProcessId" column="mt_process_id" type="int" />

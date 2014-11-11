@@ -75,7 +75,7 @@ import com.managetransfer.shared.FieldVerifier;
 public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		ManageTransferService {
 	private static org.apache.log4j.Logger logger = Logger.getLogger(ManageTransferServiceImpl.class);  
-	String packageName = new String("com.managetransfer.record.");
+	String packageName = new String("com.managetransfer.businessobject.");
 	 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 

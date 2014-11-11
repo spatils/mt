@@ -34,7 +34,7 @@ import com.managetransfer.hibernate.HibernateConnection;
 public class TransformationHandler {
     String transformationName =  new String("Mappping123");
     String SQLDrivingCursor =  new String("from $objectName$ where mtSequenceName ='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$");
-    private String packageName = new String("com.managetransfer.record.");
+    private String packageName = new String("com.managetransfer.businessobject.");
 	private String recordType = new String("Claims");
 	private String recordTypeTarget = new String("Information");
 	private RecordHandler rh =   new RecordHandler();

@@ -47,10 +47,10 @@ public class ExportDocumentum {
 	
 	private String destinationFolderPath = new String ("D:\\Documentum\\exportdirectory");
 	private String DQLToExtractAttributes = new String("select claim_number, claim_number,object_name ,owner_name,acl_name,claimant_name,claim_type,effective_date,adjuster_name,claim_type,document_state,department_type from claims where r_object_id='$r_object_id$'") ;
-	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$");
+	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) " );
 	private RecordHandler rh =   new RecordHandler();
     private String recordType = new String("Claims");
-    private String packageName = new String("com.managetransfer.record.");
+    private String packageName = new String("com.managetransfer.businessobject.");
     private IDfQuery idfQuery = new DfQuery();
     private  IDfCollection idfCollection = null;
     private int commitCount = 1000;
@@ -122,7 +122,7 @@ public class ExportDocumentum {
 					//perform export operation
 					String objectId = (String)rh.getSpecificAttributeValuePK(objectList.get(t), "r_object_id");
 					logger.info("Extracted object id");
-					String folderPath = cd.exportDocument(objectId,destinationFolderPath);
+					String folderPath = cd.exportDocumentSysObject(objectId,destinationFolderPath);
 					logger.info("Exported File");
 					//Save folder Path
 					listOfStringAtrributes.put("folder_path", folderPath);

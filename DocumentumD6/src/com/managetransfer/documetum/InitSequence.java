@@ -42,8 +42,8 @@ public class InitSequence {
     private IDfQuery idfQuery = new DfQuery();
     private IDfCollection idfCollection = null;
     private RecordHandler rh = new RecordHandler();
-    private String recordType = new String("com.managetransfer.record.Claims");
-    private String packageName = new String("com.managetransfer.record.");
+    private String recordType = new String("com.managetransfer.businessobject.Claims");
+    private String packageName = new String("com.managetransfer.businessobject.");
     private String sequenceName = new String("Seq1");
     private int sequenceNumber =0;
     private int processId = 0 ;

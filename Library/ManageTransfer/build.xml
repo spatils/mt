@@ -1,4 +1,4 @@
-<project name="List of commands for ManagerTransfer" default="InitializeDatabase">
+<project name="ManagerTransfer Commands" default="InitializeDatabase">
 	<property name="compilationBasePath"  value="./CompilationLibraries"/>
 	<property name="RunTimeBasePath"      value="./RunTimeLibraries"/>
 	<property name="RunTimeTargetPath"    value="C:\ManageTransfer\ManageTransfer"/>

@@ -23,8 +23,8 @@
       <property name="departmentType" column="department_type" type="java.lang.String"/>
       <property name="mtSequenceName" column="mt_sequence_name" type="java.lang.String" length="16"/>
       <property name="mtSequenceNumber" column="mt_sequence_number" type="java.lang.Integer" />
-      <property name="mtCreateDate" column="mt_create_date" type="date"  />
-      <property name="mtModifyDate" column="mt_modify_date" type="date"  />
+      <property name="mtCreateDate" column="mt_create_date" type="time"  />
+      <property name="mtModifyDate" column="mt_modify_date" type="time"  />
       <property name="mtErrorDesc"  column="mt_error_description" type="java.lang.String" length="255"/>
       <property name="mtStatus"  column="mt_status" type="java.lang.String" length="10"/>
       <property name="mtProcessId" column="mt_process_id" type="java.lang.Integer" />

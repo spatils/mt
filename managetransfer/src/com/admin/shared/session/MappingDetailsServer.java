@@ -25,7 +25,7 @@ public class MappingDetailsServer {
 	ArrayList<String> mappingType = new ArrayList<String>();
 	ArrayList<String> objectLevelMappingNames = new ArrayList<String>();
 	HibernateConnection hc = new HibernateConnection();
-	private String packageName = new String ("com.managetransfer.record.");
+	private String packageName = new String ("com.managetransfer.businessobject.");
 	final Logger logger = Logger.getLogger(MappingDetailsServer.class.getName()) ;
 	public HibernateConnection getHc() {
 		return hc;

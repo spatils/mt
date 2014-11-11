@@ -128,7 +128,7 @@ public class DocumentumConnection {
 			destinationFolderPath += "/";
 		}
 		// Set the full file path on the local system.
-		node.setFilePath(destinationFolderPath + doc.getObjectName() + "." +format.getDOSExtension());
+		node.setFilePath(destinationFolderPath + docId + "." +format.getDOSExtension());
 		// Execute and return results
 		if (eo.execute())
 		{
@@ -138,6 +138,17 @@ public class DocumentumConnection {
 		{
 			return "";
 		}
+	}
+	public String exportDocumentSysObject(String docId, String destinationFolderPath) throws Exception{
+		//THis export operation written for better performance over exportDocument
+		IDfDocument doc = 		(IDfDocument)  getDocumemtumSession().getObject(new DfId(docId));
+		IDfFormat format = doc.getFormat();
+		if (destinationFolderPath.lastIndexOf("/") != 		destinationFolderPath.length() - 1 && 		destinationFolderPath.lastIndexOf("\\") != 		destinationFolderPath.length() - 1) 		{
+			destinationFolderPath += "/";
+		}
+		String filePath = new String(destinationFolderPath + docId + "." +format.getDOSExtension());
+		doc.getFile(filePath);
+		return filePath;
 	}
 	public String getFolderPath(String objectId) throws Exception{
 		String methodName="getFolderPath";

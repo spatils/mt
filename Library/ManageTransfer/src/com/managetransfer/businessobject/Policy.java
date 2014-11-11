@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Nov 10, 2014 9:52:48 AM by Hibernate Tools 4.0.0
+// Generated Nov 11, 2014 6:02:54 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
