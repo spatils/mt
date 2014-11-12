@@ -90,15 +90,28 @@ public class ExportDocumentum {
 		record.setTypeOfRecord(getRecordType());
 		int nextProcessId = 0;
 		int totalProcessCount = 0;
+		int errorCount = 0;
 		Date   createDate = new Date();
 		for(int t=0; t<  objectList.size() ; t++){
 			try{
+				logger.info("Start Processing New Record---------"+t);
+				totalProcessCount = totalProcessCount +1;
+				processCount = processCount +1 ;
+				record = new Record();
+				record.setErrorDetails("");;
+				listOfStringAtrributes.clear();
+				listOfIntAttributes.clear();
+				listOfDateAttributes.clear();
+				listOfLongAtrributes.clear();
 				//Populate object id in DQL
 				object = objectList.get(t);
+				String objectId = (String)rh.getSpecificAttributeValuePK(objectList.get(t), "r_object_id");
+				logger.info("Extracted object id");
 				// Get creation date
 				createDate = (Date) rh.getSpecificAttributeValue(objectList.get(t),"mtCreateDate");
-				record = new Record();
-				idfQuery.setDQL(rh.getModifiedExportDocumentumQuery(DQLToExtractAttributes,objectList.get(t)));
+				
+				idfQuery.setDQL(rh.getModifiedExportDocumentumQuery(DQLToExtractAttributes,object));
+				logger.info("DQL---------"+idfQuery.getDQL());
 				idfCollection = idfQuery.execute(cd.getDocumemtumSession(),DfQuery.DF_EXEC_QUERY);
 				while(idfCollection.next()){
 					for (int j =0 ; j < rh.getColumnNameList().size();j++){
@@ -120,8 +133,6 @@ public class ExportDocumentum {
 					}
 					logger.info("Extracted data from DQL");
 					//perform export operation
-					String objectId = (String)rh.getSpecificAttributeValuePK(objectList.get(t), "r_object_id");
-					logger.info("Extracted object id");
 					String folderPath = cd.exportDocumentSysObject(objectId,destinationFolderPath);
 					logger.info("Exported File");
 					//Save folder Path
@@ -145,6 +156,8 @@ public class ExportDocumentum {
 					}else{
 						record.setStatusOfRecord("SUCCESS");
 						record.setProcessId(0);
+						record.setSequenceNumber(sequenceNumber);
+						
 					}
 					
 					logger.info("Got Creation Date"+createDate);
@@ -155,14 +168,12 @@ public class ExportDocumentum {
 					record.setListOfIntAttributes(listOfIntAttributes);
 					record.setListOfLongAtrributes(listOfLongAtrributes);
 					record.setListOfStringAtrributes(listOfStringAtrributes);
-					
 					rh.setRecord(record);
 					rh.saveRecord(object);
-					processCount = processCount +1 ;
 					bh.addSuccessCount(1);
 					bh.saveBatch();
 					if(commitCount==processCount){
-						rh.batchCommit();
+						rh.commitBatchTransaction();
 						processCount = 0;
 						rh.startBatchTransaction();
 						
@@ -170,6 +181,8 @@ public class ExportDocumentum {
 					if(totalProcessCount==batchCount){
 						break;
 					}
+					
+					
 				}
 				idfCollection.close();
 			}
@@ -181,11 +194,14 @@ public class ExportDocumentum {
 					record.setProcessId(getProcessId());
 					record.setSequenceName(getSequenceName());
 					record.setCreateDate(createDate);
+					record.setStatusOfRecord("FAIL");
 					record.setModifyDate(new Date());
 					rh.setRecord(record);
-				 	rh.saveRecord( object);
-					bh.addFailureCount(1);
+				 	rh.saveRecord( objectList.get(t));
 					bh.saveBatch();
+					bh.addFailureCount(1);
+					
+					
 				}catch(Exception ex){
 					logger.severe("Error while saving error "+ex);
 				}

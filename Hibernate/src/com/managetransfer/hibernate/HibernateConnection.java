@@ -37,8 +37,7 @@ public class HibernateConnection {
             }
         }
         catch (Throwable ex) {
-            // Make sure you log the exception
-            System.err.println("initOperation failed." + ex);
+            logger.severe("initOperation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
@@ -56,12 +55,16 @@ public class HibernateConnection {
 	}
 	 
 	public void startBatchLevelTransaction(){
+		logger.info("Inside startBatchLevelTransaction");
 		batchLevelTransaction = hibernateSession.beginTransaction();
+		logger.info("Exit startBatchLevelTransaction");
 	}
 	public void commitBatchLevelTransaction(){
+		logger.info("Inside commitBatchLevelTransaction");
 		if (batchLevelTransaction!= null && batchLevelTransaction.isActive()){
 			batchLevelTransaction.commit();
 		}
+		logger.info("Exit commitBatchLevelTransaction");
 	}
 	public void abortBatchLevelTransaction(){
 		if (batchLevelTransaction!= null && batchLevelTransaction.isActive()){

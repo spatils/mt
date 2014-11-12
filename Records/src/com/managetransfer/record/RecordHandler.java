@@ -95,14 +95,15 @@ public class RecordHandler {
 	public boolean doesNextRecordExist() {
 		return false;
 	}
-	public void batchCommit(){
-		
-	}
+	 
 	public void startBatchTransaction(){
 		 hc.startBatchLevelTransaction();
 	}
 	public void commitBatchTransaction(){
 		hc.commitBatchLevelTransaction();
+	}
+	public void abortBatchTransaction(){
+		hc.abortBatchLevelTransaction();
 	}
 	public void startDataTransaction(){
 		 hc.startBatchLevelTransaction();
@@ -275,7 +276,7 @@ public class RecordHandler {
 		logger.info("Exiting Method"+methodName);
 	}
 	public String getModifiedExportDocumentumQuery(String dql,Object object ) throws Exception{
-		String methodName="saveRecord";
+		String methodName="getModifiedExportDocumentumQuery";
 		logger.info("Inside Method"+methodName);
 		KeyHandling kh = new KeyHandling();
 		kh.extractKey(object, getTypeOfRecord().substring(typeOfRecord.lastIndexOf(".")+1,typeOfRecord.length()));

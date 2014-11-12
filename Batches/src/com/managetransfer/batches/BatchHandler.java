@@ -71,6 +71,18 @@ public class BatchHandler {
 	public void addFailureCount(int i){
 		batchDetails.setFailureCount(batchDetails.getFailureCount()+i);
 	}
+	public int getSuccessCount(){
+		return batchDetails.getSuccessCount();
+	}
+	public int getFailureCount(){
+		return batchDetails.getFailureCount(); 
+	}
+	public void setSuccessCount(int count){
+		batchDetails.setSuccessCount(count);
+	}
+	public void getFailureCount(int count){
+		batchDetails.setFailureCount(count); 
+	}
 	public void saveBatch(){
 		Date today = new Date();
 		batchDetails.setModifyTime(today);
