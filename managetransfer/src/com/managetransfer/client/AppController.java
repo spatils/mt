@@ -67,7 +67,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 						doLogin();
 					}
 				});
-
+		 
 		eventBus.addHandler(LoginSuccessEvent.TYPE,
 				new LoginSuccessEventHandler() {
 					@Override
@@ -234,8 +234,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 	@Override
 	public void onValueChange(ValueChangeEvent<String> event) {
 		final String token = event.getValue();
-
-		if (token != null) {
+       if (token != null) {
 			if (token.equals("login")) {
 				GWT.runAsync(new RunAsyncCallback() {
 					@Override

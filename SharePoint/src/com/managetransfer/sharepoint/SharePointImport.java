@@ -281,7 +281,7 @@ public class SharePointImport {
 				bh.addSuccessCount(1);
 				bh.saveBatch();
 				if (commitCount == processCount) {
-					rh.batchCommit();
+					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();
 				}

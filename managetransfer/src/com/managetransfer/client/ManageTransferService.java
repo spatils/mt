@@ -86,6 +86,7 @@ public interface ManageTransferService extends RemoteService {
 	List<SequenceDetailsMap> getSequenceDetailsMapList(String seqName);
 	List<BatchDetails> getBatchDetailsBySequence(String sequenceName,
 			int sequenceNumber);
+	 String logOut();
 	
 	
 }

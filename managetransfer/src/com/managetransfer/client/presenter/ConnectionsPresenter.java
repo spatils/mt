@@ -53,7 +53,7 @@ public class ConnectionsPresenter implements Presenter, ConnectionsView.Presente
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search connection details");
+				eventBus.fireEvent( new LoginEvent());
 			}
 		});
 	}
@@ -76,7 +76,7 @@ public class ConnectionsPresenter implements Presenter, ConnectionsView.Presente
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search connection details");
+				eventBus.fireEvent( new LoginEvent());
 			}
 		});
 		
@@ -91,7 +91,7 @@ public class ConnectionsPresenter implements Presenter, ConnectionsView.Presente
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching connection details");
+				eventBus.fireEvent( new LoginEvent());
 			}
 		});
 	}
@@ -134,7 +134,7 @@ public class ConnectionsPresenter implements Presenter, ConnectionsView.Presente
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error deleting connection details");
+				eventBus.fireEvent( new LoginEvent());
 			}
 		});
 		
