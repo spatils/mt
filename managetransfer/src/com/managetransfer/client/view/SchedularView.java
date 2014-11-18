@@ -22,6 +22,8 @@ public interface SchedularView<T>  {
 		 void onItemSelected(T selectedItem);
 		 void onItemClicked(JobDetails jobDetails);
 		 ArrayList<String> getJobTypeList();
+		void onSearchInterruptButtonClicked();
+		  
 	 }
 	
 	

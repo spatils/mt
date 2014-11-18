@@ -50,6 +50,7 @@ public class TransformationHandler {
     private boolean isLastSequence = false;
     private HibernateConnection hc = new HibernateConnection();
     final Logger logger = Logger.getLogger(TransformationHandler.class.getName()) ;
+    Boolean interruptFlag =false;
     
     public static void main(String[] args) throws Exception{
     	TransformationHandler th = new TransformationHandler();
@@ -130,13 +131,13 @@ public class TransformationHandler {
 				batchCount = batchCount +1 ;
 				bh.addSuccessCount(1);
 				processCount = processCount + 1 ;
-				if(commitCount==processCount){
+				if(commitCount>=processCount){
 					batchCount = 0;
 					bh.saveBatch();
 					hc.commitBatchLevelTransaction();
 					hc.startBatchLevelTransaction();
 				}
-				if(totalProcessCount==batchCount){
+				if(totalProcessCount>=batchCount || getInterruptFlag()){
 					break ;
 				}
     		}
@@ -338,5 +339,11 @@ public class TransformationHandler {
 	}
 	public void setRecordTypeTarget(String recordTypeTarget) {
 		this.recordTypeTarget = recordTypeTarget;
+	}public Boolean getInterruptFlag() {
+		return this.interruptFlag;
+	}
+	public void setInterruptFlag(Boolean interruptFlag) {
+		logger.info("Setting interrup flag to"+interruptFlag);
+		this.interruptFlag = interruptFlag;
 	}
 }

@@ -48,7 +48,7 @@ public class JobSchedular extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("Inside doGet");
+		logger.info("Inside JobSchedulardoGet");
 		PrintWriter out = response.getWriter();
 		if(StartSchedular.getInstance()  == null){
 			out.println("Schedular is not initialized");
@@ -127,6 +127,19 @@ public class JobSchedular extends HttpServlet {
 					logger.error("Error Resuming Job"+e);
 					out.println("Error Resuming Job");
 				}
+			}else if (request.getParameter("Action").equals("InterruptJob")){
+				try{ 
+					logger.info(request.getParameter("Action"));
+					logger.info(request.getParameter("JobId"));
+					interruptJob(request.getParameter("JobId"));
+					out.println("Job Interrupted");
+				}catch(Exception e){
+					logger.error("Error Interrupting Job"+e);
+					out.println("Error Interrupting Job");
+				}
+			}else{
+				logger.error("Action Not Yet Configured");
+				out.println("Action Not Yet Configured");
 			}
 				
 			
@@ -168,10 +181,12 @@ public class JobSchedular extends HttpServlet {
 	public void resumeJob(String jobId) throws Exception{
 		 StartSchedular.scheduler.resumeJob(jobKey(jobId,defaultGroup));
 	}
-	public void modifyJob(){
-		
-		
+	public void interruptJob(String jobId) throws Exception{
+		 
+		StartSchedular.scheduler.interrupt(jobKey(jobId,defaultGroup));
+		 
 		
 	}
+	
 
 }

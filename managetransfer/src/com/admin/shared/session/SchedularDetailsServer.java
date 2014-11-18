@@ -205,6 +205,28 @@ public class SchedularDetailsServer {
 		
 		return false;
 	}
+	public boolean interruptJob(JobDetails jobDetails) throws Exception{
+		System.out.println("Inside interruptJob");
+		for(JobServerDetails jds : jobServerDetails ){
+			if(jds.getJobServerName().equals(jobDetails.getServerName())){
+				System.out.println("Inturrup Action");
+				ACTION = "?Action=InterruptJob"; 
+				String PARAMETER = "&JobId="+jobDetails.getJobName();
+				String url = jds.getServer_url()+ACTION+PARAMETER;
+				URL JobServer = new URL(url);
+		        URLConnection yc =  JobServer.openConnection();
+		        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+		        String inputLine;
+		        while ((inputLine = in.readLine()) != null) {
+		            System.out.println(inputLine);
+		        }
+		        in.close();
+		        return true;
+			}
+		}
+		
+		return false;
+	}
 	public boolean deleteJob(JobDetails jobDetails) throws Exception{
 		System.out.println("Inside deleteJob");
 		for(JobServerDetails jds : jobServerDetails ){

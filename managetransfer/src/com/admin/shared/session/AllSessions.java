@@ -113,6 +113,13 @@ public class AllSessions {
 		public void setHc(HibernateConnection hc) {
 			this.hc = hc;
 		}
+		public synchronized String logOut(){
+			if (null != session && null != session.getAttribute(IS_LOGGED_IN)       ){
+		    	this.hc.closeConnection();
+		    	session.removeAttribute(IS_LOGGED_IN);
+	       	}
+			return "Success";
+		}
 
 
         

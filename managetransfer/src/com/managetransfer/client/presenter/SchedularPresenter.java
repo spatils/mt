@@ -213,5 +213,20 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 		
 	}
 	 
-		 
+	public void onSearchInterruptButtonClicked() {
+		rpcService.interruptJob(display.getSelectedJobName() ,new AsyncCallback<Boolean>() {
+			@Override
+			public void onSuccess( Boolean result) {
+				fetchJobDetails();
+				Window.alert("Request Submitted");
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Error executing job ");
+			}
+		});
+		
+	}
+	 
 }

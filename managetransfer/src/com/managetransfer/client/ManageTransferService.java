@@ -54,6 +54,7 @@ public interface ManageTransferService extends RemoteService {
 	boolean editJob(JobDetails jobDetail);
 	boolean runJob(JobDetails jobDetail);
 	boolean changeStateJob(JobDetails jobDetail);
+	boolean interruptJob(JobDetails selectedJobName);
 	SequenceDetailsMap getSequenceResultMap(String sequenceName,int seqNumber);
 	/*** Phases****/
 	ArrayList<PhasesDetails> getPhaseResult(String input);
@@ -87,6 +88,7 @@ public interface ManageTransferService extends RemoteService {
 	List<BatchDetails> getBatchDetailsBySequence(String sequenceName,
 			int sequenceNumber);
 	 String logOut();
+	
 	
 	
 }

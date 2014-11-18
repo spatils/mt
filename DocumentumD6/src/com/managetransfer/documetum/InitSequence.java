@@ -34,6 +34,8 @@ import com.managetransfer.record.RecordHandler;
   *     */ 
  
 public class InitSequence {
+	
+	Boolean interruptFlag = false;
 	private int commitCount = 1000;
 	private int batchCount = 10000;
 	private int nextThreadCount = 1 ;
@@ -233,12 +235,12 @@ public class InitSequence {
 				rh.saveRecordPK();
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if(commitCount==processCount){
+				if(commitCount>=processCount){
 					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();
 				}
-				if(totalProcessCount==batchCount){
+				if(totalProcessCount>=batchCount || getInterruptFlag()){
 					break;
 				}
 			}
@@ -364,6 +366,13 @@ public class InitSequence {
 		}
 		public void setNextThreadCount(int nextThreadCount) {
 			this.nextThreadCount = nextThreadCount;
+		}
+		public Boolean getInterruptFlag() {
+			return this.interruptFlag;
+		}
+		public void setInterruptFlag(Boolean interruptFlag) {
+			logger.info("Setting interrup flag to"+interruptFlag);
+			this.interruptFlag = interruptFlag;
 		}
 		
 }

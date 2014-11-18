@@ -30,6 +30,7 @@ import com.admin.shared.session.SequencesDetailsServer;
 import com.admin.shared.session.ThroughputDetailsServer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -378,6 +379,23 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 			hc = as.getHc();
 			schedularDetailsServer.setHc(hc);
 			return schedularDetailsServer.runJob(jobDetail);
+		}
+		catch(Exception e){
+			System.out.println("Excepton"+e);
+			return false;
+		}
+	 
+	}
+	@Override
+	public boolean interruptJob(JobDetails jobDetail) {
+		try{
+			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
+			AllSessions as = AllSessions.getInstance();
+			as.setRequest(getThreadLocalRequest());
+			HibernateConnection hc = new HibernateConnection();
+			hc = as.getHc();
+			schedularDetailsServer.setHc(hc);
+			return schedularDetailsServer.interruptJob(jobDetail);
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
@@ -802,6 +820,13 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		throughputDetailsServer.setHc(as.getHc());
 		return throughputDetailsServer.getSequenceDetailsMapList(seqName);
 
+	}
+
+	@Override
+	public String logOut() {
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		return as.logOut();
 	}
 
 

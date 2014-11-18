@@ -45,6 +45,8 @@ public class ExportDocumentum {
 	
 	private DocumentumConnection cd = new DocumentumConnection();
 	
+	Boolean interruptFlag =false;
+    
 	private String destinationFolderPath = new String ("D:\\Documentum\\exportdirectory");
 	private String DQLToExtractAttributes = new String("select claim_number, claim_number,object_name ,owner_name,acl_name,claimant_name,claim_type,effective_date,adjuster_name,claim_type,document_state,department_type from claims where r_object_id='$r_object_id$'") ;
 	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) " );
@@ -90,7 +92,6 @@ public class ExportDocumentum {
 		record.setTypeOfRecord(getRecordType());
 		int nextProcessId = 0;
 		int totalProcessCount = 0;
-		int errorCount = 0;
 		Date   createDate = new Date();
 		for(int t=0; t<  objectList.size() ; t++){
 			try{
@@ -131,6 +132,8 @@ public class ExportDocumentum {
 						}
 						
 					}
+				}
+				idfCollection.close();
 					logger.info("Extracted data from DQL");
 					//perform export operation
 					String folderPath = cd.exportDocumentSysObject(objectId,destinationFolderPath);
@@ -172,19 +175,17 @@ public class ExportDocumentum {
 					rh.saveRecord(object);
 					bh.addSuccessCount(1);
 					bh.saveBatch();
-					if(commitCount==processCount){
+					if(commitCount>=processCount){
 						rh.commitBatchTransaction();
 						processCount = 0;
 						rh.startBatchTransaction();
 						
 					}
-					if(totalProcessCount==batchCount){
+					if(totalProcessCount >= batchCount || getInterruptFlag()  ){
 						break;
 					}
 					
-					
-				}
-				idfCollection.close();
+				
 			}
 			catch (Exception e){
 				logger.severe("Error while processing "+e);
@@ -443,5 +444,12 @@ public class ExportDocumentum {
 		
 	}
 		 
-	 
+	public Boolean getInterruptFlag() {
+		return this.interruptFlag;
+	}
+	public void setInterruptFlag(Boolean interruptFlag) {
+		logger.info("Setting interrup flag to"+interruptFlag);
+		this.interruptFlag = interruptFlag;
+	}
+ 
 }

@@ -37,6 +37,7 @@
 								<g:Button text="ChangeState" enabled="false" styleName="blueButton" ui:field="searchChangeSateButton" height="27px">Edit</g:Button>
 								<g:Button enabled="false" styleName="blueButton" ui:field="searchRunButton" height="27px" text="Run">Details</g:Button>
 								<g:Button enabled="false" styleName="blueButton" ui:field="searchDeleteButton" height="27px">Delete</g:Button>
+								<g:Button enabled="false" styleName="blueButton" ui:field="searchInterruptButton" height="27px">Interrupt</g:Button>
 							</g:HorizontalPanel>
 							</g:VerticalPanel>
 							
