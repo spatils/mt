@@ -291,5 +291,30 @@ public class GetRecordDetails {
 		logger.info("Exit Method"+methodName);
 		return object;
 	}
-	
+		public Object setAttributes(Object objectMethod, String classNameMethod, HashMap<String,String> listOfStringAtrributesMethod,HashMap<String,Integer> listOfIntAttributesMethod,HashMap<String,Date> listOfDateAttributesMethod,HashMap<String,Long> listOfLongAtrributesMethod) throws Exception{
+		String[] columnNames = getColumnNames(classNameMethod);
+		String methodName="setAttributes";
+		AbstractEntityPersister persisterObjectMethod = null;
+		ClassMetadata classMetadataMethod = null;
+		classMetadataMethod =  getSessionFactory().getClassMetadata(classNameMethod);
+		persisterObjectMethod = (AbstractEntityPersister) classMetadataMethod;
+		logger.info("Inside Method"+methodName);
+		for(int i = 0 ; i< columnNames.length ; i++){
+			logger.info("Setting "+columnNames[i]+" Type : "+getColumnType(classNameMethod,columnNames[i]));
+			if(getColumnType(classNameMethod,columnNames[i]).equals("string")){
+				logger.info("Setting "+columnNames[i]+" :value "+getListOfStringAtrributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfStringAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+			}else if (getColumnType(classNameMethod,columnNames[i]).equals("long")){
+				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfLongAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+			}else if(getColumnType(classNameMethod,columnNames[i]).equals("date")){
+				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfDateAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+			}else if(getColumnType(classNameMethod,columnNames[i]).equals("integer")){
+				logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+			}
+		}
+		logger.info("Exit Method"+methodName);
+		return objectMethod;
+	}
+ 	
 }

@@ -17,10 +17,12 @@
    <!-- List of XML mapping files -->
   <mapping resource="information.hbm.xml"/>
       <mapping resource="claims.hbm.xml"/>
+      <mapping resource="claimsr.hbm.xml"/>
       <mapping resource="connection.hbm.xml"/>
       <mapping resource="policy.hbm.xml"/>
     
    <!--List of config files -->
+   	<mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>
 	<mapping resource="expressiondetails.hbm.xml"/>
 	<mapping resource="userdetails.hbm.xml"/>

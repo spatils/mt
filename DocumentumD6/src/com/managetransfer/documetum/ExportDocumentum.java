@@ -1,6 +1,7 @@
 package com.managetransfer.documetum;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,6 +23,7 @@ import com.documentum.operations.IDfImportNode;
 import com.documentum.operations.IDfImportOperation;
 import com.managetransfer.batches.BatchHandler;
 import com.managetransfer.client.ConnectionDetails;
+import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.client.PhasesDetailsH;
 import com.managetransfer.client.PhasesDetailsIntH;
 import com.managetransfer.client.PhasesDetailsStringH;
@@ -40,6 +42,7 @@ import com.managetransfer.record.RecordHandler;
  *      Record Type						--SourceObject
  *      Commit Count
   *     Batch Count
+  *     DQL To Extract Repeating Attributes --RepeatingAttributeDQL 
  */ 
 public class ExportDocumentum {
 	
@@ -49,9 +52,11 @@ public class ExportDocumentum {
     
 	private String destinationFolderPath = new String ("D:\\Documentum\\exportdirectory");
 	private String DQLToExtractAttributes = new String("select claim_number, claim_number,object_name ,owner_name,acl_name,claimant_name,claim_type,effective_date,adjuster_name,claim_type,document_state,department_type from claims where r_object_id='$r_object_id$'") ;
+	private String DQLToExtractRepeatingAttributes = new String("") ;
 	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) " );
 	private RecordHandler rh =   new RecordHandler();
     private String recordType = new String("Claims");
+    private String recordTypeR = new String("");
     private String packageName = new String("com.managetransfer.businessobject.");
     private IDfQuery idfQuery = new DfQuery();
     private  IDfCollection idfCollection = null;
@@ -66,6 +71,8 @@ public class ExportDocumentum {
     final Logger logger = Logger.getLogger(ExportDocumentum.class.getName()) ;
     private HibernateConnection hc = new HibernateConnection();
     private boolean exportFolderPath = false;
+    private ArrayList<String> repeatingAttributeList = new ArrayList<String>();
+    
 	public static void main(String[] args)  throws Exception{
 		ExportDocumentum ed = new ExportDocumentum();
 		ed.initOperation();
@@ -116,8 +123,10 @@ public class ExportDocumentum {
 				idfCollection = idfQuery.execute(cd.getDocumemtumSession(),DfQuery.DF_EXEC_QUERY);
 				while(idfCollection.next()){
 					for (int j =0 ; j < rh.getColumnNameList().size();j++){
-						//Extract value from DQL 
-						
+						/****
+						 * Extract value from DQL 
+						 * Column Names of Database should match with Documentum attributes names 
+						 */
 						if (idfCollection.hasAttr(rh.getColumnName(rh.getColumnNameList().get(j)))){
 							
 							if(rh.getColumnType(rh.getColumnNameList().get(j)).equals("string")){
@@ -135,6 +144,50 @@ public class ExportDocumentum {
 				}
 				idfCollection.close();
 					logger.info("Extracted data from DQL");
+					if(!getRecordTypeR().equals("") && getRepeatingAttributeList().size()>0) {
+					//Extraction of Repeating attribute start here
+						 //Column Names of Database should match with Documentum attributes names 
+					idfQuery.setDQL(rh.getModifiedExportDocumentumQuery(DQLToExtractRepeatingAttributes,object));
+					idfCollection = idfQuery.execute(cd.getDocumemtumSession(),DfQuery.DF_EXEC_QUERY);
+					logger.info("RMV DQL Executed");
+					int mt_index_id =0;
+					while(idfCollection.next()){
+						logger.info("Processing Repetaing attributes ----"+mt_index_id);
+						
+						Record recordR = new Record();
+						recordR.getListOfStringAtrributes().put("r_object_id",objectId);
+						recordR.getListOfIntAttributes().put("mt_index_id", mt_index_id);
+						
+						for (int j =0 ; j < getRepeatingAttributeList().size();j++){
+							//Extract value from DQL 
+							
+							if (idfCollection.hasAttr(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)))){
+								
+								if(rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("string")){
+									recordR.getListOfStringAtrributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getString(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j))) );
+								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("integer")){
+									 recordR.getListOfIntAttributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getInt(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j))) );
+								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("date")){
+									recordR.getListOfDateAttributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getTime(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j))).getDate() );
+								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("long")){
+									listOfLongAtrributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getLong(rh.getColumnName(rh.getColumnNameList().get(j)))  );
+									recordR.getListOfLongAtrributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getLong(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)))  );
+								 }
+							}
+							logger.info("extrcated"+rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)));
+								
+						}
+						logger.info(" adjuserIdExist"+recordR.getListOfStringAtrributes().containsKey("adjusterId"));
+						logger.info(" adjuserIdExist"+recordR.getListOfStringAtrributes().containsKey("adjuster_id"));
+						logger.info("Extracted all repating attribute values");
+						rh.createNewRecord(recordTypeR, recordR);
+						mt_index_id = mt_index_id+1;
+					}
+					idfCollection.close();
+					logger.info("Extracted repeating attributes data from DQL");
+					
+					//Extraction of Repeating attribute end here
+					}
 					//perform export operation
 					String folderPath = cd.exportDocumentSysObject(objectId,destinationFolderPath);
 					logger.info("Exported File");
@@ -306,6 +359,9 @@ public class ExportDocumentum {
 				PhasesDetailsStringH dqlExtract  =( PhasesDetailsStringH )phasesDetails.getPhaseDetailsString().get("ExportQuery");
 				DQLToExtractAttributes = dqlExtract.getParameterValue();
 				logger.info("Got DQL");
+				PhasesDetailsStringH repeatingAttributeDQL  =( PhasesDetailsStringH )phasesDetails.getPhaseDetailsString().get("RepeatAttributeDQL");
+				setDQLToExtractRepeatingAttributes(repeatingAttributeDQL.getParameterValue());
+				logger.info("Got RDQL");
 				if(!isLastSequence){
 					nextThreadCount =   nextSdm.getThreadCount();
 				}
@@ -314,6 +370,16 @@ public class ExportDocumentum {
 				PhasesDetailsIntH createFolder  =( PhasesDetailsIntH )phasesDetails.getPhaseDetailsInt().get("CreateFolder");
 				if ( createFolder.getParameterValue() ==1 ){
 					exportFolderPath = true;
+				}
+				//Get object details
+				ObjectDetails objectDetails = getObjectDetails(phaseDetails.getParameterValue());
+				if(objectDetails==null){
+					throw new Exception("Object Details not found");
+				}else{
+					if ( null != objectDetails.getRepeatingObject() && !objectDetails.getRepeatingObject().equals("")){
+						setRecordTypeR( packageName+objectDetails.getRepeatingObject());
+						setRepeatingAttributeList(rh.getListOfAllColumns(getRecordTypeR()));
+					}
 				}
 				
 				hc.commitBatchLevelTransaction();
@@ -417,6 +483,15 @@ public class ExportDocumentum {
 		}
 		return connectionDetails;
 	}
+	public ObjectDetails getObjectDetails(String objectName){
+		List objectDetailsList = hc.getObject("from ObjectDetails where objectName='"+objectName+"'"); 
+		ObjectDetails objectDetails = new ObjectDetails()  ;
+		for(int i=0;i<objectDetailsList.size() ;i++){
+			objectDetails = (ObjectDetails) objectDetailsList.get(i) ;
+		}
+		return objectDetails;
+	}
+	
 	public String createFolder(String basePath , String folderName){
 		String methodName="createFolder";
 		logger.info("Inside Method"+methodName);
@@ -450,6 +525,25 @@ public class ExportDocumentum {
 	public void setInterruptFlag(Boolean interruptFlag) {
 		logger.info("Setting interrup flag to"+interruptFlag);
 		this.interruptFlag = interruptFlag;
+	}
+	public String getRecordTypeR() {
+		return recordTypeR;
+	}
+	public void setRecordTypeR(String recordTypeR) {
+		this.recordTypeR = recordTypeR;
+	}
+	public String getDQLToExtractRepeatingAttributes() {
+		return DQLToExtractRepeatingAttributes;
+	}
+	public void setDQLToExtractRepeatingAttributes(
+			String dQLToExtractRepeatingAttributes) {
+		DQLToExtractRepeatingAttributes = dQLToExtractRepeatingAttributes;
+	}
+	public ArrayList<String> getRepeatingAttributeList() {
+		return repeatingAttributeList;
+	}
+	public void setRepeatingAttributeList(ArrayList<String> repeatingAttributeList) {
+		this.repeatingAttributeList = repeatingAttributeList;
 	}
  
 }

@@ -15,6 +15,12 @@ public Object instantiateObject( String className ,	HashMap<String, String> hmSt
  Policy PolicyObject = new Policy(); 
  PolicyObject.setObjectId(hmString.get("r_object_id")); 
  return PolicyObject;
+}if (className.equals("ClaimsR")){ 
+ ClaimsR ClaimsRObject = new ClaimsR(); 
+ ClaimsRObject.setObjectId(hmString.get("r_object_id"));
+ClaimsRObject.setMtIndexId(hmInteger.get("mt_index_id"));
+ 
+ return ClaimsRObject;
 }if (className.equals("Information")){ 
  Information InformationObject = new Information(); 
  InformationObject.setObjectId(hmString.get("r_object_id")); 
@@ -27,6 +33,11 @@ if (className.equals("Claims")){
 }if (className.equals("Policy")){ 
  Policy PolicyObject =  (Policy) object; 
  ohmString.put("r_object_id",PolicyObject.getObjectId()); 
+}if (className.equals("ClaimsR")){ 
+ ClaimsR ClaimsRObject =  (ClaimsR) object; 
+ ohmString.put("r_object_id",ClaimsRObject.getObjectId());
+ohmInteger.put("mt_index_id",ClaimsRObject.getMtIndexId());
+ 
 }if (className.equals("Information")){ 
  Information InformationObject =  (Information) object; 
  ohmString.put("r_object_id",InformationObject.getObjectId()); 

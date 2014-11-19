@@ -17,6 +17,8 @@ public class PhaseDocumentumMetadataExport extends Composite implements HasText 
  
 	@UiField TextBox  hostName = new TextBox();
 	@UiField TextBox  exportQuery = new TextBox();
+	
+	
 	@UiField ListBox connectionList;
 	ArrayList<String> connectionListString = new ArrayList<String>();
 	private static PhaseDocumentumMetadataExportUiBinder uiBinder = GWT

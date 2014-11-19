@@ -43,6 +43,10 @@
 			<g:Label text="Export Query" width="81px"/>
 			<g:TextBox ui:field="exportQuery" width="384px" height="61px" />
 		</g:HorizontalPanel>
+		<g:HorizontalPanel width="475px" verticalAlignment="ALIGN_MIDDLE">
+			<g:Label text="Repeating Attribute DQL" width="81px"/>
+			<g:TextBox ui:field="repeatAttributeDQL" width="384px" height="61px" />
+		</g:HorizontalPanel>
 		 
 		
 	</g:HTMLPanel>

@@ -18,7 +18,9 @@ import com.google.gwt.user.client.ui.ListBox;
 public class PhaseDocumentumExport extends Composite implements HasText {
 	@UiField CheckBox createFolder;
 	@UiField TextBox  exportQuery = new TextBox();
+	@UiField TextBox  repeatAttributeDQL = new TextBox();
 	@UiField TextBox  exportLocation = new TextBox();
+
 	@UiField ListBox connectionList;
 	@UiField ListBox sourceObjectList ;
 	ArrayList<String> connectionListString = new ArrayList<String>();
@@ -48,6 +50,7 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 		 
 		phaseDetailsString.put("ExportQuery", exportQuery.getValue());
 		phaseDetailsString.put("ExportLocation" , exportLocation.getValue());
+		phaseDetailsString.put("RepeatAttributeDQL" , repeatAttributeDQL.getValue());
 		return phaseDetailsString;
 	}
 	public HashMap<String,Integer> getPhaseDetailsInteger() {
@@ -94,6 +97,11 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 			}else{
 				exportLocation.setValue("");
 			}
+			if (phaseDetailsString.containsKey("RepeatAttributeDQL")){
+				repeatAttributeDQL.setValue(phaseDetailsString.get("RepeatAttributeDQL"));
+			}else{
+				exportLocation.setValue("");
+			}
 			
 		 }else{
 			  
@@ -123,6 +131,7 @@ public class PhaseDocumentumExport extends Composite implements HasText {
  		 
 		exportQuery.setReadOnly(isReadOnly);
 		exportLocation.setReadOnly(isReadOnly);
+		repeatAttributeDQL.setReadOnly(isReadOnly);
 	}
 	public void setConnectionList(ArrayList<String> connectionNames){
 		connectionListString = connectionNames;

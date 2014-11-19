@@ -87,6 +87,31 @@ public class RecordHandler {
 	    }
 		logger.info("Exiting Method"+methodName);
 	}
+	public ArrayList<String> getListOfAllColumns(String recordTypeMethod) throws Exception{
+		String methodName="getListOfAllColumns";
+		logger.info("Inside Method"+methodName);
+		ArrayList<String> columnNames = new ArrayList<String>();
+		/***
+		 * This method returns lists of all columns of an object type.Claims
+		 * It expects initOperation method called before this method
+		 * recordTypeMethod -- example com.managetransfer.businessobject
+		 */
+		columnNames= grd.getCombinedPKAndCKAndProperties(recordTypeMethod);
+		logger.info("Exiting Method"+methodName);
+		return columnNames;
+	}
+	public String getColumnType(String recordTypeMethod, String columnNameMethod) throws Exception{
+		String methodName="getColumnType";
+		logger.info("Inside Method"+methodName);
+		/***
+		 * This method returns lists of all columns of an object type
+		 * It expects initOperation method called before this method
+		 * recordTypeMethod -- example com.managetransfer.businessobject.Claims
+		 * columnName --example ClaimNumber
+		 */
+		logger.info("Exiting Method"+methodName);
+		return grd.getColumnType(recordTypeMethod, columnNameMethod);
+	}
 	/******************get Next Record ****************/
 	public void getNextRecord(Record record) {
 		 
@@ -153,6 +178,13 @@ public class RecordHandler {
 	public String getColumnName(String columnName) throws Exception{
 		return grd.getDatabaseColumnName(getTypeOfRecord(), columnName);
 	}
+	public String getDatabaseColumnName(String recordTypeMethod,String columnNameMethod) throws Exception{
+		/***
+		 * i/p example com.managetransfer.businessobject.Claims , ClaimNumber
+		 * o/p Example claim_number
+		 */
+		return grd.getDatabaseColumnName(recordTypeMethod, columnNameMethod);
+	}
 	public void saveRecordPK() throws Exception{
 		//Used inside Init sequence Documentum
 		String methodName="saveRecordPK";
@@ -190,6 +222,27 @@ public class RecordHandler {
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
 		hc.saveOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
+	}
+	public void createNewRecord(String recordTypeMethod,Record recordMethod) throws Exception{
+		String methodName="createNewRecord";
+		logger.info("Inside Method"+methodName);
+	    /**
+	     * This method expects following input 
+	     * 1 recodeType --Value for example com.managetransfer.businessobject.Claims
+	     * 2 Record -- Attribute values are populated in the ListArrays
+	     * 
+	     * This method expects that hc.initOperation method is called prior to calling this method
+	     * This method will create new object in the repository
+	     * 	
+	     */
+		KeyHandling kh = new KeyHandling();
+		Object object = kh.instantiateObject(recordTypeMethod.substring(recordTypeMethod.lastIndexOf(".")+1,recordTypeMethod.length()), recordMethod.getListOfStringAtrributes(), recordMethod.getListOfIntAttributes() , recordMethod.getListOfDateAttributes(), recordMethod.getListOfLongAtrributes());
+		hc.saveOperation(object);
+		Object objectWithAllProperties = grd.setAttributes(object , recordTypeMethod,recordMethod.getListOfStringAtrributes(),recordMethod.getListOfIntAttributes(),recordMethod.getListOfDateAttributes(),recordMethod.getListOfLongAtrributes());
+		hc.saveOperation(objectWithAllProperties);
+		logger.info("Exiting Method"+methodName);
+	
+	
 	}
 	public void closeConnection(){
 		hc.closeConnection();
