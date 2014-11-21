@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Map;
  
 
+
+
+
+
+import com.managetransfer.businessobject.Claims;
 import com.managetransfer.client.ExpressionsDetails;
 import com.managetransfer.client.MappingDetailsH;
 import com.managetransfer.client.MappingDetailsMapH;
@@ -50,76 +55,115 @@ public class GenerateCodeTransformation {
 		//Populate all expressions
 		gc.createExpression();
 		//Generate transformation
-		gc.createTransformation();
+		gc.createTransformation1();//This method called getTransformationBegining -> getAttributeLevelDetails
 		//Close class file
 	    gc.createEndClassFile();
 		 
 	}
-	private void createTransformation() throws Exception {
+	public String getTransformationBegining(String nameOfTransformation){
+		String transformationBegin =" if(transformationName.equals(\""+nameOfTransformation+"\")){ \n";
+		transformationBegin = transformationBegin +" for(int i=0 ; i < getSourceObject().size(); i++ ) { " ;
+		//This loop picksup each object associated with the transformation
+		List mappingListObject = hc.getObject("from MappingDetailsMapH  where mappingType ='Object' and mappingName='"+nameOfTransformation+"'");
+		for(int i=0; i <mappingListObject.size();i++ ){
+			MappingDetailsMapH mappingObject = (MappingDetailsMapH)mappingListObject.get(i);
+			transformationBegin = transformationBegin +"\n if( getSourceObject().get(i).equals(\""+packageName+mappingObject.getSourceObject()+"\")) { \n";
+			transformationBegin = transformationBegin +"\n "+ mappingObject.getTargetObject()+" "+mappingObject.getTargetObject()+"Object = new "+mappingObject.getTargetObject()+"();" ;
+			transformationBegin = transformationBegin +"\n "+ mappingObject.getSourceObject()+" "+mappingObject.getSourceObject()+"Object = ( "+mappingObject.getSourceObject()+") getSourceObject().get(i) ; ";
+			transformationBegin = transformationBegin +"\n"+ getAttributeLevelDetails(nameOfTransformation,mappingObject.getSourceObject(),mappingObject.getTargetObject());
+			transformationBegin = transformationBegin +"\n getTargetobject().add(" +mappingObject.getTargetObject()+"Object);";
+			transformationBegin = transformationBegin +"\n }";
+		}
+		transformationBegin = transformationBegin +"\n } \n }";
+		return transformationBegin;
+	}
+
+	private String getAttributeLevelDetails(String mappingName,
+			String sourceObject, String targetObject) {
+
+		String attributeLevel = new String("");
+		List mappingListAttribute = hc
+				.getObject("from MappingDetailsH  where mappingType ='"
+						+ mappingName + "'");
+		for (int k = 0; k < mappingListAttribute.size(); k++) {
+			boolean differentObject= false;
+			MappingDetailsH mappingAttribute = (MappingDetailsH) mappingListAttribute
+					.get(k);
+			Map<Integer, MappingDetailsMapH> sdmhMattribute = mappingAttribute
+					.getMappingDetailsMap();
+			if (sdmhMattribute != null ) {
+				Iterator iterator = sdmhMattribute.entrySet().iterator();
+				int l = 0;
+				differentObject= false;
+				String attributeLogic = new String("");
+				while (iterator.hasNext()) {
+					Map.Entry mapEntry = (Map.Entry) iterator.next();
+					MappingDetailsMapH sdmp1 = (MappingDetailsMapH) mapEntry
+							.getValue();
+					    if(sdmp1.getTargetObject().startsWith(targetObject+".")){
+						if (l == 0) {
+							if (mappingAttribute.getExpressionName() != null
+									&& !mappingAttribute.getExpressionName()
+											.trim().equals("=")) {
+								attributeLogic = getSplitString(
+										sdmp1.getTargetObject(), "set")
+										+ "("
+										+ mappingAttribute.getExpressionName()
+										+ "("
+										+ getSplitString(
+												sdmp1.getSourceObject(), "get")
+										+ "()";
+							} else {
+								attributeLogic = getSplitString(
+										sdmp1.getTargetObject(), "set")
+										+ "("
+										+ getSplitString(
+												sdmp1.getSourceObject(), "get")
+										+ "()";
+							}
+						} else {
+							attributeLogic = attributeLogic
+									+ ","
+									+ getSplitString(sdmp1.getSourceObject(),
+											"get") + "()";
+						}
+						l = l + 1;
+					}else{
+						differentObject=true;
+					}
+					}
+				if(!differentObject){ 
+					if (mappingAttribute.getExpressionName() != null
+							&& !mappingAttribute.getExpressionName().trim()
+									.equals("=")) {
+						attributeLogic = attributeLogic + "));\n";
+					} else {
+						attributeLogic = attributeLogic + ");\n";
+					}
+	
+					attributeLevel = attributeLevel + attributeLogic;
+				}
+			}
+		}
+		return attributeLevel;
+	}
+	public String getTransformationEnd(String nameOfTransformation) throws Exception{
+		appendToFile("}\n");
+		return "";
+	}
+	private void createTransformation1() throws Exception {
 		List mappingListObject = hc.getObject("from MappingDetailsH  where mappingType ='Object'");
-		appendToFile("public void executeTransformation(){\n");
+		appendToFile("\n public void executeTransformation(){\n");
+		//This loop picks up each transformation from defined in the system and process it 
 		for(int i=0; i <mappingListObject.size();i++ ){
 			MappingDetailsH mappinObject = (MappingDetailsH)mappingListObject.get(i);
-			//System.out.println("mapping object"+mappinObject.getMappingName());
-			String mappingLevel = new String("");
-			String targetClassName = new String("");
-			mappingLevel = mappingLevel+ "if(transformationName.equals(\""+mappinObject.getMappingName()+"\")){\n";
-			//initailizing objects
-			Map<Integer,MappingDetailsMapH> sdmhM = mappinObject.getMappingDetailsMap();
-			if(sdmhM!=null){
-				Iterator iterator = sdmhM.entrySet().iterator();
-				int l = 0;
-				while(iterator.hasNext()){
-					Map.Entry mapEntry = (Map.Entry) iterator.next();
-					MappingDetailsMapH sdmp =(MappingDetailsMapH)mapEntry.getValue();
-					if(l==0){
-						
-						mappingLevel = mappingLevel +   sdmp.getTargetObject()+" "+sdmp.getTargetObject()+"Object = new "+sdmp.getTargetObject()+"(); \n";
-						targetClassName = sdmp.getTargetObject();
-					}
-					mappingLevel = mappingLevel +   sdmp.getSourceObject()+" "+sdmp.getSourceObject()+"Object = ("+sdmp.getSourceObject() +") sourceObject.get( "+l+"); \n";
-					l = l+1;
-				}
-			}
+			appendToFile(" \n "+getTransformationBegining(mappinObject.getMappingName()));
 			
-			//Attribute handling
-			List mappingListAttribute = hc.getObject("from MappingDetailsH  where mappingType ='"+mappinObject.getMappingName()+"'");
-			for(int k=0; k <mappingListAttribute.size();k++ ){
-				MappingDetailsH mappingAttribute = (MappingDetailsH)mappingListAttribute.get(k);
-				Map<Integer,MappingDetailsMapH> sdmhMattribute = mappingAttribute.getMappingDetailsMap();
-				if(sdmhMattribute!=null){
-					Iterator iterator = sdmhMattribute.entrySet().iterator();
-					int l = 0;
-					String attributeLogic = new String("");
-					while(iterator.hasNext()){
-						Map.Entry mapEntry = (Map.Entry) iterator.next();
-						MappingDetailsMapH sdmp1 =(MappingDetailsMapH)mapEntry.getValue();
-						if(l==0){
-							 if (mappingAttribute.getExpressionName()!=null &&  !mappingAttribute.getExpressionName().trim().equals("=")){
-								 attributeLogic =   getSplitString(sdmp1.getTargetObject(),"set")+"("+mappingAttribute.getExpressionName()+"(" +getSplitString( sdmp1.getSourceObject(),"get")+"()" ;
-							 }else{
-								 attributeLogic =   getSplitString(sdmp1.getTargetObject(),"set")+"(" +getSplitString( sdmp1.getSourceObject(),"get")+"()" ;
-							 }
-						}else{
-							 attributeLogic = attributeLogic+"," +getSplitString( sdmp1.getSourceObject(),"get")+"()" ;
-						}
-						l = l+1;
-					}
-					 if (mappingAttribute.getExpressionName()!=null &&  !mappingAttribute.getExpressionName().trim().equals("=")){
-						 attributeLogic= attributeLogic+"));\n";
-					 }else{
-						 attributeLogic= attributeLogic+");\n";
-					 }
-					
-					 mappingLevel = mappingLevel+attributeLogic;
-				}
-			}
-			mappingLevel = mappingLevel + " setTargetObject("+targetClassName+"Object"+"); \n ";
-			mappingLevel = mappingLevel + "\n }";
-			appendToFile(mappingLevel);
 		}
-		appendToFile("}\n");
+		appendToFile("\n}");
+		
 	}
+	
 	private void createExpression() throws Exception {
 		List objectList = hc.getObject("from ExpressionsDetails");
 		for( int i=0; i < objectList.size(); i++){
@@ -129,10 +173,13 @@ public class GenerateCodeTransformation {
 		
 	}
 	private void createGetterSetter() throws Exception {
- 		String startString = new String(" public Object getTargetobject() { \n" +
+ 		String startString = new String(" public ArrayList<Object> getTargetobject() { \n" +
 				" 	return targetObject; \n" +
 				" } \n" +
-				" public void setTargetObject(Object targetObject) { \n" + 
+				" public ArrayList<Object> getSourceObject(){  \n" +
+				" return sourceObject;  \n" +
+				" }  \n" +
+				" public void setTargetObject(ArrayList<Object> targetObject) { \n" + 
 				" this.targetObject = targetObject;  \n" +
 				" } \n" +
 				" public String getTransformationName() { \n" +
@@ -166,16 +213,14 @@ public class GenerateCodeTransformation {
 	}
 	 
 	public void createStartClassFile() throws Exception{
-		String startString = new String("package com.managetransfer.dynamiccode.transformation;\n"+
-										"import java.util.Date;\n"+
-										"import java.util.HashMap;\n" +
-										"import java.util.ArrayList;\n"+
-										"import com.managetransfer.businessobject.*;\n"+
-										"public class Transformation {\n" +
-										"ArrayList<Object> sourceObject = new ArrayList<>();   \n" +
-										"private Object targetObject = null;  ; \n" +
+		String packageName = new String (" package com.managetransfer.dynamiccode.transformation; ");
+		String importPackages = new String ("\n "+ReadProperty.getImportpackages());
+		String classDeclaration = new String("\n public class Transformation { ");
+		String globalVariables = new String ("\n ArrayList<Object> sourceObject = new ArrayList<>();   \n" +
+										"ArrayList<Object> targetObject = new ArrayList<>();  \n" +
 										"private String transformationName = new String (\"\"); \n" +
 										"  \n");
+		String startString =  packageName + importPackages +classDeclaration +globalVariables;
 		javaClassFile = new File(ReadProperty.getJavaclasspathTransformation());
 		 
 		// if file doesnt exists, then create it

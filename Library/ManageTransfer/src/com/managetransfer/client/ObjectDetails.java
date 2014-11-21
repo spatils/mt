@@ -1,5 +1,5 @@
 package com.managetransfer.client;
-// Generated Nov 19, 2014 6:16:49 AM by Hibernate Tools 4.0.0
+// Generated Nov 20, 2014 6:30:15 AM by Hibernate Tools 4.0.0
 
 
 
@@ -14,6 +14,7 @@ public class ObjectDetails  implements java.io.Serializable {
      private String objectType;
      private String repoObjectName;
      private String repeatingObject;
+     private String relationshipColumns;
 
     public ObjectDetails() {
     }
@@ -22,11 +23,12 @@ public class ObjectDetails  implements java.io.Serializable {
     public ObjectDetails(String objectName) {
         this.objectName = objectName;
     }
-    public ObjectDetails(String objectName, String objectType, String repoObjectName, String repeatingObject) {
+    public ObjectDetails(String objectName, String objectType, String repoObjectName, String repeatingObject, String relationshipColumns) {
        this.objectName = objectName;
        this.objectType = objectType;
        this.repoObjectName = repoObjectName;
        this.repeatingObject = repeatingObject;
+       this.relationshipColumns = relationshipColumns;
     }
    
     public String getObjectName() {
@@ -56,6 +58,13 @@ public class ObjectDetails  implements java.io.Serializable {
     
     public void setRepeatingObject(String repeatingObject) {
         this.repeatingObject = repeatingObject;
+    }
+    public String getRelationshipColumns() {
+        return this.relationshipColumns;
+    }
+    
+    public void setRelationshipColumns(String relationshipColumns) {
+        this.relationshipColumns = relationshipColumns;
     }
 
 

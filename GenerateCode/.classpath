@@ -17,5 +17,7 @@
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/BusinessObject.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/FrameWorkObject.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/conf"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/CompilationLibraries/Common/conf"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

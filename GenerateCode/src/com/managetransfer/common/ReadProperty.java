@@ -20,6 +20,8 @@ public class ReadProperty  {
 	private static List<String> targetclassnamel=new ArrayList<String> ();
 	private static String javaClassPath = new String("");
 	private static String  javaclasspathTransformation = new String("");
+	private static String importpackages = new String("");
+	
 	public static void PropertyLoad(){
 		try{
 			String methodName="PropertyLoad";
@@ -32,6 +34,10 @@ public class ReadProperty  {
 			setJavaClassPath(bundle.getString("javaclasspath"));
 			setJavaclasspathTransformation(bundle.getString("javaclasspathTransformation"));
 			logger.info("classpath"+getJavaClassPath());
+			setJavaClassPath(bundle.getString("javaclasspath"));
+			setImportpackages(bundle.getString("importpackages"));
+			logger.info("classpath"+getImportpackages());
+			
 			}
 		catch(Exception e){
 			logger.error("Exception e"+e);
@@ -89,6 +95,14 @@ public class ReadProperty  {
 	public static void setJavaclasspathTransformation(
 			String javaclasspathTransformation) {
 		ReadProperty.javaclasspathTransformation = javaclasspathTransformation;
+	}
+
+	public static String getImportpackages() {
+		return importpackages;
+	}
+
+	public static void setImportpackages(String importpackages) {
+		ReadProperty.importpackages = importpackages;
 	}
 
 	 

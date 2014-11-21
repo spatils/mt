@@ -15,9 +15,11 @@
    
    
    <!-- List of XML mapping files -->
-  <mapping resource="information.hbm.xml"/>
+      <mapping resource="information.hbm.xml"/>
       <mapping resource="claims.hbm.xml"/>
       <mapping resource="claimsr.hbm.xml"/>
+      <mapping resource="claimsd7.hbm.xml"/>
+      <mapping resource="claimsrd7.hbm.xml"/>
       <mapping resource="connection.hbm.xml"/>
       <mapping resource="policy.hbm.xml"/>
     

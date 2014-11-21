@@ -373,7 +373,7 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 		});
 	}
 	public void fetchTargetAttributeList(String objectName){
-		rpcService.getTargetAttributeList(objectName,new AsyncCallback<ArrayList<String>>() {
+		rpcService.getSourceAttributeList(objectName.split(","),new AsyncCallback<ArrayList<String>>() {
 			@Override
 			public void onSuccess(ArrayList<String> result) {
 				 setTargetAttributeList(result);

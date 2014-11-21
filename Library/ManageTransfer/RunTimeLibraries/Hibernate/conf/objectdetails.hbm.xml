@@ -13,6 +13,8 @@
       <property name="objectType" column="object_type" type="string" length="20"/>
       <property name="repoObjectName" column="repo_object_name" type="string" length="20"/>
       <property name="repeatingObject" column="repeating_object" type="string" length="20"/>
+      <!-- This is comma separated list of attributes used to extract the child object -->  
+      <property name="relationshipColumns" column="relationship_column" type="string" length="1000"/>
    </class>
    
 </hibernate-mapping>

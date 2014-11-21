@@ -49,6 +49,7 @@ import com.admin.shared.session.ConnectionsDetailsServer;
 import com.admin.shared.session.ExpressionsDetailsServer;
 import com.admin.shared.session.LogsDetailsServer;
 import com.admin.shared.session.MappingDetailsServer;
+import com.admin.shared.session.ObjectDetailsServer;
 import com.admin.shared.session.PhasesDetailsServer;
 import com.admin.shared.session.SchedularDetailsServer;
 import com.admin.shared.session.SequencesDetailsServer;
@@ -659,14 +660,35 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public ArrayList<String> getSourceObjectList() {
 		logger.info("Inside getSourceObjectList" );
-		return ReadProperty.getSourceclassname();
+		try{
+		ObjectDetailsServer  objectDetailsServer = new ObjectDetailsServer();
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		HibernateConnection hc = new HibernateConnection();
+		hc = as.getHc();
+		objectDetailsServer.setHc(hc);
+		return 	objectDetailsServer.getSourceObjectList();
+		}catch(Exception e ){
+			logger.error("Error inside getSourceObjecTList"+e);
+			throw e;
+		}
 	}
-
+ 
 	@Override
 	public ArrayList<String> getTargetObjectList() {
 		 
-		 
-		return ReadProperty.getTargetclassname();
+		 try{
+		ObjectDetailsServer  objectDetailsServer = new ObjectDetailsServer();
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		HibernateConnection hc = new HibernateConnection();
+		hc = as.getHc();
+		objectDetailsServer.setHc(hc);
+		return 	objectDetailsServer.getTargetObjectList();
+	}catch(Exception e ){
+		logger.error("Error inside getSourceObjecTList"+e);
+		throw e;
+	}
 	}
 
 	@Override
@@ -761,7 +783,22 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 	}
 	@Override
 	public List<String> getObjectTypes() {
-		return ReadProperty.getObjectTypes() ;
+		try{
+		ObjectDetailsServer  objectDetailsServer = new ObjectDetailsServer();
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		HibernateConnection hc = new HibernateConnection();
+		hc = as.getHc();
+		objectDetailsServer.setHc(hc);
+		ArrayList<String> objectNameList = new ArrayList<String>();
+		objectNameList.add("--select--");
+		objectNameList.addAll(objectDetailsServer.getSourceObjectList());
+		objectNameList.addAll(objectDetailsServer.getTargetObjectList());
+		return 	objectNameList;
+		}catch ( Exception e ){
+			logger.error("  Error inside  getObjectTypes"+e );
+			throw e;
+		}
 		 
 	}
 
