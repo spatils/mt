@@ -2,6 +2,7 @@ package com.managetransfer.record;
 
  
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,12 +14,13 @@ import com.managetransfer.batches.BatchHandler;
  
 import com.managetransfer.client.MappingDetailsH;
 import com.managetransfer.client.MappingDetailsMapH;
+import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.client.PhasesDetailsH;
 import com.managetransfer.client.PhasesDetailsStringH;
 import com.managetransfer.client.SequenceDetailsH;
 import com.managetransfer.client.SequenceDetailsMapH;
 import com.managetransfer.hibernate.HibernateConnection;
- 
+import com.managetransfer.dynamiccode.transformation.Transformation;
  
 
 /* Input Parameters 
@@ -51,7 +53,7 @@ public class TransformationHandler {
     private HibernateConnection hc = new HibernateConnection();
     final Logger logger = Logger.getLogger(TransformationHandler.class.getName()) ;
     Boolean interruptFlag =false;
-    
+    ArrayList<String> dependantSourceObjectTypeList = new ArrayList<String>();// This is the list of dependant object passed to the trasnformation 
     public static void main(String[] args) throws Exception{
     	TransformationHandler th = new TransformationHandler();
     	th.initOperation();
@@ -77,14 +79,19 @@ public class TransformationHandler {
     			targetRecord = new Record();
     			logger.info("Processing Record Number : "+i);
     			sourceObject = objectList.get(i);
+    			
     			rh.initOperation();
     			rh.setRecord(sourceRecord);
 				rh.getPropertyValuesAll(sourceObject);
+				//Get all dependant objects
+    			ArrayList<Object> sourceDependantObjects = new ArrayList<Object>();
+    			sourceDependantObjects = getAllDependantObject(sourceRecord);
+    			logger.info("Got all dependnent object::"+sourceDependantObjects.size());
     			Transformation tf = new Transformation();
 	    		tf.setTransformationName(transformationName);
-	    		Object[] objects = new Object[2];
-	    		objects[0] = objectList.get(i);
-	    		tf.setSourceObjects(objects);
+	    		//Adding primary object to the list
+	    		sourceDependantObjects.add(objectList.get(i));
+	    		tf.setSourceObjects(sourceDependantObjects);
 	    		try{
 	    			tf.executeTransformation();
 	    		}catch(Exception e){
@@ -92,41 +99,58 @@ public class TransformationHandler {
 	    			throw e;
 	    		}
 	    		logger.info("Transformation Successful");
-	    		targetObject = tf.getTargetobject();
+	    		ArrayList<Object> targetObjectList = tf.getTargetobject();
+	    		if(targetObjectList.size()==0) throw new Exception("List of target objects is null");
+	    		logger.info("Size of objects received"+targetObjectList.size());
+	    		for(int p=0;p<targetObjectList.size();p++){
+	    			if(targetObjectList.get(p).getClass().toString().equals("class "+getRecordTypeTarget())){
+	    				//Got primary target object
+	    				logger.info("Primary object assingment"+targetObjectList.get(p).getClass());
+	    				targetObject= targetObjectList.get(p);
+	    			}else{
+	    				//Saving dependant object
+	    				logger.info("Saving object type"+targetObjectList.get(p).getClass());
+	    				rh.saveObject(targetObjectList.get(p));
+	    				
+	    			}
+	    			 
+	    		}
 	    		rhTarget.initOperation();
 	    		rhTarget.setRecord(targetRecord);
 	    		rhTarget.getPropertyValuesAll(targetObject);
 	    		//Set of Attributes for the Target
-	    		rhTarget.getRecord().setSequenceName(sequenceName);
+	    		targetRecord.setSequenceName(sequenceName);
 	    		if(!isLastSequence){
-	    			rhTarget.getRecord().setSequenceNumber(sequenceNumber+1);
+	    			targetRecord.setSequenceNumber(sequenceNumber+1);
 						if(nextProcessId < ( nextThreadCount -1 )   ){
 							nextProcessId = nextProcessId +1 ;
 							
 						}else{
-							nextProcessId = 0 ;
+							nextProcessId = 0 ; 
 						}
-						rhTarget.getRecord().setProcessId(nextProcessId);
+						targetRecord.setProcessId(nextProcessId);
 				}else{
-					rhTarget.getRecord().setSequenceNumber(sequenceNumber);
-					rhTarget.getRecord().setStatusOfRecord("SUCCESS");
-					rhTarget.getRecord().setProcessId(0);
+					targetRecord.setSequenceNumber(sequenceNumber);
+					targetRecord.setStatusOfRecord("SUCCESS");
+					targetRecord.setProcessId(0);
 				}
 				Date today = new Date();
-				rhTarget.getRecord().setCreateDate(today);
-				rhTarget.getRecord().setModifyDate(today);
-				logger.info("Target Record String attr size:"+rhTarget.getRecord().getListOfStringAtrributes().size());
+				targetRecord.setCreateDate(today);
+				targetRecord.setModifyDate(today);
+				logger.info("Target Record String attr size:"+targetRecord.getListOfStringAtrributes().size());
+				rhTarget.setRecord(targetRecord);
 				rhTarget.saveRecord(targetObject);
 				//Set of Attributes for the source 
 				//Get create date for source
 				Date createDateSource  = (Date) rh.getSpecificAttributeValue(objectList.get(i), "mtCreateDate")  ;
-				rh.getRecord().setSequenceName(sequenceName);
-				rh.getRecord().setSequenceNumber(sequenceNumber);
-				rh.getRecord().setStatusOfRecord("SUCCESS");
-				rh.getRecord().setCreateDate(createDateSource);
-				rh.getRecord().setModifyDate(today);
-				rh.getRecord().setProcessId(getProcessId());
-				logger.info("Source Record String attr size:"+rh.getRecord().getListOfStringAtrributes().size());
+				sourceRecord.setSequenceName(sequenceName);
+				sourceRecord.setSequenceNumber(sequenceNumber);
+				sourceRecord.setStatusOfRecord("SUCCESS");
+				sourceRecord.setCreateDate(createDateSource);
+				sourceRecord.setModifyDate(today);
+				sourceRecord.setProcessId(getProcessId());
+				logger.info("Source Record String attr size:"+sourceRecord.getListOfStringAtrributes().size());
+				rh.setRecord(sourceRecord);
 				rh.saveRecord(sourceObject);
 				batchCount = batchCount +1 ;
 				bh.addSuccessCount(1);
@@ -143,12 +167,19 @@ public class TransformationHandler {
     		}
 			catch(Exception e){
 				e.printStackTrace(System.out);
-				logger.severe("Error While process  "+e);
+				logger.severe("Error While processing a record "+e);
 				try {
-					rh.getRecord().setErrorDetails(e.getMessage());
-					rh.getRecord().setSequenceNumber(sequenceNumber);
+					 
+					sourceRecord.setErrorDetails(e.toString());
+					logger.info(" Error details set"+sourceRecord.getErrorDetails());
+					sourceRecord.setSequenceNumber(sequenceNumber);
+					sourceRecord.setStatusOfRecord("FAIL");
+					sourceRecord.setModifyDate(new Date());
+					rh.setRecord(sourceRecord);
 					rh.saveRecord(sourceObject);
+					logger.info(" Error details set"+rh.getRecord().getErrorDetails());
 					bh.addFailureCount(1);
+					
 				} catch ( Exception ex){
 					logger.severe("Error While saving object process  "+ex);
 				}
@@ -160,7 +191,37 @@ public class TransformationHandler {
 		hc.closeConnection();
 		logger.info("Existing Method"+methodName);
     }
-    public void initOperation() throws Exception{
+    private ArrayList<Object> getAllDependantObject(Record record) throws Exception{
+    	
+		ArrayList<Object> dependantObject = new ArrayList<Object>();
+		try{
+			/** 
+			 *  Get list of objects (other than primary object) required for current transformation from mappingsdetailsmap
+			 *  For each source object type get relation attributes from object details table
+			 *  Fetch object from rh.getObjectList
+			 */
+			for (int p=0;p< dependantSourceObjectTypeList.size(); p++){
+				logger.info("dependant object name"+dependantSourceObjectTypeList.get(p));
+				if(! dependantSourceObjectTypeList.get(p).equals( getRecordType().substring(getRecordType().lastIndexOf(".")+1,getRecordType().length()))){
+					ObjectDetails objectDetails = bh.getObjectDetails(getRecordType().substring(getRecordType().lastIndexOf(".")+1,getRecordType().length()),dependantSourceObjectTypeList.get(p));
+					ArrayList<String> dependantColumn = new ArrayList<String>();
+					String[] columnList = objectDetails.getRelationshipColumns().split(",");
+					for(int q=0;q< columnList.length;q++){
+						logger.info("columnName"+columnList[q]);
+						dependantColumn.add(columnList[q]);
+					}
+					dependantObject.addAll(rh.getObjectList(packageName+dependantSourceObjectTypeList.get(p),dependantColumn,record ));
+				} 
+				
+			}
+		}catch(Exception e){
+			logger.severe("Error"+e);
+			throw e;
+		}
+    
+		return dependantObject;
+	}
+	public void initOperation() throws Exception{
     	String methodName="initOperation";
 		logger.info("Inside Method"+methodName);
 		try{
@@ -232,10 +293,16 @@ public class TransformationHandler {
 				Map<Integer,MappingDetailsMapH> mapDtails = mappingDetails.getMappingDetailsMap();
 				if ( mapDtails == null ) throw new Exception("Mapping of object type not found");
 				transformationName =transformationPh.getParameterValue();
-				MappingDetailsMapH mdm  = mapDtails.get(0);
-				setRecordType(packageName+mdm.getSourceObject() ) ;
-				setRecordTypeTarget(packageName+mdm.getTargetObject());
-				logger.info("Found source and target object");
+				for(int p=0;p < mapDtails.size();p++){
+					MappingDetailsMapH mdm  = mapDtails.get(p);
+				    if(mdm.getSequenceNumber()==0){
+						setRecordType(packageName+mdm.getSourceObject() ) ;
+						setRecordTypeTarget(packageName+mdm.getTargetObject());
+						logger.info("Found source and target object");
+				    }else{
+				    	dependantSourceObjectTypeList.add(mdm.getSourceObject());
+				    }
+				}
 				rh.setHc(hc);
 				rh.setTypeOfRecord(getRecordType());
 				rh.initOperation();
@@ -345,5 +412,13 @@ public class TransformationHandler {
 	public void setInterruptFlag(Boolean interruptFlag) {
 		logger.info("Setting interrup flag to"+interruptFlag);
 		this.interruptFlag = interruptFlag;
+	}
+	public ObjectDetails getObjectDetails(String objectName){
+		List objectDetailsList = hc.getObject("from ObjectDetails where objectName='"+objectName+"'"); 
+		ObjectDetails objectDetails = new ObjectDetails()  ;
+		for(int i=0;i<objectDetailsList.size() ;i++){
+			objectDetails = (ObjectDetails) objectDetailsList.get(i) ;
+		}
+		return objectDetails;
 	}
 }

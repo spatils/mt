@@ -16,6 +16,7 @@
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/FrameWorkObject.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
-	<classpathentry kind="lib" path="/Library/ManageTransfer/build/jar/Record.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/TransformationImplementation.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

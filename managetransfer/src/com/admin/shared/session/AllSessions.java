@@ -108,6 +108,9 @@ public class AllSessions {
         }
 		public synchronized HibernateConnection getHc() {
 			this.hc  = (HibernateConnection )session.getAttribute("HIBERNATE_SESSION" );
+			if(! this.hc.getHibernateSession().isConnected()) {
+				this.hc.initOperation();
+			}
 			return hc;
 		}
 		public void setHc(HibernateConnection hc) {

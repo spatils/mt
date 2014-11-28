@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.logging.Logger;
   
 
+
+
 import com.managetransfer.dynamiccode.keyhandling.KeyHandling;
 import com.managetransfer.hibernate.GetRecordDetails;
 import com.managetransfer.hibernate.HibernateConnection;
@@ -112,6 +114,7 @@ public class RecordHandler {
 		logger.info("Exiting Method"+methodName);
 		return grd.getColumnType(recordTypeMethod, columnNameMethod);
 	}
+	
 	/******************get Next Record ****************/
 	public void getNextRecord(Record record) {
 		 
@@ -294,8 +297,15 @@ public class RecordHandler {
 	public void setColumnNameList(ArrayList<String> columnNameList) {
 		this.columnNameList = columnNameList;
 	}
+	public void saveObject(Object objectMethod)throws Exception{
+		/**
+		 * This method is called from Transformation Phase to store repeating value attriutes
+		 */
+		hc.saveOperation(objectMethod);
+	}
 	public void saveRecord(Object object) throws Exception {
 		//Used inside Export Documentum
+	
 		String methodName="saveRecord";
 		logger.info("Inside Method"+methodName);
 		logger.info("record.getSequenceNumber()"+record.getSequenceNumber());
@@ -412,6 +422,61 @@ public class RecordHandler {
 	}
 	public void setThreadCount(int threadCount) {
 		this.threadCount = threadCount;
+	}
+
+	public ArrayList<Object> getObjectList(String objectName,
+			ArrayList<String> attributeList, Record record) throws Exception {
+
+		 
+		String methodName = "getObjectList";
+		logger.info("Inside Method" + methodName);
+		try {
+			/***
+			 * This method expects following input 1. Object Name like
+			 * com.managetransfer.Claims 2. List of attributes available to
+			 * query objectId 3. List of attribute values
+			 * 
+			 * currently only interger and string values are supported The
+			 * method constructs a HQL and returns all objects matching the
+			 * criteria hql = " from Claims where objectId='xyz'
+			 */
+			logger.info("ObjectName" + objectName);
+			String HQL = "from " + objectName;
+			for (int i = 0; i < attributeList.size(); i++) {
+				logger.info(" attribute name " +  attributeList.get(i) );
+				if (i == 0)
+					HQL = HQL + " where " + attributeList.get(i) + " = ";
+				else
+					HQL = HQL + " and " + attributeList.get(i) + " = ";
+				if (getColumnType(objectName, attributeList.get(i)).equals(
+						"string")) {
+					HQL = HQL
+							+ "'"
+							+ record.getListOfStringAtrributes().get(
+									getDatabaseColumnName(objectName,
+											attributeList.get(i))) + "'";
+				} else if (getColumnType(objectName, attributeList.get(i))
+						.equals("integer")) {
+					HQL = HQL
+							+ ""
+							+ record.getListOfStringAtrributes().get(
+									getDatabaseColumnName(objectName,
+											attributeList.get(i)));
+				}
+
+			}
+			logger.info("HQL " + HQL);
+			List objectListFromHQL = hc.getObject(HQL) ; 
+			ArrayList<Object> objectList =new ArrayList<Object>();
+			for(int i=0;i< objectListFromHQL.size(); i++){
+				objectList.add( objectListFromHQL.get(i));
+			}
+			return objectList;
+		} catch (Exception e) {
+			logger.severe("Error insdiegetObjectList " + e);
+			throw e;
+		}
+		 
 	}
 	
 }

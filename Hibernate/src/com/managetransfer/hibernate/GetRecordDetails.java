@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.hibernate.SessionFactory;
-
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.persister.entity.AbstractEntityPersister;
 
@@ -102,6 +101,7 @@ public class GetRecordDetails {
 	public void getProperties(Object object ,String className) throws Exception{
 		String methodName="getProperties";
 		logger.info("Inside Method"+methodName);
+		try{
 		/*
 		 * This method extracts list of properties and stored it locally according to type of property
 		 */
@@ -118,8 +118,8 @@ public class GetRecordDetails {
 		}
 		String[] columnNames = getColumnNames(className) ;
 		for(String str: columnNames){
-			logger.info("Processing str : "+str+" Type "+getColumnType(className,str));
-			logger.info("persisterObject : "+persisterObject);
+			logger.info("Processing str : "+str+" Type "+getColumnType(className,str)+" className : "+className);
+			logger.info("persisterObject : "+persisterObject+" classMetadata "+classMetadata);
 			logger.info("Val1   : "+persisterObject.getPropertyValue(object, str));
 			if(getColumnType(className,str).equals("string")){
 				 listOfStringAtrributes.put(getDatabaseColumnName(className,str),(String)persisterObject.getPropertyValue(object, str)) ;
@@ -130,6 +130,10 @@ public class GetRecordDetails {
 			 }else if (getColumnType(className,str).equals("long")){
 				 listOfLongAtrributes.put(getDatabaseColumnName(className,str),(Long)persisterObject.getPropertyValue(object, str)) ;
 			 }
+		}
+		}catch(Exception e){
+			e.printStackTrace(System.out);
+			throw e;
 		}
 		logger.info("Exit Method"+methodName);
 				

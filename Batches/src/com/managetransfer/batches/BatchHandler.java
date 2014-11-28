@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.managetransfer.client.BatchDetails;
+import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.hibernate.HibernateConnection;
 
  
@@ -146,5 +147,18 @@ public class BatchHandler {
 	}
 	public String getBatchName(){
 		return batchDetails.getBatchName();
+	}
+	public ObjectDetails getObjectDetails(String primaryObjectName, String secondarObjectName){
+		String methodName = "getObjectList";
+		logger.info("Inside Method" + methodName);
+		try{
+		String HQL = " from ObjectDetails where objectName ='"+primaryObjectName+"' and repeatingObject ='"+secondarObjectName+"'";
+		logger.info("HQL" + HQL);
+		return (ObjectDetails) hc.getObject(HQL).get(0);
+		}catch (Exception e){
+			logger.severe("Error" + e);
+			throw e;
+		}
+		 
 	}
 }

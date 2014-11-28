@@ -20,10 +20,8 @@ private String transformationName = new String ("");
  public void setTransformationName(String transformationName) { 
  this.transformationName = transformationName; 
  }   
- public void setSourceObjects(Object[] objects){  
- for(int i=0;i< objects.length;i++){  
- sourceObject.add( objects[i]);  
- }  
+ public void setSourceObjects(ArrayList<Object> sourceObjectMethod){  
+ sourceObject=  sourceObjectMethod ; 
  } 
  public String getAdjuster(String val0 ){
 		return  val0+"T";
@@ -35,16 +33,17 @@ private String transformationName = new String ("");
  
   if(transformationName.equals("newmap")){ 
  for(int i=0 ; i < getSourceObject().size(); i++ ) { 
- if( getSourceObject().get(i).equals("com.managetransfer.businessobject.Claims")) { 
+ if( getSourceObject().get(i).getClass().toString().equals("class com.managetransfer.businessobject.Claims")) { 
 
  ClaimsD7 ClaimsD7Object = new ClaimsD7();
  Claims ClaimsObject = ( Claims) getSourceObject().get(i) ; 
+ClaimsD7Object.setClaimNumber(ClaimsObject.getClaimNumber());
 ClaimsD7Object.setFolderPath(getFolder(ClaimsObject.getFolderPath()));
 ClaimsD7Object.setObjectId(ClaimsObject.getObjectId());
 
  getTargetobject().add(ClaimsD7Object);
  }
- if( getSourceObject().get(i).equals("com.managetransfer.businessobject.ClaimsR")) { 
+ if( getSourceObject().get(i).getClass().toString().equals("class com.managetransfer.businessobject.ClaimsR")) { 
 
  ClaimsRD7 ClaimsRD7Object = new ClaimsRD7();
  ClaimsR ClaimsRObject = ( ClaimsR) getSourceObject().get(i) ; 

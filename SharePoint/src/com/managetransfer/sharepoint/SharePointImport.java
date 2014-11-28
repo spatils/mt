@@ -6,8 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
 import org.apache.axiom.om.OMNode;
 import org.apache.axis2.client.Stub;
+
+
 
 
 import com.managetransfer.batches.BatchHandler;
@@ -17,7 +20,6 @@ import com.managetransfer.client.PhasesDetailsIntH;
 import com.managetransfer.client.PhasesDetailsStringH;
 import com.managetransfer.client.SequenceDetailsH;
 import com.managetransfer.client.SequenceDetailsMapH;
-
 import com.managetransfer.hibernate.HibernateConnection;
 import com.managetransfer.record.RecordHandler;
 
@@ -28,6 +30,15 @@ public class SharePointImport {
 	 * SharePointDestination, url ) Record Type --- TargetObject CreateFolder
 	 * --- CreateFolder 1 0r 0
 	 */
+	private Boolean interruptFlag =false;
+	public Boolean getInterruptFlag() {
+		return interruptFlag;
+	}
+
+	public void setInterruptFlag(Boolean interruptFlag) {
+		this.interruptFlag = interruptFlag;
+	}
+
 	private String SQLDrivingCursor = new String(
 			"from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$");
     private String packageName = new String("com.managetransfer.businessobject.");
@@ -280,12 +291,12 @@ public class SharePointImport {
 				processCount = processCount + 1;
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if (commitCount == processCount) {
+				if (processCount >= commitCount ) {
 					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();
 				}
-				if(totalProcessCount==batchCount){
+				if(  interruptFlag || totalProcessCount >= batchCount){
 					break; 
 				}
 			} catch (Exception e) {

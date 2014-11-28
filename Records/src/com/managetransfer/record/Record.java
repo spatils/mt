@@ -82,7 +82,7 @@ public class Record {
 	}
 
 	public String getErrorDetails() {
-		return errorDetails;
+		return this.errorDetails;
 	}
 
 	public void setErrorDetails(String errorDetails) {

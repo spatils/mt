@@ -55,7 +55,7 @@ public class GenerateCodeTransformation {
 		//Populate all expressions
 		gc.createExpression();
 		//Generate transformation
-		gc.createTransformation1();//This method called getTransformationBegining -> getAttributeLevelDetails
+		gc.createTransformation();//This method called getTransformationBegining -> getAttributeLevelDetails
 		//Close class file
 	    gc.createEndClassFile();
 		 
@@ -67,7 +67,7 @@ public class GenerateCodeTransformation {
 		List mappingListObject = hc.getObject("from MappingDetailsMapH  where mappingType ='Object' and mappingName='"+nameOfTransformation+"'");
 		for(int i=0; i <mappingListObject.size();i++ ){
 			MappingDetailsMapH mappingObject = (MappingDetailsMapH)mappingListObject.get(i);
-			transformationBegin = transformationBegin +"\n if( getSourceObject().get(i).equals(\""+packageName+mappingObject.getSourceObject()+"\")) { \n";
+			transformationBegin = transformationBegin +"\n if( getSourceObject().get(i).getClass().toString().equals(\"class "+packageName+mappingObject.getSourceObject()+"\")) { \n";
 			transformationBegin = transformationBegin +"\n "+ mappingObject.getTargetObject()+" "+mappingObject.getTargetObject()+"Object = new "+mappingObject.getTargetObject()+"();" ;
 			transformationBegin = transformationBegin +"\n "+ mappingObject.getSourceObject()+" "+mappingObject.getSourceObject()+"Object = ( "+mappingObject.getSourceObject()+") getSourceObject().get(i) ; ";
 			transformationBegin = transformationBegin +"\n"+ getAttributeLevelDetails(nameOfTransformation,mappingObject.getSourceObject(),mappingObject.getTargetObject());
@@ -151,7 +151,7 @@ public class GenerateCodeTransformation {
 		appendToFile("}\n");
 		return "";
 	}
-	private void createTransformation1() throws Exception {
+	private void createTransformation() throws Exception {
 		List mappingListObject = hc.getObject("from MappingDetailsH  where mappingType ='Object'");
 		appendToFile("\n public void executeTransformation(){\n");
 		//This loop picks up each transformation from defined in the system and process it 
@@ -188,10 +188,8 @@ public class GenerateCodeTransformation {
 				" public void setTransformationName(String transformationName) { \n" +
 				" this.transformationName = transformationName; \n" +
 				" }   \n" + 
-				" public void setSourceObjects(Object[] objects){  \n" + 
-				" for(int i=0;i< objects.length;i++){  \n" + 
-				" sourceObject.add( objects[i]);  \n" + 
-				" }  \n" + 
+				" public void setSourceObjects(ArrayList<Object> sourceObjectMethod){  \n" + 
+				" sourceObject=  sourceObjectMethod ; \n"+
 				" }");
 		appendToFile(startString);
 	}
