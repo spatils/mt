@@ -243,6 +243,9 @@ public class SharePointImport {
 		for (int i = 0; i < objectList.size(); i++) {
 			totalProcessCount = totalProcessCount + 1 ;
 			try {
+				if(  interruptFlag || totalProcessCount >= batchCount){
+					break; 
+				}
 				// Value of each record object is extracted
 				logger.info("Value of each record object is extracted: ");
 				object = objectList.get(i);
@@ -296,11 +299,10 @@ public class SharePointImport {
 					processCount = 0;
 					rh.startBatchTransaction();
 				}
-				if(  interruptFlag || totalProcessCount >= batchCount){
-					break; 
-				}
+				
 			} catch (Exception e) {
 				try {
+					rh.getPropertyValuesAll(object);
 					rh.getRecord().setCreateDate(createDateSource);
 					rh.getRecord().setErrorDetails(e.getMessage());
 					rh.saveRecord(object);

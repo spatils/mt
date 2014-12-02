@@ -75,6 +75,9 @@ public class TransformationHandler {
 		int nextProcessId = 0;
 		 for(int i=0; i < objectList.size();i++ ){
     		try{
+    			if(totalProcessCount>=batchCount || getInterruptFlag()){
+					break ;
+				}
     			sourceRecord = new Record();
     			targetRecord = new Record();
     			logger.info("Processing Record Number : "+i);
@@ -161,21 +164,18 @@ public class TransformationHandler {
 					hc.commitBatchLevelTransaction();
 					hc.startBatchLevelTransaction();
 				}
-				if(totalProcessCount>=batchCount || getInterruptFlag()){
-					break ;
-				}
+				
     		}
 			catch(Exception e){
 				e.printStackTrace(System.out);
 				logger.severe("Error While processing a record "+e);
 				try {
-					 
-					sourceRecord.setErrorDetails(e.toString());
+					rh.getPropertyValuesAll(sourceObject);
+					rh.getRecord().setErrorDetails(e.toString());
 					logger.info(" Error details set"+sourceRecord.getErrorDetails());
-					sourceRecord.setSequenceNumber(sequenceNumber);
-					sourceRecord.setStatusOfRecord("FAIL");
-					sourceRecord.setModifyDate(new Date());
-					rh.setRecord(sourceRecord);
+					rh.getRecord().setSequenceNumber(sequenceNumber);
+					rh.getRecord().setStatusOfRecord("FAIL");
+					rh.getRecord().setModifyDate(new Date());
 					rh.saveRecord(sourceObject);
 					logger.info(" Error details set"+rh.getRecord().getErrorDetails());
 					bh.addFailureCount(1);

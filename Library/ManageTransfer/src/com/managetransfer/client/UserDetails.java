@@ -1,5 +1,5 @@
 package com.managetransfer.client;
-// Generated Nov 20, 2014 6:30:15 AM by Hibernate Tools 4.0.0
+// Generated Dec 2, 2014 4:02:49 AM by Hibernate Tools 4.0.0
 
 
 

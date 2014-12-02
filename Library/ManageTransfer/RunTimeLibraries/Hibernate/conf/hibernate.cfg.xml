@@ -38,6 +38,8 @@
 	<mapping resource="mappingdetailsmap.hbm.xml"/>
 	<mapping resource="batchdetails.hbm.xml"/>
 	<mapping resource="jobserverdetails.hbm.xml"/>
+	 <mapping resource="documentumacl.hbm.xml"/>
+      <mapping resource="documentumacldetails.hbm.xml"/>
          
 </session-factory>
 </hibernate-configuration>

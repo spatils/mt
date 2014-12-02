@@ -23,6 +23,8 @@
       <mapping resource="connection.hbm.xml"/>
       <mapping resource="policy.hbm.xml"/>
       <mapping resource="information.hbm.xml"/>
+       <mapping resource="documentumacl.hbm.xml"/>
+      <mapping resource="documentumacldetails.hbm.xml"/>
    <!--List of framework object mapping  files -->
     <mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>

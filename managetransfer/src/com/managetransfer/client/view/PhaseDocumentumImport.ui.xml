@@ -1,0 +1,41 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+	    <g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Target Object"/>
+				</g:customCell>
+				<g:customCell>
+					<g:ListBox  ui:field="targetObjectList"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Connection"/>
+				</g:customCell>
+				<g:customCell>
+					<g:ListBox ui:field="connectionList"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				 <g:customCell>
+					<g:Label text="Create Folder "/>
+				</g:customCell>
+				<g:customCell>
+					<g:CheckBox ui:field="createFolder"/>
+				</g:customCell>
+				 <g:customCell>
+					<g:Label text="Destination Path"/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox  ui:field="destinationPath"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+	</g:HTMLPanel>
+</ui:UiBinder> 

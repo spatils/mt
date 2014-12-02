@@ -102,6 +102,9 @@ public class ExportDocumentum {
 		Date   createDate = new Date();
 		for(int t=0; t<  objectList.size() ; t++){
 			try{
+				if(totalProcessCount >= batchCount || getInterruptFlag()  ){
+					break;
+				}
 				logger.info("Start Processing New Record---------"+t);
 				totalProcessCount = totalProcessCount +1;
 				processCount = processCount +1 ;
@@ -234,24 +237,22 @@ public class ExportDocumentum {
 						rh.startBatchTransaction();
 						
 					}
-					if(totalProcessCount >= batchCount || getInterruptFlag()  ){
-						break;
-					}
+					
 					
 				
 			}
 			catch (Exception e){
 				logger.severe("Error while processing "+e);
 				try{
-					record.setSequenceNumber(sequenceNumber);
-					record.setErrorDetails(e.getMessage());
-					record.setProcessId(getProcessId());
-					record.setSequenceName(getSequenceName());
-					record.setCreateDate(createDate);
-					record.setStatusOfRecord("FAIL");
-					record.setModifyDate(new Date());
-					rh.setRecord(record);
-				 	rh.saveRecord( objectList.get(t));
+					rh.getPropertyValuesAll(object);
+					rh.getRecord().setSequenceNumber(sequenceNumber);
+					rh.getRecord().setErrorDetails(e.getMessage());
+					rh.getRecord().setProcessId(getProcessId());
+					rh.getRecord().setSequenceName(getSequenceName());
+					rh.getRecord().setCreateDate(createDate);
+					rh.getRecord().setStatusOfRecord("FAIL");
+					rh.getRecord().setModifyDate(new Date());
+					rh.saveRecord( objectList.get(t));
 					bh.saveBatch();
 					bh.addFailureCount(1);
 					

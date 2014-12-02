@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.DocumentumACLDetails" table="mtdocumentumacldetails" lazy="false">
+      <meta attribute="class-description">
+         This class contains documentum ACL details
+      </meta>
+      <composite-id >
+        <key-property name="objectId" type="string" column="r_object_id" length="16" ></key-property>
+	    <key-property name="SequenceNumber" column="sequence_number" type="int"></key-property>
+	</composite-id>
+      <property name="accessorName" column="accessor_name" type="string"  />
+      <property name="basicPermission" column="basic_permission" type="string"  />
+      <property name="extndPermission" column="extnd_permission" type="string"  />
+     </class>
+</hibernate-mapping>

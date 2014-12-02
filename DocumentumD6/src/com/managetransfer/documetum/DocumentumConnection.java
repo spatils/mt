@@ -166,4 +166,57 @@ public class DocumentumConnection {
 		logger.info("Folder Path"+folderPath);
 		return folderPath;
 	}
+	public void beginBatchLevelDocumentumTransaction() throws Exception{
+		try{
+			if(getDocumemtumSession() != null &&  null == batchLevelTransaction){
+				batchLevelTransaction = getDocumemtumSession().beginTransEx();
+			}
+		}catch(Exception e){
+			logger.severe("error inside begin transaction"+e);
+			throw e;
+		}
+	}
+	public void commitBatchLevelDocumentumTransaction() throws Exception{
+		try{
+			if(getDocumemtumSession() != null && null != batchLevelTransaction){
+				getDocumemtumSession().commitTransEx(batchLevelTransaction);
+				batchLevelTransaction=null;
+			}
+		}catch(Exception e){
+			logger.severe("error inside commit transaction"+e);
+			throw e;
+		}
+	}
+	public void beginRecordLevelDocumentumTransaction() throws Exception{
+		try{
+			if(getDocumemtumSession() != null && null == recordLevelTransaction ){
+				 recordLevelTransaction = getDocumemtumSession().beginTransEx() ;
+			}
+		}catch(Exception e){
+			logger.severe("error inside begin transaction"+e);
+			throw e;
+		}
+	}
+	public void commitRecordLevelDocumentumTransaction() throws Exception{
+		try{
+			if(getDocumemtumSession() != null && null!=recordLevelTransaction){
+				getDocumemtumSession().commitTransEx(recordLevelTransaction);
+				recordLevelTransaction = null;
+			}
+		}catch(Exception e){
+			logger.severe("error inside commit transaction"+e);
+			throw e;
+		}
+	}
+	public void abortRecordLevelDocumentumTransaction() throws Exception{
+		try{
+			if(getDocumemtumSession() != null && null!=recordLevelTransaction){
+				getDocumemtumSession().abortTransEx(recordLevelTransaction);
+				recordLevelTransaction = null;
+			}
+		}catch(Exception e){
+			logger.severe("error inside commit transaction"+e);
+			throw e;
+		}
+	}
 }
