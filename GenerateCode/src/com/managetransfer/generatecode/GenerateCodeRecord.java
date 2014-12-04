@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
  
 
+import java.util.List;
+
+import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.common.ReadProperty;
 import com.managetransfer.hibernate.GetRecordDetails;
 import com.managetransfer.hibernate.HibernateConnection;
@@ -31,9 +34,6 @@ public class GenerateCodeRecord {
 		hc.initOperation();
 		grd.initOperation(hc);
 		ReadProperty.PropertyLoad();
-		System.out.println(grd.getColumnNamesPK(packageName+"Claims"));
-		System.out.println(grd.getColumnNamesPK(packageName+"Policy"));
-		System.out.println(grd.getColumnNamesPK(packageName+"Information"));
 	}
 	
 	public void getInstantiateObjectMethod() throws Exception{
@@ -163,8 +163,8 @@ public class GenerateCodeRecord {
 			
 		appendToFile(startString);
 		
-		ArrayList<String> classNames = ReadProperty.getSourceclassname();
-		classNames.addAll(ReadProperty.getTargetclassname());
+		ArrayList<String> classNames =  getClassList();
+		 
 		for(int i=0 ; i < classNames.size();i++){
 			//Conditional handling
 			String objectName = new String(classNames.get(i)+"Object");
@@ -232,4 +232,15 @@ public class GenerateCodeRecord {
 		
 	
 	}
+	public ArrayList<String> getClassList(){
+		ArrayList<String> classList = new ArrayList<String>();
+		List  objectList = hc.getObject("from ObjectDetails") ;
+		for (int i=0; i< objectList.size();i++ ){
+			ObjectDetails od = ( ObjectDetails ) objectList.get(i);
+			classList.add(od.getObjectName());
+		}
+		
+		return classList;
+	}
+
 }

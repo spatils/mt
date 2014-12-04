@@ -102,6 +102,22 @@ public class RecordHandler {
 		logger.info("Exiting Method"+methodName);
 		return columnNames;
 	}
+	public ArrayList<String> getListOfColumns(String recordTypeMethod) throws Exception{
+		String methodName="getListOfColumns";
+		logger.info("Inside Method"+methodName);
+		ArrayList<String> columnNames = new ArrayList<String>();
+		/***
+		 * This method returns lists of all columns of an object type. except primary keyClaims
+		 * It expects initOperation method called before this method
+		 * recordTypeMethod -- example com.managetransfer.businessobject
+		 */
+		String[] columns= grd.getColumnNames(recordTypeMethod);
+		for(String str : columns ){
+			columnNames.add(str);
+		}
+		logger.info("Exiting Method"+methodName);
+		return columnNames;
+	}
 	public String getColumnType(String recordTypeMethod, String columnNameMethod) throws Exception{
 		String methodName="getColumnType";
 		logger.info("Inside Method"+methodName);

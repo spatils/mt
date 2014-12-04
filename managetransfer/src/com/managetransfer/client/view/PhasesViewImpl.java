@@ -261,6 +261,7 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 		if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
 			addPhaseVerticalPanel.add(phaseDocumentumImportD7);
 			phaseDocumentumImportD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+			phaseDocumentumImportD7.setPhaseDetailsInteger(phaseDetails.getPhaseParametersInteger());
 		}
 		if(this.getSelectedPhaseType().equals("ExportACL")){
 			addPhaseVerticalPanel.add(phaseExportACL);
@@ -338,6 +339,8 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			 return phaseSharePointImport.getPhaseDetailsInteger();
 		}else if(this.getSelectedPhaseType().equals("Transformation")){
 			return phaseTransformation.getPhaseDetailsInteger();
+		}else if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
+			return phaseDocumentumImportD7.getPhaseDetailsInteger();
 		}
 		return null;
 	}

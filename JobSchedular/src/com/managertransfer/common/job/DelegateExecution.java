@@ -11,6 +11,7 @@ import org.quartz.UnableToInterruptJobException;
 import com.managetransfer.documetum.ExportACL;
 import com.managetransfer.documetum.ExportDocumentum;
 import com.managetransfer.documetum.ImportACLD7;
+import com.managetransfer.documetum.ImportDocumentumD7;
 import com.managetransfer.documetum.InitSequence;
 import com.managetransfer.record.TransformationHandler;
 import com.managetransfer.sharepoint.SharePointImport;
@@ -110,6 +111,18 @@ public class DelegateExecution implements Job, InterruptableJob {
 			} catch(Exception e){
 				logger.error(e);
 			}
+		}else if(phaseType.equals("ImportToDocumentumD7")){
+			try{
+				ImportDocumentumD7  ea = new ImportDocumentumD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+			} catch(Exception e){
+				logger.error(e);
+			}
 		}
 
 	}
@@ -130,6 +143,9 @@ public class DelegateExecution implements Job, InterruptableJob {
 			ea.setInterruptFlag(true);
 		}else if(phaseType.equals("ImportACLD7")){
 			ImportACLD7 ea = (ImportACLD7) phaseObject;
+			ea.setInterruptFlag(true);
+		}else if(phaseType.equals("ImportToDocumentumD7")){
+			ImportDocumentumD7 ea = (ImportDocumentumD7) phaseObject;
 			ea.setInterruptFlag(true);
 		}
 	}

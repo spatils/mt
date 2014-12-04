@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Dec 2, 2014 4:02:49 AM by Hibernate Tools 4.0.0
+// Generated Dec 4, 2014 12:41:33 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
@@ -19,10 +19,7 @@ public class ClaimsD7  implements java.io.Serializable {
      private String aclName;
      private String claimantName;
      private String claimType;
-     private Date effectiveDate;
      private String adjusterName;
-     private String documentState;
-     private String departmentType;
      private String mtSequenceName;
      private int mtSequenceNumber;
      private Date mtCreateDate;
@@ -31,6 +28,7 @@ public class ClaimsD7  implements java.io.Serializable {
      private String mtStatus;
      private int mtProcessId;
      private String mtRepositoryPath;
+     private String mtNewObjectId;
 
     public ClaimsD7() {
     }
@@ -39,7 +37,7 @@ public class ClaimsD7  implements java.io.Serializable {
     public ClaimsD7(String objectId) {
         this.objectId = objectId;
     }
-    public ClaimsD7(String objectId, String claimNumber, String objectName, String folderPath, String ownerName, String aclName, String claimantName, String claimType, Date effectiveDate, String adjusterName, String documentState, String departmentType, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath) {
+    public ClaimsD7(String objectId, String claimNumber, String objectName, String folderPath, String ownerName, String aclName, String claimantName, String claimType, String adjusterName, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath, String mtNewObjectId) {
        this.objectId = objectId;
        this.claimNumber = claimNumber;
        this.objectName = objectName;
@@ -48,10 +46,7 @@ public class ClaimsD7  implements java.io.Serializable {
        this.aclName = aclName;
        this.claimantName = claimantName;
        this.claimType = claimType;
-       this.effectiveDate = effectiveDate;
        this.adjusterName = adjusterName;
-       this.documentState = documentState;
-       this.departmentType = departmentType;
        this.mtSequenceName = mtSequenceName;
        this.mtSequenceNumber = mtSequenceNumber;
        this.mtCreateDate = mtCreateDate;
@@ -60,6 +55,7 @@ public class ClaimsD7  implements java.io.Serializable {
        this.mtStatus = mtStatus;
        this.mtProcessId = mtProcessId;
        this.mtRepositoryPath = mtRepositoryPath;
+       this.mtNewObjectId = mtNewObjectId;
     }
    
     public String getObjectId() {
@@ -118,33 +114,12 @@ public class ClaimsD7  implements java.io.Serializable {
     public void setClaimType(String claimType) {
         this.claimType = claimType;
     }
-    public Date getEffectiveDate() {
-        return this.effectiveDate;
-    }
-    
-    public void setEffectiveDate(Date effectiveDate) {
-        this.effectiveDate = effectiveDate;
-    }
     public String getAdjusterName() {
         return this.adjusterName;
     }
     
     public void setAdjusterName(String adjusterName) {
         this.adjusterName = adjusterName;
-    }
-    public String getDocumentState() {
-        return this.documentState;
-    }
-    
-    public void setDocumentState(String documentState) {
-        this.documentState = documentState;
-    }
-    public String getDepartmentType() {
-        return this.departmentType;
-    }
-    
-    public void setDepartmentType(String departmentType) {
-        this.departmentType = departmentType;
     }
     public String getMtSequenceName() {
         return this.mtSequenceName;
@@ -201,6 +176,13 @@ public class ClaimsD7  implements java.io.Serializable {
     
     public void setMtRepositoryPath(String mtRepositoryPath) {
         this.mtRepositoryPath = mtRepositoryPath;
+    }
+    public String getMtNewObjectId() {
+        return this.mtNewObjectId;
+    }
+    
+    public void setMtNewObjectId(String mtNewObjectId) {
+        this.mtNewObjectId = mtNewObjectId;
     }
 
 

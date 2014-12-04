@@ -38,8 +38,9 @@ private String transformationName = new String ("");
  ClaimsD7 ClaimsD7Object = new ClaimsD7();
  Claims ClaimsObject = ( Claims) getSourceObject().get(i) ; 
 ClaimsD7Object.setClaimNumber(ClaimsObject.getClaimNumber());
-ClaimsD7Object.setFolderPath(getFolder(ClaimsObject.getFolderPath()));
+ClaimsD7Object.setFolderPath(ClaimsObject.getFolderPath());
 ClaimsD7Object.setObjectId(ClaimsObject.getObjectId());
+ClaimsD7Object.setObjectName(ClaimsObject.getObjectName());
 
  getTargetobject().add(ClaimsD7Object);
  }

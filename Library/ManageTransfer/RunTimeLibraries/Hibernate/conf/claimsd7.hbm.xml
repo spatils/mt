@@ -4,9 +4,9 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-   <class name="com.managetransfer.businessobject.ClaimsD7" table="mtclaimsd7">
+   <class name="com.managetransfer.businessobject.ClaimsD7" table="mtclaimsd7" >
       <meta attribute="class-description">
-         This class contains claims document at D7 repository. 
+         This class contains claims document at D7 repository 
       </meta>
       <id name="objectId" type="string" column="r_object_id" length="16">
       </id>
@@ -17,10 +17,7 @@
       <property name="aclName" column="acl_name" type="string"/>
       <property name="claimantName" column="claimant_name" type="string" length="255"/>
       <property name="claimType" column="claim_type" type="string"/>
-      <property name="effectiveDate" column="effective_date" type="date"/>
       <property name="adjusterName" column="adjuster_name" type="string"/>
-      <property name="documentState" column="document_state" type="string"/>
-      <property name="departmentType" column="department_type" type="string"/>
       <property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
       <property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
       <property name="mtCreateDate" column="mt_create_date" type="time"  />
@@ -29,5 +26,7 @@
       <property name="mtStatus"  column="mt_status" type="string" length="10"/>
       <property name="mtProcessId" column="mt_process_id" type="int" />
       <property name="mtRepositoryPath" column="mt_repo_path" type="string" length="255"/>
+      <property name="mtNewObjectId" column="mt_new_object_id" type="string" length="16"/>
+      
    </class>
 </hibernate-mapping>

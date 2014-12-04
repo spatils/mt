@@ -33,17 +33,19 @@ if (className.equals("Claims")){
 }if (className.equals("Policy")){ 
  Policy PolicyObject =  (Policy) object; 
  ohmString.put("r_object_id",PolicyObject.getObjectId()); 
+}if (className.equals("ClaimsD7")){ 
+ ClaimsD7 ClaimsD7Object =  (ClaimsD7) object; 
+ ohmString.put("r_object_id",ClaimsD7Object.getObjectId()); 
 }if (className.equals("ClaimsR")){ 
  ClaimsR ClaimsRObject =  (ClaimsR) object; 
  ohmString.put("r_object_id",ClaimsRObject.getObjectId());
 ohmInteger.put("mt_index_id",ClaimsRObject.getMtIndexId());
  
-}if (className.equals("Information")){ 
- Information InformationObject =  (Information) object; 
- ohmString.put("r_object_id",InformationObject.getObjectId()); 
-}if (className.equals("Information")){ 
- Information InformationObject =  (Information) object; 
- ohmString.put("r_object_id",InformationObject.getObjectId()); 
+}if (className.equals("ClaimsRD7")){ 
+ ClaimsRD7 ClaimsRD7Object =  (ClaimsRD7) object; 
+ ohmString.put("r_object_id",ClaimsRD7Object.getObjectId());
+ohmInteger.put("mt_index_id",ClaimsRD7Object.getMtIndexId());
+ 
 }
 }
 }

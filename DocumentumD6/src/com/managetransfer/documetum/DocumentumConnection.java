@@ -1,5 +1,6 @@
 package com.managetransfer.documetum;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import com.documentum.com.DfClientX;
@@ -7,15 +8,19 @@ import com.documentum.fc.client.DfQuery;
 import com.documentum.fc.client.IDfClient;
 import com.documentum.fc.client.IDfCollection;
 import com.documentum.fc.client.IDfDocument;
+import com.documentum.fc.client.IDfFolder;
 import com.documentum.fc.client.IDfFormat;
 import com.documentum.fc.client.IDfLocalTransaction;
 import com.documentum.fc.client.IDfQuery;
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
+import com.documentum.fc.client.IDfSysObject;
 import com.documentum.fc.common.DfId;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.documentum.operations.IDfExportNode;
 import com.documentum.operations.IDfExportOperation;
+import com.documentum.operations.IDfFormatRecognizer;
+import com.managetransfer.record.Record;
 
 public class DocumentumConnection {
 	private DfClientX clientx = null;
@@ -219,4 +224,51 @@ public class DocumentumConnection {
 			throw e;
 		}
 	}
+	public IDfSysObject createNewObject(String repositoryObjectName,
+			String fileLocation, String repositoryPath) throws Exception {
+		/** this method creates a import file in the repository
+		 *  if repository path does not exist then it creates those folders in the repository
+		**/
+		IDfSysObject sysObject  = null;
+		try{
+			logger.info("repositoryObjectName"+repositoryObjectName);
+			sysObject =(IDfSysObject)  getDocumemtumSession().newObject(repositoryObjectName);
+			sysObject.link(repositoryPath);
+			logger.info("before get Path");
+			IDfFormatRecognizer oFormatRec = clientx.getFormatRecognizer(getDocumemtumSession(),fileLocation,null);
+			String fileFormatName = oFormatRec.getDefaultSuggestedFileFormat();
+			logger.info("after get Path");
+			sysObject.setPath(fileLocation,fileFormatName,0,null);
+		}catch(Exception e){
+			logger.severe("Errro in createNewObject"+e);
+			throw e;
+		}
+	    return sysObject;
+	}
+	public void createFolderByPath(String repoPath) throws Exception{
+		try{
+			logger.info("repoPath"+repoPath);
+			String folderName[] = repoPath.split("/");
+			String repoLocation = new String("");
+			for(int i=0;i<folderName.length;i++){
+				if(!folderName[i].equals("")){
+					repoLocation = repoLocation + "/"+folderName[i];
+					logger.info(repoLocation+"folder name"+folderName[i]);
+					IDfFolder idfFolder =  getDocumemtumSession().getFolderByPath(repoLocation) ;
+					if(idfFolder==null){
+						repoLocation = repoLocation + "/"+folderName[i];
+						IDfFolder idfNewFolder = (IDfFolder)getDocumemtumSession().newObject("dm_folder");
+						idfNewFolder.setObjectName(folderName[i]);
+						idfNewFolder.link(repoLocation.substring(0,repoLocation.length()- folderName[i].length()-1));
+						idfNewFolder.save();
+					}
+				}
+			}
+		} catch(Exception e){
+			logger.severe("error inside create folder"+e);
+			throw e;
+		}
+		
+	}
+	
 }
