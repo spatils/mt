@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.ListBox;
 
 public class PhaseDocumentumExport extends Composite implements HasText {
 	@UiField CheckBox createFolder;
+	@UiField CheckBox expAnnotation;
 	@UiField TextBox  exportQuery = new TextBox();
 	@UiField TextBox  repeatAttributeDQL = new TextBox();
 	@UiField TextBox  exportLocation = new TextBox();
@@ -47,7 +48,6 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 		
 		phaseDetailsString.put("Connection", connectionListString.get(connectionList.getSelectedIndex()));
 		phaseDetailsString.put("SourceObject", sourceObjListString.get(sourceObjectList.getSelectedIndex()));
-		 
 		phaseDetailsString.put("ExportQuery", exportQuery.getValue());
 		phaseDetailsString.put("ExportLocation" , exportLocation.getValue());
 		phaseDetailsString.put("RepeatAttributeDQL" , repeatAttributeDQL.getValue());
@@ -60,6 +60,12 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 		}
 		else{
 			phaseDetailsInteger.put("CreateFolder", 0);
+		}
+		if(expAnnotation.getValue()){
+			phaseDetailsInteger.put("ExpAnnotation", 1);
+		}
+		else{
+			phaseDetailsInteger.put("ExpAnnotation", 0);
 		}
 		return phaseDetailsInteger;
 	}
@@ -104,9 +110,6 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 			}
 			
 		 }else{
-			  
-			 
-			  
 			 exportQuery.setValue("");
 			 exportLocation.setValue("");
 		 }
@@ -125,6 +128,16 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 				 
 		}else{
 			createFolder.setValue(false);
+		}
+		if ( phaseDetailsInt.containsKey("ExpAnnotation")){
+			if ( phaseDetailsInt.get("ExpAnnotation") == 0 ){
+				expAnnotation.setValue(false);
+			}else{
+				expAnnotation.setValue(true);
+			}
+				 
+		}else{
+			expAnnotation.setValue(false);
 		}
 	}
 	public void setReadOnly(boolean isReadOnly) {

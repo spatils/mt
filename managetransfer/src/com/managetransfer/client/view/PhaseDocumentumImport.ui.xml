@@ -30,11 +30,26 @@
 					<g:CheckBox ui:field="createFolder"/>
 				</g:customCell>
 				 <g:customCell>
+					<g:Label text="Export Annotation"/>
+				</g:customCell>
+				<g:customCell>
+					<g:CheckBox  ui:field="expAnnotation"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+			 	<g:customCell>
 					<g:Label text="Destination Path"/>
 				</g:customCell>
 				<g:customCell>
 					<g:TextBox  ui:field="destinationPath"/>
 				</g:customCell>
+				 <g:customCell>
+					<g:Label text=""/>
+				</g:customCell>
+				<g:customCell>
+					<g:Label text=""/>
+				</g:customCell>
+				
 			</g:row>
 		</g:Grid>
 	</g:HTMLPanel>

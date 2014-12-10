@@ -29,6 +29,7 @@ public class GetRecordDetails {
 	private HashMap<String,Integer> listOfIntAttributes  = new HashMap<String, Integer>() ;
 	private HashMap<String,Date> listOfDateAttributes  = new HashMap<String, Date>() ;
 	private HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ; 
+	private HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
 	final Logger logger = Logger.getLogger(GetRecordDetails.class.getName()) ;
 	public static void main(String[] args) throws Exception {
 		/**
@@ -116,6 +117,9 @@ public class GetRecordDetails {
 		}if(listOfIntAttributes!=null && listOfIntAttributes.size()>1){
 			listOfIntAttributes.clear();
 		}
+		if(listOfBooleanAttributes!=null && listOfBooleanAttributes.size()>1){
+			listOfBooleanAttributes.clear();
+		}
 		String[] columnNames = getColumnNames(className) ;
 		for(String str: columnNames){
 			logger.info("Processing str : "+str+" Type "+getColumnType(className,str)+" className : "+className);
@@ -125,10 +129,12 @@ public class GetRecordDetails {
 				 listOfStringAtrributes.put(getDatabaseColumnName(className,str),(String)persisterObject.getPropertyValue(object, str)) ;
 			 }else if (getColumnType(className,str).equals("integer")){
 				 listOfIntAttributes.put(getDatabaseColumnName(className,str), (Integer)persisterObject.getPropertyValue(object, str)) ;
-			 }else if (getColumnType(className,str).equals("date")){
+			 }else if (getColumnType(className,str).equals("date") || getColumnType(className,str).equals("time")|| getColumnType(className,str).equals("timestamp")){
 				 listOfDateAttributes.put(getDatabaseColumnName(className,str), (Date)persisterObject.getPropertyValue(object, str)) ;
 			 }else if (getColumnType(className,str).equals("long")){
 				 listOfLongAtrributes.put(getDatabaseColumnName(className,str),(Long)persisterObject.getPropertyValue(object, str)) ;
+			 }else if (getColumnType(className,str).equals("boolean")){
+				 listOfBooleanAttributes.put(getDatabaseColumnName(className,str), (Boolean)persisterObject.getPropertyValue(object, str)) ;
 			 }
 		}
 		}catch(Exception e){
@@ -259,8 +265,15 @@ public class GetRecordDetails {
 	public HashMap<String, Integer> getListOfIntAttributes() {
 		return listOfIntAttributes;
 	}
+	
 	public void setListOfIntAttributes(HashMap<String, Integer> listOfIntAttributes) {
 		this.listOfIntAttributes = listOfIntAttributes;
+	}
+	public HashMap<String, Boolean> getListOfBooleanAttributes() {
+		return listOfBooleanAttributes;
+	}
+	public void setListOfBooleanAttributes(HashMap<String, Boolean> listOfBooleanAttributes) {
+		this.listOfBooleanAttributes = listOfBooleanAttributes;
 	}
 	public HashMap<String, Date> getListOfDateAttributes() {
 		return listOfDateAttributes;
@@ -276,8 +289,11 @@ public class GetRecordDetails {
 	}
 	public Object setAttributes(Object object, String className) throws Exception{
 		String[] columnNames = getColumnNames(className);
+		
 		String methodName="setAttributes";
 		logger.info("Inside Method"+methodName);
+		
+		try{
 		for(int i = 0 ; i< columnNames.length ; i++){
 			logger.info("Setting "+columnNames[i]+" Type : "+getColumnType(className,columnNames[i]));
 			if(getColumnType(className,columnNames[i]).equals("string")){
@@ -285,17 +301,30 @@ public class GetRecordDetails {
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfStringAtrributes().get(getDatabaseColumnName(className,columnNames[i])) );
 			}else if (getColumnType(className,columnNames[i]).equals("long")){
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfLongAtrributes().get(getDatabaseColumnName(className,columnNames[i])) );
-			}else if(getColumnType(className,columnNames[i]).equals("date")){
+			}else if(getColumnType(className,columnNames[i]).equals("date") || getColumnType(className,columnNames[i]).equals("time")  || getColumnType(className,columnNames[i]).equals("timestamp")){
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfDateAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
 			}else if(getColumnType(className,columnNames[i]).equals("integer")){
 				logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])));
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
+			}else if(getColumnType(className,columnNames[i]).equals("boolean")){
+				if(getListOfBooleanAttributes() !=null && getListOfBooleanAttributes().containsKey(getDatabaseColumnName(className,columnNames[i])) && getListOfBooleanAttributes().get(getDatabaseColumnName(className,columnNames[i]))!= null){
+					logger.info("Setting Boolean "+columnNames[i]+" :value "+getListOfBooleanAttributes().get(getDatabaseColumnName(className,columnNames[i])));
+					persisterObject.setPropertyValue(object, columnNames[i],getListOfBooleanAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
+				}else{
+					logger.info("Setting default value false");
+					persisterObject.setPropertyValue(object, columnNames[i],false);
+				}
 			}
+		}
+		
+		}catch(Exception e){
+			logger.severe("Errro In"+methodName+e);
+			throw e;
 		}
 		logger.info("Exit Method"+methodName);
 		return object;
 	}
-		public Object setAttributes(Object objectMethod, String classNameMethod, HashMap<String,String> listOfStringAtrributesMethod,HashMap<String,Integer> listOfIntAttributesMethod,HashMap<String,Date> listOfDateAttributesMethod,HashMap<String,Long> listOfLongAtrributesMethod) throws Exception{
+		public Object setAttributes(Object objectMethod, String classNameMethod, HashMap<String,String> listOfStringAtrributesMethod,HashMap<String,Integer> listOfIntAttributesMethod,HashMap<String,Date> listOfDateAttributesMethod,HashMap<String,Long> listOfLongAtrributesMethod,HashMap<String,Boolean> listOfBooleanAttributesMethod) throws Exception{
 		String[] columnNames = getColumnNames(classNameMethod);
 		String methodName="setAttributes";
 		AbstractEntityPersister persisterObjectMethod = null;
@@ -303,19 +332,32 @@ public class GetRecordDetails {
 		classMetadataMethod =  getSessionFactory().getClassMetadata(classNameMethod);
 		persisterObjectMethod = (AbstractEntityPersister) classMetadataMethod;
 		logger.info("Inside Method"+methodName);
-		for(int i = 0 ; i< columnNames.length ; i++){
-			logger.info("Setting "+columnNames[i]+" Type : "+getColumnType(classNameMethod,columnNames[i]));
-			if(getColumnType(classNameMethod,columnNames[i]).equals("string")){
-				logger.info("Setting "+columnNames[i]+" :value "+getListOfStringAtrributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
-				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfStringAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
-			}else if (getColumnType(classNameMethod,columnNames[i]).equals("long")){
-				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfLongAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
-			}else if(getColumnType(classNameMethod,columnNames[i]).equals("date")){
-				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfDateAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
-			}else if(getColumnType(classNameMethod,columnNames[i]).equals("integer")){
-				logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
-				persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+		try{
+			for(int i = 0 ; i< columnNames.length ; i++){
+				logger.info("Setting "+columnNames[i]+" Type : "+getColumnType(classNameMethod,columnNames[i]));
+				if(getColumnType(classNameMethod,columnNames[i]).equals("string")){
+					logger.info("Setting "+columnNames[i]+" :value "+getListOfStringAtrributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfStringAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+				}else if (getColumnType(classNameMethod,columnNames[i]).equals("long")){
+					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfLongAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+				}else if(getColumnType(classNameMethod,columnNames[i]).equals("date") || getColumnType(classNameMethod,columnNames[i]).equals("time") || getColumnType(classNameMethod,columnNames[i]).equals("timestamp")){
+					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfDateAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+				}else if(getColumnType(classNameMethod,columnNames[i]).equals("integer")){
+					logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+				}else if(getColumnType(classNameMethod,columnNames[i]).equals("boolean")){
+					if(getListOfBooleanAttributes().containsKey(getDatabaseColumnName(classNameMethod,columnNames[i])) && getListOfBooleanAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i]))!= null){
+						logger.info("Setting B "+columnNames[i]+" :value "+getListOfBooleanAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+						persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfBooleanAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+					}else{
+						persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],false );
+					}
+					logger.info("After Setting boolean value ");
+				}
 			}
+		}catch(Exception e){
+			logger.severe("Errro In"+methodName+e);
+			throw e;
 		}
 		logger.info("Exit Method"+methodName);
 		return objectMethod;

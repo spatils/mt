@@ -12,10 +12,12 @@ import com.documentum.fc.client.IDfFolder;
 import com.documentum.fc.client.IDfFormat;
 import com.documentum.fc.client.IDfLocalTransaction;
 import com.documentum.fc.client.IDfQuery;
+import com.documentum.fc.client.IDfRelation;
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
 import com.documentum.fc.client.IDfSysObject;
 import com.documentum.fc.common.DfId;
+import com.documentum.fc.common.IDfId;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.documentum.operations.IDfExportNode;
 import com.documentum.operations.IDfExportOperation;
@@ -32,7 +34,7 @@ public class DocumentumConnection {
 	IDfLocalTransaction recordLevelTransaction = null;
 	IDfLocalTransaction batchLevelTransaction = null;
 	String  DQLGetFolderPath  = new String(
-			"select r_folder_path from  dm_folder where r_object_id in ( select i_folder_id from dm_document where r_object_id ='$r_object_id$'  ) and any r_folder_path is not nullstring ");
+			"select r_folder_path from  dm_folder where r_object_id in ( select i_folder_id from dm_sysobject where r_object_id ='$r_object_id$'  ) and any r_folder_path is not nullstring ");
 	final Logger logger = Logger.getLogger(DocumentumConnection.class.getName()) ;
 	public String getRepoName() {
 		return repoName;
@@ -146,7 +148,7 @@ public class DocumentumConnection {
 	}
 	public String exportDocumentSysObject(String docId, String destinationFolderPath) throws Exception{
 		//THis export operation written for better performance over exportDocument
-		IDfDocument doc = 		(IDfDocument)  getDocumemtumSession().getObject(new DfId(docId));
+		IDfSysObject doc = 		(IDfSysObject)  getDocumemtumSession().getObject(new DfId(docId));
 		IDfFormat format = doc.getFormat();
 		if (destinationFolderPath.lastIndexOf("/") != 		destinationFolderPath.length() - 1 && 		destinationFolderPath.lastIndexOf("\\") != 		destinationFolderPath.length() - 1) 		{
 			destinationFolderPath += "/";
@@ -165,7 +167,10 @@ public class DocumentumConnection {
 		idfCollection = idfQuery.execute(getDocumemtumSession(),DfQuery.DF_EXEC_QUERY);
 		logger.info("Executed Query");
 		while(idfCollection.next()){
-				folderPath = idfCollection.getRepeatingString("r_folder_path", 0)  ;
+			if(null != idfCollection.getString("r_folder_path") && !idfCollection.getString("r_folder_path").trim().equals("")){
+				folderPath =  idfCollection.getString("r_folder_path") ;
+			}
+				
 		}
 		idfCollection.close();
 		logger.info("Folder Path"+folderPath);
@@ -270,5 +275,34 @@ public class DocumentumConnection {
 		}
 		
 	}
-	
+	public String getAnnotationObjectId(String objectId) throws Exception{
+		String annotationObject = new String("");
+		try{
+			logger.info("Inside getAnnotationObjectId");
+			IDfQuery query= new DfQuery();
+			query.setDQL("select child_id from dm_relation where parent_id='"+objectId+"' and relation_name='DM_ANNOTATE'");
+			IDfCollection idfCollection =query.execute(getDocumemtumSession(), IDfQuery.EXECREAD_QUERY) ;
+			while(idfCollection.next()){
+				annotationObject = idfCollection.getString("child_id");
+			}
+			
+		}catch(Exception e){
+			logger.severe("Error in getAnnotationObjectId"+e);
+			throw e;
+		}
+		return annotationObject;	
+	}
+	public void createRelationShip(String parentId, String childId , String relationName) throws Exception{
+		try{
+			logger.info("Inside createRelationShip");
+			IDfRelation idfRelation = (IDfRelation ) getDocumemtumSession().newObject("dm_relation");
+			idfRelation.setParentId(new DfId(parentId));
+			idfRelation.setChildId(new DfId(childId));
+			idfRelation.setRelationName(relationName);
+			idfRelation.save();
+		}catch (Exception e){
+			logger.severe("Error in createRelationShip"+e);
+			throw e;
+		}
+	}
 }

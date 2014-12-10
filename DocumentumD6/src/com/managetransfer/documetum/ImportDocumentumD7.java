@@ -1,6 +1,6 @@
 package com.managetransfer.documetum;
 
-import java.io.File;
+import java.io.File; 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -71,6 +71,7 @@ public class ImportDocumentumD7 {
 	private int processId = 0 ;
 	private BatchHandler bh = new BatchHandler();
 	private boolean isLastSequence = false;
+	private boolean expAnnotation = false;
 	final Logger logger = Logger.getLogger(ImportDocumentumD7.class.getName()) ;
 	private HibernateConnection hc = new HibernateConnection();
 	 
@@ -132,7 +133,7 @@ public class ImportDocumentumD7 {
 				//Setting single value attribute
 				rh.getPropertyValuesAll(objectList.get(t));
 				for (int j =0 ; j < getAttributeList().size();j++){
-					logger.info("Processing"+getAttributeList().get(j));
+					logger.info("Processing Attribute ::"+getAttributeList().get(j));
 						 if(rh.getColumnType(getAttributeList().get(j)).equals("string")){
 							 if(rh.getRecord().getListOfStringAtrributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setString(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfStringAtrributes().get(rh.getColumnName(getAttributeList().get(j))));
@@ -141,7 +142,7 @@ public class ImportDocumentumD7 {
 							 if(rh.getRecord().getListOfIntAttributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setInt(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfIntAttributes().get(rh.getColumnName(getAttributeList().get(j))));
 							 }
-						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("date")){
+						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("date") || rh.getColumnType(getAttributeList().get(j)).equals("time") || rh.getColumnType(getAttributeList().get(j)).equals("timestamp")){
 							 if(rh.getRecord().getListOfDateAttributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								idfSysObject.setTime(rh.getColumnName(getAttributeList().get(j)),new DfTime(rh.getRecord().getListOfDateAttributes().get(rh.getColumnName(getAttributeList().get(j)))));
 							 }
@@ -149,6 +150,10 @@ public class ImportDocumentumD7 {
 							 
 							 if(rh.getRecord().getListOfLongAtrributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setDouble(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfLongAtrributes().get(rh.getColumnName(getAttributeList().get(j))));
+							 }
+						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("boolean")){
+							 if(rh.getRecord().getListOfBooleanAttributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
+								 idfSysObject.setBoolean(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfBooleanAttributes().get(rh.getColumnName(getAttributeList().get(j))));
 							 }
 						 }
 					
@@ -172,7 +177,7 @@ public class ImportDocumentumD7 {
 								 if(rhRepating.getRecord().getListOfIntAttributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
 										 idfSysObject.appendInt(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfIntAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
 								 }
-							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("date")){
+							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("date") || rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("time") || rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("timestamp")){
 								 if(rhRepating.getRecord().getListOfDateAttributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
 									Date dateValue = rhRepating.getRecord().getListOfDateAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j)));
 									if(dateValue!=null){
@@ -184,12 +189,23 @@ public class ImportDocumentumD7 {
 								 if(rhRepating.getRecord().getListOfLongAtrributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
 									 idfSysObject.appendDouble(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfLongAtrributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
 								 }
+							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("boolean")){
+								 
+								 if(rhRepating.getRecord().getListOfLongAtrributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
+									 idfSysObject.appendBoolean(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfBooleanAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
+								 }
 							 }
 						
 					}
 				}
 				logger.info("Repeatnig Attributes are set");
 				idfSysObject.save();
+				logger.info(""+idfSysObject.getOwnerName()+"::"+idfSysObject.getOwnerPermit()+"::"+idfSysObject.getACLName()+"::");
+				if(expAnnotation){
+					importAnnotation(idfSysObject.getObjectId().getId(),rh.getRecord().getListOfStringAtrributes().get("r_object_id"));
+				}
+				
+				
 				rh.getRecord().getListOfStringAtrributes().put("mt_new_object_id", idfSysObject.getObjectId().getId());
 				cd.commitRecordLevelDocumentumTransaction();
 				//Save Record 
@@ -255,6 +271,25 @@ public class ImportDocumentumD7 {
 		rh.finalCommit();
 		rh.closeConnection();
 		logger.info("Existing Method"+methodName);
+	}
+	private void importAnnotation(String newObjectId,String objectId) throws Exception{
+		try {
+			logger.info("Inside importAnnotation");
+			List annotationObjects = hc.getObject("from Annotation where objectId='"+objectId+"'");
+			for(int i=0;i< annotationObjects.size();i++){
+				com.managetransfer.businessobject.Annotation annotationObject = (com.managetransfer.businessobject.Annotation)annotationObjects.get(i);
+				cd.createFolderByPath(annotationObject.getRepositoryPath());
+				IDfSysObject annotationObjectId =cd.createNewObject("dm_note", annotationObject.getFilePath(), annotationObject.getRepositoryPath());
+				annotationObjectId.save();
+				logger.info("Created annotation Object");
+				cd.createRelationShip(newObjectId, annotationObjectId.getObjectId().getId(), "DM_ANNOTATE");
+				logger.info("Created createRelationShip Object");
+			}
+		
+		}catch ( Exception e){
+			logger.severe("Error inside importAnnotation"+e);
+			throw e;
+		}
 	}
 	public void initOperation() throws Exception{
 		String methodName="initOperation";
@@ -380,6 +415,12 @@ public class ImportDocumentumD7 {
 				if ( createFolder.getParameterValue() ==1 ){
 					setCreateRepositoryFolder(true);
 				}
+				//Get ExAnnotation flag
+				PhasesDetailsIntH expAnnodationP  =( PhasesDetailsIntH )phasesDetails.getPhaseDetailsInt().get("ExpAnnotation");
+				if ( expAnnodationP.getParameterValue() ==1 ){
+					expAnnotation = true;
+				}
+				hc.commitBatchLevelTransaction();
 				logger.info("Initialized the batch");
 				hc.commitBatchLevelTransaction();
 			}catch(Exception e){

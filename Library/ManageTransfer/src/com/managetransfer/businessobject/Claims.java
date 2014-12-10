@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Dec 4, 2014 12:41:33 AM by Hibernate Tools 4.0.0
+// Generated Dec 10, 2014 3:00:52 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
@@ -23,6 +23,8 @@ public class Claims  implements java.io.Serializable {
      private String adjusterName;
      private String documentState;
      private String departmentType;
+     private Date receiptDate;
+     private boolean isDuplicate;
      private String mtSequenceName;
      private int mtSequenceNumber;
      private Date mtCreateDate;
@@ -39,7 +41,7 @@ public class Claims  implements java.io.Serializable {
     public Claims(String objectId) {
         this.objectId = objectId;
     }
-    public Claims(String objectId, String claimNumber, String objectName, String folderPath, String ownerName, String aclName, String claimantName, String claimType, Date effectiveDate, String adjusterName, String documentState, String departmentType, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath) {
+    public Claims(String objectId, String claimNumber, String objectName, String folderPath, String ownerName, String aclName, String claimantName, String claimType, Date effectiveDate, String adjusterName, String documentState, String departmentType, Date receiptDate, boolean isDuplicate, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath) {
        this.objectId = objectId;
        this.claimNumber = claimNumber;
        this.objectName = objectName;
@@ -52,6 +54,8 @@ public class Claims  implements java.io.Serializable {
        this.adjusterName = adjusterName;
        this.documentState = documentState;
        this.departmentType = departmentType;
+       this.receiptDate = receiptDate;
+       this.isDuplicate = isDuplicate;
        this.mtSequenceName = mtSequenceName;
        this.mtSequenceNumber = mtSequenceNumber;
        this.mtCreateDate = mtCreateDate;
@@ -145,6 +149,20 @@ public class Claims  implements java.io.Serializable {
     
     public void setDepartmentType(String departmentType) {
         this.departmentType = departmentType;
+    }
+    public Date getReceiptDate() {
+        return this.receiptDate;
+    }
+    
+    public void setReceiptDate(Date receiptDate) {
+        this.receiptDate = receiptDate;
+    }
+    public boolean isIsDuplicate() {
+        return this.isDuplicate;
+    }
+    
+    public void setIsDuplicate(boolean isDuplicate) {
+        this.isDuplicate = isDuplicate;
     }
     public String getMtSequenceName() {
         return this.mtSequenceName;

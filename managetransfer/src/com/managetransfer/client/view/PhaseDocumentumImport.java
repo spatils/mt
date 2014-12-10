@@ -18,6 +18,7 @@ public class PhaseDocumentumImport extends Composite implements HasText{
 	@UiField ListBox connectionList;
 	@UiField ListBox targetObjectList ;
 	@UiField CheckBox createFolder;
+	@UiField CheckBox expAnnotation;
 	@UiField TextBox destinationPath;
 	ArrayList<String> connectionListString = new ArrayList<String>();
 	ArrayList<String> targetObjListString = new ArrayList<String>();
@@ -60,6 +61,16 @@ public class PhaseDocumentumImport extends Composite implements HasText{
 				 
 		}else{
 			createFolder.setValue(false);
+		}
+		if ( phaseDetailsInt.containsKey("ExpAnnotation")){
+			if ( phaseDetailsInt.get("ExpAnnotation") == 0 ){
+				expAnnotation.setValue(false);
+			}else{
+				expAnnotation.setValue(true);
+			}
+				 
+		}else{
+			expAnnotation.setValue(false);
 		}
 	}
 	public void setPhaseDetailsString( HashMap<String,String> phaseDetailsString) {
@@ -104,6 +115,13 @@ public class PhaseDocumentumImport extends Composite implements HasText{
 		else{
 			phaseDetailsInteger.put("CreateFolder", 0);
 		}
+		if(expAnnotation.getValue()){
+			phaseDetailsInteger.put("ExpAnnotation", 1);
+		}
+		else{
+			phaseDetailsInteger.put("ExpAnnotation", 0);
+		}
+		 
 		return phaseDetailsInteger;
 	}
 	public void setConnectionList(ArrayList<String> connectionNames){

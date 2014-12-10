@@ -22,7 +22,9 @@
       <mapping resource="claimsrd7.hbm.xml"/>
       <mapping resource="connection.hbm.xml"/>
       <mapping resource="policy.hbm.xml"/>
-    
+      <mapping resource="annotation.hbm.xml"/>
+      <mapping resource="documentumacl.hbm.xml"/>
+      <mapping resource="documentumacldetails.hbm.xml"/>
    <!--List of config files -->
    	<mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>
@@ -38,8 +40,7 @@
 	<mapping resource="mappingdetailsmap.hbm.xml"/>
 	<mapping resource="batchdetails.hbm.xml"/>
 	<mapping resource="jobserverdetails.hbm.xml"/>
-	 <mapping resource="documentumacl.hbm.xml"/>
-      <mapping resource="documentumacldetails.hbm.xml"/>
+	 
          
 </session-factory>
 </hibernate-configuration>

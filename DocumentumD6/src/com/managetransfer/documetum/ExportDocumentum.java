@@ -1,5 +1,5 @@
 package com.managetransfer.documetum;
-
+ 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,6 +68,7 @@ public class ExportDocumentum {
     private int processId = 0 ;
     private BatchHandler bh = new BatchHandler();
     private boolean isLastSequence = false;
+    private boolean expAnnotation= false;
     final Logger logger = Logger.getLogger(ExportDocumentum.class.getName()) ;
     private HibernateConnection hc = new HibernateConnection();
     private boolean exportFolderPath = false;
@@ -96,6 +97,7 @@ public class ExportDocumentum {
 		HashMap<String,Integer> listOfIntAttributes  = new HashMap<String, Integer>() ;
 		HashMap<String,Date> listOfDateAttributes  = new HashMap<String, Date>() ;
 		HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ;
+		HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
 		record.setTypeOfRecord(getRecordType());
 		int nextProcessId = 0;
 		int totalProcessCount = 0;
@@ -114,6 +116,7 @@ public class ExportDocumentum {
 				listOfIntAttributes.clear();
 				listOfDateAttributes.clear();
 				listOfLongAtrributes.clear();
+				listOfBooleanAttributes.clear();
 				//Populate object id in DQL
 				object = objectList.get(t);
 				String objectId = (String)rh.getSpecificAttributeValuePK(objectList.get(t), "r_object_id");
@@ -136,10 +139,13 @@ public class ExportDocumentum {
 								listOfStringAtrributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getString(rh.getColumnName(rh.getColumnNameList().get(j))) );
 							 }else if (rh.getColumnType(rh.getColumnNameList().get(j)).equals("integer")){
 								listOfIntAttributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getInt(rh.getColumnName(rh.getColumnNameList().get(j))) );
-							 }else if (rh.getColumnType(rh.getColumnNameList().get(j)).equals("date")){
+							 }else if (rh.getColumnType(rh.getColumnNameList().get(j)).equals("date")|| rh.getColumnType(rh.getColumnNameList().get(j)).equals("time")|| rh.getColumnType(rh.getColumnNameList().get(j)).equals("timestamp")){
 								listOfDateAttributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getTime(rh.getColumnName(rh.getColumnNameList().get(j))).getDate() );
 							 }else if (rh.getColumnType(rh.getColumnNameList().get(j)).equals("long")){
 								listOfLongAtrributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getLong(rh.getColumnName(rh.getColumnNameList().get(j)))  );
+							 }else if (rh.getColumnType(rh.getColumnNameList().get(j)).equals("boolean")){
+									listOfBooleanAttributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getBoolean(rh.getColumnName(rh.getColumnNameList().get(j)))  );
+									logger.info("boolean value set"+listOfBooleanAttributes.get(rh.getColumnName(rh.getColumnNameList().get(j))));
 							 }
 						}
 						
@@ -170,19 +176,18 @@ public class ExportDocumentum {
 									recordR.getListOfStringAtrributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getString(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j))) );
 								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("integer")){
 									 recordR.getListOfIntAttributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getInt(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j))) );
-								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("date")){
+								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("date")||rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("time") ||rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("timestamp")){
 									recordR.getListOfDateAttributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getTime(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j))).getDate() );
 								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("long")){
-									listOfLongAtrributes.put(rh.getColumnName(rh.getColumnNameList().get(j)), idfCollection.getLong(rh.getColumnName(rh.getColumnNameList().get(j)))  );
 									recordR.getListOfLongAtrributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getLong(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)))  );
+								 }else if (rh.getColumnType(getRecordTypeR(),getRepeatingAttributeList().get(j)).equals("boolean")){
+										recordR.getListOfBooleanAttributes().put(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)), idfCollection.getBoolean(rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)))  );
 								 }
 							}
 							logger.info("extrcated"+rh.getDatabaseColumnName(recordTypeR, getRepeatingAttributeList().get(j)));
 								
 						}
-						logger.info(" adjuserIdExist"+recordR.getListOfStringAtrributes().containsKey("adjusterId"));
-						logger.info(" adjuserIdExist"+recordR.getListOfStringAtrributes().containsKey("adjuster_id"));
-						logger.info("Extracted all repating attribute values");
+						logger.info("Extracted all repeating attribute values");
 						rh.createNewRecord(recordTypeR, recordR);
 						mt_index_id = mt_index_id+1;
 					}
@@ -201,6 +206,11 @@ public class ExportDocumentum {
 					if(exportFolderPath){
 						listOfStringAtrributes.put("mt_repo_path",cd.getFolderPath(objectId));
 					}
+					
+					if(expAnnotation) {
+						exportAnnotation(objectId,destinationFolderPath);
+					}
+					
 					//Save Record 
 					record.setSequenceName(sequenceName);
 					if(!isLastSequence){
@@ -227,6 +237,7 @@ public class ExportDocumentum {
 					record.setListOfIntAttributes(listOfIntAttributes);
 					record.setListOfLongAtrributes(listOfLongAtrributes);
 					record.setListOfStringAtrributes(listOfStringAtrributes);
+					record.setListOfBooleanAttributes(listOfBooleanAttributes);
 					rh.setRecord(record);
 					rh.saveRecord(object);
 					bh.addSuccessCount(1);
@@ -255,8 +266,6 @@ public class ExportDocumentum {
 					rh.saveRecord( objectList.get(t));
 					bh.saveBatch();
 					bh.addFailureCount(1);
-					
-					
 				}catch(Exception ex){
 					logger.severe("Error while saving error "+ex);
 				}
@@ -266,6 +275,24 @@ public class ExportDocumentum {
 		rh.finalCommit();
 		rh.closeConnection();
 		logger.info("Existing Method"+methodName);
+	}
+	private void exportAnnotation(String objectId, String destinationFolderPath2) throws Exception{
+		try{
+			com.managetransfer.businessobject.Annotation ao = new com.managetransfer.businessobject.Annotation();
+			ao.setObjectId(objectId);
+			String annotationObjectId = cd.getAnnotationObjectId(objectId);
+			if(null !=annotationObjectId && !annotationObjectId.equals("")){
+				String repositoryPath = cd.getFolderPath(annotationObjectId);
+				ao.setRepositoryPath(repositoryPath);		
+				String exportLocation = cd.exportDocumentSysObject(annotationObjectId, destinationFolderPath2);
+				ao.setFilePath(exportLocation);
+				hc.saveOperation(ao);
+			}
+		}catch(Exception e){
+			logger.severe("Error inside exportAnnotation"+e);
+			throw e;
+		}
+		
 	}
 	public void initOperation() throws Exception{
 		String methodName="initOperation";
@@ -382,7 +409,11 @@ public class ExportDocumentum {
 						setRepeatingAttributeList(rh.getListOfAllColumns(getRecordTypeR()));
 					}
 				}
-				
+				//Get ExAnnotation flag
+				PhasesDetailsIntH expAnnodationP  =( PhasesDetailsIntH )phasesDetails.getPhaseDetailsInt().get("ExpAnnotation");
+				if ( expAnnodationP.getParameterValue() ==1 ){
+					expAnnotation = true;
+				}
 				hc.commitBatchLevelTransaction();
 			}catch(Exception e){
 				logger.severe("Error in init Operation"+e);

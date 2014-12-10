@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.Annotation" table="mtannotation">
+      <meta attribute="class-description">
+         Annotation relation information is stored in this table 
+      </meta>
+       
+	  <id name="objectId" type="string" column="r_object_id" length="16">
+      </id>
+      <property name="repositoryPath" column="repository_path" type="string" length="255"/>
+      <property name="filePath" column="file_path" type="string" length="255"/>
+   </class>
+</hibernate-mapping>

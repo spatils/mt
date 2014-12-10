@@ -60,7 +60,7 @@ public class GenerateCodeTransformation {
 	    gc.createEndClassFile();
 		 
 	}
-	public String getTransformationBegining(String nameOfTransformation){
+	public String getTransformationBegining(String nameOfTransformation) throws Exception{
 		String transformationBegin =" if(transformationName.equals(\""+nameOfTransformation+"\")){ \n";
 		transformationBegin = transformationBegin +" for(int i=0 ; i < getSourceObject().size(); i++ ) { " ;
 		//This loop picksup each object associated with the transformation
@@ -79,7 +79,7 @@ public class GenerateCodeTransformation {
 	}
 
 	private String getAttributeLevelDetails(String mappingName,
-			String sourceObject, String targetObject) {
+			String sourceObject, String targetObject) throws Exception{
 
 		String attributeLevel = new String("");
 		List mappingListAttribute = hc
@@ -242,11 +242,18 @@ public class GenerateCodeTransformation {
         bufferWritter.close();
 	}
 	 
-	public String getSplitString(String input1,String input2){
+	public String getSplitString(String input1,String input2) throws Exception{
+		System.out.println(input1+"::"+input2);
 		String ClassName = input1.substring(0, input1.indexOf("."));
 		String AttributeName = input1.substring(input1.indexOf(".")+1,input1.length() );
+		String attributeName2 = input1.substring(input1.indexOf(".")+1,input1.length() );
 		String a = AttributeName.substring(0, 1);
 		AttributeName = a.toUpperCase()+AttributeName.substring(1,AttributeName.length());
-		return ClassName+"Object."+input2+ AttributeName;
+		if(grd.getColumnType(packageName+ClassName, attributeName2).equals("boolean") && input2.equals("get")){
+			return ClassName+"Object."+"is"+ AttributeName;
+		}else{
+		
+			return ClassName+"Object."+input2+ AttributeName;
+		}
 	}
 }

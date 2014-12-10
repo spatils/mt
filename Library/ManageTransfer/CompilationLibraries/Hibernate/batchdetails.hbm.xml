@@ -13,8 +13,8 @@
       </id>
       <property name="successCount" column="success_count" type="int"  />
       <property name="failureCount" column="failure_count" type="int"  />  
-      <property name="modifyTime" column="modify_time" type="time"  />  
-      <property name="startTime" column="start_time" type="time"  /> 
+      <property name="modifyTime" column="modify_time" type="timestamp"  />  
+      <property name="startTime" column="start_time" type="timestamp"  /> 
       <property name="batchStatus" column="batch_status" type="string" length="10"/>	
       <property name="errorDescription" column="error_description" type="string" length="400"/>	
       <property name="sequenceName" column="sequence_name" type="string" length="400"/>	

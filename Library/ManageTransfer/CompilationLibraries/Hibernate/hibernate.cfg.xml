@@ -25,6 +25,7 @@
       <mapping resource="information.hbm.xml"/>
        <mapping resource="documentumacl.hbm.xml"/>
       <mapping resource="documentumacldetails.hbm.xml"/>
+      <mapping resource="annotation.hbm.xml"/>
    <!--List of framework object mapping  files -->
     <mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>

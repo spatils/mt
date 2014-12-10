@@ -18,15 +18,16 @@
       <property name="claimantName" column="claimant_name" type="string" length="255"/>
       <property name="claimType" column="claim_type" type="string"/>
       <property name="adjusterName" column="adjuster_name" type="string"/>
+      <property name="receiptDate" column="receipt_date" type="timestamp"/>
+      <property name="isDuplicate" column="is_duplicate" type="boolean"/>
       <property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
       <property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
-      <property name="mtCreateDate" column="mt_create_date" type="time"  />
-      <property name="mtModifyDate" column="mt_modify_date" type="time"  />
+      <property name="mtCreateDate" column="mt_create_date" type="timestamp"  />
+      <property name="mtModifyDate" column="mt_modify_date" type="timestamp"  />
       <property name="mtErrorDesc"  column="mt_error_description" type="string" length="255"/>
       <property name="mtStatus"  column="mt_status" type="string" length="10"/>
       <property name="mtProcessId" column="mt_process_id" type="int" />
       <property name="mtRepositoryPath" column="mt_repo_path" type="string" length="255"/>
       <property name="mtNewObjectId" column="mt_new_object_id" type="string" length="16"/>
-      
    </class>
 </hibernate-mapping>

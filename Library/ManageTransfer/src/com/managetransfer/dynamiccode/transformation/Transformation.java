@@ -39,8 +39,10 @@ private String transformationName = new String ("");
  Claims ClaimsObject = ( Claims) getSourceObject().get(i) ; 
 ClaimsD7Object.setClaimNumber(ClaimsObject.getClaimNumber());
 ClaimsD7Object.setFolderPath(ClaimsObject.getFolderPath());
+ClaimsD7Object.setIsDuplicate(ClaimsObject.isIsDuplicate());
 ClaimsD7Object.setObjectId(ClaimsObject.getObjectId());
 ClaimsD7Object.setObjectName(ClaimsObject.getObjectName());
+ClaimsD7Object.setReceiptDate(ClaimsObject.getReceiptDate());
 
  getTargetobject().add(ClaimsD7Object);
  }

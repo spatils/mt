@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Dec 4, 2014 12:41:33 AM by Hibernate Tools 4.0.0
+// Generated Dec 10, 2014 3:00:52 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
@@ -20,6 +20,8 @@ public class ClaimsD7  implements java.io.Serializable {
      private String claimantName;
      private String claimType;
      private String adjusterName;
+     private Date receiptDate;
+     private boolean isDuplicate;
      private String mtSequenceName;
      private int mtSequenceNumber;
      private Date mtCreateDate;
@@ -37,7 +39,7 @@ public class ClaimsD7  implements java.io.Serializable {
     public ClaimsD7(String objectId) {
         this.objectId = objectId;
     }
-    public ClaimsD7(String objectId, String claimNumber, String objectName, String folderPath, String ownerName, String aclName, String claimantName, String claimType, String adjusterName, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath, String mtNewObjectId) {
+    public ClaimsD7(String objectId, String claimNumber, String objectName, String folderPath, String ownerName, String aclName, String claimantName, String claimType, String adjusterName, Date receiptDate, boolean isDuplicate, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath, String mtNewObjectId) {
        this.objectId = objectId;
        this.claimNumber = claimNumber;
        this.objectName = objectName;
@@ -47,6 +49,8 @@ public class ClaimsD7  implements java.io.Serializable {
        this.claimantName = claimantName;
        this.claimType = claimType;
        this.adjusterName = adjusterName;
+       this.receiptDate = receiptDate;
+       this.isDuplicate = isDuplicate;
        this.mtSequenceName = mtSequenceName;
        this.mtSequenceNumber = mtSequenceNumber;
        this.mtCreateDate = mtCreateDate;
@@ -120,6 +124,20 @@ public class ClaimsD7  implements java.io.Serializable {
     
     public void setAdjusterName(String adjusterName) {
         this.adjusterName = adjusterName;
+    }
+    public Date getReceiptDate() {
+        return this.receiptDate;
+    }
+    
+    public void setReceiptDate(Date receiptDate) {
+        this.receiptDate = receiptDate;
+    }
+    public boolean isIsDuplicate() {
+        return this.isDuplicate;
+    }
+    
+    public void setIsDuplicate(boolean isDuplicate) {
+        this.isDuplicate = isDuplicate;
     }
     public String getMtSequenceName() {
         return this.mtSequenceName;

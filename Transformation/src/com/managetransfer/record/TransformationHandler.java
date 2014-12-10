@@ -35,7 +35,7 @@ import com.managetransfer.dynamiccode.transformation.Transformation;
 
 public class TransformationHandler {
     String transformationName =  new String("Mappping123");
-    String SQLDrivingCursor =  new String("from $objectName$ where mtSequenceName ='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$");
+    String SQLDrivingCursor =  new String("from $objectName$ where mtSequenceName ='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$  and ( mtStatus is null or mtStatus !='SUCCESS'  ) ");
     private String packageName = new String("com.managetransfer.businessobject.");
 	private String recordType = new String("Claims");
 	private String recordTypeTarget = new String("Information");
@@ -155,11 +155,10 @@ public class TransformationHandler {
 				logger.info("Source Record String attr size:"+sourceRecord.getListOfStringAtrributes().size());
 				rh.setRecord(sourceRecord);
 				rh.saveRecord(sourceObject);
-				batchCount = batchCount +1 ;
 				bh.addSuccessCount(1);
 				processCount = processCount + 1 ;
 				if(commitCount>=processCount){
-					batchCount = 0;
+					processCount = 0;
 					bh.saveBatch();
 					hc.commitBatchLevelTransaction();
 					hc.startBatchLevelTransaction();

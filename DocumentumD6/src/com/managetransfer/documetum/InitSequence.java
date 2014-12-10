@@ -1,5 +1,5 @@
 package com.managetransfer.documetum;
-
+ 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -176,6 +176,7 @@ public class InitSequence {
 		rh.startBatchTransaction();
 		HashMap<String,String> listOfStringAtrributes = new HashMap<String, String>() ;
 		HashMap<String,Integer> listOfIntAttributes  = new HashMap<String, Integer>() ;
+		HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
 		HashMap<String,Date> listOfDateAttributes  = new HashMap<String, Date>() ;
 		HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ;
 		Record record = new Record();
@@ -183,6 +184,9 @@ public class InitSequence {
 		int totalProcessCount =0;
 		int processCount = 0;
 		while(idfCollection.next()){
+			if(totalProcessCount>=batchCount || getInterruptFlag()){
+				break;
+			}
 			//rh.startDataTransaction();
 			processCount = processCount +1 ;
 			totalProcessCount = totalProcessCount + 1;
@@ -192,6 +196,7 @@ public class InitSequence {
 				//Extract primary keys and set it in the Records object
 				listOfStringAtrributes.clear();
 				listOfIntAttributes.clear();
+				listOfBooleanAttributes.clear();
 				listOfDateAttributes.clear();
 				listOfLongAtrributes.clear();
 				for(int i=0; i <rh.getColumnNameListPK().size();i++){
@@ -226,6 +231,7 @@ public class InitSequence {
 				record.setListOfIntAttributes(listOfIntAttributes);
 				record.setListOfLongAtrributes(listOfLongAtrributes);
 				record.setListOfStringAtrributes(listOfStringAtrributes);
+				record.setListOfBooleanAttributes(listOfBooleanAttributes);
 				//save the record 
 				//set next sequence number
 				//set sequence details
@@ -240,9 +246,7 @@ public class InitSequence {
 					processCount = 0;
 					rh.startBatchTransaction();
 				}
-				if(totalProcessCount>=batchCount || getInterruptFlag()){
-					break;
-				}
+				
 			}
 			catch(Exception e){
 				//If batch fails to process any record then it will be logged in the error 

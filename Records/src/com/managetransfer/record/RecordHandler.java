@@ -238,6 +238,7 @@ public class RecordHandler {
 		grd.setListOfIntAttributes(record.getListOfIntAttributes( )) ;
 		grd.setListOfLongAtrributes(record.getListOfLongAtrributes( )) ;
 		grd.setListOfStringAtrributes(record.getListOfStringAtrributes( )) ;
+		grd.setListOfBooleanAttributes(record.getListOfBooleanAttributes( )) ;
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
 		hc.saveOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
@@ -257,7 +258,7 @@ public class RecordHandler {
 		KeyHandling kh = new KeyHandling();
 		Object object = kh.instantiateObject(recordTypeMethod.substring(recordTypeMethod.lastIndexOf(".")+1,recordTypeMethod.length()), recordMethod.getListOfStringAtrributes(), recordMethod.getListOfIntAttributes() , recordMethod.getListOfDateAttributes(), recordMethod.getListOfLongAtrributes());
 		hc.saveOperation(object);
-		Object objectWithAllProperties = grd.setAttributes(object , recordTypeMethod,recordMethod.getListOfStringAtrributes(),recordMethod.getListOfIntAttributes(),recordMethod.getListOfDateAttributes(),recordMethod.getListOfLongAtrributes());
+		Object objectWithAllProperties = grd.setAttributes(object , recordTypeMethod,recordMethod.getListOfStringAtrributes(),recordMethod.getListOfIntAttributes(),recordMethod.getListOfDateAttributes(),recordMethod.getListOfLongAtrributes(),recordMethod.getListOfBooleanAttributes());
 		hc.saveOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
 	
@@ -276,6 +277,7 @@ public class RecordHandler {
 		grd.getProperties(object,getTypeOfRecord());
 		record.setListOfDateAttributes(grd.getListOfDateAttributes());
 		record.setListOfIntAttributes(grd.getListOfIntAttributes());
+		record.setListOfBooleanAttributes(grd.getListOfBooleanAttributes());
 		record.setListOfLongAtrributes(grd.getListOfLongAtrributes());
 		record.setListOfStringAtrributes(grd.getListOfStringAtrributes());
 		logger.info("Existing Method"+methodName);
@@ -287,6 +289,7 @@ public class RecordHandler {
 		grd.getProperties(object,getTypeOfRecord());
 		record.setListOfDateAttributes(grd.getListOfDateAttributes());
 		record.setListOfIntAttributes(grd.getListOfIntAttributes());
+		record.setListOfBooleanAttributes(grd.getListOfBooleanAttributes());
 		record.setListOfLongAtrributes(grd.getListOfLongAtrributes());
 		record.setListOfStringAtrributes(grd.getListOfStringAtrributes());
 		//This section extracts primary key values
@@ -348,6 +351,7 @@ public class RecordHandler {
 		}
 		grd.setListOfDateAttributes(record.getListOfDateAttributes( )) ;
 		grd.setListOfIntAttributes(record.getListOfIntAttributes( )) ;
+		grd.setListOfBooleanAttributes(record.getListOfBooleanAttributes( )) ;
 		grd.setListOfLongAtrributes(record.getListOfLongAtrributes( )) ;
 		grd.setListOfStringAtrributes(record.getListOfStringAtrributes( )) ;
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
@@ -356,6 +360,8 @@ public class RecordHandler {
 	}
 	public String getModifiedExportDocumentumQuery(String dql,Object object ) throws Exception{
 		String methodName="getModifiedExportDocumentumQuery";
+		// Passing boolean and date value is not supported
+		
 		logger.info("Inside Method"+methodName);
 		KeyHandling kh = new KeyHandling();
 		kh.extractKey(object, getTypeOfRecord().substring(typeOfRecord.lastIndexOf(".")+1,typeOfRecord.length()));
