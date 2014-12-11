@@ -7,14 +7,11 @@ import java.util.List;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
- 
 import com.google.gwt.user.client.ui.HasWidgets;
- 
 import com.google.gwt.user.client.ui.Widget;
 import com.managetransfer.client.common.SelectionModel;
-
+import com.managetransfer.client.event.LoginEvent;
 import com.managetransfer.client.ManageTransferServiceAsync;
-
 import com.managetransfer.client.SequenceDetails;
 import com.managetransfer.client.SequenceDetailsMap;
 import com.managetransfer.client.view.HomePageViewImpl;
@@ -53,7 +50,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching machine details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		}); 
 		
@@ -68,7 +69,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching phase details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -93,7 +98,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search sequence details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -115,7 +124,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Saving Sequence details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -131,7 +144,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Error deleting sequence details");
+					if(caught.getMessage().startsWith("500 Internal Server Error")){
+						eventBus.fireEvent( new LoginEvent());	
+					}else{
+						Window.alert("Error From Server"+caught.getMessage());
+					}
 				}
 			});
 		
@@ -156,7 +173,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error adding sequence details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -187,7 +208,11 @@ public class SequencesPresenter implements Presenter, SequencesView.Presenter<Se
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching sequence details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}

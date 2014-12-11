@@ -207,17 +207,21 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 	@Override
 	public void go(final HasWidgets container) {
 		this.container = container;
-		 
+		System.out.println("after refresh");
+		History.newItem("login");
+/******
 		//If ticket is not passed or login is not successful then get login screen
 		 rpcService.isAuthenticated( new AsyncCallback<Boolean>() {
+			
 			public void onFailure(Throwable caught) {
 				// Show the RPC error message to the user
 				Window.alert("Server Not Available");
+				History.newItem("login");
+				History.fireCurrentHistoryState();
 			}
 
 			public void onSuccess(Boolean srFromServer) {
 				if(!srFromServer){
-					 
 					History.newItem("login");
 				}else{
 					if ("".equals(History.getToken())) {
@@ -228,7 +232,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 				}
 			}
 		}); 
-		
+		*****/
 	}
 
 	@Override

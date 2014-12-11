@@ -26,13 +26,13 @@ public class HibernateConnection {
             // Create the SessionFactory from hibernate.cfg.xml
         	Configuration configuration = new Configuration();
             configuration.configure();
-            if (serviceRegistry==null ){
+            if (serviceRegistry==null  ){
             	serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             }
-            if(sessionFactory==null){
+            if(sessionFactory==null || sessionFactory.isClosed() ){
             	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             }
-            if(hibernateSession==null){
+            if(hibernateSession==null || ! hibernateSession.isConnected()){
             	hibernateSession = sessionFactory.openSession();
             }
         }

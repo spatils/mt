@@ -45,7 +45,11 @@ public class BatchPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				eventBus.fireEvent( new LoginEvent());
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 
 			@Override
@@ -62,7 +66,11 @@ public class BatchPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				eventBus.fireEvent( new LoginEvent());
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 
 			@Override

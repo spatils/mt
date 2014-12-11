@@ -66,7 +66,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Getting expresion list details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -93,7 +97,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -109,7 +117,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error source object details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -124,7 +136,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error target object details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -146,7 +162,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -161,7 +181,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -175,7 +199,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching mapping details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -205,7 +233,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Error adding connection details");
+					if(caught.getMessage().startsWith("500 Internal Server Error")){
+						eventBus.fireEvent( new LoginEvent());	
+					}else{
+						Window.alert("Error From Server"+caught.getMessage());
+					}
 				}
 			});
 			
@@ -219,7 +251,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error updating connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 			});
 		}
@@ -253,7 +289,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Error adding connection details");
+					if(caught.getMessage().startsWith("500 Internal Server Error")){
+						eventBus.fireEvent( new LoginEvent());	
+					}else{
+						Window.alert("Error From Server"+caught.getMessage());
+					}
 				}
 			});
 			
@@ -267,7 +307,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error updating connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 			});
 		}
@@ -284,7 +328,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error deleting connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -300,7 +348,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error deleting connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -317,7 +369,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error adding connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -368,7 +424,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -382,7 +442,11 @@ public class MappingPresenter implements Presenter, MappingView.Presenter<Mappin
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search connection details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}

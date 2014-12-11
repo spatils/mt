@@ -51,6 +51,12 @@
 					<attribute name="Main-Class" value="Record"/>
 				</manifest>
 		</jar>
+    	<delete file="../Library/ManageTransfer/CompilationLibraries/Hibernate/lib/Hibernate.jar"/>
+    	<jar destfile="../Library/ManageTransfer/CompilationLibraries/Hibernate/lib/Hibernate.jar" basedir="./bin" includes="com/managetransfer/hibernate/*">
+    					<manifest>
+    						<attribute name="Main-Class" value="Record"/>
+    					</manifest>
+    	</jar>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
         <ant antfile="build.xml" dir="${Records.location}" inheritAll="false" target="clean"/>

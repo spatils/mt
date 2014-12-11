@@ -371,7 +371,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 	}
 	@Override
-	public boolean runJob(JobDetails jobDetail) {
+	public boolean runJob(JobDetails jobDetail)  throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -383,12 +383,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	 
 	}
 	@Override
-	public boolean interruptJob(JobDetails jobDetail) {
+	public boolean interruptJob(JobDetails jobDetail)throws Exception  {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -400,12 +400,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	 
 	}
 
-	public boolean changeStateJob(JobDetails jobDetail) {
+	public boolean changeStateJob(JobDetails jobDetail) throws Exception  {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -417,12 +417,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	}
 
 	@Override
-	public ArrayList<JobDetails> getJobResult(String input) {
+	public ArrayList<JobDetails> getJobResult(String input) throws Exception {
 	try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -434,12 +434,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return null;
+			throw e;
 		}
 	}
 
 	@Override
-	public ArrayList<JobDetails> searchJob(String input) {
+	public ArrayList<JobDetails> searchJob(String input)throws Exception  {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -451,12 +451,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return null;
+			throw e;
 		}
 	}
 
 	@Override
-	public Boolean deleteJob(JobDetails jobDetail) {
+	public Boolean deleteJob(JobDetails jobDetail) throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -468,7 +468,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return null;
+			throw e;
 		}
 	}
 
@@ -480,7 +480,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public boolean addJob(JobDetails input) {
+	public boolean addJob(JobDetails input) throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -492,12 +492,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	}
 
 	@Override
-	public boolean editJob(JobDetails jobDetail) {
+	public boolean editJob(JobDetails jobDetail) throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -509,7 +509,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	}
 	public ArrayList<String> getPhaseList() {
