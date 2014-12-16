@@ -12,7 +12,7 @@
             <key-property name="phaseName" column="phase_name" type="string"></key-property>
             <key-property name="parameterName" column="parameter_name" type="string"></key-property>
       </composite-id>
-      <property name="parameterValue" column="parameter_value" type="string"/>
+      <property name="parameterValue" column="parameter_value" type="string" length="2000"/>
 	 
    </class>
 </hibernate-mapping>

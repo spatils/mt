@@ -12,7 +12,29 @@
             <key-property name="objectId" column="r_object_id" type="string" length="16"></key-property>
             <key-property name="mtIndexId" column="mt_index_id" type="int"></key-property>
       </composite-id>
-      <property name="adjusterId" column="adjuster_id" type="string" length="200"/>
-      <property name="adjusterName" column="adjuster_name" type="string" length="200"/>
+        
+      <property name="comments"                       column="comments"                          type="string" length="1000"  />
+	<property name="first_service_date"             column="first_service_date"                type="timestamp"        />
+	<property name="last_service_date"              column="last_service_date"                 type="timestamp"        />
+	<property name="adjuster_assigned"              column="adjuster_assigned"                 type="string" length="90"    />
+	<property name="audit_review_type"              column="audit_review_type"                 type="string" length="3"     />
+	<property name="adjuster_id"                    column="adjuster_id"                       type="string" length="50"    />
+	<property name="supervisor_id"                  column="supervisor_id"                     type="string" length="30"    />
+	<property name="claimant_name"                  column="claimant_name"                     type="string" length="120"   />
+	<property name="claimant_number"                column="claimant_number"                   type="int"     />
+	<property name="claimant_info"                  column="claimant_info"                     type="string" length="1000"  />
+	<property name="method_name"                    column="method_name"                       type="string" length="30"    />
+	<property name="receiving_site_location"        column="receiving_site_location"           type="string" length="3"     />
+	<property name="structured_settlement"          column="structured_settlement"             type="boolean"     />
+	<property name="cl_arbitration_caption_id"      column="cl_arbitration_caption_id"         type="string" length="20"    />
+	<property name="cl_arbitration_caption_name"    column="cl_arbitration_caption_name"       type="string" length="200"   />
+	<property name="lob_r"                          column="lob_r"                             type="string" length="5"     />
+	<property name="ssn_r"                          column="ssn_r"                             type="string" length="15"    />
+	<property name="jcn_r"                          column="jcn_r"                             type="string" length="50"    />
+	<property name="date_of_birth_r"                column="date_of_birth_r"                   type="timestamp"        />
+	<property name="ssn"                            column="ssn"                               type="string" length="15"    />
+	<property name="date_of_birth"                  column="date_of_birth"                     type="timestamp"        />
+	<property name="jcn"                            column="jcn"                               type="string" length="200"   />
+      
    </class>
 </hibernate-mapping>

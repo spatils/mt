@@ -305,7 +305,9 @@ public class GetRecordDetails {
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfDateAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
 			}else if(getColumnType(className,columnNames[i]).equals("integer")){
 				logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])));
-				persisterObject.setPropertyValue(object, columnNames[i],getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
+				if(null != getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i]))){
+					persisterObject.setPropertyValue(object, columnNames[i],getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
+				}
 			}else if(getColumnType(className,columnNames[i]).equals("boolean")){
 				if(getListOfBooleanAttributes() !=null && getListOfBooleanAttributes().containsKey(getDatabaseColumnName(className,columnNames[i])) && getListOfBooleanAttributes().get(getDatabaseColumnName(className,columnNames[i]))!= null){
 					logger.info("Setting Boolean "+columnNames[i]+" :value "+getListOfBooleanAttributes().get(getDatabaseColumnName(className,columnNames[i])));
@@ -344,7 +346,9 @@ public class GetRecordDetails {
 					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfDateAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
 				}else if(getColumnType(classNameMethod,columnNames[i]).equals("integer")){
 					logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
-					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+					if(null !=getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i]))){
+						persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
+					}
 				}else if(getColumnType(classNameMethod,columnNames[i]).equals("boolean")){
 					if(getListOfBooleanAttributes().containsKey(getDatabaseColumnName(classNameMethod,columnNames[i])) && getListOfBooleanAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i]))!= null){
 						logger.info("Setting B "+columnNames[i]+" :value "+getListOfBooleanAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));

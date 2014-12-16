@@ -10,16 +10,69 @@
       </meta>
       <id name="objectId" type="string" column="r_object_id" length="16">
       </id>
-      <property name="claimNumber" column="claim_number" type="string" length="10"/>
       <property name="objectName" column="object_name" type="string"/>
       <property name="folderPath" column="folder_path" type="string"/>
       <property name="ownerName" column="owner_name" type="string"/>
       <property name="aclName" column="acl_name" type="string"/>
-      <property name="claimantName" column="claimant_name" type="string" length="255"/>
-      <property name="claimType" column="claim_type" type="string"/>
-      <property name="adjusterName" column="adjuster_name" type="string"/>
-      <property name="receiptDate" column="receipt_date" type="timestamp"/>
-      <property name="isDuplicate" column="is_duplicate" type="boolean"/>
+      <property name="batch_control_number"             column="batch_control_number"             type="string" length="70"/>
+	<property name="document_control_number"          column="document_control_number"          type="string" length="30"/>
+	<property name="medbill_claimant_num"             column="medbill_claimant_num"             type="string" length="35"/>
+	<property name="orgination_department"            column="orgination_department"            type="string" length="20"/>
+	<property name="ext_ref_number"                   column="ext_ref_number"                   type="string" length="50"/>
+	<property name="document_status"                  column="document_status"                  type="string" length="10"/>
+	<property name="provider_number"                  column="provider_number"                  type="string" length="9"/>
+	<property name="provider_name"                    column="provider_name"                    type="string" length="255"/>
+	<property name="receipt_date"                     column="receipt_date"                     type="timestamp"/>
+	<property name="document_type"                    column="document_type"                    type="string" length="100"/>
+	<property name="external_system_id"               column="external_system_id"               type="string" length="50"/>
+	<property name="mail_identifier"                  column="mail_identifier"                  type="string" length="100"/>
+	<property name="policy_term_exp_date"             column="policy_term_exp_date"             type="timestamp"/>
+	<property name="loss_state_code"                  column="loss_state_code"                  type="string" length="2"/>
+	<property name="claim_status"                     column="claim_status"                     type="string" length="1"/>
+	<property name="policy_term_eff_date"             column="policy_term_eff_date"             type="timestamp"/>
+	<property name="siu_indicator"                    column="siu_indicator"                    type="string" length="10"/>
+	<property name="file_format_cd"                   column="file_format_cd"                   type="string" length="2"/>
+	<property name="loss_date"                        column="loss_date"                        type="timestamp"/>
+	<property name="policy_number"                    column="policy_number"                    type="string" length="10"/>
+	<property name="restricted_claim_ind"             column="restricted_claim_ind"             type="string" length="1"/>
+	<property name="claims_region_cd"                 column="claims_region_cd"                 type="string" length="3"/>
+	<property name="policy_state_code"                column="policy_state_code"                type="string" length="2"/>
+	<property name="date_closed"                      column="date_closed"                      type="timestamp"/>
+	<property name="restricted_indicator"             column="restricted_indicator"             type="string" length="1"/>
+	<property name="claim_number"                     column="claim_number"                     type="string" length="10"/>
+	<property name="irs_name"                         column="irs_name"                         type="string" length="90"/>
+	<property name="irs_number"                       column="irs_number"                       type="int"/>
+	<property name="form_claimant_name"               column="form_claimant_name"               type="string" length="120"/>
+	<property name="form_claimant_type_cd"            column="form_claimant_type_cd"            type="string" length="32"/>
+	<property name="form_claimant_number"             column="form_claimant_number"             type="int"/>
+	<property name="dp_type"                          column="dp_type"                          type="string" length="30"/>
+	<property name="ds_interviewer"                   column="ds_interviewer"                   type="string" length="120"/>
+	<property name="ds_party"                         column="ds_party"                         type="string" length="120"/>
+	<property name="scan_date"                        column="scan_date"                        type="timestamp"/>
+	<property name="document_source"                  column="document_source"                  type="string" length="50"/>
+	<property name="infant_case"                      column="infant_case"                      type="boolean"/>
+	<property name="form_benefits_state"              column="form_benefits_state"              type="string" length="2"/>
+	<property name="fax_number"                       column="fax_number"                       type="string" length="10"/>
+	<property name="ds_role"                          column="ds_role"                          type="string" length="2"/>
+	<property name="ds_date"                          column="ds_date"                          type="timestamp"/>
+	<property name="dp_date"                          column="dp_date"                          type="timestamp"/>
+	<property name="sigi_null_date"                   column="sigi_null_date"                   type="timestamp"/>
+	<property name="party_id"                         column="party_id"                         type="string" length="20"/>
+	<property name="arbitration_caption_id"           column="arbitration_caption_id"           type="string" length="20"/>
+	<property name="arbitration_caption_name"         column="arbitration_caption_name"         type="string" length="200"/>
+	<property name="insured_name"                     column="insured_name"                     type="string" length="120"/>
+	<property name="adjuster_name"                    column="adjuster_name"                    type="string" length="100"/>
+	<property name="form_number"                      column="form_number"                      type="string" length="100"/>
+	<property name="bill_id"                          column="bill_id"                          type="string" length="30"/>
+	<property name="has_updates"                      column="has_updates"                      type="boolean"/>
+	<property name="occurrence_code"                  column="occurrence_code"                  type="string" length="10"/>
+	<property name="sub_document_type"                column="sub_document_type"                type="string" length="100"/>
+	<property name="compensability_indicator"         column="compensability_indicator"         type="string" length="10"/>
+	<property name="claim_type"                       column="claim_type"                       type="string" length="10"/>
+	<property name="project_matter"                   column="project_matter"                   type="string" length="120"/>
+	<property name="taxonomy_indicator"               column="taxonomy_indicator"               type="int"/>
+	<property name="is_duplicate"                     column="is_duplicate"                     type="boolean"/>
+	<property name="is_junk"                          column="is_junk"                          type="boolean"/>
       <property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
       <property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
       <property name="mtCreateDate" column="mt_create_date" type="timestamp"  />

@@ -70,6 +70,7 @@ public class GenerateCodeTransformation {
 			transformationBegin = transformationBegin +"\n if( getSourceObject().get(i).getClass().toString().equals(\"class "+packageName+mappingObject.getSourceObject()+"\")) { \n";
 			transformationBegin = transformationBegin +"\n "+ mappingObject.getTargetObject()+" "+mappingObject.getTargetObject()+"Object = new "+mappingObject.getTargetObject()+"();" ;
 			transformationBegin = transformationBegin +"\n "+ mappingObject.getSourceObject()+" "+mappingObject.getSourceObject()+"Object = ( "+mappingObject.getSourceObject()+") getSourceObject().get(i) ; ";
+			System.out.println("transformationBegin"+transformationBegin);
 			transformationBegin = transformationBegin +"\n"+ getAttributeLevelDetails(nameOfTransformation,mappingObject.getSourceObject(),mappingObject.getTargetObject());
 			transformationBegin = transformationBegin +"\n getTargetobject().add(" +mappingObject.getTargetObject()+"Object);";
 			transformationBegin = transformationBegin +"\n }";
@@ -83,8 +84,11 @@ public class GenerateCodeTransformation {
 
 		String attributeLevel = new String("");
 		List mappingListAttribute = hc
-				.getObject("from MappingDetailsH  where mappingType ='"
-						+ mappingName + "'");
+				.getObject("from MappingDetailsH    where  mappingType ='"
+						+ mappingName + "' order by mappingName ");
+		System.out.println("from MappingDetailsH    where  mappingType ='"
+				+ mappingName + "' order by mappingName ");
+		System.out.println("size"+ mappingListAttribute.size());
 		for (int k = 0; k < mappingListAttribute.size(); k++) {
 			boolean differentObject= false;
 			MappingDetailsH mappingAttribute = (MappingDetailsH) mappingListAttribute
@@ -105,6 +109,8 @@ public class GenerateCodeTransformation {
 							if (mappingAttribute.getExpressionName() != null
 									&& !mappingAttribute.getExpressionName()
 											.trim().equals("=")) {
+								//This part generates code here direct mapping is provided
+								System.out.println("First mapping if part");
 								attributeLogic = getSplitString(
 										sdmp1.getTargetObject(), "set")
 										+ "("
@@ -114,6 +120,7 @@ public class GenerateCodeTransformation {
 												sdmp1.getSourceObject(), "get")
 										+ "()";
 							} else {
+								System.out.println("First mapping else part");
 								attributeLogic = getSplitString(
 										sdmp1.getTargetObject(), "set")
 										+ "("
@@ -122,6 +129,7 @@ public class GenerateCodeTransformation {
 										+ "()";
 							}
 						} else {
+							System.out.println("Next mapping  part");
 							attributeLogic = attributeLogic
 									+ ","
 									+ getSplitString(sdmp1.getSourceObject(),
@@ -130,17 +138,20 @@ public class GenerateCodeTransformation {
 						l = l + 1;
 					}else{
 						differentObject=true;
+						System.out.println("Different Object = true");
 					}
 					}
 				if(!differentObject){ 
 					if (mappingAttribute.getExpressionName() != null
 							&& !mappingAttribute.getExpressionName().trim()
 									.equals("=")) {
+						System.out.println("Expression = true");
 						attributeLogic = attributeLogic + "));\n";
 					} else {
+						//creates newline after each attribute is mapped
 						attributeLogic = attributeLogic + ");\n";
 					}
-	
+					//System.out.println("attributeLevel"+attributeLevel);
 					attributeLevel = attributeLevel + attributeLogic;
 				}
 			}
