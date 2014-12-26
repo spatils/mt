@@ -34,7 +34,8 @@ public class DocumentumConnection {
 	IDfLocalTransaction recordLevelTransaction = null;
 	IDfLocalTransaction batchLevelTransaction = null;
 	String  DQLGetFolderPath  = new String(
-			"select r_folder_path from  dm_folder where r_object_id in ( select i_folder_id from dm_sysobject where r_object_id ='$r_object_id$'  ) and any r_folder_path is not nullstring ");
+			"SELECT   	  f.r_folder_path  	FROM  	  dm_document d, dm_folder f  WHERE   d.i_folder_id = f.r_object_id and   d.i_position = -1 and    f.i_position = -1 and  d.r_object_id ='$r_object_id$' ENABLE   (ROW_BASED) ");  
+	
 	final Logger logger = Logger.getLogger(DocumentumConnection.class.getName()) ;
 	public String getRepoName() {
 		return repoName;
@@ -177,6 +178,12 @@ public class DocumentumConnection {
 		return folderPath;
 	}
 	public void beginBatchLevelDocumentumTransaction() throws Exception{
+		getDocumemtumSession().flush("querycache","");
+		getDocumemtumSession().flush("aclcache","");
+		getDocumemtumSession().flush("groupcache","");
+		getDocumemtumSession().flush("ddcache","object_type");
+		getDocumemtumSession().flush("persistentcache","");
+		getDocumemtumSession().flush("persistentobjcache","");
 		try{
 			if(getDocumemtumSession() != null &&  null == batchLevelTransaction){
 				batchLevelTransaction = getDocumemtumSession().beginTransEx();

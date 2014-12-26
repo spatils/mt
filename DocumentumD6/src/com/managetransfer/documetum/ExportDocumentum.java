@@ -232,6 +232,7 @@ public class ExportDocumentum {
 					logger.info("Got Creation Date"+createDate);
 					Date today = new Date();
 					record.setModifyDate(today);
+					record.setErrorDetails("");
 					record.setCreateDate(createDate);
 					record.setListOfDateAttributes(listOfDateAttributes);
 					record.setListOfIntAttributes(listOfIntAttributes);

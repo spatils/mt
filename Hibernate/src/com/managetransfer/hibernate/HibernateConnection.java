@@ -56,6 +56,8 @@ public class HibernateConnection {
 	 
 	public void startBatchLevelTransaction(){
 		logger.info("Inside startBatchLevelTransaction");
+		hibernateSession.flush();
+		hibernateSession.clear();
 		batchLevelTransaction = hibernateSession.beginTransaction();
 		logger.info("Exit startBatchLevelTransaction");
 	}
@@ -64,6 +66,7 @@ public class HibernateConnection {
 		if (batchLevelTransaction!= null && batchLevelTransaction.isActive()){
 			batchLevelTransaction.commit();
 		}
+		
 		logger.info("Exit commitBatchLevelTransaction");
 	}
 	public void abortBatchLevelTransaction(){

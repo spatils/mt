@@ -96,6 +96,7 @@ public class SchedularViewImpl extends Composite implements SchedularView<JobDet
 			jobTable.addColumn(lastExecutionDate,"Last Execution Date");
 			jobTable.addColumn(nextExecutionDate,"Next Execution Date");
 			jobTable.addColumn(jobState,"Job State");
+			 
 		}
 		ListDataProvider<JobDetails> dataProvider = new ListDataProvider<JobDetails>();
 		 

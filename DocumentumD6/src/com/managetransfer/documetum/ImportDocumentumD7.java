@@ -207,7 +207,7 @@ public class ImportDocumentumD7 {
 				
 				
 				rh.getRecord().getListOfStringAtrributes().put("mt_new_object_id", idfSysObject.getObjectId().getId());
-				cd.commitRecordLevelDocumentumTransaction();
+				 
 				//Save Record 
 				rh.getRecord().setSequenceName(sequenceName);
 				if(!isLastSequence){
@@ -228,11 +228,13 @@ public class ImportDocumentumD7 {
 
 				logger.info("Got Creation Date"+createDate);
 				Date today = new Date();
+				rh.getRecord().setErrorDetails("");
 				rh.getRecord().setModifyDate(today);
 				rh.getRecord().setCreateDate(createDate);
 				rh.saveRecord(object);
 				bh.addSuccessCount(1);
 				bh.saveBatch();
+				cd.commitRecordLevelDocumentumTransaction();
 				if(commitCount>=processCount){
 					rh.commitBatchTransaction();
 					cd.commitBatchLevelDocumentumTransaction();
