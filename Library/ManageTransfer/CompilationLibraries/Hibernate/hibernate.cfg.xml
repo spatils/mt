@@ -23,9 +23,16 @@
       <mapping resource="connection.hbm.xml"/>
       <mapping resource="policy.hbm.xml"/>
       <mapping resource="information.hbm.xml"/>
-       <mapping resource="documentumacl.hbm.xml"/>
+      <mapping resource="documentumacl.hbm.xml"/>
       <mapping resource="documentumacldetails.hbm.xml"/>
       <mapping resource="annotation.hbm.xml"/>
+      <mapping resource="processdata.hbm.xml"/>
+      <mapping resource="processdatapackage.hbm.xml"/>
+      <mapping resource="processdependancy.hbm.xml"/>
+      <mapping resource="sigi_sdt_claims.hbm.xml"/>
+	  <mapping resource="sigi_sdt_selective.hbm.xml"/>
+	  <mapping resource="processvariable1.hbm.xml"/>
+	  <mapping resource="processvariable2.hbm.xml"/>
    <!--List of framework object mapping  files -->
     <mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>
@@ -41,6 +48,8 @@
 	<mapping resource="mappingdetailsmap.hbm.xml"/>
 	<mapping resource="jobserverdetails.hbm.xml"/>
 	<mapping resource="batchdetails.hbm.xml"/>
-	 
+	<mapping resource="processmappingdetails.hbm.xml"/>
+	<mapping resource="processmappingdetailsmap.hbm.xml"/>
+	
 </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.managetransfer.businessobject.ProcessData"
+		table="mtprocessdata" lazy="false">
+		<meta attribute="class-description">
+			This class workflow related information.
+		</meta>
+		<id name="taskId" type="string" column="task_id" length="16"></id>
+		<map name="processDataPackageMap" cascade="all">
+			<key>
+				<column name="task_id"></column>
+			</key>
+			<index column="sequence_number" type="int" />
+			<one-to-many class="com.managetransfer.businessobject.ProcessDataPackage" />
+		</map>
+		<!-- Name of the process template -->
+		<property name="processName" column="process_name" type="string"/>
+		<!-- Name of the process instance -->
+      	<property name="workflowName" column="workflow_name" type="string"/>
+      	<property name="workflowStartDate" column="workflow_start_date" type="timestamp"/>
+      	<property name="workflowState" column="workflow_state" type="string"/>
+      	<property name="workflowSupervisor" column="workflow_supervisor" type="string"/>
+      	<!-- Name of the activity instance -->
+      	<property name="activityName" column="activity_name" type="string"/>
+      	<property name="activityReceiptDate" column="activityReceiptDate" type="timestamp"/>
+      	<property name="activityState" column="activity_state" type="string"/>
+      	<property name="activityCreateDate" column="activityCreateDate" type="timestamp"/>
+      	<property name="performerName" column="performer_name" type="string"/>
+      	<property name="queueName" column="queue_name" type="string"/>
+      	
+      	
+      
+	</class>
+</hibernate-mapping>

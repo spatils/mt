@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.ProcessDataPackage" table="mtprocessdatapackage" lazy="false">
+      <meta attribute="class-description">
+         This class contains the   package   information
+      </meta>
+      <composite-id >
+         <key-property name="taskId" column="task_id" type="string" ></key-property>
+         <key-property name="sequenceNumber" column="sequence_number" type="int"></key-property>
+       </composite-id>
+      <property name="packageType" column="package_type" type="string"  />
+      <property name="packageName" column="package_name" type="string"  />
+     </class>
+</hibernate-mapping>

@@ -69,6 +69,8 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 	PhaseDocumentumImport phaseDocumentumImportD7 = new PhaseDocumentumImport();
 	PhaseExportACL  phaseExportACL = new PhaseExportACL();
 	PhaseImportACLD7 phaseImportACLD7 = new PhaseImportACLD7();
+	PhaseExportProcessD6  phaseExportProcessD6 = new PhaseExportProcessD6();
+	PhaseImportProcessD7 phaseImportProcessD7 = new PhaseImportProcessD7();
 	
 	private String selectedPhase = new String("");
 	private String selectedPhaseType = new String("");
@@ -271,7 +273,14 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			addPhaseVerticalPanel.add(phaseImportACLD7);
 			phaseImportACLD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
 		}
-		
+		if(this.getSelectedPhaseType().equals("ExportProcessD6")){
+			addPhaseVerticalPanel.add(phaseExportProcessD6);
+			phaseExportProcessD6.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("ImportProcessD7")){
+			addPhaseVerticalPanel.add(phaseImportProcessD7);
+			phaseImportProcessD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
 	}
 	@Override
 	public String getNewPhaseName() {
@@ -309,9 +318,13 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			return phaseDocumentumImportD7.getPhaseDetailsString();
 	    }else if(this.getSelectedPhaseType().equals("ExportACL")){
 	    	return phaseExportACL.getPhaseDetailsString();
-	    }		else if(this.getSelectedPhaseType().equals("ImportACLD7")){
-	return phaseImportACLD7.getPhaseDetailsString();
-}
+	    }else if(this.getSelectedPhaseType().equals("ImportACLD7")){
+	    	return phaseImportACLD7.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("ExportProcessD6")){
+	    	return phaseExportProcessD6.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("ImportProcessD7")){
+	    	return phaseImportProcessD7.getPhaseDetailsString();
+	    }
 
 		return null;
 		
@@ -400,6 +413,10 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			  phaseExportACL.setConnectionList(presenter.getConnectionList());
 		} else if(this.getSelectedPhaseType().equals("ImportACLD7")){
 			  phaseImportACLD7.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ExportProcessD6")){
+			  phaseExportProcessD6.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ImportProcessD7")){
+			  phaseImportProcessD7.setConnectionList(presenter.getConnectionList());
 		} 
 		
 	}

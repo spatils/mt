@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.sigi_sdt_claims" table="mtsdtclaims">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+      <id name="taskId" type="string" column="task_id" length="16">
+      </id>
+     <property name="compensability_indicator" column="compensability_indicator" type="string"/>
+		<property name="claimtype_cd" column="claimtype_cd" type="string"/>
+		<property name="file_format_cd" column="file_format_cd" type="string"/>
+		<property name="inHoldComments" column="inHoldComments" type="string"/>
+		<property name="ECN" column="ECN" type="string"/>
+		<property name="pausedComments" column="pausedComments" type="boolean"/>
+		<property name="delegateCheck" column="delegateCheck" type="boolean"/>
+		<property name="form_number" column="form_number" type="string"/>
+		<property name="form_benefits_state" column="form_benefits_state" type="string"/>
+		<property name="bill_id" column="bill_id" type="string"/>
+		<property name="workflow_comments" column="workflow_comments" type="string"/>
+		<property name="priority" column="priority" type="string"/>
+		<property name="IName" column="IName" type="string"/>
+		<property name="comments" column="comments" type="string"/>
+		<property name="arbitration_caption_name" column="arbitration_caption_name" type="string"/>
+		<property name="policy_state_code" column="policy_state_code" type="string"/>
+		<property name="workitem_state" column="workitem_state" type="string"/>
+		<property name="option1" column="option1" type="string"/>
+		<property name="option" column="option" type="string"/>
+		<property name="r_modifier" column="r_modifier" type="string"/>
+		<property name="r_modify_date" column="r_modify_date" type="timestamp"/>
+		<property name="document_status" column="document_status" type="string"/>
+		<property name="insured_name" column="insured_name" type="string"/>
+		<property name="object_name" column="object_name" type="string"/>
+		<property name="adjuster_id" column="adjuster_id" type="string"/>
+		<property name="mitchell_flag" column="mitchell_flag" type="boolean"/>
+		<property name="claimant_name" column="claimant_name" type="string"/>
+		<property name="sub_document_type" column="sub_document_type" type="string"/>
+		<property name="document_type" column="document_type" type="string"/>
+		<property name="claim_number" column="claim_number" type="string"/>
+   </class>
+</hibernate-mapping>
