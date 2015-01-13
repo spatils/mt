@@ -1,11 +1,11 @@
 package com.managetransfer.businessobject;
-// Generated Jan 6, 2015 9:21:39 AM by Hibernate Tools 4.0.0
+// Generated Jan 13, 2015 12:37:55 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
 
 /**
- *          This class contains the claims SDT information 
+ *          This class contains the claims SDT information     
  *       
  */
 public class sigi_sdt_claims  implements java.io.Serializable {

@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Jan 6, 2015 9:21:39 AM by Hibernate Tools 4.0.0
+// Generated Jan 13, 2015 12:37:55 AM by Hibernate Tools 4.0.0
 
 
 
@@ -14,6 +14,7 @@ public class ProcessDataPackage  implements java.io.Serializable {
      private int sequenceNumber;
      private String packageType;
      private String packageName;
+     private String packageId;
 
     public ProcessDataPackage() {
     }
@@ -23,11 +24,12 @@ public class ProcessDataPackage  implements java.io.Serializable {
         this.taskId = taskId;
         this.sequenceNumber = sequenceNumber;
     }
-    public ProcessDataPackage(String taskId, int sequenceNumber, String packageType, String packageName) {
+    public ProcessDataPackage(String taskId, int sequenceNumber, String packageType, String packageName, String packageId) {
        this.taskId = taskId;
        this.sequenceNumber = sequenceNumber;
        this.packageType = packageType;
        this.packageName = packageName;
+       this.packageId = packageId;
     }
    
     public String getTaskId() {
@@ -57,6 +59,13 @@ public class ProcessDataPackage  implements java.io.Serializable {
     
     public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+    public String getPackageId() {
+        return this.packageId;
+    }
+    
+    public void setPackageId(String packageId) {
+        this.packageId = packageId;
     }
 
 

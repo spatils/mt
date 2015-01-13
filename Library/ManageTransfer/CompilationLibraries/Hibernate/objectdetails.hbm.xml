@@ -8,7 +8,7 @@
          This class contains information related business object
       </meta>
        
-      <id name="objectName" type="string" column="object_name" length="16">
+      <id name="objectName" type="string" column="object_name" length="50">
       </id>
       <property name="objectType" column="object_type" type="string" length="20"/>
       <property name="repoObjectName" column="repo_object_name" type="string" length="20"/>

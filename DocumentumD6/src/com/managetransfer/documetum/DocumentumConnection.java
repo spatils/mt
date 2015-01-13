@@ -181,7 +181,6 @@ public class DocumentumConnection {
 		getDocumemtumSession().flush("querycache","");
 		getDocumemtumSession().flush("aclcache","");
 		getDocumemtumSession().flush("groupcache","");
-		getDocumemtumSession().flush("ddcache","object_type");
 		getDocumemtumSession().flush("persistentcache","");
 		getDocumemtumSession().flush("persistentobjcache","");
 		try{

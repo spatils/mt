@@ -87,19 +87,20 @@ public class BatchHandler {
 	public void saveBatch(){
 		Date today = new Date();
 		batchDetails.setModifyTime(today);
-		hc.saveOperation(batchDetails);
+		hc.saveOrUpdateOperation(batchDetails);
 	}
 	public void exitBatch(String errorCode){
+		//After commit everything is flushed from memory. Hence save and update operation is being used.
 		Date today = new Date();
 		if(errorCode == null || errorCode.equals("")){
 			batchDetails.setModifyTime(today);
 			batchDetails.setBatchStatus("SUCCESS");
-			hc.saveOperation(batchDetails);
+			hc.saveOrUpdateOperation(batchDetails);
 		}else{
 			batchDetails.setModifyTime(today);
 			batchDetails.setBatchStatus("FAIL");
 			batchDetails.setErrorDescription(errorCode);
-			hc.saveOperation(batchDetails);
+			hc.saveOrUpdateOperation(batchDetails);
 		}
 	}
 	

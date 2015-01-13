@@ -24,13 +24,19 @@
       	<property name="workflowSupervisor" column="workflow_supervisor" type="string"/>
       	<!-- Name of the activity instance -->
       	<property name="activityName" column="activity_name" type="string"/>
-      	<property name="activityReceiptDate" column="activityReceiptDate" type="timestamp"/>
+      	<property name="activityReceiptDate" column="activity_receipt_date" type="timestamp"/>
       	<property name="activityState" column="activity_state" type="string"/>
-      	<property name="activityCreateDate" column="activityCreateDate" type="timestamp"/>
+      	<property name="activityCreateDate" column="activity_create_date" type="timestamp"/>
       	<property name="performerName" column="performer_name" type="string"/>
       	<property name="queueName" column="queue_name" type="string"/>
       	
+      	<property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
+      	<property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
+      	<property name="mtCreateDate" column="mt_create_date" type="timestamp"  />
+      	<property name="mtModifyDate" column="mt_modify_date" type="timestamp"  />
+      	<property name="mtErrorDesc"  column="mt_error_description" type="string" length="255"/>
+      	<property name="mtStatus"  column="mt_status" type="string" length="10"/>
+      	<property name="mtProcessId" column="mt_process_id" type="int" />
       	
-      
-	</class>
+    </class>
 </hibernate-mapping>

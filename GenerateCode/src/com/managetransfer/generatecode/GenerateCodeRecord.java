@@ -47,8 +47,7 @@ public class GenerateCodeRecord {
 		String endString = new String(" return null;\n" +
 				"}");
 		appendToFile(startString);
-		ArrayList<String> classNames = ReadProperty.getSourceclassname();
-		classNames.addAll(ReadProperty.getTargetclassname());
+		ArrayList<String> classNames =  getClassList();
 		for(int i=0 ; i < classNames.size();i++){
 			System.out.println(objectLevelHandling);
 			

@@ -12,7 +12,7 @@
       </id>
      <property name="start_bill_review_flag" column="start_bill_review_flag"
 			type="string" />
-		<property name="PerformerName" column="PerformerName" type="string" />
+		<property name="PerformerName" column="performer_name" type="string" />
 		<property name="object_type" column="object_type" type="string" />
 		<property name="content_type" column="content_type" type="string" />
 		<property name="adjuster_assigned" column="adjuster_assigned"

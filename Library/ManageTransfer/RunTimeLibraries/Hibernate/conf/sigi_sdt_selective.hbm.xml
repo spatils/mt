@@ -6,7 +6,7 @@
 <hibernate-mapping>
    <class name="com.managetransfer.businessobject.sigi_sdt_selective" table="mtsdtselective">
       <meta attribute="class-description">
-         This class contains the connection detail. 
+         This class contains the selective sdt  detail. 
       </meta>
        
 	  <id name="taskId" type="string" column="task_id" length="16">
@@ -20,4 +20,4 @@
 		<property name="department" column="department" type="string"/>
 		<property name="document_source" column="document_source" type="string"/>
    </class>
-</hibernate-mapping> 
+</hibernate-mapping>

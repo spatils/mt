@@ -29,7 +29,7 @@
 		<property name="updatemetadata_comments" column="updatemetadata_comments"
 			type="string" />
 		<property name="is_duplicate" column="is_duplicate" type="string" />
-		<property name="CommentsTemp" column="CommentsTemp" type="string" />
+		<property name="CommentsTemp" column="Comments_temp" type="string" />
 
 	</class>
 </hibernate-mapping>

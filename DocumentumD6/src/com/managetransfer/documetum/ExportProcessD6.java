@@ -3,19 +3,24 @@ package com.managetransfer.documetum;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.documentum.bpm.IDfWorkitemEx;
 import com.documentum.fc.client.DfQuery;
 import com.documentum.fc.client.IDfACL;
 import com.documentum.fc.client.IDfCollection;
 import com.documentum.fc.client.IDfDocument;
 import com.documentum.fc.client.IDfFolder;
 import com.documentum.fc.client.IDfFormat;
+import com.documentum.fc.client.IDfProcess;
 import com.documentum.fc.client.IDfQuery;
+import com.documentum.fc.client.IDfQueueItem;
+import com.documentum.fc.client.IDfWorkflow;
 import com.documentum.fc.common.DfId;
 import com.documentum.operations.IDfExportNode;
 import com.documentum.operations.IDfExportOperation;
@@ -26,11 +31,13 @@ import com.managetransfer.batches.BatchHandler;
 import com.managetransfer.businessobject.DocumentumACL;
 import com.managetransfer.businessobject.DocumentumACLDetails;
 import com.managetransfer.businessobject.ProcessData;
+import com.managetransfer.businessobject.ProcessDataPackage;
 import com.managetransfer.client.ConnectionDetails;
 import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.client.PhasesDetailsH;
 import com.managetransfer.client.PhasesDetailsIntH;
 import com.managetransfer.client.PhasesDetailsStringH;
+import com.managetransfer.client.ProcessDependancy;
 import com.managetransfer.client.SequenceDetailsH;
 import com.managetransfer.client.SequenceDetailsMapH;
 import com.managetransfer.hibernate.HibernateConnection;
@@ -103,53 +110,146 @@ public class ExportProcessD6 {
 		int nextProcessId = 0;
 		int totalProcessCount = 0;
 		Date createDate = new Date();
+		String taskId = new String("");
+		String workflowId = new String("");
 		while (idfCollection.next()) {
 			try {
 				if (totalProcessCount >= batchCount || getInterruptFlag()) {
 					break;
 				}
-				logger.info("Start Processing New Record---------");
+				logger.info("Start Processing New Record---------"+totalProcessCount);
 				totalProcessCount = totalProcessCount + 1;
 				processCount = processCount + 1;
 				record = new Record();
 				record.setErrorDetails("");
-
-				// Setting ACL Level Properties
-				 object= new ProcessData();
-				 //Extract Process data
-				 //Extract Process Instance data
-				 //Extract Activity Data
-				 //Get list of SDT variables
-				 //Get list of Process Variables
-				 
-				object.setObjectId(idfCollection.getString("r_object_id"));
-				object.setIsInternal(idfCollection.getBoolean("globally_managed"));
-				object.setAclName(idfCollection.getString("object_name"));
-				object.setOwner(idfCollection.getString("owner_name"));
-				object.setAclClass(""+idfCollection.getInt("acl_class"));
-				object.setIsInternal( idfCollection.getBoolean("globally_managed"));
-				logger.info("Set ACL Level Properties object id");
-				
-				// Get creation date
-				IDfACL idfacl = cd.getDocumemtumSession().getACL(
-						idfCollection.getString("owner_name"),idfCollection.getString("object_name") );
-				if (idfacl == null)
-					throw new Exception("ACL Not found");
-				Map<Integer, DocumentumACLDetails> mapDocumentumDetails = new HashMap(
-						0);
-				for (int p = 0; p < idfacl.getAccessorCount(); p++) {
-					DocumentumACLDetails aclDetails = new DocumentumACLDetails();
-					aclDetails.setObjectId(object.getObjectId());
-					aclDetails.setSequenceNumber(p);
-					aclDetails.setAccessorName(idfacl.getAccessorName(p));
-					aclDetails.setBasicPermission(""
-							+ idfacl.getAccessorPermit(p));
-					aclDetails.setExtndPermission(idfacl.getXPermitNames(idfacl
-							.getAccessorName(p)));
-					mapDocumentumDetails.put(p, aclDetails);
-
+				rh.setHc(hc);
+				rh.setTypeOfRecord(packageName+"ProcessData");
+				rh.initOperation();
+				taskId = idfCollection.getString("task_id");
+				//Get activity instance 
+				object= new ProcessData();
+				IDfWorkitemEx  idfX = (IDfWorkitemEx ) cd.getDocumemtumSession().getObject(new DfId(taskId));
+				if (idfX==null) throw new Exception("Activitiy id not found "+taskId);
+				IDfQueueItem idfQueueItem = (IDfQueueItem) cd.getDocumemtumSession().getObject(idfX.getQueueItemId());
+				if (idfQueueItem==null) throw new Exception("idfQueueItem id not found "+taskId);
+				IDfWorkflow idfWorkflow  =(IDfWorkflow)cd.getDocumemtumSession().getObject(idfX.getWorkflowId());
+				if (idfWorkflow==null) throw new Exception("idfWorkflow id not found "+taskId);
+				IDfProcess idfProcess = (IDfProcess)cd.getDocumemtumSession().getObject(new DfId(idfWorkflow.getString("process_id")));
+				if (idfProcess==null) throw new Exception("idfProcess id not found "+taskId);
+				//Extract Process data
+				//Extract Process Instance data
+				//Extract Activity Data
+				object.setTaskId(taskId);
+				object.setActivityName(idfQueueItem.getTaskName());
+				object.setActivityReceiptDate(idfQueueItem.getDateSent().getDate());
+				object.setActivityState(""+idfX.getRuntimeState());
+				object.setActivityCreateDate(idfX.getCreationDate().getDate());
+				object.setPerformerName(idfX.getPerformerName());
+				object.setProcessName(idfProcess.getObjectName());
+				object.setWorkflowName(idfWorkflow.getObjectName());
+				object.setWorkflowStartDate(idfWorkflow.getStartDate().getDate());
+				object.setWorkflowSupervisor(idfWorkflow.getString("supervisor_name"));
+				object.setWorkflowState(""+idfWorkflow.getRuntimeState());
+				logger.info("Extraced Process Level inforamtion");
+				List pdList = getProcessDependany(object.getProcessName());
+				//Get list of dependent variables and SDTs
+				for(int pd=0; pd < pdList.size();pd++ ){
+					ProcessDependancy  processDependancy  =(ProcessDependancy) pdList.get(pd);
+					HashMap<String,String> listOfStringAtrributes = new HashMap<String, String>() ;
+					HashMap<String,Integer> listOfIntAttributes  = new HashMap<String, Integer>() ;
+					HashMap<String,Date> listOfDateAttributes  = new HashMap<String, Date>() ;
+					HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ;
+					HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
+					logger.info("processDependancy.getDependancyType()"+processDependancy.getDependancyType());
+					logger.info("processDependancy.getDependancyName()"+processDependancy.getDependancyName());
+					RecordHandler rhDep =   new RecordHandler();
+					rhDep.setHc(hc);
+					rhDep.setTypeOfRecord(packageName+processDependancy.getDependancyName());
+					rhDep.initOperation();
+					if(processDependancy.getDependancyType().equals("SDT") ){
+						for (int j =0 ; j < rhDep.getColumnNameList().size();j++){
+							logger.info("Setting SDT");
+							if(rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("string")){
+								logger.info("Getting value for"+rhDep.getColumnNameList().get(j));
+								String val = ( String ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j));
+								listOfStringAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("integer")){
+								 int val =0;
+								 if(idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j)) !=null)
+								 val = ( int ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j));
+								listOfIntAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)),val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("date")|| rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("time")|| rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("timestamp")){
+								Date val = ( Date ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j));
+								listOfDateAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("long")){
+								Long val = ( Long ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j)); 
+								listOfLongAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("boolean")){
+								 Boolean val = false ;
+								 if( idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j))!=null)
+								 val = ( Boolean ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j));
+								 listOfBooleanAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+								 logger.info("boolean value set"+listOfBooleanAttributes.get(rhDep.getColumnName(rhDep.getColumnNameList().get(j))));
+							 }
+						}
+					}else if(processDependancy.getDependancyType().equals("VARIABLE")){
+						logger.info("Setting VARIABLE");
+						for (int j =0 ; j < rhDep.getColumnNameList().size();j++){
+							if(rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("string")){
+								String val = ( String ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								listOfStringAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("integer")){
+								 int val =0;
+								 if(idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j))!=null)
+								 val = ( int ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								listOfIntAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)),val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("date")|| rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("time")|| rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("timestamp")){
+								Date val = ( Date ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								listOfDateAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("long")){
+								Long val = ( Long ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j)); 
+								listOfLongAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("boolean")){
+								 Boolean val = false;
+								 if( idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j))!=null)
+									 val = ( Boolean ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								 listOfBooleanAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
+								 logger.info("boolean value set"+listOfBooleanAttributes.get(rhDep.getColumnName(rhDep.getColumnNameList().get(j))));
+							 }
+						}
+					}
+					logger.info("Creating new recod");
+					listOfStringAtrributes.put("task_id",taskId);
+					record = new Record();
+					record.setListOfBooleanAttributes(listOfBooleanAttributes);
+					record.setListOfDateAttributes(listOfDateAttributes);
+					record.setListOfIntAttributes(listOfIntAttributes);
+					record.setListOfLongAtrributes(listOfLongAtrributes);
+					record.setListOfStringAtrributes(listOfStringAtrributes);
+					logger.info("Extracted all values");
+					rhDep.createNewRecord(packageName+processDependancy.getDependancyName(), record); 
 				}
-				object.setACLDetailsMap(mapDocumentumDetails);
+				//Extract Package information
+				IDfCollection attachmentCollection = idfX.getPackages("");
+				int pdpCount = 0;
+				Map<Integer, ProcessDataPackage> pdpMap = new HashMap<Integer, ProcessDataPackage>();
+				while(attachmentCollection.next()){
+					
+					
+					logger.info("Attachmentnumber"+pdpCount);
+					ProcessDataPackage pdp = new ProcessDataPackage();
+					pdp.setPackageName(attachmentCollection.getString("r_package_name"));
+					pdp.setPackageType(attachmentCollection.getString("r_package_type"));
+					pdp.setPackageId(attachmentCollection.getString("r_component_id"));
+					pdp.setSequenceNumber(pdpCount);
+					pdp.setTaskId(taskId);
+					pdpMap.put(pdpCount, pdp);
+					pdpCount=pdpCount+1;
+					
+				}
+				attachmentCollection.close();
+				object.setProcessDataPackageMap(pdpMap);
+				
 				// Save Record
 				object.setMtSequenceName(sequenceName);
 				if (!isLastSequence) {
@@ -181,7 +281,6 @@ public class ExportProcessD6 {
 					rh.startBatchTransaction();
 
 				}
-				
 
 			} catch (Exception e) {
 				logger.severe("Error while processing " + e);
@@ -229,6 +328,9 @@ public class ExportProcessD6 {
 				bh.setSequenceNumber(sequenceNumber);
 				bh.initOperation();
 				bh.saveBatch();
+				rh.setHc(hc);
+				rh.setTypeOfRecord(packageName+"ProcessData");
+				rh.initOperation();
 				logger.info("Initialized batch connection ");
 				// Get Sequence information
 				SequenceDetailsH sequenceDetails = null;
@@ -299,13 +401,6 @@ public class ExportProcessD6 {
 				if (cd.getDocumemtumSession() == null)
 					throw new Exception("Could not connect to documentum  ");
 				logger.info("Initialized repository session ");
-
-				rh.setHc(hc);
-				// This is by default DocumentumACL
-				setRecordType(packageName + "DocumentumACL");
-				rh.setTypeOfRecord(getRecordType());
-				rh.initOperation();
-
 				// DQL to get folders
 				PhasesDetailsStringH dqlExtract = (PhasesDetailsStringH) phasesDetails
 						.getPhaseDetailsString().get("ExportQuery");
@@ -410,6 +505,13 @@ public class ExportProcessD6 {
 			connectionDetails = (ConnectionDetails) connectionList.get(i);
 		}
 		return connectionDetails;
+	}
+	public List getProcessDependany(String processName) {
+		List processDependacnyList = hc
+				.getObject("from ProcessDependancy where processName='"
+						+ processName + "'");
+		 
+		return processDependacnyList;
 	}
 
 	public ObjectDetails getObjectDetails(String objectName) {

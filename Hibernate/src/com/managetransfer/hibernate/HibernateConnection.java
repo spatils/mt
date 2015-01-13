@@ -82,6 +82,9 @@ public class HibernateConnection {
 	public void saveOperation(Object persisterObject){
 		hibernateSession.save(persisterObject);
 	}
+	public void saveOrUpdateOperation(Object persisterObject){
+		hibernateSession.saveOrUpdate(persisterObject);
+	}
 	public void deleteOperation(Object persisterObject){
 		hibernateSession.delete(persisterObject);
 	}
