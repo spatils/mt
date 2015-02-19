@@ -290,6 +290,7 @@ public class SharePointImport {
 				Date today = new Date();
 				rh.getRecord().setCreateDate(createDateSource);
 				rh.getRecord().setModifyDate(today);
+				rh.getRecord().setErrorDetails("");
 				rh.saveRecord(object);
 				processCount = processCount + 1;
 				bh.addSuccessCount(1);

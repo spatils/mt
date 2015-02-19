@@ -81,17 +81,26 @@ public class HibernateConnection {
 	}
 	public void saveOperation(Object persisterObject){
 		hibernateSession.save(persisterObject);
+		logger.info("Exit saveOperation");
 	}
 	public void saveOrUpdateOperation(Object persisterObject){
 		hibernateSession.saveOrUpdate(persisterObject);
+		logger.info("Exit saveOrUpdateOperation");
 	}
 	public void deleteOperation(Object persisterObject){
 		hibernateSession.delete(persisterObject);
+		logger.info("Exit delete");
 	}
 	public void updateOperation(Object persisterObject){
 		hibernateSession.update(persisterObject);
+		logger.info("Exit updateOperation");
 	}
     public  List  getObject(String queryString){
+    	Query query = hibernateSession.createQuery(queryString);
+    	 List list = query.list();
+    	 return list;
+    }
+    public  List  getObjectNonCursorQuery(String queryString){
     	Query query = hibernateSession.createQuery(queryString);
     	 List list = query.list();
     	 return list;
@@ -103,6 +112,7 @@ public class HibernateConnection {
     	if(recordLevelTransaction!= null && recordLevelTransaction.isActive()){
     		recordLevelTransaction.commit();
     	}
+    	logger.info("Exit finalCommitOperation");
     }
     public void closeConnection(){
     	if(hibernateSession != null  ){
@@ -111,8 +121,18 @@ public class HibernateConnection {
     	if(sessionFactory!=null){
     		sessionFactory.close();
     	}
+    	logger.info("Exit closeConnection");
     }
 	public void clearObjectCache(){
 		hibernateSession.clear();
+		logger.info("Exit clearObjectCache");
+	}
+	public boolean isSessionValid(){
+		if(hibernateSession==null || !hibernateSession.isConnected() || hibernateSession.isDirty()){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 }

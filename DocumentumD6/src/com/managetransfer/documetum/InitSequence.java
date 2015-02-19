@@ -241,7 +241,7 @@ public class InitSequence {
 				rh.saveRecordPK();
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if(commitCount>=processCount){
+				if(processCount >=commitCount ){
 					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();

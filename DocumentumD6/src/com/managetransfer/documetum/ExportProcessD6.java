@@ -275,7 +275,7 @@ public class ExportProcessD6 {
 				rh.saveObject(object);
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if (commitCount >= processCount) {
+				if (processCount >=commitCount ) {
 					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();

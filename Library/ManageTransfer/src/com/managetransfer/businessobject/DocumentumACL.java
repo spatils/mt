@@ -1,10 +1,8 @@
 package com.managetransfer.businessobject;
-// Generated Feb 9, 2015 8:45:14 AM by Hibernate Tools 4.0.0
+// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *          This class contains Documentum ACL properties
@@ -25,7 +23,6 @@ public class DocumentumACL  implements java.io.Serializable {
      private String mtErrorDesc;
      private String mtStatus;
      private int mtProcessId;
-     private Map ACLDetailsMap = new HashMap(0);
 
     public DocumentumACL() {
     }
@@ -34,7 +31,7 @@ public class DocumentumACL  implements java.io.Serializable {
     public DocumentumACL(String objectId) {
         this.objectId = objectId;
     }
-    public DocumentumACL(String objectId, String aclName, String aclClass, String owner, boolean isInternal, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, Map ACLDetailsMap) {
+    public DocumentumACL(String objectId, String aclName, String aclClass, String owner, boolean isInternal, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId) {
        this.objectId = objectId;
        this.aclName = aclName;
        this.aclClass = aclClass;
@@ -47,7 +44,6 @@ public class DocumentumACL  implements java.io.Serializable {
        this.mtErrorDesc = mtErrorDesc;
        this.mtStatus = mtStatus;
        this.mtProcessId = mtProcessId;
-       this.ACLDetailsMap = ACLDetailsMap;
     }
    
     public String getObjectId() {
@@ -133,13 +129,6 @@ public class DocumentumACL  implements java.io.Serializable {
     
     public void setMtProcessId(int mtProcessId) {
         this.mtProcessId = mtProcessId;
-    }
-    public Map getACLDetailsMap() {
-        return this.ACLDetailsMap;
-    }
-    
-    public void setACLDetailsMap(Map ACLDetailsMap) {
-        this.ACLDetailsMap = ACLDetailsMap;
     }
 
 

@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="C:/ManageTransfer/apache-tomcat-7.0.56-windows-x64/apache-tomcat-7.0.56/lib/annotations-api.jar"/>
 	<classpathentry kind="lib" path="C:/ManageTransfer/apache-tomcat-7.0.56-windows-x64/apache-tomcat-7.0.56/lib/websocket-api.jar"/>
 	<classpathentry kind="lib" path="C:/ManageTransfer/apache-tomcat-7.0.56-windows-x64/apache-tomcat-7.0.56/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Phases/lib/PhaseD7.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

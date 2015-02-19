@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+
+
 import com.documentum.fc.client.DfQuery;
 import com.documentum.fc.client.IDfACL;
 import com.documentum.fc.client.IDfCollection;
@@ -98,13 +100,13 @@ public class ImportACLD7 {
 	public void executeOperation()   throws Exception  {
 		String methodName="executeOperation";
 		logger.info("Inside Method"+methodName);
-		List objectList = rh.getObject(getSQLDrivingCursor());
 		cd.beginBatchLevelDocumentumTransaction();
 		rh.startBatchTransaction();
+		logger.info(" is sessionvalid "+hc.isSessionValid());
 		int processCount = 0;
 		Record record = new Record();
 		DocumentumACL object = new DocumentumACL() ;
-
+		List objectList = rh.getObject(getSQLDrivingCursor());
 		record.setTypeOfRecord(getRecordType());
 		int nextProcessId = 0;
 		int totalProcessCount = 0;
@@ -112,6 +114,7 @@ public class ImportACLD7 {
 		for(int t=0; t<  objectList.size() ; t++){
 			try{
 				logger.info("Start Processing New Record---------"+t);
+				logger.info(" is sessionvalid "+hc.isSessionValid());
 				if(totalProcessCount >= batchCount || getInterruptFlag()  ){
 					break;
 				}
@@ -122,6 +125,12 @@ public class ImportACLD7 {
 				record.setErrorDetails("");;
 				object = (DocumentumACL)objectList.get(t);
 				logger.info("Extracted object ");
+				logger.info(" is sessionvalid "+hc.isSessionValid());
+				logger.info(" Object Id  "+object.getObjectId());
+				Map<Integer,DocumentumACLDetails> sdmh = new  HashMap();
+				logger.info(" Getting acl details for subsequent ACLs  "+object.getObjectId());
+				sdmh = getACLMapDetails (object.getObjectId());
+				logger.info(" Extracted acl details"+sdmh.size());
 				//Create a New ACL object
 				IDfACL idfACL = cd.getDocumemtumSession().getACL(object.getOwner(),object.getAclName() );
 				if( null == idfACL ) {
@@ -137,15 +146,19 @@ public class ImportACLD7 {
 				idfACL.setObjectName(object.getAclName());
 				idfACL.setACLClass(Integer.parseInt(object.getAclClass()));
 				idfACL.setBoolean("globally_managed",object.isIsInternal() );
+				logger.info("Created ACL object ");
 				//Setting permissions on the ACL object
-				Map<Integer,DocumentumACLDetails> sdmh = object.getACLDetailsMap();
+				logger.info("Before Setting Permission on the ACL ");
+				logger.info(" is sessionvalid "+hc.isSessionValid()); 
+				
 				for(int q=0;q< sdmh.size();q++){
 					DocumentumACLDetails dad = sdmh.get(q);
 					idfACL.grant(dad.getAccessorName(), Integer.parseInt(dad.getBasicPermission()), dad.getExtndPermission());
 				}
 				idfACL.save();
 				cd.commitRecordLevelDocumentumTransaction();
-				//Save Record 
+				//Save Record
+				
 				rh.getPropertyValuesAll(object);
 				rh.getRecord().setSequenceName(sequenceName);
 				if(!isLastSequence){
@@ -163,13 +176,17 @@ public class ImportACLD7 {
 					rh.getRecord().setSequenceNumber(sequenceNumber);
 
 				}
+				
+				
 				Date today = new Date();
 				rh.getRecord().setModifyDate(today);
+				logger.info(" setting modify date "+rh.getRecord().getModifyDate());
 				rh.getRecord().setCreateDate(createDate);
+				rh.getRecord().setErrorDetails("");
 				rh.saveRecord(object);
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if(commitCount>=processCount){
+				if(processCount>=commitCount){
 					rh.commitBatchTransaction();
 					cd.commitBatchLevelDocumentumTransaction();
 					processCount = 0;
@@ -192,11 +209,9 @@ public class ImportACLD7 {
 					rh.getRecord().setCreateDate(createDate);
 					rh.getRecord().setStatusOfRecord("FAIL");
 					rh.getRecord().setModifyDate(new Date());
-					rh.saveRecord( objectList.get(t));
+					rh.saveRecord(objectList.get(t));
 					bh.saveBatch();
 					bh.addFailureCount(1);
-
-
 				}catch(Exception ex){
 					logger.severe("Error while saving error "+ex);
 				}
@@ -275,8 +290,10 @@ public class ImportACLD7 {
 						throw new Exception("Phases Details Map not found");
 					// Set Commit Count
 					commitCount = sdm.getCommitCount();
+					logger.info("Commit Count"+commitCount);
 					// set Batch Count
 					setBatchCount(sdm.getBatchSize());
+					logger.info("Batch Count"+batchCount);
 				} catch (Exception e) {
 					throw new Exception("Error in Get Phase Information"
 							+ e.getMessage());
@@ -404,7 +421,20 @@ public class ImportACLD7 {
 	public void setProcessId(int processId) {
 		this.processId = processId;
 	}
-
+	  
+	public Map<Integer,DocumentumACLDetails> getACLMapDetails(String objectId) {
+		logger.info("Inside getACLMapDetails");
+		Map<Integer,DocumentumACLDetails> amd = new HashMap();
+		List aclDetailsList = hc.getObjectNonCursorQuery("from DocumentumACLDetails where objectId='"
+						+ objectId + "'");
+		logger.info("Executed Query");
+		for (int i = 0; i < aclDetailsList.size(); i++) {
+			DocumentumACLDetails dacld=(DocumentumACLDetails) aclDetailsList.get(i);
+			logger.info("Gettting each object"+dacld.getObjectId());
+			amd.put(i,dacld  ) ;
+		}
+		return amd;
+	}
 	public SequenceDetailsH getSequenceDetails(String sequenceName) {
 		List sequenceList = hc
 				.getObject("from SequenceDetailsH where sequenceName='"

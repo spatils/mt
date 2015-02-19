@@ -22,7 +22,6 @@
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Transformation.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/TransformationImplementation.jar"/>
-	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-api-1.0-sdk-1.7.5.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-api-labs.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-endpoints.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-jsr107cache-1.7.5.jar"/>

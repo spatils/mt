@@ -254,5 +254,6 @@
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Transformation.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/TransformationImplementation.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/D7/conf"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

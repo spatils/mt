@@ -271,6 +271,10 @@ public class RecordHandler {
 		 
 		return hc.getObject(sqlDrivingCursor) ;
 	}
+	public List getObjectNonCursorQuery(String sql) {
+		 
+		return hc.getObjectNonCursorQuery(sql) ;
+	}
 	public void getPropertyValues(Object object) throws Exception{
 		String methodName="getPropertyValues";
 		logger.info("Inside Method"+methodName);
@@ -321,6 +325,12 @@ public class RecordHandler {
 		 * This method is called from Transformation Phase to store repeating value attriutes
 		 */
 		hc.saveOperation(objectMethod);
+	}
+	public void saveOrUpdateObject(Object objectMethod)throws Exception{
+		/**
+		 * This method is called from Transformation Phase to store repeating value attriutes
+		 */
+		hc.saveOrUpdateOperation(objectMethod);
 	}
 	public void saveRecord(Object object) throws Exception {
 		//Used inside Export Documentum

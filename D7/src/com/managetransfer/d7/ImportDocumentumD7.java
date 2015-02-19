@@ -235,7 +235,7 @@ public class ImportDocumentumD7 {
 				bh.addSuccessCount(1);
 				bh.saveBatch();
 				cd.commitRecordLevelDocumentumTransaction();
-				if(commitCount>=processCount){
+				if(processCount>=commitCount){
 					rh.commitBatchTransaction();
 					cd.commitBatchLevelDocumentumTransaction();
 					processCount = 0;

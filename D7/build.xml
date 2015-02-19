@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build-projet" name="D7">
+              as the first entry and export the buildfile again. --><project basedir="." default="build-project" name="D7">
     <property environment="env"/>
     <property name="Library.location" value="../../../Users/patils1/git/mt/Library"/>
     <property name="ECLIPSE_HOME" value="../../../eclipse"/>

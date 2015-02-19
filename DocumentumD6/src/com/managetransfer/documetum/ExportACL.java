@@ -65,6 +65,7 @@ public class ExportACL {
 	private String DQLDrivingCursor = new String(
 			"select r_object_id ,object_name,owner_name,acl_class,globally_managed from dm_acl where object_name like 'sigi%'");
 	private RecordHandler rh = new RecordHandler();
+	private RecordHandler rhDetails = new RecordHandler();
 	private String recordType = new String("DocumentumACL");
 	private String packageName = new String(
 			"com.managetransfer.businessobject.");
@@ -147,9 +148,9 @@ public class ExportACL {
 					aclDetails.setExtndPermission(idfacl.getXPermitNames(idfacl
 							.getAccessorName(p)));
 					mapDocumentumDetails.put(p, aclDetails);
-
+					rhDetails.saveObject(aclDetails);
 				}
-				object.setACLDetailsMap(mapDocumentumDetails);
+			 
 				// Save Record
 				object.setMtSequenceName(sequenceName);
 				if (!isLastSequence) {
@@ -175,7 +176,7 @@ public class ExportACL {
 				rh.saveObject(object);
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if (commitCount >= processCount) {
+				if (processCount >= commitCount) {
 					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();
@@ -305,6 +306,11 @@ public class ExportACL {
 				setRecordType(packageName + "DocumentumACL");
 				rh.setTypeOfRecord(getRecordType());
 				rh.initOperation();
+				
+				
+				rhDetails.setHc(hc);
+				rhDetails.setTypeOfRecord(packageName +"DocumentumACLDetails");
+				rhDetails.initOperation();
 
 				// DQL to get folders
 				PhasesDetailsStringH dqlExtract = (PhasesDetailsStringH) phasesDetails

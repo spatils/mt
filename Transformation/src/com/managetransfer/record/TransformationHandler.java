@@ -152,12 +152,13 @@ public class TransformationHandler {
 				sourceRecord.setCreateDate(createDateSource);
 				sourceRecord.setModifyDate(today);
 				sourceRecord.setProcessId(getProcessId());
+				sourceRecord.setErrorDetails("");
 				logger.info("Source Record String attr size:"+sourceRecord.getListOfStringAtrributes().size());
 				rh.setRecord(sourceRecord);
 				rh.saveRecord(sourceObject);
 				bh.addSuccessCount(1);
 				processCount = processCount + 1 ;
-				if(commitCount>=processCount){
+				if(processCount>=commitCount ){
 					processCount = 0;
 					bh.saveBatch();
 					hc.commitBatchLevelTransaction();
