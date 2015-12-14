@@ -42,9 +42,10 @@ public class BatchHandler {
 			batchDetails.setModifyTime(today);
 			batchDetails.setSequenceName(getSequenceName());
 			batchDetails.setSequenceNumber(getSequenceNumber());
-			
+			hc.saveOperation(batchDetails);
+		}else{
+			hc.updateOperation(batchDetails);
 		}
-		hc.saveOperation(batchDetails);
 		
 	}
 	public String getBatchName (String sequenceName, int sequenceNumber,int processId){
@@ -87,7 +88,7 @@ public class BatchHandler {
 	public void saveBatch(){
 		Date today = new Date();
 		batchDetails.setModifyTime(today);
-		hc.saveOrUpdateOperation(batchDetails);
+		hc.updateOperation(batchDetails);
 	}
 	public void exitBatch(String errorCode){
 		//After commit everything is flushed from memory. Hence save and update operation is being used.
@@ -95,12 +96,12 @@ public class BatchHandler {
 		if(errorCode == null || errorCode.equals("")){
 			batchDetails.setModifyTime(today);
 			batchDetails.setBatchStatus("SUCCESS");
-			hc.saveOrUpdateOperation(batchDetails);
+			hc.updateOperation(batchDetails);
 		}else{
 			batchDetails.setModifyTime(today);
 			batchDetails.setBatchStatus("FAIL");
 			batchDetails.setErrorDescription(errorCode);
-			hc.saveOrUpdateOperation(batchDetails);
+			hc.updateOperation(batchDetails);
 		}
 	}
 	
