@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 
@@ -11,20 +11,29 @@ public class Annotation  implements java.io.Serializable {
 
 
      private String objectId;
+     private int seqNumber;
      private String repositoryPath;
      private String filePath;
+     private String ownerName;
+     private String objectName;
+     private String aclName;
 
     public Annotation() {
     }
 
 	
-    public Annotation(String objectId) {
+    public Annotation(String objectId, int seqNumber) {
         this.objectId = objectId;
+        this.seqNumber = seqNumber;
     }
-    public Annotation(String objectId, String repositoryPath, String filePath) {
+    public Annotation(String objectId, int seqNumber, String repositoryPath, String filePath, String ownerName, String objectName, String aclName) {
        this.objectId = objectId;
+       this.seqNumber = seqNumber;
        this.repositoryPath = repositoryPath;
        this.filePath = filePath;
+       this.ownerName = ownerName;
+       this.objectName = objectName;
+       this.aclName = aclName;
     }
    
     public String getObjectId() {
@@ -33,6 +42,13 @@ public class Annotation  implements java.io.Serializable {
     
     public void setObjectId(String objectId) {
         this.objectId = objectId;
+    }
+    public int getSeqNumber() {
+        return this.seqNumber;
+    }
+    
+    public void setSeqNumber(int seqNumber) {
+        this.seqNumber = seqNumber;
     }
     public String getRepositoryPath() {
         return this.repositoryPath;
@@ -47,6 +63,27 @@ public class Annotation  implements java.io.Serializable {
     
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+    
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+    public String getObjectName() {
+        return this.objectName;
+    }
+    
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
+    }
+    public String getAclName() {
+        return this.aclName;
+    }
+    
+    public void setAclName(String aclName) {
+        this.aclName = aclName;
     }
 
 

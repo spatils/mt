@@ -1,32 +1,32 @@
 package com.managetransfer.client;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *          This class contains the connection detail. 
+ *          This class contains the proces mapping detail. 
  *       
  */
 public class ProcessMappingDetails  implements java.io.Serializable {
 
 
      private String sourceProcessName;
-     private String mappingType;
+     private String targetProcessName;
      private Map processMappingDetailsMap = new HashMap(0);
 
     public ProcessMappingDetails() {
     }
 
 	
-    public ProcessMappingDetails(String sourceProcessName, String mappingType) {
+    public ProcessMappingDetails(String sourceProcessName, String targetProcessName) {
         this.sourceProcessName = sourceProcessName;
-        this.mappingType = mappingType;
+        this.targetProcessName = targetProcessName;
     }
-    public ProcessMappingDetails(String sourceProcessName, String mappingType, Map processMappingDetailsMap) {
+    public ProcessMappingDetails(String sourceProcessName, String targetProcessName, Map processMappingDetailsMap) {
        this.sourceProcessName = sourceProcessName;
-       this.mappingType = mappingType;
+       this.targetProcessName = targetProcessName;
        this.processMappingDetailsMap = processMappingDetailsMap;
     }
    
@@ -37,12 +37,12 @@ public class ProcessMappingDetails  implements java.io.Serializable {
     public void setSourceProcessName(String sourceProcessName) {
         this.sourceProcessName = sourceProcessName;
     }
-    public String getMappingType() {
-        return this.mappingType;
+    public String getTargetProcessName() {
+        return this.targetProcessName;
     }
     
-    public void setMappingType(String mappingType) {
-        this.mappingType = mappingType;
+    public void setTargetProcessName(String targetProcessName) {
+        this.targetProcessName = targetProcessName;
     }
     public Map getProcessMappingDetailsMap() {
         return this.processMappingDetailsMap;

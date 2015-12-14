@@ -35,7 +35,7 @@ import com.managetransfer.dynamiccode.transformation.Transformation;
 
 public class TransformationHandler {
     String transformationName =  new String("Mappping123");
-    String SQLDrivingCursor =  new String("from $objectName$ where mtSequenceName ='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$  and ( mtStatus is null or mtStatus !='SUCCESS'  ) ");
+    String SQLDrivingCursor =  new String("from $objectName$ where mtSequenceName ='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$  and ( mtStatus is null or mtStatus !='SUCCESS'  ) and rownum < $rownum$");
     private String packageName = new String("com.managetransfer.businessobject.");
 	private String recordType = new String("Claims");
 	private String recordTypeTarget = new String("Information");
@@ -65,7 +65,7 @@ public class TransformationHandler {
 		logger.info("Inside Method"+methodName);
 		int processCount = 0;
 		int totalProcessCount =0;
-		hc.startBatchLevelTransaction();
+		rh.startBatchTransaction();
     	List objectList = hc.getObject(getSQLDrivingCursor());
     	Object sourceObject = new Object();
 		Object targetObject = new Object();
@@ -83,9 +83,14 @@ public class TransformationHandler {
     			logger.info("Processing Record Number : "+i);
     			sourceObject = objectList.get(i);
     			
-    			rh.initOperation();
+    			//rh.initOperation();
     			rh.setRecord(sourceRecord);
 				rh.getPropertyValuesAll(sourceObject);
+				String objectId    =  (String) rh.getSpecificAttributeValuePK(objectList.get(i), "r_object_id")  ;
+				logger.info("Extracted object id"); 
+				//Check if this is the case of delta transformation and delete existing target object
+				String newObjectId  = getNewObjectId(objectId,getRecordTypeTarget());
+				deleteObjects(objectId,getRecordTypeTarget());
 				//Get all dependant objects
     			ArrayList<Object> sourceDependantObjects = new ArrayList<Object>();
     			sourceDependantObjects = getAllDependantObject(sourceRecord);
@@ -105,20 +110,34 @@ public class TransformationHandler {
 	    		ArrayList<Object> targetObjectList = tf.getTargetobject();
 	    		if(targetObjectList.size()==0) throw new Exception("List of target objects is null");
 	    		logger.info("Size of objects received"+targetObjectList.size());
+	    		boolean deleteDependancy =true;
 	    		for(int p=0;p<targetObjectList.size();p++){
 	    			if(targetObjectList.get(p).getClass().toString().equals("class "+getRecordTypeTarget())){
 	    				//Got primary target object
-	    				logger.info("Primary object assingment"+targetObjectList.get(p).getClass());
+	    				logger.info("Primary object assignment"+targetObjectList.get(p).getClass());
 	    				targetObject= targetObjectList.get(p);
+	    				rh.saveObject(targetObjectList.get(p));
 	    			}else{
-	    				//Saving dependant object
+	    				//Saving dependent object
+	    				
+	    				String className = targetObjectList.get(p).getClass().toString(); 
+	    				className= className.substring(6);
+	    				//Delete objects if already exist . This takes care of delete updates 
+	    				if(deleteDependancy){
+	    					deleteObjects(objectId,className);
+	    					deleteDependancy = false;
+	    				}
 	    				logger.info("Saving object type"+targetObjectList.get(p).getClass());
 	    				rh.saveObject(targetObjectList.get(p));
 	    				
 	    			}
 	    			 
 	    		}
-	    		rhTarget.initOperation();
+	    		//rhTarget.initOperation();//PF
+	    		tf=null;
+	    		targetObjectList= null;
+	    		sourceDependantObjects =null;
+	    		
 	    		rhTarget.setRecord(targetRecord);
 	    		rhTarget.getPropertyValuesAll(targetObject);
 	    		//Set of Attributes for the Target
@@ -140,6 +159,7 @@ public class TransformationHandler {
 				Date today = new Date();
 				targetRecord.setCreateDate(today);
 				targetRecord.setModifyDate(today);
+				targetRecord.getListOfStringAtrributes().put("mt_new_object_id",newObjectId);
 				logger.info("Target Record String attr size:"+targetRecord.getListOfStringAtrributes().size());
 				rhTarget.setRecord(targetRecord);
 				rhTarget.saveRecord(targetObject);
@@ -157,12 +177,12 @@ public class TransformationHandler {
 				rh.setRecord(sourceRecord);
 				rh.saveRecord(sourceObject);
 				bh.addSuccessCount(1);
+				bh.saveBatch();
 				processCount = processCount + 1 ;
 				if(processCount>=commitCount ){
 					processCount = 0;
-					bh.saveBatch();
-					hc.commitBatchLevelTransaction();
-					hc.startBatchLevelTransaction();
+					rh.commitBatchTransaction(); 
+					rh.startBatchTransaction();
 				}
 				
     		}
@@ -179,19 +199,40 @@ public class TransformationHandler {
 					rh.saveRecord(sourceObject);
 					logger.info(" Error details set"+rh.getRecord().getErrorDetails());
 					bh.addFailureCount(1);
-					
+					bh.saveBatch();
 				} catch ( Exception ex){
 					logger.severe("Error While saving object process  "+ex);
 				}
 			}
-    		
+    		sourceRecord = null;
+    		targetRecord = null;
+    		sourceObject = null;
+    		targetObject = null;
     	}
-    	bh.exitBatch("");
-    	hc.commitBatchLevelTransaction();
-		hc.closeConnection();
+		bh.exitBatch("");
+		rh.finalCommit();
+		rh.closeConnection();
 		logger.info("Existing Method"+methodName);
     }
-    private ArrayList<Object> getAllDependantObject(Record record) throws Exception{
+    private String getNewObjectId(String objectId, String recordTypeTarget) throws Exception{
+    	logger.info("Inside getNewObjectId");
+    	logger.info("parameters  "+objectId+recordTypeTarget);
+		String newObjecId ="";
+		try{
+	    	List resultList = hc.getObjectNonCursorQuery("select mtNewObjectId from "+recordTypeTarget +" where objectId='"+objectId+"'"); 
+			for(int i=0;i<resultList.size() ;i++){
+				 newObjecId  =   (String) resultList.get(i) ;
+				 break;
+			}
+			logger.info("NEw objecr id  "+newObjecId);
+		}catch(Exception e){
+			logger.severe("Exception while gettting new object id "+e);
+			throw e;
+		}
+		logger.info("exist getNewObjectId"+newObjecId);
+		return newObjecId;
+	}
+	private ArrayList<Object> getAllDependantObject(Record record) throws Exception{
     	
 		ArrayList<Object> dependantObject = new ArrayList<Object>();
 		try{
@@ -392,6 +433,7 @@ public class TransformationHandler {
 		dSelectCountHQL = dSelectCountHQL.replace("$sequenceName$", getSequenceName());
 		dSelectCountHQL = dSelectCountHQL.replace("$sequenceNumber$", ""+getSequenceNumber());
 		dSelectCountHQL = dSelectCountHQL.replace("$processId$", ""+getProcessId());
+		dSelectCountHQL = dSelectCountHQL.replace("$rownum$", ""+getBatchCount());
 		logger.info("Driving cursor : "+dSelectCountHQL);
 		return dSelectCountHQL;
 	}
@@ -421,4 +463,22 @@ public class TransformationHandler {
 		}
 		return objectDetails;
 	}
+	public void deleteObjects (String rObjectId , String objectType){
+		logger.info("Inside deleteObjects");
+		logger.info("Inside deleteObjects"+rObjectId+objectType);
+		hc.updateQueryExecute( "delete from "+objectType+" where objectId='"+rObjectId+"'"); 
+	}
+	/****
+	public void deleteObjects (String rObjectId , String objectType){
+		logger.info("Inside deleteObjects");
+		logger.info("Inside deleteObjects"+rObjectId+objectType);
+		List objectDetailsList = hc.getObjectNonCursorQuery("from "+objectType+" where objectId='"+rObjectId+"'");  
+		for(int i=0;i<objectDetailsList.size() ;i++){
+			Object objectDetails = (Object) objectDetailsList.get(i) ;
+			hc.deleteObject(objectDetails);
+		}
+		logger.info("exit deleteObjects");
+	}
+	***/
 }
+

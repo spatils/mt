@@ -156,12 +156,10 @@ public class JobSchedular extends HttpServlet {
 		
 	}
 	public void startJob(String jobId, String cronSch,String phaseType) throws Exception {
-		    // define the job and tie it to our HelloJob class
-			JobDetail job = newJob(DelegateExecution.class).withIdentity(jobId, defaultGroup).build();
+		    //This function creates job 
+		    JobDetail job = newJob(DelegateExecution.class).withIdentity(jobId, defaultGroup).build();
 			job.getJobDataMap().put("PHASE_TYPE", phaseType);
-			// Trigger the job to run now, and then every 40 seconds
 			Trigger trigger = newTrigger().withIdentity(jobId, defaultGroup).startNow().withSchedule(cronSchedule(cronSch)).build();
-			// Tell quartz to schedule the job using our trigger
 			StartSchedular.scheduler.scheduleJob(job, trigger);
 		
 		 

@@ -127,7 +127,7 @@ public class GetRecordDetails {
 			logger.info("Val1   : "+persisterObject.getPropertyValue(object, str));
 			if(getColumnType(className,str).equals("string")){
 				 listOfStringAtrributes.put(getDatabaseColumnName(className,str),(String)persisterObject.getPropertyValue(object, str)) ;
-			 }else if (getColumnType(className,str).equals("integer")){
+			 }else if (getColumnType(className,str).equals("integer")||getColumnType(className,str).equals("int")){
 				 listOfIntAttributes.put(getDatabaseColumnName(className,str), (Integer)persisterObject.getPropertyValue(object, str)) ;
 			 }else if (getColumnType(className,str).equals("date") || getColumnType(className,str).equals("time")|| getColumnType(className,str).equals("timestamp")){
 				 listOfDateAttributes.put(getDatabaseColumnName(className,str), (Date)persisterObject.getPropertyValue(object, str)) ;
@@ -303,7 +303,7 @@ public class GetRecordDetails {
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfLongAtrributes().get(getDatabaseColumnName(className,columnNames[i])) );
 			}else if(getColumnType(className,columnNames[i]).equals("date") || getColumnType(className,columnNames[i]).equals("time")  || getColumnType(className,columnNames[i]).equals("timestamp")){
 				persisterObject.setPropertyValue(object, columnNames[i],getListOfDateAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
-			}else if(getColumnType(className,columnNames[i]).equals("integer")){
+			}else if(getColumnType(className,columnNames[i]).equals("integer")||getColumnType(className,columnNames[i]).equals("int")){
 				logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])));
 				if(null != getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i]))){
 					persisterObject.setPropertyValue(object, columnNames[i],getListOfIntAttributes().get(getDatabaseColumnName(className,columnNames[i])) );
@@ -338,20 +338,20 @@ public class GetRecordDetails {
 			for(int i = 0 ; i< columnNames.length ; i++){
 				logger.info("Setting "+columnNames[i]+" Type : "+getColumnType(classNameMethod,columnNames[i]));
 				if(getColumnType(classNameMethod,columnNames[i]).equals("string")){
-					logger.info("Setting "+columnNames[i]+" :value "+getListOfStringAtrributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+					logger.info("Setting "+columnNames[i]+" :value "+listOfStringAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])));
 					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfStringAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
 				}else if (getColumnType(classNameMethod,columnNames[i]).equals("long")){
 					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfLongAtrributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
 				}else if(getColumnType(classNameMethod,columnNames[i]).equals("date") || getColumnType(classNameMethod,columnNames[i]).equals("time") || getColumnType(classNameMethod,columnNames[i]).equals("timestamp")){
 					persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfDateAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
-				}else if(getColumnType(classNameMethod,columnNames[i]).equals("integer")){
-					logger.info("Setting "+columnNames[i]+" :value "+getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
-					if(null !=getListOfIntAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i]))){
+				}else if(getColumnType(classNameMethod,columnNames[i]).equals("integer")||getColumnType(classNameMethod,columnNames[i]).equals("int")){
+					logger.info("Setting "+columnNames[i]+" :value "+listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+					if(null !=listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i]))){
 						persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfIntAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
 					}
 				}else if(getColumnType(classNameMethod,columnNames[i]).equals("boolean")){
-					if(getListOfBooleanAttributes().containsKey(getDatabaseColumnName(classNameMethod,columnNames[i])) && getListOfBooleanAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i]))!= null){
-						logger.info("Setting B "+columnNames[i]+" :value "+getListOfBooleanAttributes().get(getDatabaseColumnName(classNameMethod,columnNames[i])));
+					if(listOfBooleanAttributesMethod.containsKey(getDatabaseColumnName(classNameMethod,columnNames[i])) && listOfBooleanAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i]))!= null){
+						logger.info("Setting B "+columnNames[i]+" :value "+listOfBooleanAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])));
 						persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],listOfBooleanAttributesMethod.get(getDatabaseColumnName(classNameMethod,columnNames[i])) );
 					}else{
 						persisterObjectMethod.setPropertyValue(objectMethod, columnNames[i],false );

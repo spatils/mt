@@ -56,10 +56,16 @@ public class HibernateConnection {
 	 
 	public void startBatchLevelTransaction(){
 		logger.info("Inside startBatchLevelTransaction");
+		batchLevelTransaction = hibernateSession.beginTransaction();
 		hibernateSession.flush();
 		hibernateSession.clear();
-		batchLevelTransaction = hibernateSession.beginTransaction();
-		logger.info("Exit startBatchLevelTransaction");
+		logger.info("Exit startBatchLevelTransaction and then clear");
+	}
+	public void clearAndFlush(){
+		logger.info("Inside clearAndFlush");
+		hibernateSession.flush();
+		hibernateSession.clear();
+		logger.info("Exit clear");
 	}
 	public void commitBatchLevelTransaction(){
 		logger.info("Inside commitBatchLevelTransaction");
@@ -95,7 +101,16 @@ public class HibernateConnection {
 		hibernateSession.update(persisterObject);
 		logger.info("Exit updateOperation");
 	}
+	public void deleteObject(Object persisterObject){
+		hibernateSession.delete(persisterObject);
+		logger.info("Exit deleteObject");
+	}
     public  List  getObject(String queryString){
+    	 Query query = hibernateSession.createQuery(queryString);
+    	 List list = query.list();
+    	 return list;
+    }
+    public  List  selectQuery(String queryString){
     	Query query = hibernateSession.createQuery(queryString);
     	 List list = query.list();
     	 return list;
@@ -105,7 +120,13 @@ public class HibernateConnection {
     	 List list = query.list();
     	 return list;
     }
+    public int updateQueryExecute(String queryString){
+    	logger.info("Inside updateQueryExecute");
+    	Query query = hibernateSession.createQuery(queryString);
+    	return query.executeUpdate();
+    }
     public void finalCommitOperation(){
+    	logger.info("Inside finalCommitOperation");
     	if(batchLevelTransaction!= null && batchLevelTransaction.isActive()){
     		batchLevelTransaction.commit();
     	}

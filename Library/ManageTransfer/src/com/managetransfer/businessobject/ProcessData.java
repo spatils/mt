@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
@@ -26,6 +26,9 @@ public class ProcessData  implements java.io.Serializable {
      private Date activityCreateDate;
      private String performerName;
      private String queueName;
+     private String newWorkflowId;
+     private String taskName;
+     private String instructions;
      private String mtSequenceName;
      private int mtSequenceNumber;
      private Date mtCreateDate;
@@ -41,7 +44,7 @@ public class ProcessData  implements java.io.Serializable {
     public ProcessData(String taskId) {
         this.taskId = taskId;
     }
-    public ProcessData(String taskId, Map processDataPackageMap, String processName, String workflowName, Date workflowStartDate, String workflowState, String workflowSupervisor, String activityName, Date activityReceiptDate, String activityState, Date activityCreateDate, String performerName, String queueName, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId) {
+    public ProcessData(String taskId, Map processDataPackageMap, String processName, String workflowName, Date workflowStartDate, String workflowState, String workflowSupervisor, String activityName, Date activityReceiptDate, String activityState, Date activityCreateDate, String performerName, String queueName, String newWorkflowId, String taskName, String instructions, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId) {
        this.taskId = taskId;
        this.processDataPackageMap = processDataPackageMap;
        this.processName = processName;
@@ -55,6 +58,9 @@ public class ProcessData  implements java.io.Serializable {
        this.activityCreateDate = activityCreateDate;
        this.performerName = performerName;
        this.queueName = queueName;
+       this.newWorkflowId = newWorkflowId;
+       this.taskName = taskName;
+       this.instructions = instructions;
        this.mtSequenceName = mtSequenceName;
        this.mtSequenceNumber = mtSequenceNumber;
        this.mtCreateDate = mtCreateDate;
@@ -154,6 +160,27 @@ public class ProcessData  implements java.io.Serializable {
     
     public void setQueueName(String queueName) {
         this.queueName = queueName;
+    }
+    public String getNewWorkflowId() {
+        return this.newWorkflowId;
+    }
+    
+    public void setNewWorkflowId(String newWorkflowId) {
+        this.newWorkflowId = newWorkflowId;
+    }
+    public String getTaskName() {
+        return this.taskName;
+    }
+    
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+    public String getInstructions() {
+        return this.instructions;
+    }
+    
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
     public String getMtSequenceName() {
         return this.mtSequenceName;

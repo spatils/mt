@@ -158,7 +158,7 @@ public class ImportACLD7 {
 				idfACL.save();
 				cd.commitRecordLevelDocumentumTransaction();
 				//Save Record
-				
+				rh.setRecord(new Record());
 				rh.getPropertyValuesAll(object);
 				rh.getRecord().setSequenceName(sequenceName);
 				if(!isLastSequence){
@@ -200,6 +200,7 @@ public class ImportACLD7 {
 				logger.severe("Error while processing "+e);
 				try{
 					cd.abortRecordLevelDocumentumTransaction();
+					rh.setRecord(new Record());
 					rh.getPropertyValuesAll(object);
 					rh.getRecord().getPropertyValues(object);
 					rh.getRecord().setSequenceNumber(sequenceNumber);

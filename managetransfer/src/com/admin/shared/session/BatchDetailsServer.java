@@ -12,7 +12,7 @@ public class BatchDetailsServer {
 
 	@SuppressWarnings("unchecked")
 	public List<BatchDetails> getBatchDetails() {
-		return hc.getObject("from BatchDetails ");
+		return hc.getObject("from BatchDetails  order by modifyTime DESC");
 	}
 
 	public void setHc(HibernateConnection hc) {
@@ -22,7 +22,7 @@ public class BatchDetailsServer {
 	@SuppressWarnings("unchecked")
 	public List<BatchDetails> getBatchDetailsBySequence(String sequenceName,
 			int sequenceNumber) {
-		return hc.getObject("from BatchDetails where sequenceNumber="+sequenceNumber+" and sequenceName='"+sequenceName+"'");
+		return hc.getObject("from BatchDetails where sequenceNumber="+sequenceNumber+" and sequenceName='"+sequenceName+"' order by modifyTime desc ");
 		 
 	}
 

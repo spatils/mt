@@ -5,11 +5,22 @@ import java.util.Date;
 import com.managetransfer.businessobject.Claims;
 
 public class Test {
-	public static void main(String argc[]){
+	public static void main(String argc[]) throws Exception{
 		Test test = new Test();
-		test.testTransaction();
+		//test.testTransaction();
+		test.printAttributeList();
 	}
-	
+	public void printAttributeList() throws Exception{
+		HibernateConnection hc = new HibernateConnection();
+		hc.initOperation();
+		GetRecordDetails grd = new GetRecordDetails();
+		grd.initOperation(hc);
+		String[] columnNames = grd.getColumnNames("com.managetransfer.businessobject.ProcessVariable1");
+		for( int i=0 ; i< columnNames.length;i++){
+			System.out.println(columnNames[i]);
+		}
+		
+	}
 	public void testTransaction(){
 		HibernateConnection hc = new HibernateConnection();
 		Claims obj = new Claims();

@@ -55,7 +55,7 @@ public class ImportDocumentumD7 {
 	private String destinationFolderPath = new String ("D:\\Documentum\\exportdirectory");
 	private String DQLToExtractAttributes = new String("select claim_number, claim_number,object_name ,owner_name,acl_name,claimant_name,claim_type,effective_date,adjuster_name,claim_type,document_state,department_type from claims where r_object_id='$r_object_id$'") ;
 	private String DQLToExtractRepeatingAttributes = new String("") ;
-	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) " );
+	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) and rownum < $rownum$ " );
 	private RecordHandler rh =   new RecordHandler();
 	private RecordHandler rhRepating =   new RecordHandler();
 	private String recordType = new String("Claims");
@@ -138,7 +138,7 @@ public class ImportDocumentumD7 {
 							 if(rh.getRecord().getListOfStringAtrributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setString(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfStringAtrributes().get(rh.getColumnName(getAttributeList().get(j))));
 							 }
-						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("integer")){
+						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("integer")||rh.getColumnType(getAttributeList().get(j)).equals("int")){
 							 if(rh.getRecord().getListOfIntAttributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setInt(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfIntAttributes().get(rh.getColumnName(getAttributeList().get(j))));
 							 }
@@ -173,7 +173,7 @@ public class ImportDocumentumD7 {
 										 idfSysObject.appendString(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfStringAtrributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
 									 }
 								 }
-							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("integer")){
+							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("integer")||rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("int")){
 								 if(rhRepating.getRecord().getListOfIntAttributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
 										 idfSysObject.appendInt(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfIntAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
 								 }
@@ -487,6 +487,7 @@ public class ImportDocumentumD7 {
 		dSelectCountHQL = dSelectCountHQL.replace("$sequenceName$", getSequenceName());
 		dSelectCountHQL = dSelectCountHQL.replace("$sequenceNumber$", ""+getSequenceNumber());
 		dSelectCountHQL = dSelectCountHQL.replace("$processId$", ""+getProcessId());
+		dSelectCountHQL =  dSelectCountHQL.replace("$rownum$", ""+getBatchCount()+1);
 		return dSelectCountHQL;
 	}
 	public void setSQLDrivingCursor(String sQLDrivingCursor) {

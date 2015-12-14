@@ -1,6 +1,7 @@
 package com.managertransfer.common.job;
 
 import org.apache.log4j.Logger;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.InterruptableJob;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -13,17 +14,19 @@ import com.managetransfer.documetum.ExportDocumentum;
 import com.managetransfer.documetum.ExportProcessD6;
 import com.managetransfer.d7.ImportACLD7;
 import com.managetransfer.d7.ImportDocumentumD7;
+import com.managetransfer.d7.ImportProcessD7;
+import com.managetransfer.d7.UpdateProcessD7;
 import com.managetransfer.documetum.InitSequence;
 import com.managetransfer.record.TransformationHandler;
 import com.managetransfer.sharepoint.SharePointImport;
-
-
+//Below annotation ensures that multiple instances of same jobs is not executed
+@DisallowConcurrentExecution
 public class DelegateExecution implements Job, InterruptableJob {
 	Object phaseObject ;
 	String phaseType = new String(""); 
 	private static org.apache.log4j.Logger logger = Logger.getLogger(DelegateExecution.class);
 	@Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+    public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		logger.info("Inside execute");
 		logger.info("this"+this);
 		JobKey jobKey = arg0.getJobDetail().getKey();
@@ -47,6 +50,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				ed.initOperation();
 				phaseObject= ed;
 				ed.executeOperation();
+				phaseObject = null;
+				ed = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -60,6 +65,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				si.initOperation();
 				phaseObject= si;
 				si.executeOperation();
+				phaseObject = null;
+				si = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -73,6 +80,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				th.initOperation();
 				phaseObject= th;
 				th.executeOperation();
+				phaseObject = null;
+				th = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -85,6 +94,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				is.initOperation();
 				phaseObject= is;
 				is.executeOperation();
+				phaseObject = null;
+				is = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -97,6 +108,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				ea.initOperation();
 				phaseObject= ea;
 				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -109,6 +122,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				ea.initOperation();
 				phaseObject= ea;
 				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -121,6 +136,8 @@ public class DelegateExecution implements Job, InterruptableJob {
 				ea.initOperation();
 				phaseObject= ea;
 				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -133,6 +150,36 @@ public class DelegateExecution implements Job, InterruptableJob {
 				ea.initOperation();
 				phaseObject= ea;
 				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("ImportProcessD7")){
+			try{
+				ImportProcessD7  ea = new ImportProcessD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("UpdateProcessD7")){
+			try{
+				UpdateProcessD7  ea = new UpdateProcessD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
@@ -143,28 +190,38 @@ public class DelegateExecution implements Job, InterruptableJob {
 	@Override
 	public void interrupt() throws UnableToInterruptJobException {
 		logger.info("Inside DelegateJobExecution.Interrupt");
-		if(phaseType.equals("ExportFromDocumentum")){
-			ExportDocumentum ed = (ExportDocumentum) phaseObject;
-			ed.setInterruptFlag(true);
-		}else if(phaseType.equals("InitDocumentumBatch")){
-			InitSequence  is = (InitSequence) phaseObject;
-			is.setInterruptFlag(true);
-		}else if(phaseType.equals("Transformation")){
-			TransformationHandler  th = (TransformationHandler) phaseObject;
-			th.setInterruptFlag(true);
-		}else if(phaseType.equals("ExportACL")){
-			ExportACL ea = (ExportACL) phaseObject;
-			ea.setInterruptFlag(true);
-		}else if(phaseType.equals("ImportACLD7")){
-			ImportACLD7 ea = (ImportACLD7) phaseObject;
-			ea.setInterruptFlag(true);
-		}else if(phaseType.equals("ImportToDocumentumD7")){
-			ImportDocumentumD7 ea = (ImportDocumentumD7) phaseObject;
-			ea.setInterruptFlag(true);
-		}else if(phaseType.equals("ExportProcessD6")){
-			ExportProcessD6 ea = (ExportProcessD6) phaseObject;
-			ea.setInterruptFlag(true);
+		if(phaseObject!=null){
+			if(phaseType.equals("ExportFromDocumentum")){
+				ExportDocumentum ed = (ExportDocumentum) phaseObject;
+				ed.setInterruptFlag(true);
+			}else if(phaseType.equals("InitDocumentumBatch")){
+				InitSequence  is = (InitSequence) phaseObject;
+				is.setInterruptFlag(true);
+			}else if(phaseType.equals("Transformation")){
+				TransformationHandler  th = (TransformationHandler) phaseObject;
+				th.setInterruptFlag(true);
+			}else if(phaseType.equals("ExportACL")){
+				ExportACL ea = (ExportACL) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ImportACLD7")){
+				ImportACLD7 ea = (ImportACLD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ImportToDocumentumD7")){
+				ImportDocumentumD7 ea = (ImportDocumentumD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ExportProcessD6")){
+				ExportProcessD6 ea = (ExportProcessD6) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ImportProcessD7")){
+				ImportProcessD7 ea = (ImportProcessD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("UpdateProcessD7")){
+				UpdateProcessD7 ea = (UpdateProcessD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}
 		}
+		
+		
 	}
 
 

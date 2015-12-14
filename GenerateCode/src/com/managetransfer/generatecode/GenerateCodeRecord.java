@@ -66,7 +66,7 @@ public class GenerateCodeRecord {
 				if (grd.getColumnType(packageName+className,columnNamesPK).equals("string")){
 					mapName = "hmString";
 				}
-				else if(grd.getColumnType(packageName+className,columnNamesPK).equals("integer")){
+				else if(grd.getColumnType(packageName+className,columnNamesPK).equals("integer")||grd.getColumnType(packageName+className,columnNamesPK).equals("int")){
 					mapName = "hmInteger";
 				}
 				else if(grd.getColumnType(packageName+className,columnNamesPK).equals("date")){
@@ -89,7 +89,7 @@ public class GenerateCodeRecord {
 					if (grd.getColumnType(packageName+className,str).equals("string")){
 						mapName = "hmString";
 					}
-					else if(grd.getColumnType(packageName+className,str).equals("integer")){
+					else if(grd.getColumnType(packageName+className,str).equals("integer")||grd.getColumnType(packageName+className,str).equals("int")){
 						mapName = "hmInteger";
 					}
 					else if(grd.getColumnType(packageName+className,str).equals("date")){
@@ -180,7 +180,7 @@ public class GenerateCodeRecord {
 				if (grd.getColumnType(packageName+className,columnNamesPK).equals("string")){
 					mapName = "ohmString.put(";
 				}
-				else if(grd.getColumnType(packageName+className,columnNamesPK).equals("integer")){
+				else if(grd.getColumnType(packageName+className,columnNamesPK).equals("integer")||grd.getColumnType(packageName+className,columnNamesPK).equals("int")){
 					mapName = "ohmInteger.put(";
 				}
 				else if(grd.getColumnType(packageName+className,columnNamesPK).equals("date")){
@@ -204,7 +204,7 @@ public class GenerateCodeRecord {
 					if (grd.getColumnType(packageName+className,str).equals("string")){
 						mapName = "ohmString.put(";
 					}
-					else if(grd.getColumnType(packageName+className,str).equals("integer")){
+					else if(grd.getColumnType(packageName+className,str).equals("integer")||grd.getColumnType(packageName+className,str).equals("int")){
 						mapName = "ohmInteger.put(";
 					}
 					else if(grd.getColumnType(packageName+className,str).equals("date")){

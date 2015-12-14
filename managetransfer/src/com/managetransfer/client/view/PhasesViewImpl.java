@@ -71,6 +71,7 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 	PhaseImportACLD7 phaseImportACLD7 = new PhaseImportACLD7();
 	PhaseExportProcessD6  phaseExportProcessD6 = new PhaseExportProcessD6();
 	PhaseImportProcessD7 phaseImportProcessD7 = new PhaseImportProcessD7();
+	PhaseUpdateProcessD7 phaseUpdateProcessD7 = new PhaseUpdateProcessD7();
 	
 	private String selectedPhase = new String("");
 	private String selectedPhaseType = new String("");
@@ -273,6 +274,14 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			addPhaseVerticalPanel.add(phaseImportACLD7);
 			phaseImportACLD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
 		}
+		if(this.getSelectedPhaseType().equals("ImportACLD7")){
+			addPhaseVerticalPanel.add(phaseImportACLD7);
+			phaseImportACLD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("UpdateProcessD7")){
+			addPhaseVerticalPanel.add(phaseUpdateProcessD7);
+			phaseUpdateProcessD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
 		if(this.getSelectedPhaseType().equals("ExportProcessD6")){
 			addPhaseVerticalPanel.add(phaseExportProcessD6);
 			phaseExportProcessD6.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
@@ -324,6 +333,8 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 	    	return phaseExportProcessD6.getPhaseDetailsString();
 	    }else if(this.getSelectedPhaseType().equals("ImportProcessD7")){
 	    	return phaseImportProcessD7.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("UpdateProcessD7")){
+	    	return phaseUpdateProcessD7.getPhaseDetailsString();
 	    }
 
 		return null;
@@ -417,6 +428,8 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			  phaseExportProcessD6.setConnectionList(presenter.getConnectionList());
 		} else if(this.getSelectedPhaseType().equals("ImportProcessD7")){
 			  phaseImportProcessD7.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("UpdateProcessD7")){
+			  phaseUpdateProcessD7.setConnectionList(presenter.getConnectionList());
 		} 
 		
 	}

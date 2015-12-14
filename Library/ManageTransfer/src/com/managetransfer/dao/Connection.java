@@ -1,5 +1,5 @@
 package com.managetransfer.dao;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 

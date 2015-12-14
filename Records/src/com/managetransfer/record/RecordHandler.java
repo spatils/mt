@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 
 
 
+
+import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.dynamiccode.keyhandling.KeyHandling;
 import com.managetransfer.hibernate.GetRecordDetails;
 import com.managetransfer.hibernate.HibernateConnection;
@@ -240,7 +242,7 @@ public class RecordHandler {
 		grd.setListOfStringAtrributes(record.getListOfStringAtrributes( )) ;
 		grd.setListOfBooleanAttributes(record.getListOfBooleanAttributes( )) ;
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
-		hc.saveOperation(objectWithAllProperties);
+		hc.updateOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
 	}
 	public void createNewRecord(String recordTypeMethod,Record recordMethod) throws Exception{
@@ -259,7 +261,7 @@ public class RecordHandler {
 		Object object = kh.instantiateObject(recordTypeMethod.substring(recordTypeMethod.lastIndexOf(".")+1,recordTypeMethod.length()), recordMethod.getListOfStringAtrributes(), recordMethod.getListOfIntAttributes() , recordMethod.getListOfDateAttributes(), recordMethod.getListOfLongAtrributes());
 		hc.saveOperation(object);
 		Object objectWithAllProperties = grd.setAttributes(object , recordTypeMethod,recordMethod.getListOfStringAtrributes(),recordMethod.getListOfIntAttributes(),recordMethod.getListOfDateAttributes(),recordMethod.getListOfLongAtrributes(),recordMethod.getListOfBooleanAttributes());
-		hc.saveOperation(objectWithAllProperties);
+		hc.updateOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
 	
 	
@@ -332,6 +334,12 @@ public class RecordHandler {
 		 */
 		hc.saveOrUpdateOperation(objectMethod);
 	}
+	public void updateObject(Object objectMethod)throws Exception{
+		/**
+		 * This method is called from Transformation Phase to store repeating value attriutes
+		 */
+		hc.updateOperation(objectMethod);
+	}
 	public void saveRecord(Object object) throws Exception {
 		//Used inside Export Documentum
 	
@@ -365,7 +373,7 @@ public class RecordHandler {
 		grd.setListOfLongAtrributes(record.getListOfLongAtrributes( )) ;
 		grd.setListOfStringAtrributes(record.getListOfStringAtrributes( )) ;
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
-		hc.saveOperation(objectWithAllProperties);
+		hc.updateOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
 	}
 	public String getModifiedExportDocumentumQuery(String dql,Object object ) throws Exception{
@@ -380,7 +388,7 @@ public class RecordHandler {
 			 logger.info("$"+grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))+"$");
 			 if(getColumnType( getColumnNameListPK().get(i)).equals("string")){
 				 dql=dql.replace("$"+grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))+"$",""+kh.ohmString.get(grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))));
-			 }else if (getColumnType(getColumnNameListPK().get(i)).equals("integer")){
+			 }else if (getColumnType(getColumnNameListPK().get(i)).equals("integer")||getColumnType(getColumnNameListPK().get(i)).equals("int")){
 				 dql=dql.replace("$"+grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))+"$",""+kh.ohmInteger.get(grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))));
 					
 			 }else if (getColumnType(getColumnNameListPK().get(i)).equals("date")){
@@ -488,7 +496,8 @@ public class RecordHandler {
 									getDatabaseColumnName(objectName,
 											attributeList.get(i))) + "'";
 				} else if (getColumnType(objectName, attributeList.get(i))
-						.equals("integer")) {
+						.equals("integer")||getColumnType(objectName, attributeList.get(i))
+						.equals("int")) {
 					HQL = HQL
 							+ ""
 							+ record.getListOfStringAtrributes().get(
@@ -510,5 +519,20 @@ public class RecordHandler {
 		}
 		 
 	}
-	
+	public void clearAndFlush(){
+		hc.clearAndFlush();
+	}
+	public ObjectDetails getObjectDetails(String primaryObjectName, String secondarObjectName) throws Exception{
+		String methodName = "getObjectList";
+		logger.info("Inside Method" + methodName);
+		try{
+		String HQL = " from ObjectDetails where objectName ='"+primaryObjectName+"' and repeatingObject ='"+secondarObjectName+"'";
+		logger.info("HQL" + HQL);
+		return (ObjectDetails) hc.getObject(HQL).get(0);
+		}catch (Exception e){
+			logger.severe("Error" + e);
+			throw e;
+		}
+		 
+	}
 }

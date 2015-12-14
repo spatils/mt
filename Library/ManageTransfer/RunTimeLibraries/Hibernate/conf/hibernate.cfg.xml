@@ -9,7 +9,7 @@
    <property name="hibernate.bytecode.use_reflection_optimizer">true</property> 
 
    <!-- Assume test is the database name -->
-   <property name="hibernate.connection.url">jdbc:oracle:thin:@dbd001ecl.selective.com:1521:DECM</property>
+   <property name="hibernate.connection.url">jdbc:oracle:thin:@dbt001ecl.selective.com:1521:TECM</property>
    <property name="hibernate.connection.username">reports</property>
    <property name="hibernate.connection.password">reports11</property>
    
@@ -18,8 +18,14 @@
       <mapping resource="information.hbm.xml"/>
       <mapping resource="claims.hbm.xml"/>
       <mapping resource="claimsr.hbm.xml"/>
+      <mapping resource="claimsmsg.hbm.xml"/>
+      <mapping resource="claimsmsgr.hbm.xml"/>
       <mapping resource="claimsd7.hbm.xml"/>
       <mapping resource="claimsrd7.hbm.xml"/>
+      <mapping resource="taxdocument.hbm.xml"/>
+      <mapping resource="taxdocumentr.hbm.xml"/>
+      <mapping resource="taxdocumentd7.hbm.xml"/>
+      <mapping resource="taxdocumentrd7.hbm.xml"/>
       <mapping resource="connection.hbm.xml"/>
       <mapping resource="policy.hbm.xml"/>
       <mapping resource="annotation.hbm.xml"/>
@@ -32,6 +38,9 @@
 	  <mapping resource="sigi_sdt_selective.hbm.xml"/>
 	  <mapping resource="processvariable1.hbm.xml"/>
 	  <mapping resource="processvariable2.hbm.xml"/>
+	  <mapping resource="processvariable3.hbm.xml"/>
+	  <mapping resource="processtasktemplate.hbm.xml"/>
+	  <mapping resource="processtasklist.hbm.xml"/>
    <!--List of config files -->
    	<mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>

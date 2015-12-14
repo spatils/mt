@@ -36,6 +36,8 @@ public class DocumentumConnection {
 	String  DQLGetFolderPath  = new String(
 			"SELECT   	  f.r_folder_path  	FROM  	  dm_document d, dm_folder f  WHERE   d.i_folder_id = f.r_object_id and   d.i_position = -1 and    f.i_position = -1 and  d.r_object_id ='$r_object_id$' ENABLE   (ROW_BASED) ");  
 	
+	String  DQLOSFolderPath  = new String(
+			"select mfile_url('',-1,'') as file_path from dm_document where r_object_id ='$r_object_id$'   ");  
 	final Logger logger = Logger.getLogger(DocumentumConnection.class.getName()) ;
 	public String getRepoName() {
 		return repoName;
@@ -147,16 +149,46 @@ public class DocumentumConnection {
 			return "";
 		}
 	}
-	public String exportDocumentSysObject(String docId, String destinationFolderPath) throws Exception{
-		//THis export operation written for better performance over exportDocument
-		IDfSysObject doc = 		(IDfSysObject)  getDocumemtumSession().getObject(new DfId(docId));
-		IDfFormat format = doc.getFormat();
-		if (destinationFolderPath.lastIndexOf("/") != 		destinationFolderPath.length() - 1 && 		destinationFolderPath.lastIndexOf("\\") != 		destinationFolderPath.length() - 1) 		{
-			destinationFolderPath += "/";
+	
+	public String exportDocumentSysObject(String docId, String destinationFolderPath,Boolean onlyExpMetadata) throws Exception{
+		try{
+			String filePath = new String("");
+			if(onlyExpMetadata){
+				//Get exact file path 
+				filePath = getFileSystemPath(docId);
+			}else{
+			//This export operation written for better performance over exportDocument
+				IDfSysObject doc = 		(IDfSysObject)  getDocumemtumSession().getObject(new DfId(docId));
+				IDfFormat format = doc.getFormat();
+				if (destinationFolderPath.lastIndexOf("/") != 		destinationFolderPath.length() - 1 && 		destinationFolderPath.lastIndexOf("\\") != 		destinationFolderPath.length() - 1) 		{
+					destinationFolderPath += "/";
+				}
+				filePath = new String(destinationFolderPath + docId + "." +format.getDOSExtension());
+				doc.getFile(filePath);
+			}
+			return filePath;
+		}catch(Exception e){
+			logger.severe("Error in exportDocumentSysObject"+e);
+			throw e;
 		}
-		String filePath = new String(destinationFolderPath + docId + "." +format.getDOSExtension());
-		doc.getFile(filePath);
-		return filePath;
+	}
+	private String getFileSystemPath(String docId) throws Exception{
+		try{
+			String filePath = new String("");
+			IDfQuery idfQuery = new DfQuery();
+			IDfCollection idfCollection = null;
+			idfQuery.setDQL(DQLOSFolderPath.replace("$r_object_id$",docId));
+			idfCollection = idfQuery.execute(getDocumemtumSession(),DfQuery.DF_EXEC_QUERY);
+			logger.info("Executed Query"+idfQuery.getDQL());
+			while(idfCollection.next()){
+				filePath =  idfCollection.getString("file_path") ;
+			}
+			idfCollection.close();
+			return filePath;
+		}catch(Exception e){
+			logger.severe("Error in getFileSystemPath"+e);
+			throw e;
+		}
 	}
 	public String getFolderPath(String objectId) throws Exception{
 		String methodName="getFolderPath";
@@ -189,6 +221,17 @@ public class DocumentumConnection {
 			}
 		}catch(Exception e){
 			logger.severe("error inside begin transaction"+e);
+			throw e;
+		}
+	}
+	public void clearCache() throws Exception{
+		try{
+			getDocumemtumSession().flush("aclcache","");
+			getDocumemtumSession().flush("groupcache","");
+			getDocumemtumSession().flush("persistentcache","");
+			getDocumemtumSession().flush("persistentobjcache","");
+		}catch(Exception e){
+			logger.severe("error inside clearCache"+e);
 			throw e;
 		}
 	}

@@ -202,7 +202,7 @@ public class InitSequence {
 				for(int i=0; i <rh.getColumnNameListPK().size();i++){
 					 if(rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("string")){
 						 listOfStringAtrributes.put(rh.getColumnName(rh.getColumnNameListPK().get(i)), idfCollection.getString(rh.getColumnName(rh.getColumnNameListPK().get(i))) );
-					 }else if (rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("integer")){
+					 }else if (rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("integer")||rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("int")){
 						 listOfIntAttributes.put(rh.getColumnName(rh.getColumnNameListPK().get(i)), idfCollection.getInt(rh.getColumnName(rh.getColumnNameListPK().get(i))) );
 					 }else if (rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("date")){
 						 listOfDateAttributes.put(rh.getColumnName(rh.getColumnNameListPK().get(i)), idfCollection.getTime(rh.getColumnName(rh.getColumnNameListPK().get(i))).getDate() );

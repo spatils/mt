@@ -46,10 +46,10 @@
 					<g:TextBox ui:field="exportLocation" />
 				</g:customCell>
 				<g:customCell>
-					<g:Label text=""/>
+					<g:Label text="Only Export Metadata"/>
 				</g:customCell>
 				<g:customCell>
-					<g:Label text=""/>
+					<g:CheckBox ui:field="onlyExpMetadata"/>
 				</g:customCell>
 			</g:row>
 			

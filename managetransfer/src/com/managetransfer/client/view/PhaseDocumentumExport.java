@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.ListBox;
 public class PhaseDocumentumExport extends Composite implements HasText {
 	@UiField CheckBox createFolder;
 	@UiField CheckBox expAnnotation;
+	@UiField CheckBox onlyExpMetadata;
 	@UiField TextBox  exportQuery = new TextBox();
 	@UiField TextBox  repeatAttributeDQL = new TextBox();
 	@UiField TextBox  exportLocation = new TextBox();
@@ -66,6 +67,12 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 		}
 		else{
 			phaseDetailsInteger.put("ExpAnnotation", 0);
+		}
+		if(onlyExpMetadata.getValue()){
+			phaseDetailsInteger.put("OnlyExpMetadata", 1);
+		}
+		else{
+			phaseDetailsInteger.put("OnlyExpMetadata", 0);
 		}
 		return phaseDetailsInteger;
 	}
@@ -128,6 +135,16 @@ public class PhaseDocumentumExport extends Composite implements HasText {
 				 
 		}else{
 			createFolder.setValue(false);
+		}
+		if ( phaseDetailsInt.containsKey("OnlyExpMetadata")){
+			if ( phaseDetailsInt.get("OnlyExpMetadata") == 0 ){
+				onlyExpMetadata.setValue(false);
+			}else{
+				onlyExpMetadata.setValue(true);
+			}
+				 
+		}else{
+			onlyExpMetadata.setValue(false);
 		}
 		if ( phaseDetailsInt.containsKey("ExpAnnotation")){
 			if ( phaseDetailsInt.get("ExpAnnotation") == 0 ){

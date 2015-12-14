@@ -17,7 +17,7 @@
       <property name="batch_control_number"             column="batch_control_number"             type="string" length="70"/>
 	<property name="document_control_number"          column="document_control_number"          type="string" length="30"/>
 	<property name="medbill_claimant_num"             column="medbill_claimant_num"             type="string" length="35"/>
-	<property name="orgination_department"            column="orgination_department"            type="string" length="20"/>
+	<property name="origination_department"            column="origination_department"            type="string" length="20"/>
 	<property name="ext_ref_number"                   column="ext_ref_number"                   type="string" length="50"/>
 	<property name="document_status"                  column="document_status"                  type="string" length="10"/>
 	<property name="provider_number"                  column="provider_number"                  type="string" length="9"/>

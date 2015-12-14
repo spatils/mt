@@ -55,7 +55,7 @@ public class ImportDocumentumD7 {
 	private String destinationFolderPath = new String ("D:\\Documentum\\exportdirectory");
 	private String DQLToExtractAttributes = new String("select claim_number, claim_number,object_name ,owner_name,acl_name,claimant_name,claim_type,effective_date,adjuster_name,claim_type,document_state,department_type from claims where r_object_id='$r_object_id$'") ;
 	private String DQLToExtractRepeatingAttributes = new String("") ;
-	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) " );
+	private String SQLDrivingCursor  = new String("from $objectName$ where mtSequenceName='$sequenceName$' and mtSequenceNumber=$sequenceNumber$ and mtProcessId = $processId$ and ( mtStatus is null or mtStatus !='SUCCESS'  ) and rownum < $rownum$" );
 	private RecordHandler rh =   new RecordHandler();
 	private RecordHandler rhRepating =   new RecordHandler();
 	private String recordType = new String("Claims");
@@ -120,15 +120,22 @@ public class ImportDocumentumD7 {
 				createDate = (Date) rh.getSpecificAttributeValue(objectList.get(t),"mtCreateDate");
 				//Get repository Path 
 				String repositoryPath = (String)rh.getSpecificAttributeValue(object, "mtRepositoryPath")  ;
+				//In case of delta migration new object id not null
+				String newObjectId = (String)rh.getSpecificAttributeValue(object, "mtNewObjectId")  ;
+				//Extracting objectId
+				String objectId = (String)rh.getSpecificAttributeValuePK(objectList.get(t), "r_object_id");
+				logger.info("Extracted object id"+objectId);
 				if(null == repositoryPath) { 
 					repositoryPath = getDestinationFolderPath();
 				}
 				//Create Repository folder
-				cd.createFolderByPath(repositoryPath);
+				/**** commenting out for debug performance
+				 * cd.createFolderByPath(repositoryPath);
+				 * **/
 				//Get actual file location
 				String fileLocation = (String)rh.getSpecificAttributeValue(object, "folderPath")  ;
 				//Import file in the repository
-				IDfSysObject idfSysObject = cd.createNewObject(getRepositoryObjectName(),fileLocation,repositoryPath);
+				IDfSysObject idfSysObject = cd.createNewObject(getRepositoryObjectName(),fileLocation,repositoryPath,newObjectId);
 				logger.info("New object created");
 				//Setting single value attribute
 				rh.getPropertyValuesAll(objectList.get(t));
@@ -138,7 +145,7 @@ public class ImportDocumentumD7 {
 							 if(rh.getRecord().getListOfStringAtrributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setString(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfStringAtrributes().get(rh.getColumnName(getAttributeList().get(j))));
 							 }
-						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("integer")){
+						 }else if (rh.getColumnType(getAttributeList().get(j)).equals("integer")||rh.getColumnType(getAttributeList().get(j)).equals("int")){
 							 if(rh.getRecord().getListOfIntAttributes().containsKey(rh.getColumnName(getAttributeList().get(j)))){
 								 idfSysObject.setInt(rh.getColumnName(getAttributeList().get(j)),rh.getRecord().getListOfIntAttributes().get(rh.getColumnName(getAttributeList().get(j))));
 							 }
@@ -163,6 +170,15 @@ public class ImportDocumentumD7 {
 				//Get repeating attribute object then passing these values to the 
 				logger.info("robjectID of recrd1 "+rh.getRecord().getListOfStringAtrributes().get("r_object_id"));
 				ArrayList<Object> repeatingObjectList = getAllRepeatingObject(rh.getRecord());
+				logger.info("before clearing repeating attributes ");
+				for (int j =0 ; j < getRepeatingAttributeList().size();j++){
+					if(!rhRepating.getColumnName(getRepeatingAttributeList().get(j)).equals("jcn")){  //MTSEL This condition needs to be removed. rest of the loop remians same
+						if ( idfSysObject.getValueCount(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))>0) {  
+							idfSysObject.removeAll(rhRepating.getColumnName(getRepeatingAttributeList().get(j)));
+						}
+					}
+				}
+				logger.info("Cleared repeating attributes ");
 				for(int s1=0;s1 <repeatingObjectList.size();s1++){
 					rhRepating.getPropertyValuesAll(repeatingObjectList.get(s1));
 						for (int j =0 ; j < getRepeatingAttributeList().size();j++){
@@ -173,9 +189,12 @@ public class ImportDocumentumD7 {
 										 idfSysObject.appendString(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfStringAtrributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
 									 }
 								 }
-							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("integer")){
+							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("integer")||rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("int")){
 								 if(rhRepating.getRecord().getListOfIntAttributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
+									 int val =rhRepating.getRecord().getListOfIntAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j)));
+									 if(rhRepating.getColumnName(getRepeatingAttributeList().get(j)).equals("claimant_number")&& val>0){  //MTSEL This condition needs to be removed. rest of the loop remains same{
 										 idfSysObject.appendInt(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfIntAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
+									 }
 								 }
 							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("date") || rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("time") || rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("timestamp")){
 								 if(rhRepating.getRecord().getListOfDateAttributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
@@ -191,7 +210,7 @@ public class ImportDocumentumD7 {
 								 }
 							 }else if (rhRepating.getColumnType(getRepeatingAttributeList().get(j)).equals("boolean")){
 								 
-								 if(rhRepating.getRecord().getListOfLongAtrributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
+								 if(rhRepating.getRecord().getListOfBooleanAttributes().containsKey(rhRepating.getColumnName(getRepeatingAttributeList().get(j)))){
 									 idfSysObject.appendBoolean(rhRepating.getColumnName(getRepeatingAttributeList().get(j)),rhRepating.getRecord().getListOfBooleanAttributes().get(rhRepating.getColumnName(getRepeatingAttributeList().get(j))));
 								 }
 							 }
@@ -199,13 +218,14 @@ public class ImportDocumentumD7 {
 					}
 				}
 				logger.info("Repeatnig Attributes are set");
-				idfSysObject.save();
+				//cd.MTSEL_UpdateRegiterTable(objectId, idfSysObject.getObjectId().getId());
+				cd.MTSEL_LinktoIDS(idfSysObject,newObjectId,bh.getBatchName());
 				logger.info(""+idfSysObject.getOwnerName()+"::"+idfSysObject.getOwnerPermit()+"::"+idfSysObject.getACLName()+"::");
 				if(expAnnotation){
 					importAnnotation(idfSysObject.getObjectId().getId(),rh.getRecord().getListOfStringAtrributes().get("r_object_id"));
 				}
 				
-				
+				idfSysObject.save();
 				rh.getRecord().getListOfStringAtrributes().put("mt_new_object_id", idfSysObject.getObjectId().getId());
 				 
 				//Save Record 
@@ -277,14 +297,20 @@ public class ImportDocumentumD7 {
 	private void importAnnotation(String newObjectId,String objectId) throws Exception{
 		try {
 			logger.info("Inside importAnnotation");
+			cd.removeRelationShip(newObjectId, "DM_ANNOTATE");//This need to be tested
+			logger.info("Removed old annotation Object in case of delta migration");
 			List annotationObjects = hc.getObject("from Annotation where objectId='"+objectId+"'");
 			for(int i=0;i< annotationObjects.size();i++){
 				com.managetransfer.businessobject.Annotation annotationObject = (com.managetransfer.businessobject.Annotation)annotationObjects.get(i);
-				cd.createFolderByPath(annotationObject.getRepositoryPath());
-				IDfSysObject annotationObjectId =cd.createNewObject("dm_note", annotationObject.getFilePath(), annotationObject.getRepositoryPath());
+				IDfSysObject annotationObjectId =cd.createNewObject("dm_note", annotationObject.getFilePath(),"/Temp/annotations","");//MTSEL folder path is hardcoded
+				annotationObjectId.setObjectName(annotationObject.getObjectName());
+				annotationObjectId.setOwnerName(annotationObject.getOwnerName());
+				annotationObjectId.setACLName (annotationObject.getAclName());
+				logger.info("ACL NAme"+ annotationObject.getAclName());
+				logger.info("ACL NAme"+annotationObjectId.getACLName());
 				annotationObjectId.save();
-				logger.info("Created annotation Object");
 				cd.createRelationShip(newObjectId, annotationObjectId.getObjectId().getId(), "DM_ANNOTATE");
+				logger.info("Created annotation Object");
 				logger.info("Created createRelationShip Object");
 			}
 		
@@ -487,6 +513,7 @@ public class ImportDocumentumD7 {
 		dSelectCountHQL = dSelectCountHQL.replace("$sequenceName$", getSequenceName());
 		dSelectCountHQL = dSelectCountHQL.replace("$sequenceNumber$", ""+getSequenceNumber());
 		dSelectCountHQL = dSelectCountHQL.replace("$processId$", ""+getProcessId());
+		dSelectCountHQL = dSelectCountHQL.replace("$rownum$", ""+getBatchCount());
 		return dSelectCountHQL;
 	}
 	public void setSQLDrivingCursor(String sQLDrivingCursor) {
@@ -649,5 +676,5 @@ public class ImportDocumentumD7 {
 		logger.info("Exit getAllRepeatingObject");
 		return dependantObject;
 	}
-
+	
 }

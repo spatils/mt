@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 
@@ -11,8 +11,6 @@ public class sigi_sdt_selective  implements java.io.Serializable {
 
 
      private String taskId;
-     private String junk_id;
-     private boolean mark_junk;
      private boolean is_junk;
      private int taxonomy_value;
      private String doc_control_number;
@@ -26,10 +24,8 @@ public class sigi_sdt_selective  implements java.io.Serializable {
     public sigi_sdt_selective(String taskId) {
         this.taskId = taskId;
     }
-    public sigi_sdt_selective(String taskId, String junk_id, boolean mark_junk, boolean is_junk, int taxonomy_value, String doc_control_number, String department, String document_source) {
+    public sigi_sdt_selective(String taskId, boolean is_junk, int taxonomy_value, String doc_control_number, String department, String document_source) {
        this.taskId = taskId;
-       this.junk_id = junk_id;
-       this.mark_junk = mark_junk;
        this.is_junk = is_junk;
        this.taxonomy_value = taxonomy_value;
        this.doc_control_number = doc_control_number;
@@ -43,20 +39,6 @@ public class sigi_sdt_selective  implements java.io.Serializable {
     
     public void setTaskId(String taskId) {
         this.taskId = taskId;
-    }
-    public String getJunk_id() {
-        return this.junk_id;
-    }
-    
-    public void setJunk_id(String junk_id) {
-        this.junk_id = junk_id;
-    }
-    public boolean isMark_junk() {
-        return this.mark_junk;
-    }
-    
-    public void setMark_junk(boolean mark_junk) {
-        this.mark_junk = mark_junk;
     }
     public boolean isIs_junk() {
         return this.is_junk;

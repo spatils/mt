@@ -2,6 +2,9 @@
 	<property name="compilationBasePath"  value="./CompilationLibraries"/>
 	<property name="RunTimeBasePath"      value="./RunTimeLibraries"/>
 	<property name="RunTimeTargetPath"    value="C:\ManageTransfer\ManageTransfer"/>
+	<property name="RunTimeTargetPath2"    value="U:\ManageTransfer"/>
+	<!--This is Server1 for prod extraction <property name="RunTimeTargetPath3"    value="S:\ManageTransfer"/>-->
+	<property name="RunTimeTargetPath4"    value="T:\ManageTransfer"/>
 	<path id="tools">
 		<path location="${compilationBasePath}/Hibernate/lib/antlr-2.7.7.jar"/>
 		<path location="${compilationBasePath}/Hibernate/lib/dom4j-1.6.1.jar"/>
@@ -137,6 +140,17 @@
 	<target name="DeployLibraries">
 		<delete dir="${RunTimeTargetPath}/*"/>
 		<copy todir="${RunTimeTargetPath}" >
+			<fileset dir="./RunTimeLibraries"/>
+		</copy>
+		<copy todir="${RunTimeTargetPath2}" >
+			<fileset dir="./RunTimeLibraries"/>
+		</copy>
+		<!--
+		<copy todir="${RunTimeTargetPath3}" >
+			<fileset dir="./RunTimeLibraries"/>
+		</copy>
+		-->
+		<copy todir="${RunTimeTargetPath4}" >
 			<fileset dir="./RunTimeLibraries"/>
 		</copy>
 	</target>

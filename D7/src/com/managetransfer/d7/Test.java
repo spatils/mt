@@ -1,8 +1,9 @@
 package com.managetransfer.d7;
 
 import com.documentum.fc.client.IDfFolder;
-
 import com.documentum.fc.client.IDfSysObject;
+import com.managetransfer.businessobject.ProcessData;
+
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EClassifier;
 
@@ -14,13 +15,22 @@ public class Test {
 	}
 	public void testing() throws Exception{
 		DocumentumConnection dc = new  DocumentumConnection();
-		XCPWorkflowMethods xcpWM = new XCPWorkflowMethods();
-		
+		xCPWorkflowHandler xcpWM = new xCPWorkflowHandler();
+		dc.setRepoName("SIGI_CLM_DEV");
+		dc.setUsrName("ecm_dmadmin");
+		dc.setUserPsw("gVRcn85Lu9#M");
+		ProcessData pd = new ProcessData();
+		pd.setPerformerName("ecm_dmadmin");
+		pd.setProcessName("AdjusterNotifyWorkflow");
+		pd.setWorkflowSupervisor("ecm_dmadmin");
 		dc.connectRepository();
-		//xcpWM.setDc(dc);
-		//xcpWM.InitiateWorkflow();
+		xcpWM.setDc(dc);
+		xcpWM.setProcessData(pd);
+		xcpWM.setDocumentObjectId("090233408003f3b2");
+		xcpWM.InitiateWorkflow();
 		Test test = new Test();
-		test.createFolderObject(dc);
+		//test.createFolderObject(dc);
+		 
 		
 	}
 	public void formatterTesting(){
@@ -31,6 +41,7 @@ public class Test {
 		IDfFolder folderObject = (IDfFolder) dc.getDocumemtumSession().newObject("sigi_folder_claim");
 		folderObject.setObjectName("test");
 		folderObject.link("/Claims");
+		//System.out.println(folderObject.getAttrDataType("performer_name"));
 		folderObject.setACLName("sigi_claim");
 		folderObject.setACLDomain("ecm_dmadmin");
 		folderObject.save();

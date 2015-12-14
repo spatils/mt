@@ -83,7 +83,8 @@ public class ExportProcessD6 {
 	final Logger logger = Logger.getLogger(ExportProcessD6.class.getName());
 	private HibernateConnection hc = new HibernateConnection();
 	private ArrayList<String> repeatingAttributeList = new ArrayList<String>();
-
+	HashMap<String,RecordHandler> listOfRecordHandlers = new HashMap<String, RecordHandler>() ;
+	
 	public static void main(String[] args) throws Exception {
 		ExportProcessD6 ed = new ExportProcessD6();
 		ed.initOperation();
@@ -115,16 +116,22 @@ public class ExportProcessD6 {
 		while (idfCollection.next()) {
 			try {
 				if (totalProcessCount >= batchCount || getInterruptFlag()) {
+					logger.info("Exiting bactch "+totalProcessCount+batchCount+getInterruptFlag());
 					break;
 				}
 				logger.info("Start Processing New Record---------"+totalProcessCount);
+				if (processCount >=commitCount ) {
+					rh.commitBatchTransaction();
+					processCount = 0;
+					rh.startBatchTransaction();
+					cd.clearCache();
+				}
+
 				totalProcessCount = totalProcessCount + 1;
 				processCount = processCount + 1;
 				record = new Record();
 				record.setErrorDetails("");
-				rh.setHc(hc);
-				rh.setTypeOfRecord(packageName+"ProcessData");
-				rh.initOperation();
+				rh= getRecordHandler(packageName+"ProcessData");
 				taskId = idfCollection.getString("task_id");
 				//Get activity instance 
 				object= new ProcessData();
@@ -140,8 +147,9 @@ public class ExportProcessD6 {
 				//Extract Process Instance data
 				//Extract Activity Data
 				object.setTaskId(taskId);
-				object.setActivityName(idfQueueItem.getTaskName());
+				object.setTaskName(idfQueueItem.getTaskName());
 				object.setActivityReceiptDate(idfQueueItem.getDateSent().getDate());
+				object.setActivityName(idfX.getActivity().getObjectName());
 				object.setActivityState(""+idfX.getRuntimeState());
 				object.setActivityCreateDate(idfX.getCreationDate().getDate());
 				object.setPerformerName(idfX.getPerformerName());
@@ -150,7 +158,9 @@ public class ExportProcessD6 {
 				object.setWorkflowStartDate(idfWorkflow.getStartDate().getDate());
 				object.setWorkflowSupervisor(idfWorkflow.getString("supervisor_name"));
 				object.setWorkflowState(""+idfWorkflow.getRuntimeState());
+				object.setInstructions(idfWorkflow.getString("instructions"));
 				logger.info("Extraced Process Level inforamtion");
+				
 				List pdList = getProcessDependany(object.getProcessName());
 				//Get list of dependent variables and SDTs
 				for(int pd=0; pd < pdList.size();pd++ ){
@@ -162,10 +172,7 @@ public class ExportProcessD6 {
 					HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
 					logger.info("processDependancy.getDependancyType()"+processDependancy.getDependancyType());
 					logger.info("processDependancy.getDependancyName()"+processDependancy.getDependancyName());
-					RecordHandler rhDep =   new RecordHandler();
-					rhDep.setHc(hc);
-					rhDep.setTypeOfRecord(packageName+processDependancy.getDependancyName());
-					rhDep.initOperation();
+					RecordHandler rhDep =   getRecordHandler(packageName+processDependancy.getDependancyName());
 					if(processDependancy.getDependancyType().equals("SDT") ){
 						for (int j =0 ; j < rhDep.getColumnNameList().size();j++){
 							logger.info("Setting SDT");
@@ -173,7 +180,7 @@ public class ExportProcessD6 {
 								logger.info("Getting value for"+rhDep.getColumnNameList().get(j));
 								String val = ( String ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j));
 								listOfStringAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
-							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("integer")){
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("integer")||rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("int")){
 								 int val =0;
 								 if(idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j)) !=null)
 								 val = ( int ) idfX.getStructuredDataTypeAttrValue(processDependancy.getDependancyName(),rhDep.getColumnNameList().get(j));
@@ -196,23 +203,46 @@ public class ExportProcessD6 {
 						logger.info("Setting VARIABLE");
 						for (int j =0 ; j < rhDep.getColumnNameList().size();j++){
 							if(rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("string")){
-								String val = ( String ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								String val = "";
+								try{
+									val = ( String ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								}catch(Exception e){
+									logger.severe("this exception ignored.since process variable may not exist for old process"+e);
+								}
 								listOfStringAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
-							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("integer")){
+							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("integer")||rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("int")){
 								 int val =0;
-								 if(idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j))!=null)
-								 val = ( int ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								 try{
+									 if(idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j))!=null)
+									 val = ( int ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								 }catch(Exception e){
+									logger.severe("this exception ignored.since process variable may not exist for old process"+e);
+								 }
 								listOfIntAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)),val);
 							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("date")|| rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("time")|| rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("timestamp")){
-								Date val = ( Date ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								Date val = null;
+								try{
+									val=( Date ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								}catch(Exception e){
+									logger.severe("this exception ignored.since process variable may not exist for old process"+e);
+								 }
 								listOfDateAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
 							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("long")){
-								Long val = ( Long ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j)); 
+								Long val  =null; 
+								try{
+								 val = ( Long ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j)); 
+								}catch(Exception e){
+									logger.severe("this exception ignored.since process variable may not exist for old process"+e);
+								}
 								listOfLongAtrributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
 							 }else if (rhDep.getColumnType(rhDep.getColumnNameList().get(j)).equals("boolean")){
 								 Boolean val = false;
+								 try{
 								 if( idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j))!=null)
 									 val = ( Boolean ) idfX.getPrimitiveVariableValue(rhDep.getColumnNameList().get(j));
+								 }catch(Exception e){
+										logger.severe("this exception ignored.since process variable may not exist for old process"+e);
+								 }
 								 listOfBooleanAttributes.put(rhDep.getColumnName(rhDep.getColumnNameList().get(j)), val);
 								 logger.info("boolean value set"+listOfBooleanAttributes.get(rhDep.getColumnName(rhDep.getColumnNameList().get(j))));
 							 }
@@ -228,14 +258,17 @@ public class ExportProcessD6 {
 					record.setListOfStringAtrributes(listOfStringAtrributes);
 					logger.info("Extracted all values");
 					rhDep.createNewRecord(packageName+processDependancy.getDependancyName(), record); 
+					listOfStringAtrributes = null;
+					listOfIntAttributes  = null;
+					listOfDateAttributes  = null;
+					listOfLongAtrributes  = null;
+					rhDep= null;
 				}
 				//Extract Package information
 				IDfCollection attachmentCollection = idfX.getPackages("");
 				int pdpCount = 0;
 				Map<Integer, ProcessDataPackage> pdpMap = new HashMap<Integer, ProcessDataPackage>();
 				while(attachmentCollection.next()){
-					
-					
 					logger.info("Attachmentnumber"+pdpCount);
 					ProcessDataPackage pdp = new ProcessDataPackage();
 					pdp.setPackageName(attachmentCollection.getString("r_package_name"));
@@ -245,11 +278,20 @@ public class ExportProcessD6 {
 					pdp.setTaskId(taskId);
 					pdpMap.put(pdpCount, pdp);
 					pdpCount=pdpCount+1;
-					
+					pdp=null;
 				}
 				attachmentCollection.close();
 				object.setProcessDataPackageMap(pdpMap);
-				
+				//cd.commitRecordLevelDocumentumTransaction();
+				//Object Clean up
+				record =null;
+				pdpMap= null;
+				idfX=null;
+				idfQueueItem=null;
+				idfWorkflow=null;
+				idfProcess=null;
+				pdList=null;
+				attachmentCollection= null;
 				// Save Record
 				object.setMtSequenceName(sequenceName);
 				if (!isLastSequence) {
@@ -275,16 +317,11 @@ public class ExportProcessD6 {
 				rh.saveObject(object);
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if (processCount >=commitCount ) {
-					rh.commitBatchTransaction();
-					processCount = 0;
-					rh.startBatchTransaction();
-
-				}
-
+				
 			} catch (Exception e) {
 				logger.severe("Error while processing " + e);
 				try {
+					//cd.abortRecordLevelDocumentumTransaction();
 					rh.getPropertyValuesAll(object);
 					rh.getRecord().setSequenceNumber(sequenceNumber);
 					rh.getRecord().setErrorDetails(e.getMessage());
@@ -380,6 +417,7 @@ public class ExportProcessD6 {
 					commitCount = sdm.getCommitCount();
 					// set Batch Count
 					setBatchCount(sdm.getBatchSize());
+					logger.info("batch size"+batchCount);
 				} catch (Exception e) {
 					throw new Exception("Error in Get Phase Information"
 							+ e.getMessage());
@@ -584,5 +622,22 @@ public class ExportProcessD6 {
 	public void setDQLDrivingCursor(String dQLDrivingCursor) {
 		DQLDrivingCursor = dQLDrivingCursor;
 	}
-
+	public RecordHandler getRecordHandler(String recordType)throws Exception{
+		try{
+			if(listOfRecordHandlers.containsKey(recordType)){
+				return listOfRecordHandlers.get(recordType);
+			}else {
+				RecordHandler rhValue =  new RecordHandler();
+				rhValue.setHc(hc);
+				rhValue.setTypeOfRecord(recordType);
+				rhValue.initOperation();
+				listOfRecordHandlers.put(recordType, rhValue);
+				return listOfRecordHandlers.get(recordType);
+			}
+		}catch(Exception e){
+			logger.info("Error getRecordHandler" + e);
+			throw e;
+		}
+		
+	}
 }

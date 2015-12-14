@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 import java.util.Date;
@@ -19,7 +19,7 @@ public class ClaimsD7  implements java.io.Serializable {
      private String batch_control_number;
      private String document_control_number;
      private String medbill_claimant_num;
-     private String orgination_department;
+     private String origination_department;
      private String ext_ref_number;
      private String document_status;
      private String provider_number;
@@ -92,7 +92,7 @@ public class ClaimsD7  implements java.io.Serializable {
     public ClaimsD7(String objectId) {
         this.objectId = objectId;
     }
-    public ClaimsD7(String objectId, String objectName, String folderPath, String ownerName, String aclName, String batch_control_number, String document_control_number, String medbill_claimant_num, String orgination_department, String ext_ref_number, String document_status, String provider_number, String provider_name, Date receipt_date, String document_type, String external_system_id, String mail_identifier, Date policy_term_exp_date, String loss_state_code, String claim_status, Date policy_term_eff_date, String siu_indicator, String file_format_cd, Date loss_date, String policy_number, String restricted_claim_ind, String claims_region_cd, String policy_state_code, Date date_closed, String restricted_indicator, String claim_number, String irs_name, int irs_number, String form_claimant_name, String form_claimant_type_cd, int form_claimant_number, String dp_type, String ds_interviewer, String ds_party, Date scan_date, String document_source, boolean infant_case, String form_benefits_state, String fax_number, String ds_role, Date ds_date, Date dp_date, Date sigi_null_date, String party_id, String arbitration_caption_id, String arbitration_caption_name, String insured_name, String adjuster_name, String form_number, String bill_id, boolean has_updates, String occurrence_code, String sub_document_type, String compensability_indicator, String claim_type, String project_matter, int taxonomy_indicator, boolean is_duplicate, boolean is_junk, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath, String mtNewObjectId) {
+    public ClaimsD7(String objectId, String objectName, String folderPath, String ownerName, String aclName, String batch_control_number, String document_control_number, String medbill_claimant_num, String origination_department, String ext_ref_number, String document_status, String provider_number, String provider_name, Date receipt_date, String document_type, String external_system_id, String mail_identifier, Date policy_term_exp_date, String loss_state_code, String claim_status, Date policy_term_eff_date, String siu_indicator, String file_format_cd, Date loss_date, String policy_number, String restricted_claim_ind, String claims_region_cd, String policy_state_code, Date date_closed, String restricted_indicator, String claim_number, String irs_name, int irs_number, String form_claimant_name, String form_claimant_type_cd, int form_claimant_number, String dp_type, String ds_interviewer, String ds_party, Date scan_date, String document_source, boolean infant_case, String form_benefits_state, String fax_number, String ds_role, Date ds_date, Date dp_date, Date sigi_null_date, String party_id, String arbitration_caption_id, String arbitration_caption_name, String insured_name, String adjuster_name, String form_number, String bill_id, boolean has_updates, String occurrence_code, String sub_document_type, String compensability_indicator, String claim_type, String project_matter, int taxonomy_indicator, boolean is_duplicate, boolean is_junk, String mtSequenceName, int mtSequenceNumber, Date mtCreateDate, Date mtModifyDate, String mtErrorDesc, String mtStatus, int mtProcessId, String mtRepositoryPath, String mtNewObjectId) {
        this.objectId = objectId;
        this.objectName = objectName;
        this.folderPath = folderPath;
@@ -101,7 +101,7 @@ public class ClaimsD7  implements java.io.Serializable {
        this.batch_control_number = batch_control_number;
        this.document_control_number = document_control_number;
        this.medbill_claimant_num = medbill_claimant_num;
-       this.orgination_department = orgination_department;
+       this.origination_department = origination_department;
        this.ext_ref_number = ext_ref_number;
        this.document_status = document_status;
        this.provider_number = provider_number;
@@ -224,12 +224,12 @@ public class ClaimsD7  implements java.io.Serializable {
     public void setMedbill_claimant_num(String medbill_claimant_num) {
         this.medbill_claimant_num = medbill_claimant_num;
     }
-    public String getOrgination_department() {
-        return this.orgination_department;
+    public String getOrigination_department() {
+        return this.origination_department;
     }
     
-    public void setOrgination_department(String orgination_department) {
-        this.orgination_department = orgination_department;
+    public void setOrigination_department(String origination_department) {
+        this.origination_department = origination_department;
     }
     public String getExt_ref_number() {
         return this.ext_ref_number;

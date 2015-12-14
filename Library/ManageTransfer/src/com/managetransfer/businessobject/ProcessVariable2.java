@@ -1,5 +1,5 @@
 package com.managetransfer.businessobject;
-// Generated Feb 19, 2015 4:10:49 AM by Hibernate Tools 4.0.0
+// Generated Jun 29, 2015 8:28:44 AM by Hibernate Tools 4.0.0
 
 
 
@@ -17,12 +17,12 @@ public class ProcessVariable2  implements java.io.Serializable {
      private String dcn;
      private String contenttype;
      private String adjuster_assigned;
-     private String diff_department;
+     private boolean diff_department;
      private String checkcomments;
-     private String michellcomments;
-     private String stat_updatemetadata_flag;
+     private String mitchellcomments;
+     private String start_updatemetadata_flag;
      private String updatemetadata_comments;
-     private String is_duplicate;
+     private boolean is_duplicate;
      private String CommentsTemp;
 
     public ProcessVariable2() {
@@ -32,7 +32,7 @@ public class ProcessVariable2  implements java.io.Serializable {
     public ProcessVariable2(String taskId) {
         this.taskId = taskId;
     }
-    public ProcessVariable2(String taskId, String form_benefit_state, int dqlupdateobj, String dcn, String contenttype, String adjuster_assigned, String diff_department, String checkcomments, String michellcomments, String stat_updatemetadata_flag, String updatemetadata_comments, String is_duplicate, String CommentsTemp) {
+    public ProcessVariable2(String taskId, String form_benefit_state, int dqlupdateobj, String dcn, String contenttype, String adjuster_assigned, boolean diff_department, String checkcomments, String mitchellcomments, String start_updatemetadata_flag, String updatemetadata_comments, boolean is_duplicate, String CommentsTemp) {
        this.taskId = taskId;
        this.form_benefit_state = form_benefit_state;
        this.dqlupdateobj = dqlupdateobj;
@@ -41,8 +41,8 @@ public class ProcessVariable2  implements java.io.Serializable {
        this.adjuster_assigned = adjuster_assigned;
        this.diff_department = diff_department;
        this.checkcomments = checkcomments;
-       this.michellcomments = michellcomments;
-       this.stat_updatemetadata_flag = stat_updatemetadata_flag;
+       this.mitchellcomments = mitchellcomments;
+       this.start_updatemetadata_flag = start_updatemetadata_flag;
        this.updatemetadata_comments = updatemetadata_comments;
        this.is_duplicate = is_duplicate;
        this.CommentsTemp = CommentsTemp;
@@ -90,11 +90,11 @@ public class ProcessVariable2  implements java.io.Serializable {
     public void setAdjuster_assigned(String adjuster_assigned) {
         this.adjuster_assigned = adjuster_assigned;
     }
-    public String getDiff_department() {
+    public boolean isDiff_department() {
         return this.diff_department;
     }
     
-    public void setDiff_department(String diff_department) {
+    public void setDiff_department(boolean diff_department) {
         this.diff_department = diff_department;
     }
     public String getCheckcomments() {
@@ -104,19 +104,19 @@ public class ProcessVariable2  implements java.io.Serializable {
     public void setCheckcomments(String checkcomments) {
         this.checkcomments = checkcomments;
     }
-    public String getMichellcomments() {
-        return this.michellcomments;
+    public String getMitchellcomments() {
+        return this.mitchellcomments;
     }
     
-    public void setMichellcomments(String michellcomments) {
-        this.michellcomments = michellcomments;
+    public void setMitchellcomments(String mitchellcomments) {
+        this.mitchellcomments = mitchellcomments;
     }
-    public String getStat_updatemetadata_flag() {
-        return this.stat_updatemetadata_flag;
+    public String getStart_updatemetadata_flag() {
+        return this.start_updatemetadata_flag;
     }
     
-    public void setStat_updatemetadata_flag(String stat_updatemetadata_flag) {
-        this.stat_updatemetadata_flag = stat_updatemetadata_flag;
+    public void setStart_updatemetadata_flag(String start_updatemetadata_flag) {
+        this.start_updatemetadata_flag = start_updatemetadata_flag;
     }
     public String getUpdatemetadata_comments() {
         return this.updatemetadata_comments;
@@ -125,11 +125,11 @@ public class ProcessVariable2  implements java.io.Serializable {
     public void setUpdatemetadata_comments(String updatemetadata_comments) {
         this.updatemetadata_comments = updatemetadata_comments;
     }
-    public String getIs_duplicate() {
+    public boolean isIs_duplicate() {
         return this.is_duplicate;
     }
     
-    public void setIs_duplicate(String is_duplicate) {
+    public void setIs_duplicate(boolean is_duplicate) {
         this.is_duplicate = is_duplicate;
     }
     public String getCommentsTemp() {
