@@ -44,6 +44,12 @@ public class PhasesDetailsServer {
 		phaseTypeList.add("ImportToSharePoint");
 		phaseTypeList.add("InitDocumentumBatch");
 		phaseTypeList.add("Transformation");
+		phaseTypeList.add("ImportToDocumentumD7");
+		phaseTypeList.add("ExportACL");
+		phaseTypeList.add("ImportACLD7");
+		phaseTypeList.add("ExportProcessD6");
+		phaseTypeList.add("ImportProcessD7");
+		phaseTypeList.add("UpdateProcessD7");
 		List list = hc.getObject("from PhasesDetailsH ");
 		for (int i=0 ; i < list.size();i++){
 			PhasesDetailsH phasesDetailsH= (PhasesDetailsH)list.get(i);

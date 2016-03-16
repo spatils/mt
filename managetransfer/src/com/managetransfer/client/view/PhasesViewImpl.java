@@ -66,6 +66,13 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 	PhaseInitDocumentumSeq phaseInitDocumentumSeq = new PhaseInitDocumentumSeq();
 	PhaseSharePointImport phaseSharePointImport = new PhaseSharePointImport();
 	PhaseTransformation phaseTransformation = new PhaseTransformation();
+	PhaseDocumentumImport phaseDocumentumImportD7 = new PhaseDocumentumImport();
+	PhaseExportACL  phaseExportACL = new PhaseExportACL();
+	PhaseImportACLD7 phaseImportACLD7 = new PhaseImportACLD7();
+	PhaseExportProcessD6  phaseExportProcessD6 = new PhaseExportProcessD6();
+	PhaseImportProcessD7 phaseImportProcessD7 = new PhaseImportProcessD7();
+	PhaseUpdateProcessD7 phaseUpdateProcessD7 = new PhaseUpdateProcessD7();
+	
 	private String selectedPhase = new String("");
 	private String selectedPhaseType = new String("");
 			 
@@ -254,7 +261,35 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			addPhaseVerticalPanel.add(phaseTransformation);
 			phaseTransformation.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
 		}
-		
+		if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
+			addPhaseVerticalPanel.add(phaseDocumentumImportD7);
+			phaseDocumentumImportD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+			phaseDocumentumImportD7.setPhaseDetailsInteger(phaseDetails.getPhaseParametersInteger());
+		}
+		if(this.getSelectedPhaseType().equals("ExportACL")){
+			addPhaseVerticalPanel.add(phaseExportACL);
+			phaseExportACL.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("ImportACLD7")){
+			addPhaseVerticalPanel.add(phaseImportACLD7);
+			phaseImportACLD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("ImportACLD7")){
+			addPhaseVerticalPanel.add(phaseImportACLD7);
+			phaseImportACLD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("UpdateProcessD7")){
+			addPhaseVerticalPanel.add(phaseUpdateProcessD7);
+			phaseUpdateProcessD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("ExportProcessD6")){
+			addPhaseVerticalPanel.add(phaseExportProcessD6);
+			phaseExportProcessD6.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
+		if(this.getSelectedPhaseType().equals("ImportProcessD7")){
+			addPhaseVerticalPanel.add(phaseImportProcessD7);
+			phaseImportProcessD7.setPhaseDetailsString(phaseDetails.getPhaseParametersString());
+		}
 	}
 	@Override
 	public String getNewPhaseName() {
@@ -288,8 +323,20 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			 return phaseSharePointImport.getPhaseDetailsString();
 		}else if(this.getSelectedPhaseType().equals("Transformation")){
 			return phaseTransformation.getPhaseDetailsString();
-		}
-		
+		} else if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
+			return phaseDocumentumImportD7.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("ExportACL")){
+	    	return phaseExportACL.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("ImportACLD7")){
+	    	return phaseImportACLD7.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("ExportProcessD6")){
+	    	return phaseExportProcessD6.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("ImportProcessD7")){
+	    	return phaseImportProcessD7.getPhaseDetailsString();
+	    }else if(this.getSelectedPhaseType().equals("UpdateProcessD7")){
+	    	return phaseUpdateProcessD7.getPhaseDetailsString();
+	    }
+
 		return null;
 		
 		
@@ -316,8 +363,9 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			 return phaseSharePointImport.getPhaseDetailsInteger();
 		}else if(this.getSelectedPhaseType().equals("Transformation")){
 			return phaseTransformation.getPhaseDetailsInteger();
+		}else if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
+			return phaseDocumentumImportD7.getPhaseDetailsInteger();
 		}
-		
 		return null;
 	}
 	@Override
@@ -370,6 +418,18 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 			phaseInitDocumentumSeq.setConnectionList(presenter.getConnectionList());
 		}else if(this.getSelectedPhaseType().equals("ImportToSharePoint")){
 			  phaseSharePointImport.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
+			  phaseDocumentumImportD7.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ExportACL")){
+			  phaseExportACL.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ImportACLD7")){
+			  phaseImportACLD7.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ExportProcessD6")){
+			  phaseExportProcessD6.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("ImportProcessD7")){
+			  phaseImportProcessD7.setConnectionList(presenter.getConnectionList());
+		} else if(this.getSelectedPhaseType().equals("UpdateProcessD7")){
+			  phaseUpdateProcessD7.setConnectionList(presenter.getConnectionList());
 		} 
 		
 	}
@@ -391,6 +451,9 @@ public class PhasesViewImpl extends Composite implements PhasesView<PhasesDetail
 	public void setDropDownTargetObject() {
 		 if(this.getSelectedPhaseType().equals("ImportToSharePoint")){
 			  phaseSharePointImport.setTargetObjectList(presenter.getTargetObjectList());
+		}
+		 if(this.getSelectedPhaseType().equals("ImportToDocumentumD7")){
+			  phaseDocumentumImportD7.setTargetObjectList(presenter.getTargetObjectList());
 		}
 	}
 	@Override

@@ -5,8 +5,12 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpSession; 
+
+import com.google.gwt.event.shared.EventBus;
 import com.managetransfer.hibernate.HibernateConnection;
 import com.managetransfer.client.UserDetails;
+import com.managetransfer.client.event.LoginEvent;
+
 import javax.validation.ValidatorFactory;
  
  
@@ -45,14 +49,20 @@ public class AllSessions {
               
               if(null != request)
                   this.session = request.getSession(true);
-              
+               
               if(session!=null){
-                  session.setAttribute(USER_DETAILS, userDetails);
-                  session.setAttribute(IS_LOGGED_IN, isLoggedIn);
-                  System.out.println("Initializing hibernate session");
-                  this.hc.initOperation();
-                  session.setAttribute("HIBERNATE_SESSION", this.hc);
-                  setSessionId(session.getId());
+            	  try{
+	            	  session.setAttribute(USER_DETAILS, userDetails);
+	                  session.setAttribute(IS_LOGGED_IN, isLoggedIn);
+	                  System.out.println("Initializing hibernate session");
+	                  this.hc.initOperation();
+	                  session.setAttribute("HIBERNATE_SESSION", this.hc);
+	                  setSessionId(session.getId());
+                  } catch(IllegalStateException  e){
+                	  System.out.println("IllegateState of session");
+                	  throw e; 
+                  }
+            	  
               }
 
         } 
@@ -99,19 +109,33 @@ public class AllSessions {
         }
 
         public synchronized boolean  isAuthenticated(){
-        	System.out.println("Inside isAuthenticated");
+        	
         	 if (null== session || null == session.getAttribute(IS_LOGGED_IN)       ){
+        		 System.out.println("Inside isAuthenticated false");
         		 return false;
         	 }else{
+        		 System.out.println("Inside isAuthenticated true");
         		 return true;
         	 }
         }
 		public synchronized HibernateConnection getHc() {
 			this.hc  = (HibernateConnection )session.getAttribute("HIBERNATE_SESSION" );
+			if(! this.hc.getHibernateSession().isConnected()) {
+				System.out.println("hc sesion is disconnected");
+				this.hc.initOperation();
+			}
 			return hc;
 		}
 		public void setHc(HibernateConnection hc) {
 			this.hc = hc;
+		}
+		public synchronized String logOut(){
+			if (null != session && null != session.getAttribute(IS_LOGGED_IN)       ){
+		    	this.hc.closeConnection();
+		    	session.removeAttribute(IS_LOGGED_IN);
+		    	invalidate();
+	       	}
+			return "Success";
 		}
 
 

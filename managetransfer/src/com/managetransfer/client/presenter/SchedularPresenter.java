@@ -8,9 +8,9 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
-
 import com.google.gwt.user.client.ui.Widget;
 import com.managetransfer.client.common.SelectionModel;
+import com.managetransfer.client.event.LoginEvent;
 import com.managetransfer.client.JobDetails;
 import com.managetransfer.client.ManageTransferServiceAsync;
 import com.managetransfer.client.view.SchedularView;
@@ -49,7 +49,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -72,7 +76,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -87,7 +95,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -110,7 +122,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error updating job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -126,7 +142,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error deleting job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -148,7 +168,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error adding job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -191,7 +215,11 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error updating job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -207,11 +235,34 @@ public class SchedularPresenter implements Presenter, SchedularView.Presenter<Jo
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error executing job ");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
 	}
 	 
-		 
+	public void onSearchInterruptButtonClicked() {
+		rpcService.interruptJob(display.getSelectedJobName() ,new AsyncCallback<Boolean>() {
+			@Override
+			public void onSuccess( Boolean result) {
+				fetchJobDetails();
+				Window.alert("Request Submitted");
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
+			}
+		});
+		
+	}
+	 
 }

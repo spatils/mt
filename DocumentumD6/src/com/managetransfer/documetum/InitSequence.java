@@ -1,5 +1,5 @@
 package com.managetransfer.documetum;
-
+ 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,6 +34,8 @@ import com.managetransfer.record.RecordHandler;
   *     */ 
  
 public class InitSequence {
+	
+	Boolean interruptFlag = false;
 	private int commitCount = 1000;
 	private int batchCount = 10000;
 	private int nextThreadCount = 1 ;
@@ -42,8 +44,8 @@ public class InitSequence {
     private IDfQuery idfQuery = new DfQuery();
     private IDfCollection idfCollection = null;
     private RecordHandler rh = new RecordHandler();
-    private String recordType = new String("com.managetransfer.record.Claims");
-    private String packageName = new String("com.managetransfer.record.");
+    private String recordType = new String("com.managetransfer.businessobject.Claims");
+    private String packageName = new String("com.managetransfer.businessobject.");
     private String sequenceName = new String("Seq1");
     private int sequenceNumber =0;
     private int processId = 0 ;
@@ -174,6 +176,7 @@ public class InitSequence {
 		rh.startBatchTransaction();
 		HashMap<String,String> listOfStringAtrributes = new HashMap<String, String>() ;
 		HashMap<String,Integer> listOfIntAttributes  = new HashMap<String, Integer>() ;
+		HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
 		HashMap<String,Date> listOfDateAttributes  = new HashMap<String, Date>() ;
 		HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ;
 		Record record = new Record();
@@ -181,6 +184,9 @@ public class InitSequence {
 		int totalProcessCount =0;
 		int processCount = 0;
 		while(idfCollection.next()){
+			if(totalProcessCount>=batchCount || getInterruptFlag()){
+				break;
+			}
 			//rh.startDataTransaction();
 			processCount = processCount +1 ;
 			totalProcessCount = totalProcessCount + 1;
@@ -190,12 +196,13 @@ public class InitSequence {
 				//Extract primary keys and set it in the Records object
 				listOfStringAtrributes.clear();
 				listOfIntAttributes.clear();
+				listOfBooleanAttributes.clear();
 				listOfDateAttributes.clear();
 				listOfLongAtrributes.clear();
 				for(int i=0; i <rh.getColumnNameListPK().size();i++){
 					 if(rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("string")){
 						 listOfStringAtrributes.put(rh.getColumnName(rh.getColumnNameListPK().get(i)), idfCollection.getString(rh.getColumnName(rh.getColumnNameListPK().get(i))) );
-					 }else if (rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("integer")){
+					 }else if (rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("integer")||rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("int")){
 						 listOfIntAttributes.put(rh.getColumnName(rh.getColumnNameListPK().get(i)), idfCollection.getInt(rh.getColumnName(rh.getColumnNameListPK().get(i))) );
 					 }else if (rh.getColumnType(rh.getColumnNameListPK().get(i)).equals("date")){
 						 listOfDateAttributes.put(rh.getColumnName(rh.getColumnNameListPK().get(i)), idfCollection.getTime(rh.getColumnName(rh.getColumnNameListPK().get(i))).getDate() );
@@ -224,6 +231,7 @@ public class InitSequence {
 				record.setListOfIntAttributes(listOfIntAttributes);
 				record.setListOfLongAtrributes(listOfLongAtrributes);
 				record.setListOfStringAtrributes(listOfStringAtrributes);
+				record.setListOfBooleanAttributes(listOfBooleanAttributes);
 				//save the record 
 				//set next sequence number
 				//set sequence details
@@ -233,14 +241,12 @@ public class InitSequence {
 				rh.saveRecordPK();
 				bh.addSuccessCount(1);
 				bh.saveBatch();
-				if(commitCount==processCount){
-					rh.batchCommit();
+				if(processCount >=commitCount ){
+					rh.commitBatchTransaction();
 					processCount = 0;
 					rh.startBatchTransaction();
 				}
-				if(totalProcessCount==batchCount){
-					break;
-				}
+				
 			}
 			catch(Exception e){
 				//If batch fails to process any record then it will be logged in the error 
@@ -364,6 +370,13 @@ public class InitSequence {
 		}
 		public void setNextThreadCount(int nextThreadCount) {
 			this.nextThreadCount = nextThreadCount;
+		}
+		public Boolean getInterruptFlag() {
+			return this.interruptFlag;
+		}
+		public void setInterruptFlag(Boolean interruptFlag) {
+			logger.info("Setting interrup flag to"+interruptFlag);
+			this.interruptFlag = interruptFlag;
 		}
 		
 }

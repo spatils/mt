@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="DeployJobSchedular" name="JobSchedular">
+    <property environment="env"/>
+    <property name="Library.location" value="../Library"/>
+    <property name="ECLIPSE_HOME" value="../../../../../eclipse"/>
+    <property name="Batches.location" value="../Batches"/>
+    <property name="DocumentumD6.location" value="../DocumentumD6"/>
+    <property name="SharePoint.location" value="../SharePoint"/>
+    <property name="Transformation.location" value="../Transformation"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <property name="tomcat.home"
+		location="D:\Download\apache-tomcat-7.0.37-windows-x86\apache-tomcat-7.0.37" />
+	<property name="appserver.home"
+		location="D:\Download\apache-tomcat-7.0.37-windows-x86\apache-tomcat-7.0.37" />
+	<property name="tomcat.manager.url" value="http://localhost:8080/manager/text" />
+	<property name="tomcat.manager.username" value="tomcat" />
+	<property name="tomcat.manager.password" value="tomcat" />
+	<property name="name" value="JobSchedular" />
+	
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/annotations-api.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/catalina-ant.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/catalina-ha.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/catalina.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/ecj-4.2.1.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/el-api.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/jasper-el.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/jasper.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/jsp-api.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/servlet-api.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-api.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../../../ManageTransfer/apache-tomcat-7.0.37/lib/tomcat-util.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/c3p0-0.9.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.16.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/quartz-2.2.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/quartz-jobs-2.2.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.6.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-log4j12-1.6.6.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="DocumentumD6.classpath">
+        <pathelement location="${DocumentumD6.location}/bin"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/activation.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/All-MB.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/aspectjrt.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/bpmutil.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/castor-1.1-xml.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/certjFIPS.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/collaboration.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/commons-codec-1.3.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/commons-jxpath-1.2.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/commons-lang-2.4.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/configservice-api.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/configservice-impl.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/dctm.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/dfc.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/DmcRecords.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/dms-client-api.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/jaxb-api.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/jaxb-impl.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/jcifs-krb5-1.3.1.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/jsafeFIPS.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/jsr173_api.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/krbutil.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/log4j.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/messageArchive.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/messageService.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/workflow.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/xforms.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/XformsCommon.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/xtrim-api.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Documentum/lib/xtrim-server.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/antlr-2.7.7.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-core-4.2.4.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/ojdbc14.jar"/>
+    </path>
+    <path id="Batches.classpath">
+        <pathelement location="${Batches.location}/bin"/>
+        <pathelement location="${Batches.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Batches.jar"/>
+        <pathelement location="${Batches.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar"/>
+        <pathelement location="${Batches.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar"/>
+    </path>
+    <path id="SharePoint.classpath">
+        <pathelement location="${SharePoint.location}/bin"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Batches.classpath"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Batches.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/antlr-2.7.7.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-core-4.2.4.Final.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/ojdbc14.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/activation-1.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/antlr-2.7.7.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/apache-mime4j-core-0.7.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axiom-api-1.2.13.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axiom-dom-1.2.13.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axiom-impl-1.2.13.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-adb-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-adb-codegen-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-ant-plugin-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-clustering-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-codegen-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-corba-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-fastinfoset-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-java2wsdl-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-jaxbri-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-jaxws-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-jibx-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-json-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-kernel-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-metadata-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-mtompolicy-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-saaj-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-soapmonitor-servlet-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-spring-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-transport-http-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-transport-local-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/axis2-xmlbeans-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/bcel-5.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/commons-cli-1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/commons-codec-1.3.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/commons-fileupload-1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/commons-httpclient-3.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/commons-io-1.4.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/commons-logging-1.1.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/geronimo-annotation_1.0_spec-1.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/geronimo-jaxws_2.2_spec-1.0.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/geronimo-jta_1.1_spec-1.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/geronimo-saaj_1.3_spec-1.0.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/geronimo-ws-metadata_2.0_spec-1.1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/httpcore-4.0.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jalopy-1.5rc3.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jaxb-api-2.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jaxb-impl-2.1.7.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jaxb-xjc-2.1.7.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jaxen-1.1.1.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jaxws-tools-2.1.3.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jettison-1.0-RC2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jibx-bind-1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jibx-run-1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/jsr311-api-1.0.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/juli-6.0.16.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/log4j-1.2.15.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/mail-1.4.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/mex-1.6.2-impl.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/neethi-3.0.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/regexp-1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/tribes-6.0.16.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/woden-api-1.0M9.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/woden-impl-commons-1.0M9.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/woden-impl-dom-1.0M9.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/wsdl4j-1.6.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/wstx-asl-3.2.9.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/xalan-2.7.0.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/xmlbeans-2.3.0.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/xml-resolver-1.2.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/axis2-1.6.2-bin/axis2-1.6.2/lib/XmlSchema-1.4.7.jar"/>
+        <pathelement location="${SharePoint.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/SharePoint/lib/jcifs-1.3.17.jar"/>
+    </path>
+    <path id="Transformation.classpath">
+        <pathelement location="${Transformation.location}/bin"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Batches.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/antlr-2.7.7.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-core-4.2.4.Final.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
+        <pathelement location="${Transformation.location}/../../../../../ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/ojdbc14.jar"/>
+    </path>
+    <path id="JobSchedular.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="DocumentumD6.classpath"/>
+        <path refid="SharePoint.classpath"/>
+        <path refid="Transformation.classpath"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/c3p0-0.9.1.1.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/log4j-1.2.16.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/mysql-connector-java-5.1.26-bin.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/quartz-2.2.0.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/quartz-jobs-2.2.0.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/slf4j-api-1.6.6.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Quartz/lib/slf4j-log4j12-1.6.6.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${Batches.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${DocumentumD6.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${SharePoint.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${Transformation.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${Batches.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${DocumentumD6.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${SharePoint.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${Transformation.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="JobSchedular.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    	<path id="catalina-ant-classpath">
+		<!-- We need the Catalina jars for Tomcat -->
+		<!-- * for other app servers - check the docs -->
+		<fileset dir="${tomcat.home}/lib">
+			<include name="catalina-ant.jar" />
+			<include name="tomcat-coyote.jar" />
+			<include name="tomcat-util.jar" />
+		</fileset>
+		<fileset dir="${appserver.home}/bin">
+			<include name="tomcat-juli.jar" />
+		</fileset>
+	</path>
+	<taskdef name="install" classname="org.apache.catalina.ant.DeployTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+	<taskdef name="list" classname="org.apache.catalina.ant.ListTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+	<target name="install" description="Install application in Tomcat">
+		<install url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" war="${name}" />
+	</target>
+	<target name="reload" description="Reload application in Tomcat">
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+	<target name="start" description="Start Tomcat application">
+		<start url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+	<target name="list" description="List Tomcat applications">
+		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" />
+	</target>
+	<target name="stop" description="Stop Tomcat application">
+		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+	<target name="DeployJobSchedular"  description="GWT compile to JavaScript">
+ 
+		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" />
+		<delete dir="${tomcat.home}/webapps/JobSchedular"/> 
+		<war destfile="${tomcat.home}/webapps/JobSchedular.war" webxml="./WebContent/WEB-INF/web.xml">
+		    <fileset dir="./WebContent">  <include name="**/*.*"/></fileset>
+		</war> 
+		<start url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" />
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}"
+			password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+</project>

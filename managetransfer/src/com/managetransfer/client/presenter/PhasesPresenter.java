@@ -8,9 +8,10 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
-
 import com.google.gwt.user.client.ui.Widget;
 import com.managetransfer.client.common.SelectionModel;
+import com.managetransfer.client.event.ExpressionsEvent;
+import com.managetransfer.client.event.LoginEvent;
 import com.managetransfer.client.PhasesDetails;
 import com.managetransfer.client.ManageTransferServiceAsync;
 import com.managetransfer.client.view.PhasesView;
@@ -52,7 +53,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Getting Connection List");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		 
@@ -69,7 +74,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Getting Phase Type details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -78,7 +87,8 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 	     Iterator<Widget> iteratorOfWidgets =container.iterator();
 		 HomePageViewImpl hpvi = (HomePageViewImpl) iteratorOfWidgets.next();
 		 hpvi.addContentArea(display.asWidget());
-		 fetchPhaseDetails();
+	     fetchPhaseDetails();
+		 
 	}
 	@Override
 	public void onSearchButtonClicked() {
@@ -92,7 +102,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search phase details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -107,7 +121,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -130,7 +148,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error updating job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -146,7 +168,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error deleting job details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -184,7 +210,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search phase details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		fetchConnectionList();
@@ -202,7 +232,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error search phase details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		fetchConnectionList();
@@ -233,7 +267,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 			}
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error adding phase details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 	}
@@ -247,7 +285,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Getting Source Object List");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -262,7 +304,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Getting Source Object List");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		
@@ -277,7 +323,11 @@ public class PhasesPresenter implements Presenter, PhasesView.Presenter<PhasesDe
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error Getting Source Object List");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 		});
 		

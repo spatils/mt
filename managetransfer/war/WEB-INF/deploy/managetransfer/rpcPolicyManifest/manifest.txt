@@ -1,3 +1,3 @@
 # Module managetransfer
 # RPC service class, partial path of RPC policy file
-com.managetransfer.client.ManageTransferService, DFF5892FE11EEC2CD56BD813884392FE.gwt.rpc
+com.managetransfer.client.ManageTransferService, A223F77FE244E2101DFEC9E45BFF8C0B.gwt.rpc

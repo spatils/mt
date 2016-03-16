@@ -18,6 +18,7 @@ public class Record {
 	private HashMap<String,Integer> listOfIntAttributes  = new HashMap<String, Integer>() ;
 	private HashMap<String,Date> listOfDateAttributes  = new HashMap<String, Date>() ;
 	private HashMap<String,Long> listOfLongAtrributes  = new HashMap<String, Long>() ;
+	private HashMap<String,Boolean> listOfBooleanAttributes  = new HashMap<String, Boolean>() ;
 	private String sequenceName ;
 	private int sequenceNumber =999;
 	private int processId =999 ;
@@ -82,7 +83,7 @@ public class Record {
 	}
 
 	public String getErrorDetails() {
-		return errorDetails;
+		return this.errorDetails;
 	}
 
 	public void setErrorDetails(String errorDetails) {
@@ -172,6 +173,14 @@ public class Record {
 
 	public void setProcessId(int processId) {
 		this.processId = processId;
+	}
+
+	public HashMap<String,Boolean> getListOfBooleanAttributes() {
+		return listOfBooleanAttributes;
+	}
+
+	public void setListOfBooleanAttributes(HashMap<String,Boolean> listOfBooleanAttributes) {
+		this.listOfBooleanAttributes = listOfBooleanAttributes;
 	}
 
 }

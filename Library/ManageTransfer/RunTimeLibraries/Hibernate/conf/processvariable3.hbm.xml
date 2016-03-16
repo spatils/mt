@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.managetransfer.businessobject.ProcessVariable3"
+		table="mtprocessvariable3">
+		<meta attribute="class-description">
+			This class contains bill related process
+			variables
+		</meta>
+		<id name="taskId" type="string" column="task_id" length="16">
+		</id>
+		<property name="irs_name" column="irs_name"		type="string" />
+		<property name="irs_number" column="irs_number"		type="string" />
+	</class>
+</hibernate-mapping>

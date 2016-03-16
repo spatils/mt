@@ -46,6 +46,7 @@ public class SchedularViewImpl extends Composite implements SchedularView<JobDet
 	@UiField Button searchChangeSateButton;
 	@UiField Button searchDeleteButton;
 	@UiField Button searchRunButton;
+	@UiField Button searchInterruptButton;
 	@UiField TabLayoutPanel tabLayoutPanelMain;
 	 
 	 
@@ -71,10 +72,12 @@ public class SchedularViewImpl extends Composite implements SchedularView<JobDet
 		        	searchChangeSateButton.setEnabled(true);
 		    		searchDeleteButton.setEnabled(true);
 		    		searchRunButton.setEnabled(true);
+		    		searchInterruptButton.setEnabled(true);
 		        }else{
 		        	searchChangeSateButton.setEnabled(false);
 		    		searchDeleteButton.setEnabled(false);
 		    		searchRunButton.setEnabled(false);
+		    		searchInterruptButton.setEnabled(false);
 		        }
 		      }
 		    });
@@ -93,6 +96,7 @@ public class SchedularViewImpl extends Composite implements SchedularView<JobDet
 			jobTable.addColumn(lastExecutionDate,"Last Execution Date");
 			jobTable.addColumn(nextExecutionDate,"Next Execution Date");
 			jobTable.addColumn(jobState,"Job State");
+			 
 		}
 		ListDataProvider<JobDetails> dataProvider = new ListDataProvider<JobDetails>();
 		 
@@ -274,4 +278,11 @@ public class SchedularViewImpl extends Composite implements SchedularView<JobDet
 		return selectedJobDetails ;
 	}
  
+	@UiHandler("searchInterruptButton")
+	void onSearchInterruptButtonClick(ClickEvent event) {
+		if (presenter != null) {
+			presenter.onSearchInterruptButtonClicked();
+		}
+
+	}
 }

@@ -46,14 +46,15 @@ public interface ManageTransferService extends RemoteService {
 	boolean addExpression(ExpressionsDetails input);
 	boolean editExpression(ExpressionsDetails expressionDetail);
 	/*** Schedular****/
-	ArrayList<JobDetails> getJobResult(String input);
-	ArrayList<JobDetails> searchJob(String input);
-	Boolean deleteJob(JobDetails jobDetail);
-	ArrayList<String> getJobTypeList();
-	boolean addJob(JobDetails input);
-	boolean editJob(JobDetails jobDetail);
-	boolean runJob(JobDetails jobDetail);
-	boolean changeStateJob(JobDetails jobDetail);
+	ArrayList<JobDetails> getJobResult(String input) throws Exception;
+	ArrayList<JobDetails> searchJob(String input) throws Exception ;
+	Boolean deleteJob(JobDetails jobDetail) throws Exception ;
+	ArrayList<String> getJobTypeList() throws Exception ;
+	boolean addJob(JobDetails input) throws Exception;
+	boolean editJob(JobDetails jobDetail)throws Exception;
+	boolean runJob(JobDetails jobDetail)throws Exception;
+	boolean changeStateJob(JobDetails jobDetail)throws Exception;
+	boolean interruptJob(JobDetails selectedJobName)throws Exception;
 	SequenceDetailsMap getSequenceResultMap(String sequenceName,int seqNumber);
 	/*** Phases****/
 	ArrayList<PhasesDetails> getPhaseResult(String input);
@@ -86,6 +87,8 @@ public interface ManageTransferService extends RemoteService {
 	List<SequenceDetailsMap> getSequenceDetailsMapList(String seqName);
 	List<BatchDetails> getBatchDetailsBySequence(String sequenceName,
 			int sequenceNumber);
+	 String logOut();
+	
 	
 	
 }

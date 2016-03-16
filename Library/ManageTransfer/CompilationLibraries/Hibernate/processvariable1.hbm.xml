@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.ProcessVariable1" table="mtprocessvariable1">
+      <meta attribute="class-description">
+         This class contains Adjuster notification relatied information
+      </meta>
+      <id name="taskId" type="string" column="task_id" length="16">
+      </id>
+     <property name="start_bill_review_flag" column="start_bill_review_flag"
+			type="string" />
+		<property name="PerformerName" column="performer_name" type="string" />
+		<property name="object_type" column="object_type" type="string" />
+		<property name="content_type" column="content_type" type="string" />
+		<property name="adjuster_assigned" column="adjuster_assigned"
+			type="string" />
+		<property name="diff_department" column="diff_department"
+			type="boolean" />
+		<property name="r_object_id" column="r_object_id" type="string" />
+		<property name="start_updatemetadata_flag" column="start_updatemetadata_flag"
+			type="string" />
+		<property name="updatemetadata_comments" column="updatemetadata_comments"
+			type="string" />
+		<property name="is_duplicate" column="is_duplicate" type="boolean" />
+   </class>
+</hibernate-mapping>

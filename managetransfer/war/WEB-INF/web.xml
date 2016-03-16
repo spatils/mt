@@ -30,6 +30,9 @@
     <url-pattern>/_ah/spi/*</url-pattern>
   </servlet-mapping>
   <listener>
-    <listener-class>com.managetransfer.server.ReadProperty</listener-class>
+    <listener-class>com.managetransfer.server.ServerListener</listener-class>
   </listener>
+  <session-config>
+      <session-timeout>3</session-timeout>    
+  </session-config>
 </web-app>

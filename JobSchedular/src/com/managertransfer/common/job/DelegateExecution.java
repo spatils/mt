@@ -1,26 +1,38 @@
 package com.managertransfer.common.job;
 
 import org.apache.log4j.Logger;
+import org.quartz.DisallowConcurrentExecution;
+import org.quartz.InterruptableJob;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
+import org.quartz.UnableToInterruptJobException;
+
+import com.managetransfer.documetum.ExportACL;
 import com.managetransfer.documetum.ExportDocumentum;
+import com.managetransfer.documetum.ExportProcessD6;
+import com.managetransfer.d7.ImportACLD7;
+import com.managetransfer.d7.ImportDocumentumD7;
+import com.managetransfer.d7.ImportProcessD7;
+import com.managetransfer.d7.UpdateProcessD7;
 import com.managetransfer.documetum.InitSequence;
 import com.managetransfer.record.TransformationHandler;
 import com.managetransfer.sharepoint.SharePointImport;
-
-
-public class DelegateExecution implements Job {
-
-	 private static org.apache.log4j.Logger logger = Logger.getLogger(DelegateExecution.class);
-	 @Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+//Below annotation ensures that multiple instances of same jobs is not executed
+@DisallowConcurrentExecution
+public class DelegateExecution implements Job, InterruptableJob {
+	Object phaseObject ;
+	String phaseType = new String(""); 
+	private static org.apache.log4j.Logger logger = Logger.getLogger(DelegateExecution.class);
+	@Override
+    public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		logger.info("Inside execute");
+		logger.info("this"+this);
 		JobKey jobKey = arg0.getJobDetail().getKey();
 		logger.info("Job Name"+jobKey.getName());
 		logger.info("Phase Type"+arg0.getMergedJobDataMap().getString("PHASE_TYPE"));
-		String phaseType  = arg0.getMergedJobDataMap().getString("PHASE_TYPE");
+		phaseType  = arg0.getMergedJobDataMap().getString("PHASE_TYPE");
 		String jobName =jobKey.getName();
 		int processId =  Integer.parseInt(jobName.substring(jobName.lastIndexOf("_")+1,jobName.length()));
 		logger.info(processId);
@@ -36,11 +48,14 @@ public class DelegateExecution implements Job {
 				ed.setSequenceNumber(sequenceNumber);
 				ed.setProcessId(processId);
 				ed.initOperation();
+				phaseObject= ed;
 				ed.executeOperation();
+				phaseObject = null;
+				ed = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
-			
+
 		}else if(phaseType.equals("ImportToSharePoint")){
 			try{
 				SharePointImport si = new SharePointImport();
@@ -48,35 +63,166 @@ public class DelegateExecution implements Job {
 				si.setSequenceNumber(sequenceNumber);
 				si.setProcessId(processId);
 				si.initOperation();
+				phaseObject= si;
 				si.executeOperation();
+				phaseObject = null;
+				si = null;
 			} catch(Exception e){
 				logger.error(e);
 			}
-			
+
 		}else if(phaseType.equals("Transformation")){
 			try{
-			TransformationHandler  th = new TransformationHandler();
-			th.setSequenceName(sequenceName);
-			th.setSequenceNumber(sequenceNumber);
-			th.setProcessId(processId);
-			th.initOperation();
-			th.executeOperation();
-		} catch(Exception e){
-			logger.error(e);
-		}
+				TransformationHandler  th = new TransformationHandler();
+				th.setSequenceName(sequenceName);
+				th.setSequenceNumber(sequenceNumber);
+				th.setProcessId(processId);
+				th.initOperation();
+				phaseObject= th;
+				th.executeOperation();
+				phaseObject = null;
+				th = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
 		}else if(phaseType.equals("InitDocumentumBatch")){
 			try{
-			InitSequence  is = new InitSequence();
-			is.setSequenceName(sequenceName);
-			is.setSequenceNumber(sequenceNumber);
-			is.setProcessId(processId);
-			is.initOperation();
-			is.executeOperation();
-		} catch(Exception e){
-			logger.error(e);
+				InitSequence  is = new InitSequence();
+				is.setSequenceName(sequenceName);
+				is.setSequenceNumber(sequenceNumber);
+				is.setProcessId(processId);
+				is.initOperation();
+				phaseObject= is;
+				is.executeOperation();
+				phaseObject = null;
+				is = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("ExportACL")){
+			try{
+				ExportACL  ea = new ExportACL();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("ImportACLD7")){
+			try{
+				ImportACLD7  ea = new ImportACLD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("ImportToDocumentumD7")){
+			try{
+				ImportDocumentumD7  ea = new ImportDocumentumD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("ExportProcessD6")){
+			try{
+				ExportProcessD6  ea = new ExportProcessD6();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("ImportProcessD7")){
+			try{
+				ImportProcessD7  ea = new ImportProcessD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
+		}else if(phaseType.equals("UpdateProcessD7")){
+			try{
+				UpdateProcessD7  ea = new UpdateProcessD7();
+				ea.setSequenceName(sequenceName);
+				ea.setSequenceNumber(sequenceNumber);
+				ea.setProcessId(processId);
+				ea.initOperation();
+				phaseObject= ea;
+				ea.executeOperation();
+				phaseObject = null;
+				ea = null;
+			} catch(Exception e){
+				logger.error(e);
+			}
 		}
-		}
-		 
+		
+
 	}
+	@Override
+	public void interrupt() throws UnableToInterruptJobException {
+		logger.info("Inside DelegateJobExecution.Interrupt");
+		if(phaseObject!=null){
+			if(phaseType.equals("ExportFromDocumentum")){
+				ExportDocumentum ed = (ExportDocumentum) phaseObject;
+				ed.setInterruptFlag(true);
+			}else if(phaseType.equals("InitDocumentumBatch")){
+				InitSequence  is = (InitSequence) phaseObject;
+				is.setInterruptFlag(true);
+			}else if(phaseType.equals("Transformation")){
+				TransformationHandler  th = (TransformationHandler) phaseObject;
+				th.setInterruptFlag(true);
+			}else if(phaseType.equals("ExportACL")){
+				ExportACL ea = (ExportACL) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ImportACLD7")){
+				ImportACLD7 ea = (ImportACLD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ImportToDocumentumD7")){
+				ImportDocumentumD7 ea = (ImportDocumentumD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ExportProcessD6")){
+				ExportProcessD6 ea = (ExportProcessD6) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("ImportProcessD7")){
+				ImportProcessD7 ea = (ImportProcessD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}else if(phaseType.equals("UpdateProcessD7")){
+				UpdateProcessD7 ea = (UpdateProcessD7) phaseObject;
+				ea.setInterruptFlag(true);
+			}
+		}
+		
+		
+	}
+
 
 }

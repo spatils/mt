@@ -26,19 +26,18 @@ public class HibernateConnection {
             // Create the SessionFactory from hibernate.cfg.xml
         	Configuration configuration = new Configuration();
             configuration.configure();
-            if (serviceRegistry==null ){
+            if (serviceRegistry==null  ){
             	serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             }
-            if(sessionFactory==null){
+            if(sessionFactory==null || sessionFactory.isClosed() ){
             	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             }
-            if(hibernateSession==null){
+            if(hibernateSession==null || ! hibernateSession.isConnected()){
             	hibernateSession = sessionFactory.openSession();
             }
         }
         catch (Throwable ex) {
-            // Make sure you log the exception
-            System.err.println("initOperation failed." + ex);
+            logger.severe("initOperation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
@@ -56,12 +55,25 @@ public class HibernateConnection {
 	}
 	 
 	public void startBatchLevelTransaction(){
+		logger.info("Inside startBatchLevelTransaction");
 		batchLevelTransaction = hibernateSession.beginTransaction();
+		hibernateSession.flush();
+		hibernateSession.clear();
+		logger.info("Exit startBatchLevelTransaction and then clear");
+	}
+	public void clearAndFlush(){
+		logger.info("Inside clearAndFlush");
+		hibernateSession.flush();
+		hibernateSession.clear();
+		logger.info("Exit clear");
 	}
 	public void commitBatchLevelTransaction(){
+		logger.info("Inside commitBatchLevelTransaction");
 		if (batchLevelTransaction!= null && batchLevelTransaction.isActive()){
 			batchLevelTransaction.commit();
 		}
+		
+		logger.info("Exit commitBatchLevelTransaction");
 	}
 	public void abortBatchLevelTransaction(){
 		if (batchLevelTransaction!= null && batchLevelTransaction.isActive()){
@@ -75,25 +87,53 @@ public class HibernateConnection {
 	}
 	public void saveOperation(Object persisterObject){
 		hibernateSession.save(persisterObject);
+		logger.info("Exit saveOperation");
+	}
+	public void saveOrUpdateOperation(Object persisterObject){
+		hibernateSession.saveOrUpdate(persisterObject);
+		logger.info("Exit saveOrUpdateOperation");
 	}
 	public void deleteOperation(Object persisterObject){
 		hibernateSession.delete(persisterObject);
+		logger.info("Exit delete");
 	}
 	public void updateOperation(Object persisterObject){
 		hibernateSession.update(persisterObject);
+		logger.info("Exit updateOperation");
+	}
+	public void deleteObject(Object persisterObject){
+		hibernateSession.delete(persisterObject);
+		logger.info("Exit deleteObject");
 	}
     public  List  getObject(String queryString){
+    	 Query query = hibernateSession.createQuery(queryString);
+    	 List list = query.list();
+    	 return list;
+    }
+    public  List  selectQuery(String queryString){
     	Query query = hibernateSession.createQuery(queryString);
     	 List list = query.list();
     	 return list;
     }
+    public  List  getObjectNonCursorQuery(String queryString){
+    	Query query = hibernateSession.createQuery(queryString);
+    	 List list = query.list();
+    	 return list;
+    }
+    public int updateQueryExecute(String queryString){
+    	logger.info("Inside updateQueryExecute");
+    	Query query = hibernateSession.createQuery(queryString);
+    	return query.executeUpdate();
+    }
     public void finalCommitOperation(){
+    	logger.info("Inside finalCommitOperation");
     	if(batchLevelTransaction!= null && batchLevelTransaction.isActive()){
     		batchLevelTransaction.commit();
     	}
     	if(recordLevelTransaction!= null && recordLevelTransaction.isActive()){
     		recordLevelTransaction.commit();
     	}
+    	logger.info("Exit finalCommitOperation");
     }
     public void closeConnection(){
     	if(hibernateSession != null  ){
@@ -102,8 +142,18 @@ public class HibernateConnection {
     	if(sessionFactory!=null){
     		sessionFactory.close();
     	}
+    	logger.info("Exit closeConnection");
     }
 	public void clearObjectCache(){
 		hibernateSession.clear();
+		logger.info("Exit clearObjectCache");
+	}
+	public boolean isSessionValid(){
+		if(hibernateSession==null || !hibernateSession.isConnected() || hibernateSession.isDirty()){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 }

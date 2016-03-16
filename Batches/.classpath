@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Batches.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/BusinessObject.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/FrameWorkObject.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

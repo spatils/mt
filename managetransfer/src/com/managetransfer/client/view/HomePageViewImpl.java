@@ -30,7 +30,7 @@ public class HomePageViewImpl extends Composite implements HomePageView<UserDeta
 	} 
 	
 	private static HomePageViewUiBinder uiBinder =	GWT.create(HomePageViewUiBinder.class);
-	@UiField Label  loginMessage = new Label();
+	
 	public HomePageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		 
@@ -41,7 +41,7 @@ public class HomePageViewImpl extends Composite implements HomePageView<UserDeta
 	@Override
 	public void setPresenter(Presenter<UserDetails> presenter) {
 		// TODO Auto-generated method stub
-		setWelcomeMessage(presenter.getUserDetails().getUserId());
+		 
 		this.presenter = presenter;
 	
 		 
@@ -109,10 +109,10 @@ public class HomePageViewImpl extends Composite implements HomePageView<UserDeta
 		//homeDockLayoutPanel.add(childWidget);
 	}
 
-	@Override
-	public void setWelcomeMessage(String userName) {
-		// TODO Auto-generated method stub
-		loginMessage.setText("Welcome "+userName+" !!!");
-	}
+	
 	 
+	@UiHandler("logoutMessage")
+	void onLogoutMessageClick(ClickEvent event) {
+		presenter.onLogOutClicked();
+	}
 }

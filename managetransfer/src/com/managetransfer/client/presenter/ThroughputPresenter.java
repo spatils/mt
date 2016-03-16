@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.managetransfer.client.ManageTransferServiceAsync;
 import com.managetransfer.client.SequenceDetails;
 import com.managetransfer.client.SequenceDetailsMap;
+import com.managetransfer.client.event.LoginEvent;
 import com.managetransfer.client.view.HomePageViewImpl;
 import com.managetransfer.client.view.ThroughputView;
 import com.managetransfer.client.BatchDetails;
@@ -43,7 +44,11 @@ public class ThroughputPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching batch details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 
 			@Override
@@ -60,7 +65,11 @@ public class ThroughputPresenter implements Presenter,
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Error fetching batch details");
+						if(caught.getMessage().startsWith("500 Internal Server Error")){
+							eventBus.fireEvent( new LoginEvent());	
+						}else{
+							Window.alert("Error From Server"+caught.getMessage());
+						}
 					}
 					@Override
 					public void onSuccess(List<SequenceDetailsMap> result) {
@@ -76,7 +85,11 @@ public class ThroughputPresenter implements Presenter,
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Error fetching batch details");
+						if(caught.getMessage().startsWith("500 Internal Server Error")){
+							eventBus.fireEvent( new LoginEvent());	
+						}else{
+							Window.alert("Error From Server"+caught.getMessage());
+						}
 					}
 					@Override
 					public void onSuccess(List<BatchDetails> result) {

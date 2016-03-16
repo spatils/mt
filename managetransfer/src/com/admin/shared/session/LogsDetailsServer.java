@@ -12,7 +12,7 @@ import com.managetransfer.hibernate.HibernateConnection;
 import com.managetransfer.record.RecordHandler;
 
 public class LogsDetailsServer {
-	String packageName = new String("com.managetransfer.record.");
+	String packageName = new String("com.managetransfer.businessobject.");
 	private HibernateConnection hc;
 	String getObjectDetails = new String("from $object_name$  where $attribute_name$ = '$attribute_value$'");
 	final Logger logger = Logger.getLogger(LogsDetailsServer.class.getName()) ;

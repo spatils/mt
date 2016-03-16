@@ -3,25 +3,63 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-core-4.2.4.Final.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/BusinessObject.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/FrameWorkObject.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/KeyHandling.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Transformation.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/TransformationImplementation.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-api-labs.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-endpoints.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/appengine-jsr107cache-1.7.5.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/asm-4.0.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/datanucleus-api-jdo-3.1.3.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/datanucleus-api-jpa-3.1.3.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/datanucleus-appengine-2.1.2.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/datanucleus-core-3.1.3.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/geronimo-jpa_2.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/gwt-servlet-deps.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/gwt-servlet.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/jdo-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/jsr107cache-1.1.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/gwt/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/asm-4.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-api-jdo-3.1.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-api-jpa-3.1.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-appengine-2.1.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-core-3.1.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/geronimo-jpa_2.0_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet-deps.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-visualization.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jdo-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr107cache-1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-visualization.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-core-4.2.4.Final.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Hibernate/lib/ojdbc14.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Batches.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Hibernate.jar"/>
-	<classpathentry kind="lib" path="C:/ManageTransfer/ManageTransfer/Libraries/Project/lib/Record.jar"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs-1.7.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-endpoints.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-jsr107cache-1.7.5.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.TaxDocumentRD7" table="mttaxdocumentrd7">
+      <meta attribute="class-description">
+         This class Repeating attributes of claims objects. 
+      </meta>
+      <composite-id >
+            <key-property name="objectId" column="r_object_id" type="string" length="16"></key-property>
+            <key-property name="mtIndexId" column="mt_index_id" type="int"></key-property>
+      </composite-id>
+      <property name="comments"                       column="comments"                          type="string" length="1000"  />
+	
+   </class>
+</hibernate-mapping>

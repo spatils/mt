@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+     <class name="com.managetransfer.client.ObjectDetails" table="mtobjectdetails" lazy="false">
+      <meta attribute="class-description">
+         This class contains information related business object
+      </meta>
+       
+      <id name="objectName" type="string" column="object_name" length="50">
+      </id>
+      <property name="objectType" column="object_type" type="string" length="20"/>
+      <property name="repoObjectName" column="repo_object_name" type="string" length="20"/>
+      <property name="repeatingObject" column="repeating_object" type="string" length="20"/>
+      <!-- This is comma separated list of attributes used to extract the child object -->  
+      <property name="relationshipColumns" column="relationship_column" type="string" length="1000"/>
+      <!-- This property stores string that is used to update metadata of the object for sharepoint2013 rest call -->  
+      <property name="sharePointUpdateString" column="sharepoint_string" type="string" length="1000"/>
+   </class>
+   
+</hibernate-mapping>

@@ -14,7 +14,7 @@
 				</g:VerticalPanel>
 						<g:VerticalPanel width="555px" horizontalAlignment="ALIGN_RIGHT" spacing="4">
 							<g:Label text="Sign Out" ui:field="logoutMessage" height="14px" width="135px" styleName="headerBackGrndGrey3" horizontalAlignment="ALIGN_CENTER"/>
-							<g:Label text="Welcome" ui:field="loginMessage" height="14px" width="135px" styleName="headerBackGrndGrey3" horizontalAlignment="ALIGN_CENTER"/>
+							
 						</g:VerticalPanel>
 					</g:HorizontalPanel>
 			<g:HorizontalPanel width="1150px">

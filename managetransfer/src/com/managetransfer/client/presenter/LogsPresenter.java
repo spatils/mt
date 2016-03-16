@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.managetransfer.client.LogsDetails;
 import com.managetransfer.client.ManageTransferServiceAsync;
+import com.managetransfer.client.event.LoginEvent;
 import com.managetransfer.client.view.HomePageViewImpl;
 import com.managetransfer.client.view.LogsView;
 
@@ -46,7 +47,11 @@ public class LogsPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching batch details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 
 			@Override
@@ -62,7 +67,11 @@ public class LogsPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetch object types");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 
 			}
 
@@ -84,7 +93,11 @@ public class LogsPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetch attributes");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 
 			}
 
@@ -110,7 +123,11 @@ public class LogsPresenter implements Presenter,
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Error fetch attributes");
+						if(caught.getMessage().startsWith("500 Internal Server Error")){
+							eventBus.fireEvent( new LoginEvent());	
+						}else{
+							Window.alert("Error From Server"+caught.getMessage());
+						}
 
 					}
 

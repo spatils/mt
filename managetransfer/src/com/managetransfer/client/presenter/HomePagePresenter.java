@@ -20,14 +20,15 @@ import com.managetransfer.client.event.PhasesEvent;
 import com.managetransfer.client.event.SchedularEvent;
 import com.managetransfer.client.event.SequenceEvent;
 import com.managetransfer.client.event.ThroughputReportEvent;
+import com.managetransfer.client.ExpressionsDetails;
 import com.managetransfer.client.ManageTransferServiceAsync;
 import com.managetransfer.client.UserDetails;
+import com.managetransfer.client.view.ExpressionsView;
 import com.managetransfer.client.view.HomePageView;
 import com.managetransfer.client.view.LoginView;
  
 
 public class HomePagePresenter implements Presenter, HomePageView.Presenter<UserDetails> {
-
 	private UserDetails userDetails;
 	private final ManageTransferServiceAsync rpcService;
 	private final EventBus eventBus;
@@ -107,6 +108,23 @@ public class HomePagePresenter implements Presenter, HomePageView.Presenter<User
 	@Override
 	public void onThroughputReportClicked() {
 		eventBus.fireEvent(new ThroughputReportEvent());
+		
+	}
+	@Override
+	public void onLogOutClicked() {
+		
+		Window.alert("Logging Out");
+		rpcService.logOut( new AsyncCallback <String>() {
+			@Override
+			public void onSuccess( String result) {
+				eventBus.fireEvent(new LoginEvent());
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				eventBus.fireEvent( new LoginEvent());
+			}
+		});
 		
 	}
 	 

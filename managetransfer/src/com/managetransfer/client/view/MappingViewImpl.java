@@ -494,20 +494,35 @@ public class MappingViewImpl extends Composite implements MappingView<MappingDet
 
 	@Override
 	public String getNewTargetMappingObject() {
-		// TODO Auto-generated method stub
-		return trgObjectListSelected.getItemText(0);
+		String targetMappingObject = "";
+		/***There can be multiple target objects selected for the giving mapping
+		 * Target objects will be send in comma separated manner
+		 * This is exception to single target mapping
+		 */
+		for(int i=0; i<trgObjectListSelected.getItemCount();i++){
+			if(targetMappingObject.equals("")){
+				targetMappingObject = trgObjectListSelected.getItemText(i);
+			}else{
+				targetMappingObject = targetMappingObject+","+trgObjectListSelected.getItemText(i);
+			}
+		}
+		Window.alert("targetMappingObject"+targetMappingObject);
+		return targetMappingObject  ;
 	}
 	@UiHandler("searchEditButton")
 	void onSearchEditButtonClick(ClickEvent event) {
-		trgObjectListSelected.clear();
-		trgObjectListSelected.addItem(selectedMappingDetails.getTargetObject());
-		srcObjectListSelected.clear();
-		for(int i=0; i<selectedMappingDetails.getSourceObjectList().size();i++){
-			srcObjectListSelected.addItem(selectedMappingDetails.getSourceObjectList().get(i));
-		}
-		newMappingName.setValue(selectedMappingDetails.getMappingName());
-		tabLayoutPanelMain.selectTab(1);
-	}
+			trgObjectListSelected.clear();
+			for(int i=0;i<selectedMappingDetails.getTargetObject().split(",").length;i++){
+				trgObjectListSelected.addItem(selectedMappingDetails.getTargetObject().split(",")[i]);
+			}
+			Window.alert("selectedObjectList"+selectedMappingDetails.getTargetObject());
+			srcObjectListSelected.clear();
+			for(int i=0; i<selectedMappingDetails.getSourceObjectList().size();i++){
+				srcObjectListSelected.addItem(selectedMappingDetails.getSourceObjectList().get(i));
+			}
+			newMappingName.setValue(selectedMappingDetails.getMappingName());
+			tabLayoutPanelMain.selectTab(1);
+ 	}
 
 
 

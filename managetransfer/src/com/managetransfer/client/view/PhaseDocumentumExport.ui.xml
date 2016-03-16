@@ -31,10 +31,25 @@
 					<g:CheckBox ui:field="createFolder"/>
 				</g:customCell>
 				<g:customCell>
+					<g:Label text="Export Annotation"/>
+				</g:customCell>
+				<g:customCell>
+					<g:CheckBox ui:field="expAnnotation"/>
+				</g:customCell>
+				
+			</g:row>
+			<g:row>
+				<g:customCell>
 					<g:Label text="Export Location"/>
 				</g:customCell>
 				<g:customCell>
 					<g:TextBox ui:field="exportLocation" />
+				</g:customCell>
+				<g:customCell>
+					<g:Label text="Only Export Metadata"/>
+				</g:customCell>
+				<g:customCell>
+					<g:CheckBox ui:field="onlyExpMetadata"/>
 				</g:customCell>
 			</g:row>
 			
@@ -42,6 +57,10 @@
 		<g:HorizontalPanel width="475px" verticalAlignment="ALIGN_MIDDLE">
 			<g:Label text="Export Query" width="81px"/>
 			<g:TextBox ui:field="exportQuery" width="384px" height="61px" />
+		</g:HorizontalPanel>
+		<g:HorizontalPanel width="475px" verticalAlignment="ALIGN_MIDDLE">
+			<g:Label text="Repeating Attribute DQL" width="81px"/>
+			<g:TextBox ui:field="repeatAttributeDQL" width="384px" height="61px" />
 		</g:HorizontalPanel>
 		 
 		

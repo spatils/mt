@@ -37,11 +37,13 @@ public interface     HomePageView<T>   {
 		
 		void onThroughputReportClicked();
 		
+		void onLogOutClicked();
+		
 		UserDetails getUserDetails();
 		  
 	 }
 	void setPresenter(Presenter<T> presenter);
-	void setWelcomeMessage(String userName);
+	
 	
 	Widget asWidget();
 }

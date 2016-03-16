@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.managetransfer.client.BatchDetails;
 import com.managetransfer.client.ManageTransferServiceAsync;
 import com.managetransfer.client.SequenceDetailsMap;
+import com.managetransfer.client.event.LoginEvent;
 import com.managetransfer.client.view.BatchesView;
 import com.managetransfer.client.view.HomePageViewImpl;
  
@@ -44,7 +45,11 @@ public class BatchPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching batch details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 
 			@Override
@@ -61,7 +66,11 @@ public class BatchPresenter implements Presenter,
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Error fetching batch details");
+				if(caught.getMessage().startsWith("500 Internal Server Error")){
+					eventBus.fireEvent( new LoginEvent());	
+				}else{
+					Window.alert("Error From Server"+caught.getMessage());
+				}
 			}
 
 			@Override

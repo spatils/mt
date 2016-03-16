@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.managetransfer.businessobject.ProcessTaskList"
+		table="mtprocesstasklist" lazy="false">
+		<meta attribute="class-description">
+			This class stores task associated with the workflow
+		</meta>
+		<composite-id>
+         <key-property name="newWorkflowId" type="string" column="new_workflow_id"  ></key-property>
+		 <key-property name="oldWorkflowId" type="string" column="old_workflow_id"  ></key-property>
+		 <key-property name="sequenceNumber" type="int" column="sequence_number"  ></key-property>
+        </composite-id>
+		<property name="targetActivityName" column="target_activity_name" type="string"/>
+		<property name="taskName" column="task_name" type="string"/>
+      	
+      	<property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
+      	<property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
+      	<property name="mtCreateDate" column="mt_create_date" type="timestamp"  />
+      	<property name="mtModifyDate" column="mt_modify_date" type="timestamp"  />
+      	<property name="mtErrorDesc"  column="mt_error_description" type="string" length="1000"/>
+      	<property name="mtStatus"  column="mt_status" type="string" length="10"/>
+      	<property name="mtProcessId" column="mt_process_id" type="int" />
+      	
+    </class>
+</hibernate-mapping>

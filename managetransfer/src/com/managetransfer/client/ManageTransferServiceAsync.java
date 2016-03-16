@@ -132,6 +132,9 @@ public interface ManageTransferServiceAsync {
 	
 	void getBatchDetailsBySequence(String sequenceName, int sequenceNumber,
 			AsyncCallback<List<BatchDetails>> asyncCallback);
+	void logOut(AsyncCallback<String> asyncCallback);
+	void interruptJob(JobDetails selectedJobName,
+			AsyncCallback<Boolean> asyncCallback);
 	
 	
 }

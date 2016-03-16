@@ -30,6 +30,7 @@ import com.admin.shared.session.SequencesDetailsServer;
 import com.admin.shared.session.ThroughputDetailsServer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ import com.admin.shared.session.ConnectionsDetailsServer;
 import com.admin.shared.session.ExpressionsDetailsServer;
 import com.admin.shared.session.LogsDetailsServer;
 import com.admin.shared.session.MappingDetailsServer;
+import com.admin.shared.session.ObjectDetailsServer;
 import com.admin.shared.session.PhasesDetailsServer;
 import com.admin.shared.session.SchedularDetailsServer;
 import com.admin.shared.session.SequencesDetailsServer;
@@ -75,7 +77,7 @@ import com.managetransfer.shared.FieldVerifier;
 public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		ManageTransferService {
 	private static org.apache.log4j.Logger logger = Logger.getLogger(ManageTransferServiceImpl.class);  
-	String packageName = new String("com.managetransfer.record.");
+	String packageName = new String("com.managetransfer.businessobject.");
 	 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
@@ -369,7 +371,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 	}
 	@Override
-	public boolean runJob(JobDetails jobDetail) {
+	public boolean runJob(JobDetails jobDetail)  throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -381,12 +383,29 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
+		}
+	 
+	}
+	@Override
+	public boolean interruptJob(JobDetails jobDetail)throws Exception  {
+		try{
+			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
+			AllSessions as = AllSessions.getInstance();
+			as.setRequest(getThreadLocalRequest());
+			HibernateConnection hc = new HibernateConnection();
+			hc = as.getHc();
+			schedularDetailsServer.setHc(hc);
+			return schedularDetailsServer.interruptJob(jobDetail);
+		}
+		catch(Exception e){
+			System.out.println("Excepton"+e);
+			throw e;
 		}
 	 
 	}
 
-	public boolean changeStateJob(JobDetails jobDetail) {
+	public boolean changeStateJob(JobDetails jobDetail) throws Exception  {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -398,12 +417,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	}
 
 	@Override
-	public ArrayList<JobDetails> getJobResult(String input) {
+	public ArrayList<JobDetails> getJobResult(String input) throws Exception {
 	try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -415,12 +434,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return null;
+			throw e;
 		}
 	}
 
 	@Override
-	public ArrayList<JobDetails> searchJob(String input) {
+	public ArrayList<JobDetails> searchJob(String input)throws Exception  {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -432,12 +451,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return null;
+			throw e;
 		}
 	}
 
 	@Override
-	public Boolean deleteJob(JobDetails jobDetail) {
+	public Boolean deleteJob(JobDetails jobDetail) throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -449,7 +468,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return null;
+			throw e;
 		}
 	}
 
@@ -461,7 +480,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public boolean addJob(JobDetails input) {
+	public boolean addJob(JobDetails input) throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -473,12 +492,12 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	}
 
 	@Override
-	public boolean editJob(JobDetails jobDetail) {
+	public boolean editJob(JobDetails jobDetail) throws Exception {
 		try{
 			SchedularDetailsServer schedularDetailsServer= new SchedularDetailsServer();
 			AllSessions as = AllSessions.getInstance();
@@ -490,7 +509,7 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		}
 		catch(Exception e){
 			System.out.println("Excepton"+e);
-			return false;
+			throw e;
 		}
 	}
 	public ArrayList<String> getPhaseList() {
@@ -641,14 +660,35 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public ArrayList<String> getSourceObjectList() {
 		logger.info("Inside getSourceObjectList" );
-		return ReadProperty.getSourceclassname();
+		try{
+		ObjectDetailsServer  objectDetailsServer = new ObjectDetailsServer();
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		HibernateConnection hc = new HibernateConnection();
+		hc = as.getHc();
+		objectDetailsServer.setHc(hc);
+		return 	objectDetailsServer.getSourceObjectList();
+		}catch(Exception e ){
+			logger.error("Error inside getSourceObjecTList"+e);
+			throw e;
+		}
 	}
-
+ 
 	@Override
 	public ArrayList<String> getTargetObjectList() {
 		 
-		 
-		return ReadProperty.getTargetclassname();
+		 try{
+		ObjectDetailsServer  objectDetailsServer = new ObjectDetailsServer();
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		HibernateConnection hc = new HibernateConnection();
+		hc = as.getHc();
+		objectDetailsServer.setHc(hc);
+		return 	objectDetailsServer.getTargetObjectList();
+	}catch(Exception e ){
+		logger.error("Error inside getSourceObjecTList"+e);
+		throw e;
+	}
 	}
 
 	@Override
@@ -743,7 +783,22 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 	}
 	@Override
 	public List<String> getObjectTypes() {
-		return ReadProperty.getObjectTypes() ;
+		try{
+		ObjectDetailsServer  objectDetailsServer = new ObjectDetailsServer();
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		HibernateConnection hc = new HibernateConnection();
+		hc = as.getHc();
+		objectDetailsServer.setHc(hc);
+		ArrayList<String> objectNameList = new ArrayList<String>();
+		objectNameList.add("--select--");
+		objectNameList.addAll(objectDetailsServer.getSourceObjectList());
+		objectNameList.addAll(objectDetailsServer.getTargetObjectList());
+		return 	objectNameList;
+		}catch ( Exception e ){
+			logger.error("  Error inside  getObjectTypes"+e );
+			throw e;
+		}
 		 
 	}
 
@@ -802,6 +857,13 @@ public class ManageTransferServiceImpl extends RemoteServiceServlet implements
 		throughputDetailsServer.setHc(as.getHc());
 		return throughputDetailsServer.getSequenceDetailsMapList(seqName);
 
+	}
+
+	@Override
+	public String logOut() {
+		AllSessions as = AllSessions.getInstance();
+		as.setRequest(getThreadLocalRequest());
+		return as.logOut();
 	}
 
 

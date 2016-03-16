@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.managetransfer.businessobject.TaxDocument" table="mttaxdocument">
+      <meta attribute="class-description">
+         This class contains the connection detail. 
+      </meta>
+       
+	  <id name="objectId" type="string" column="r_object_id" length="16">
+      </id>
+      
+	    <property name="objectName" column="object_name" type="string"/>
+      <property name="folderPath" column="folder_path" type="string"/>
+      <property name="ownerName" column="owner_name" type="string"/>
+      <property name="aclName" column="acl_name" type="string"/>
+	  
+      <property name="sub_document_type" column="sub_document_type"        		      type="string" length="300"/>	
+<property name="reference_number" column="reference_number"          		      type="string" length="100"/>	
+<property name="form_number" column="form_number"              		      type="string" length="100"/>		
+<property name="irs_name" column="irs_name"                 		      type="string" length="300"/>		
+<property name="document_status" column="document_status"          		      type="string" length="10"/>	
+<property name="document_source" column="document_source"          		      type="string" length="15"/>	
+<property name="reference_type" column="reference_type"           		      type="string" length="100"/>	
+<property name="receipt_date" column="receipt_date"             		       type="timestamp"/>		
+<property name="irs_number" column="irs_number"               		      type="string" length="200"/>		
+<property name="document_type" column="document_type"            		      type="string" length="200"/>	
+ 	
+<property name="batch_control_number" column="batch_control_number"     		      type="string" length="70"/>
+<property name="document_control_number" column="document_control_number"  		      type="string" length="30"/>
+	  
+      
+      
+      <property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
+      <property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
+      <property name="mtCreateDate" column="mt_create_date" type="timestamp"  />
+      <property name="mtModifyDate" column="mt_modify_date" type="timestamp"  />
+      <property name="mtErrorDesc"  column="mt_error_description" type="string" length="255"/>
+      <property name="mtStatus"  column="mt_status" type="string" length="10"/>
+      <property name="mtProcessId" column="mt_process_id" type="int" />
+      <property name="mtRepositoryPath" column="mt_repo_path" type="string" length="255"/>
+   </class>
+</hibernate-mapping>

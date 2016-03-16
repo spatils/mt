@@ -1,0 +1,1227 @@
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Table 'mt1.mtbatchdetails' doesn't exist
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Table 'mt1.mtbatchdetails' doesn't exist
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Table 'mt1.mtbatchdetails' doesn't exist
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.2.Final}
+INFO main org.hibernate.Version - HHH000412: Hibernate Core {4.2.4.Final}
+INFO main org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000006: Autocommit mode: false
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/mt1]
+INFO main org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000046: Connection properties: {user=root, password=****}
+INFO main org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsIntH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskTemplate
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessDependancy
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.DocumentumACLDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentRD7
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsDateH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.TaxDocumentR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsMsgR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.Annotation
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsR
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetails
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.ProcessMappingDetailsMap
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.PhasesDetailsStringH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.MappingDetailsH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessDataPackage
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ProcessTaskList
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.client.SequenceDetailsMapH
+WARN main org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.managetransfer.businessobject.ClaimsRD7
+WARN main org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.managetransfer.businessobject.ClaimsRD7
+INFO main org.hibernate.engine.transaction.internal.TransactionFactoryInitiator - HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO main org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+INFO main org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+INFO main org.hibernate.cfg.Configuration - HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000040: Configuration resource: /hibernate.cfg.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: information.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsg.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsmsgr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: claimsrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocument.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentr.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: taxdocumentrd7.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connection.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: policy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: annotation.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacl.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: documentumacldetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdata.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdatapackage.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processdependancy.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_claims.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sigi_sdt_selective.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable1.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable2.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processvariable3.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasktemplate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processtasklist.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomer.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: termlettercustomersp.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: objectdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: connectiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: expressiondetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: userdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsint.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsstring.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetailsdate.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: phasedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: sequencedetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: mappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: batchdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: jobserverdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetails.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000221: Reading mappings from resource: processmappingdetailsmap.hbm.xml
+INFO main org.hibernate.cfg.Configuration - HHH000041: Configured SessionFactory: null

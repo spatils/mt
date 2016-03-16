@@ -7,6 +7,12 @@ import java.util.List;
  
 import java.util.logging.Logger;
   
+
+
+
+
+import com.managetransfer.client.ObjectDetails;
+import com.managetransfer.dynamiccode.keyhandling.KeyHandling;
 import com.managetransfer.hibernate.GetRecordDetails;
 import com.managetransfer.hibernate.HibernateConnection;
 
@@ -85,6 +91,48 @@ public class RecordHandler {
 	    }
 		logger.info("Exiting Method"+methodName);
 	}
+	public ArrayList<String> getListOfAllColumns(String recordTypeMethod) throws Exception{
+		String methodName="getListOfAllColumns";
+		logger.info("Inside Method"+methodName);
+		ArrayList<String> columnNames = new ArrayList<String>();
+		/***
+		 * This method returns lists of all columns of an object type.Claims
+		 * It expects initOperation method called before this method
+		 * recordTypeMethod -- example com.managetransfer.businessobject
+		 */
+		columnNames= grd.getCombinedPKAndCKAndProperties(recordTypeMethod);
+		logger.info("Exiting Method"+methodName);
+		return columnNames;
+	}
+	public ArrayList<String> getListOfColumns(String recordTypeMethod) throws Exception{
+		String methodName="getListOfColumns";
+		logger.info("Inside Method"+methodName);
+		ArrayList<String> columnNames = new ArrayList<String>();
+		/***
+		 * This method returns lists of all columns of an object type. except primary keyClaims
+		 * It expects initOperation method called before this method
+		 * recordTypeMethod -- example com.managetransfer.businessobject
+		 */
+		String[] columns= grd.getColumnNames(recordTypeMethod);
+		for(String str : columns ){
+			columnNames.add(str);
+		}
+		logger.info("Exiting Method"+methodName);
+		return columnNames;
+	}
+	public String getColumnType(String recordTypeMethod, String columnNameMethod) throws Exception{
+		String methodName="getColumnType";
+		logger.info("Inside Method"+methodName);
+		/***
+		 * This method returns lists of all columns of an object type
+		 * It expects initOperation method called before this method
+		 * recordTypeMethod -- example com.managetransfer.businessobject.Claims
+		 * columnName --example ClaimNumber
+		 */
+		logger.info("Exiting Method"+methodName);
+		return grd.getColumnType(recordTypeMethod, columnNameMethod);
+	}
+	
 	/******************get Next Record ****************/
 	public void getNextRecord(Record record) {
 		 
@@ -93,14 +141,15 @@ public class RecordHandler {
 	public boolean doesNextRecordExist() {
 		return false;
 	}
-	public void batchCommit(){
-		
-	}
+	 
 	public void startBatchTransaction(){
 		 hc.startBatchLevelTransaction();
 	}
 	public void commitBatchTransaction(){
 		hc.commitBatchLevelTransaction();
+	}
+	public void abortBatchTransaction(){
+		hc.abortBatchLevelTransaction();
 	}
 	public void startDataTransaction(){
 		 hc.startBatchLevelTransaction();
@@ -150,6 +199,13 @@ public class RecordHandler {
 	public String getColumnName(String columnName) throws Exception{
 		return grd.getDatabaseColumnName(getTypeOfRecord(), columnName);
 	}
+	public String getDatabaseColumnName(String recordTypeMethod,String columnNameMethod) throws Exception{
+		/***
+		 * i/p example com.managetransfer.businessobject.Claims , ClaimNumber
+		 * o/p Example claim_number
+		 */
+		return grd.getDatabaseColumnName(recordTypeMethod, columnNameMethod);
+	}
 	public void saveRecordPK() throws Exception{
 		//Used inside Init sequence Documentum
 		String methodName="saveRecordPK";
@@ -184,9 +240,31 @@ public class RecordHandler {
 		grd.setListOfIntAttributes(record.getListOfIntAttributes( )) ;
 		grd.setListOfLongAtrributes(record.getListOfLongAtrributes( )) ;
 		grd.setListOfStringAtrributes(record.getListOfStringAtrributes( )) ;
+		grd.setListOfBooleanAttributes(record.getListOfBooleanAttributes( )) ;
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
-		hc.saveOperation(objectWithAllProperties);
+		hc.updateOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
+	}
+	public void createNewRecord(String recordTypeMethod,Record recordMethod) throws Exception{
+		String methodName="createNewRecord";
+		logger.info("Inside Method"+methodName);
+	    /**
+	     * This method expects following input 
+	     * 1 recodeType --Value for example com.managetransfer.businessobject.Claims
+	     * 2 Record -- Attribute values are populated in the ListArrays
+	     * 
+	     * This method expects that hc.initOperation method is called prior to calling this method
+	     * This method will create new object in the repository
+	     * 	
+	     */
+		KeyHandling kh = new KeyHandling();
+		Object object = kh.instantiateObject(recordTypeMethod.substring(recordTypeMethod.lastIndexOf(".")+1,recordTypeMethod.length()), recordMethod.getListOfStringAtrributes(), recordMethod.getListOfIntAttributes() , recordMethod.getListOfDateAttributes(), recordMethod.getListOfLongAtrributes());
+		hc.saveOperation(object);
+		Object objectWithAllProperties = grd.setAttributes(object , recordTypeMethod,recordMethod.getListOfStringAtrributes(),recordMethod.getListOfIntAttributes(),recordMethod.getListOfDateAttributes(),recordMethod.getListOfLongAtrributes(),recordMethod.getListOfBooleanAttributes());
+		hc.updateOperation(objectWithAllProperties);
+		logger.info("Exiting Method"+methodName);
+	
+	
 	}
 	public void closeConnection(){
 		hc.closeConnection();
@@ -195,12 +273,17 @@ public class RecordHandler {
 		 
 		return hc.getObject(sqlDrivingCursor) ;
 	}
+	public List getObjectNonCursorQuery(String sql) {
+		 
+		return hc.getObjectNonCursorQuery(sql) ;
+	}
 	public void getPropertyValues(Object object) throws Exception{
 		String methodName="getPropertyValues";
 		logger.info("Inside Method"+methodName);
 		grd.getProperties(object,getTypeOfRecord());
 		record.setListOfDateAttributes(grd.getListOfDateAttributes());
 		record.setListOfIntAttributes(grd.getListOfIntAttributes());
+		record.setListOfBooleanAttributes(grd.getListOfBooleanAttributes());
 		record.setListOfLongAtrributes(grd.getListOfLongAtrributes());
 		record.setListOfStringAtrributes(grd.getListOfStringAtrributes());
 		logger.info("Existing Method"+methodName);
@@ -212,6 +295,7 @@ public class RecordHandler {
 		grd.getProperties(object,getTypeOfRecord());
 		record.setListOfDateAttributes(grd.getListOfDateAttributes());
 		record.setListOfIntAttributes(grd.getListOfIntAttributes());
+		record.setListOfBooleanAttributes(grd.getListOfBooleanAttributes());
 		record.setListOfLongAtrributes(grd.getListOfLongAtrributes());
 		record.setListOfStringAtrributes(grd.getListOfStringAtrributes());
 		//This section extracts primary key values
@@ -238,8 +322,27 @@ public class RecordHandler {
 	public void setColumnNameList(ArrayList<String> columnNameList) {
 		this.columnNameList = columnNameList;
 	}
+	public void saveObject(Object objectMethod)throws Exception{
+		/**
+		 * This method is called from Transformation Phase to store repeating value attriutes
+		 */
+		hc.saveOperation(objectMethod);
+	}
+	public void saveOrUpdateObject(Object objectMethod)throws Exception{
+		/**
+		 * This method is called from Transformation Phase to store repeating value attriutes
+		 */
+		hc.saveOrUpdateOperation(objectMethod);
+	}
+	public void updateObject(Object objectMethod)throws Exception{
+		/**
+		 * This method is called from Transformation Phase to store repeating value attriutes
+		 */
+		hc.updateOperation(objectMethod);
+	}
 	public void saveRecord(Object object) throws Exception {
 		//Used inside Export Documentum
+	
 		String methodName="saveRecord";
 		logger.info("Inside Method"+methodName);
 		logger.info("record.getSequenceNumber()"+record.getSequenceNumber());
@@ -266,14 +369,17 @@ public class RecordHandler {
 		}
 		grd.setListOfDateAttributes(record.getListOfDateAttributes( )) ;
 		grd.setListOfIntAttributes(record.getListOfIntAttributes( )) ;
+		grd.setListOfBooleanAttributes(record.getListOfBooleanAttributes( )) ;
 		grd.setListOfLongAtrributes(record.getListOfLongAtrributes( )) ;
 		grd.setListOfStringAtrributes(record.getListOfStringAtrributes( )) ;
 		Object objectWithAllProperties = grd.setAttributes(object , getTypeOfRecord() );
-		hc.saveOperation(objectWithAllProperties);
+		hc.updateOperation(objectWithAllProperties);
 		logger.info("Exiting Method"+methodName);
 	}
 	public String getModifiedExportDocumentumQuery(String dql,Object object ) throws Exception{
-		String methodName="saveRecord";
+		String methodName="getModifiedExportDocumentumQuery";
+		// Passing boolean and date value is not supported
+		
 		logger.info("Inside Method"+methodName);
 		KeyHandling kh = new KeyHandling();
 		kh.extractKey(object, getTypeOfRecord().substring(typeOfRecord.lastIndexOf(".")+1,typeOfRecord.length()));
@@ -282,7 +388,7 @@ public class RecordHandler {
 			 logger.info("$"+grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))+"$");
 			 if(getColumnType( getColumnNameListPK().get(i)).equals("string")){
 				 dql=dql.replace("$"+grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))+"$",""+kh.ohmString.get(grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))));
-			 }else if (getColumnType(getColumnNameListPK().get(i)).equals("integer")){
+			 }else if (getColumnType(getColumnNameListPK().get(i)).equals("integer")||getColumnType(getColumnNameListPK().get(i)).equals("int")){
 				 dql=dql.replace("$"+grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))+"$",""+kh.ohmInteger.get(grd.getDatabaseColumnName(getTypeOfRecord(), getColumnNameListPK().get(i))));
 					
 			 }else if (getColumnType(getColumnNameListPK().get(i)).equals("date")){
@@ -357,5 +463,76 @@ public class RecordHandler {
 	public void setThreadCount(int threadCount) {
 		this.threadCount = threadCount;
 	}
-	
+
+	public ArrayList<Object> getObjectList(String objectName,
+			ArrayList<String> attributeList, Record record) throws Exception {
+
+		 
+		String methodName = "getObjectList";
+		logger.info("Inside Method" + methodName);
+		try {
+			/***
+			 * This method expects following input 1. Object Name like
+			 * com.managetransfer.Claims 2. List of attributes available to
+			 * query objectId 3. List of attribute values
+			 * 
+			 * currently only interger and string values are supported The
+			 * method constructs a HQL and returns all objects matching the
+			 * criteria hql = " from Claims where objectId='xyz'
+			 */
+			logger.info("ObjectName" + objectName);
+			String HQL = "from " + objectName;
+			for (int i = 0; i < attributeList.size(); i++) {
+				logger.info(" attribute name " +  attributeList.get(i) );
+				if (i == 0)
+					HQL = HQL + " where " + attributeList.get(i) + " = ";
+				else
+					HQL = HQL + " and " + attributeList.get(i) + " = ";
+				if (getColumnType(objectName, attributeList.get(i)).equals(
+						"string")) {
+					HQL = HQL
+							+ "'"
+							+ record.getListOfStringAtrributes().get(
+									getDatabaseColumnName(objectName,
+											attributeList.get(i))) + "'";
+				} else if (getColumnType(objectName, attributeList.get(i))
+						.equals("integer")||getColumnType(objectName, attributeList.get(i))
+						.equals("int")) {
+					HQL = HQL
+							+ ""
+							+ record.getListOfStringAtrributes().get(
+									getDatabaseColumnName(objectName,
+											attributeList.get(i)));
+				}
+
+			}
+			logger.info("HQL " + HQL);
+			List objectListFromHQL = hc.getObject(HQL) ; 
+			ArrayList<Object> objectList =new ArrayList<Object>();
+			for(int i=0;i< objectListFromHQL.size(); i++){
+				objectList.add( objectListFromHQL.get(i));
+			}
+			return objectList;
+		} catch (Exception e) {
+			logger.severe("Error insdiegetObjectList " + e);
+			throw e;
+		}
+		 
+	}
+	public void clearAndFlush(){
+		hc.clearAndFlush();
+	}
+	public ObjectDetails getObjectDetails(String primaryObjectName, String secondarObjectName) throws Exception{
+		String methodName = "getObjectList";
+		logger.info("Inside Method" + methodName);
+		try{
+		String HQL = " from ObjectDetails where objectName ='"+primaryObjectName+"' and repeatingObject ='"+secondarObjectName+"'";
+		logger.info("HQL" + HQL);
+		return (ObjectDetails) hc.getObject(HQL).get(0);
+		}catch (Exception e){
+			logger.severe("Error" + e);
+			throw e;
+		}
+		 
+	}
 }

@@ -61,7 +61,9 @@ public class LoginPresenter implements Presenter, LoginView.Presenter<UserDetail
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Login Failed");
+				 
+					Window.alert("Login Failed : Error From Server"+caught.getMessage());
+				 
 			}
 		});
 		

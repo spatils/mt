@@ -16,7 +16,6 @@ import com.managetransfer.client.SequenceDetailsMap;
 import com.managetransfer.client.SequenceDetailsMapH;
 import com.managetransfer.hibernate.GetRecordDetails;
 import com.managetransfer.hibernate.HibernateConnection;
-import com.managetransfer.server.ReadProperty;
 
 
 public class MappingDetailsServer {
@@ -25,7 +24,7 @@ public class MappingDetailsServer {
 	ArrayList<String> mappingType = new ArrayList<String>();
 	ArrayList<String> objectLevelMappingNames = new ArrayList<String>();
 	HibernateConnection hc = new HibernateConnection();
-	private String packageName = new String ("com.managetransfer.record.");
+	private String packageName = new String ("com.managetransfer.businessobject.");
 	final Logger logger = Logger.getLogger(MappingDetailsServer.class.getName()) ;
 	public HibernateConnection getHc() {
 		return hc;
@@ -175,12 +174,26 @@ public class MappingDetailsServer {
 			if(sdmh!=null){
 				Iterator iterator = sdmh.entrySet().iterator();
 				int i = 0;
+				String targetObjectPrivus = new String("");
 				while(iterator.hasNext()){
 					Map.Entry mapEntry = (Map.Entry) iterator.next();
 					MappingDetailsMapH sdmp =(MappingDetailsMapH)mapEntry.getValue();
 					logger.info("Adding sourceObjectList number"+i);
 					sourceObjectListT.add(sdmp.getSourceObject());
-					mappingDetailsM.setTargetObject(sdmp.getTargetObject());
+					if(mappingDetailsH.getMappingType().equals("Object")){
+						if(targetObjectPrivus.equals("")){
+							mappingDetailsM.setTargetObject(sdmp.getTargetObject());
+						}else{
+							if(!sdmp.getTargetObject().equals(targetObjectPrivus)){
+								mappingDetailsM.setTargetObject(mappingDetailsM.getTargetObject()+","+sdmp.getTargetObject());
+							}
+						}
+						targetObjectPrivus = sdmp.getTargetObject();
+						logger.info("Target Object Name"+mappingDetailsM.getTargetObject());
+					}else{
+						mappingDetailsM.setTargetObject(sdmp.getTargetObject());
+					}
+					
 					i = i + 1;
 				}
 			}
@@ -201,6 +214,12 @@ public class MappingDetailsServer {
 		 mdh.setMappingName(mappingDetails.getMappingName());
 		 mdh.setMappingType(mappingDetails.getMappingType());
 		 ArrayList<String> sourceObjectList = mappingDetails.getSourceObjectList();
+		 /****
+		  * if mapping type is object then multiple targets can exist.
+		  * in this case source objects number should equal to target object list 
+		  */
+		 String[] targetObjectList = mappingDetails.getTargetObject().split(",");
+		 logger.info("mappingDetails.getTargetObject()"+mappingDetails.getTargetObject());
 		 Map<Integer,MappingDetailsMapH> sdmh = new HashMap(0);
 		 if(sourceObjectList!=null){
 			 for(int i=0;i<sourceObjectList.size();i++){
@@ -208,7 +227,11 @@ public class MappingDetailsServer {
 				 MappingDetailsMapH mdmh = new MappingDetailsMapH();
 				 mdmh.setMappingName(mappingDetails.getMappingName());
 				 mdmh.setSequenceNumber(i);
-				 mdmh.setTargetObject(mappingDetails.getTargetObject());
+				 if(targetObjectList.length>i){
+					 mdmh.setTargetObject(targetObjectList[i]);
+				 }else{
+					 mdmh.setTargetObject(targetObjectList[0]);
+				 }
 				 mdmh.setSourceObject(sourceObjectList.get(i));
 				 mdmh.setMappingType(mappingDetails.getMappingType());
 				 sdmh.put(i,mdmh);

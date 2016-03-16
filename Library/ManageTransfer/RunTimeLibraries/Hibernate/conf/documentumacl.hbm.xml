@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+   
+
+   <class name="com.managetransfer.businessobject.DocumentumACL" table="mtdocumentumacl" lazy="false">
+      <meta attribute="class-description">
+         This class contains Documentum ACL properties
+      </meta>
+       
+      <id name="objectId" type="string" column="r_object_id" length="16">
+      </id>
+      	<property name="aclName" type="string" column="acl_name" length="255" />
+      	<property name="aclClass" type="string" column="acl_class" length="16" />
+      	<property name="owner" type="string" column="owner" length="16" />
+      	<property name="isInternal" type="boolean" column="is_internal"  />
+      	<property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
+      	<property name="mtSequenceNumber" column="mt_sequence_number" type="int" />
+      	<property name="mtCreateDate" column="mt_create_date" type="timestamp"  />
+      	<property name="mtModifyDate" column="mt_modify_date" type="timestamp"  />
+      	<property name="mtErrorDesc"  column="mt_error_description" type="string" length="255"/>
+      	<property name="mtStatus"  column="mt_status" type="string" length="10"/>
+      	<property name="mtProcessId" column="mt_process_id" type="int" />
+        
+   </class>
+   
+</hibernate-mapping>

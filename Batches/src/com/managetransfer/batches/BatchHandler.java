@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.managetransfer.client.BatchDetails;
+import com.managetransfer.client.ObjectDetails;
 import com.managetransfer.hibernate.HibernateConnection;
- 
+
  
 
 public class BatchHandler {
@@ -41,9 +42,10 @@ public class BatchHandler {
 			batchDetails.setModifyTime(today);
 			batchDetails.setSequenceName(getSequenceName());
 			batchDetails.setSequenceNumber(getSequenceNumber());
-			
+			hc.saveOperation(batchDetails);
+		}else{
+			hc.updateOperation(batchDetails);
 		}
-		hc.saveOperation(batchDetails);
 		
 	}
 	public String getBatchName (String sequenceName, int sequenceNumber,int processId){
@@ -71,22 +73,35 @@ public class BatchHandler {
 	public void addFailureCount(int i){
 		batchDetails.setFailureCount(batchDetails.getFailureCount()+i);
 	}
+	public int getSuccessCount(){
+		return batchDetails.getSuccessCount();
+	}
+	public int getFailureCount(){
+		return batchDetails.getFailureCount(); 
+	}
+	public void setSuccessCount(int count){
+		batchDetails.setSuccessCount(count);
+	}
+	public void getFailureCount(int count){
+		batchDetails.setFailureCount(count); 
+	}
 	public void saveBatch(){
 		Date today = new Date();
 		batchDetails.setModifyTime(today);
-		hc.saveOperation(batchDetails);
+		hc.updateOperation(batchDetails);
 	}
 	public void exitBatch(String errorCode){
+		//After commit everything is flushed from memory. Hence save and update operation is being used.
 		Date today = new Date();
 		if(errorCode == null || errorCode.equals("")){
 			batchDetails.setModifyTime(today);
 			batchDetails.setBatchStatus("SUCCESS");
-			hc.saveOperation(batchDetails);
+			hc.updateOperation(batchDetails);
 		}else{
 			batchDetails.setModifyTime(today);
 			batchDetails.setBatchStatus("FAIL");
 			batchDetails.setErrorDescription(errorCode);
-			hc.saveOperation(batchDetails);
+			hc.updateOperation(batchDetails);
 		}
 	}
 	
@@ -134,5 +149,18 @@ public class BatchHandler {
 	}
 	public String getBatchName(){
 		return batchDetails.getBatchName();
+	}
+	public ObjectDetails getObjectDetails(String primaryObjectName, String secondarObjectName){
+		String methodName = "getObjectList";
+		logger.info("Inside Method" + methodName);
+		try{
+		String HQL = " from ObjectDetails where objectName ='"+primaryObjectName+"' and repeatingObject ='"+secondarObjectName+"'";
+		logger.info("HQL" + HQL);
+		return (ObjectDetails) hc.getObject(HQL).get(0);
+		}catch (Exception e){
+			logger.severe("Error" + e);
+			throw e;
+		}
+		 
 	}
 }

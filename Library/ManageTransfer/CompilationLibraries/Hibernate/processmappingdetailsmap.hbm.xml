@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+   
+
+   <class name="com.managetransfer.client.ProcessMappingDetailsMap" table="mtprocessmappingdetailsmap" lazy="false">
+      <meta attribute="class-description">
+         This class contains the proces mapping detail. 
+      </meta>
+       
+      <composite-id>
+         <key-property name="sourceProcessName" type="string" column="source_process_name"  ></key-property>
+		 <key-property name="targetProcessName" type="string" column="target_process_name"  ></key-property>
+		 <key-property name="mappingType" type="string" column="mapping_type"  ></key-property>
+		 <key-property name="sequenceNumber" type="int" column="sequence_number"  ></key-property>
+      </composite-id>
+      <!-- this value refers to either SDT variable name of Process variable name in the process dependancy table -->
+      <property name="sourceAttribute" column="source_attribute" type="string"/>
+      <!-- this value refers to Sequence_number in the process dependancy table -->
+      <property name="sourceDependanySeq" column="source_dependany_seq" type="int"/>
+      <property name="targetAttribute" column="target_attribute" type="string"/>
+       <property name="sourceDependanyObject" column="source_dependany_object" type="string"/>
+   </class>
+   
+</hibernate-mapping>

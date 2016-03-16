@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build-project" name="Records">
+    <property environment="env"/>
+    <property name="Library.location" value="../Library"/>
+    <property name="ECLIPSE_HOME" value="../../../../../eclipse"/>
+    <property name="Hibernate.location" value="../Hibernate"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Hibernate.classpath">
+        <pathelement location="${Hibernate.location}/bin"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/antlr-2.7.7.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-core-4.2.4.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Hibernate/lib/ojdbc14.jar"/>
+    </path>
+    <path id="Records.classpath">
+        <pathelement location="bin"/>
+        <path refid="Hibernate.classpath"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Project/lib/Hibernate.jar"/>
+        <pathelement location="${Library.location}/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${Hibernate.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${Hibernate.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Records.classpath"/>
+        </javac>
+        <delete file="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar"/>
+        <jar destfile="../Library/ManageTransfer/RunTimeLibraries/Project/lib/Record.jar" basedir="./bin">
+				<manifest>
+					<attribute name="Main-Class" value="Record"/>
+				</manifest>
+		</jar>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>
