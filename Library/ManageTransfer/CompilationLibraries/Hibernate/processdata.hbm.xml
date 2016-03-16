@@ -29,6 +29,9 @@
       	<property name="activityCreateDate" column="activity_create_date" type="timestamp"/>
       	<property name="performerName" column="performer_name" type="string"/>
       	<property name="queueName" column="queue_name" type="string"/>
+      	<property name="newWorkflowId" column="new_workflow_id" type="string"/>
+      	<property name="taskName" column="task_name" type="string"/>
+      	<property name="instructions" column="instructions" type="string" length="1000"/>
       	
       	<property name="mtSequenceName" column="mt_sequence_name" type="string" length="16"/>
       	<property name="mtSequenceNumber" column="mt_sequence_number" type="int" />

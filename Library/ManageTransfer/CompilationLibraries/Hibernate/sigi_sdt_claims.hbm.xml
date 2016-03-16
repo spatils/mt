@@ -6,11 +6,11 @@
 <hibernate-mapping>
    <class name="com.managetransfer.businessobject.sigi_sdt_claims" table="mtsdtclaims">
       <meta attribute="class-description">
-         This class contains the claims SDT information     
+         This class contains the claims SDT information 
       </meta>
       <id name="taskId" type="string" column="task_id" length="16">
       </id>
-     <property name="compensability_indicator" column="compensability_indicator" type="string"/>
+        <property name="compensability_indicator" column="compensability_indicator" type="string"/>
 		<property name="claimtype_cd" column="claimtype_cd" type="string"/>
 		<property name="file_format_cd" column="file_format_cd" type="string"/>
 		<property name="inHoldComments" column="in_hold_comments" type="string"/>

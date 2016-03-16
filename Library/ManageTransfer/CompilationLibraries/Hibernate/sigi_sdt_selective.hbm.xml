@@ -12,9 +12,7 @@
 	  <id name="taskId" type="string" column="task_id" length="16">
       </id>
       
-        <property name="junk_id" column="junk_id" type="string"/>
-		<property name="mark_junk" column="mark_junk" type="boolean"/>
-		<property name="is_junk" column="is_junk" type="boolean"/>
+        <property name="is_junk" column="is_junk" type="boolean"/>
 		<property name="taxonomy_value" column="taxonomy_value" type="int"/>
 		<property name="doc_control_number" column="doc_control_number" type="string"/>
 		<property name="department" column="department" type="string"/>

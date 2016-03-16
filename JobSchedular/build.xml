@@ -15,12 +15,12 @@
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     <property name="tomcat.home"
-		location="C:\ManageTransfer\apache-tomcat-7.0.56-windows-x64\apache-tomcat-7.0.56" />
+		location="D:\Download\apache-tomcat-7.0.37-windows-x86\apache-tomcat-7.0.37" />
 	<property name="appserver.home"
-		location="C:\ManageTransfer\apache-tomcat-7.0.56-windows-x64\apache-tomcat-7.0.56" />
+		location="D:\Download\apache-tomcat-7.0.37-windows-x86\apache-tomcat-7.0.37" />
 	<property name="tomcat.manager.url" value="http://localhost:8080/manager/text" />
-	<property name="tomcat.manager.username" value="manager" />
-	<property name="tomcat.manager.password" value="manager" />
+	<property name="tomcat.manager.username" value="tomcat" />
+	<property name="tomcat.manager.password" value="tomcat" />
 	<property name="name" value="JobSchedular" />
 	
     <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
@@ -334,10 +334,10 @@
 			password="${tomcat.manager.password}" path="/${name}" />
 	</target>
 	<target name="DeployJobSchedular"  description="GWT compile to JavaScript">
-
+ 
 		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}"
 			password="${tomcat.manager.password}" path="/${name}" />
-		<delete dir="${tomcat.home}/webapps/JobSchedular"/>
+		<delete dir="${tomcat.home}/webapps/JobSchedular"/> 
 		<war destfile="${tomcat.home}/webapps/JobSchedular.war" webxml="./WebContent/WEB-INF/web.xml">
 		    <fileset dir="./WebContent">  <include name="**/*.*"/></fileset>
 		</war> 

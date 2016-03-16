@@ -20,15 +20,15 @@
 		<property name="adjuster_assigned" column="adjuster_assigned"
 			type="string" />
 		<property name="diff_department" column="diff_department"
-			type="string" />
+			type="boolean" />
 		<property name="checkcomments" column="checkcomments" type="string" />
-		<property name="michellcomments" column="michellcomments"
+		<property name="mitchellcomments" column="mitchellcomments"
 			type="string" />
-		<property name="stat_updatemetadata_flag" column="stat_updatemetadata_flag"
+		<property name="start_updatemetadata_flag" column="start_updatemetadata_flag"
 			type="string" />
 		<property name="updatemetadata_comments" column="updatemetadata_comments"
 			type="string" />
-		<property name="is_duplicate" column="is_duplicate" type="string" />
+		<property name="is_duplicate" column="is_duplicate" type="boolean" />
 		<property name="CommentsTemp" column="Comments_temp" type="string" />
 
 	</class>

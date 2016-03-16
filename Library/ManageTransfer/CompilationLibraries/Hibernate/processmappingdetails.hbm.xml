@@ -7,19 +7,18 @@
 
    <class name="com.managetransfer.client.ProcessMappingDetails" table="mtprocessmappingdetails" lazy="false">
       <meta attribute="class-description">
-         This class contains the connection detail. 
+         This class contains the proces mapping detail. 
       </meta>
        
       <composite-id>
          <!-- This is the Name of the Source Process -->
 		 <key-property name="sourceProcessName" type="string" column="source_process_name"  ></key-property>
-		 <!-- This is always PROCESS -->
-         <key-property name="mappingType" type="string" column="mapping_type"  ></key-property>
-      </composite-id>
+		 <key-property name="targetProcessName" type="string" column="target_process_name"  ></key-property>
+	  </composite-id>
       	<map name="processMappingDetailsMap" cascade="all">
           <key>   
-                  <column name="mapping_name"  ></column >
-                  <column  name="mapping_type" ></column>
+                  <column name="source_process_name"  ></column >
+                  <column  name="target_process_name" ></column>
 	      </key> 
           <index column="sequence_number" type="int"/>
           <one-to-many class="com.managetransfer.client.ProcessMappingDetailsMap" />

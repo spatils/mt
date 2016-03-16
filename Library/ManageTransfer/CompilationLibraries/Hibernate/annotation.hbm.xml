@@ -8,10 +8,14 @@
       <meta attribute="class-description">
          Annotation relation information is stored in this table 
       </meta>
-       
-	  <id name="objectId" type="string" column="r_object_id" length="16">
-      </id>
+       <composite-id >
+	   <key-property name="objectId" type="string" column="r_object_id" length="16"></key-property>
+       <key-property name="seqNumber" type="int" column="seq_number"  ></key-property>
+      </composite-id> 
       <property name="repositoryPath" column="repository_path" type="string" length="255"/>
       <property name="filePath" column="file_path" type="string" length="255"/>
+      <property name="ownerName" column="owner_name" type="string" length="255"/>
+      <property name="objectName" column="object_name" type="string" length="255"/>
+       <property name="aclName" column="acl_name" type="string" length="255"/>
    </class>
 </hibernate-mapping>

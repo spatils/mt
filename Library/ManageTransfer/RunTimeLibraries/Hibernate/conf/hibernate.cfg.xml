@@ -4,14 +4,14 @@
 
 <hibernate-configuration>
    <session-factory>
-   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-   <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-   <property name="hibernate.bytecode.use_reflection_optimizer">true</property> 
+   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+   <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
 
    <!-- Assume test is the database name -->
-   <property name="hibernate.connection.url">jdbc:oracle:thin:@dbt001ecl.selective.com:1521:TECM</property>
-   <property name="hibernate.connection.username">reports</property>
-   <property name="hibernate.connection.password">reports11</property>
+   <property name="hibernate.connection.url">jdbc:mysql://localhost/mt1</property>
+   <property name="hibernate.connection.username">root</property>
+   <property name="hibernate.connection.password">Migrate@2013</property>
    
    
    <!-- List of XML mapping files -->
@@ -41,6 +41,8 @@
 	  <mapping resource="processvariable3.hbm.xml"/>
 	  <mapping resource="processtasktemplate.hbm.xml"/>
 	  <mapping resource="processtasklist.hbm.xml"/>
+	  <mapping resource="termlettercustomer.hbm.xml"/>
+	  <mapping resource="termlettercustomersp.hbm.xml"/>
    <!--List of config files -->
    	<mapping resource="objectdetails.hbm.xml"/>
 	<mapping resource="connectiondetails.hbm.xml"/>

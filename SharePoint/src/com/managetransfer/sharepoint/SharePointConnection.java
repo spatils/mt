@@ -64,12 +64,14 @@ import com.microsoft.schemas.sharepoint.soap.dws.DwsStub;
 public class SharePointConnection {
 	private String siteName = new String("");
 	// This information should come from connection
-	private String userName = new String("131268");
-	private String psw = new String("Below2@2014");
-	private String myDomain = new String("INDIA");
-	private String myHost = new String("inblrabhvteg");
+	private String userName = new String("hemant.ala@tatacommunications.com");
+	private String psw = new String("Lakshmi1@");
+	private String myDomain = new String("");
+	//private String myHost = new String("inblrabhvteg");//Org
+	private String myHost = new String("tatacommunications.sharepoint.com");
 	private int myPort = 12345;
-	private String webserviceURLBase= new String("http://inblrabhvteg:12345/_vti_bin/");
+	//private String webserviceURLBase= new String("http://inblrabhvteg:12345/_vti_bin/"); ORG
+	private String webserviceURLBase= new String("https://tatacommunications.sharepoint.com/_vti_bin/");
 	private String webserviceURL = webserviceURLBase  + "Lists.asmx"; 
 	private String webserviceURLCOPY = webserviceURLBase +"Copy.asmx";
 	private String webserviceURLDWS =  webserviceURLBase+"Dws.asmx";
@@ -79,7 +81,7 @@ public class SharePointConnection {
 	
 	//This information should set for each record
 	//private String docUriSharePointDest = new String("http://inblrabhvteg:12345/Information_library");
-	private String docUriSharePointDest = new String("http://inchnsirisuap01:6622/sites/site/Information_library");
+	private String docUriSharePointDest = new String("https://tatacommunications.sharepoint.com/sites/ILLActivitiesSIT");
 	private String docUriLocal = new String("D:\\hello.pdf");
 	private String repositoryPath = new String("");
 	
@@ -125,7 +127,11 @@ public class SharePointConnection {
 		//spc.UpdateDocumentMetadata("");
 		//spc.GetListItems("ListDel");
 		//spc.GetListItems("Information_library"); // Will this work?
-		//spc.ImportDocument();
+		//Test inport operation start
+		spc.stringAttributes.put("object_name","NewObj.pdf");
+		spc.stringAttributes.put("folder_path","D:\\hello.pdf");
+		spc.ImportDocument();
+		//Test import iperationb end
 		//spc.CreateFolder(spc.newFolderPath);
 		
 	}
