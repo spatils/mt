@@ -22,8 +22,9 @@ public class BatchHandler {
     private int threadCount = 0;
     private boolean batchExist = false;
     private BatchDetails batchDetails = new BatchDetails();
-	public static void main(String[] args) {
-		 
+	public static void main(String[] args)    {
+		BatchHandler bd1 = new BatchHandler();
+		 System.out.println(bd1.getBatchName("ACLMigration",1,0));
 	}
 	public void initOperation() throws Exception{
 		if( hc  == null) {
