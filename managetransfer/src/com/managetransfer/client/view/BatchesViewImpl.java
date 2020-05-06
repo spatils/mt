@@ -2,7 +2,6 @@ package com.managetransfer.client.view;
 
 import java.util.List;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Selection;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

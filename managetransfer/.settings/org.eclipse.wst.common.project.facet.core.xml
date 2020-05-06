@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <installed facet="java" version="1.7"/>
+  <runtime name="Apache Tomcat v9.0"/>
+  <secondary-runtime name="java"/>
+  <installed facet="com.gwtplugins.gwt.facet" version="1.0"/>
+  <installed facet="java" version="1.8"/>
 </faceted-project>

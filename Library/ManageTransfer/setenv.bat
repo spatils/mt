@@ -1,5 +1,5 @@
 set BASE_DIR=%cd%
 set MT=%cd%
-set JAVA_HOME=C:\Program Files\Java\jdk1.7.0_17
-set ANT_HOME=%BASE_DIR%\CompilationLibraries\apache-ant-1.9.2-bin
-set PATH=%PATH%;%ANT_HOME%\bin;C:\Program Files\Java\jdk1.7.0_17\bin
+set JAVA_HOME=D:\software\java\jdk1.8.0_251\
+set ANT_HOME=D:\software\apache-ant-1.9.14-bin\apache-ant-1.9.14
+set PATH=%PATH%;%ANT_HOME%\bin;

@@ -9,9 +9,9 @@
    <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
 
    <!-- Assume test is the database name -->
-   <property name="hibernate.connection.url">jdbc:mysql://localhost/mt1</property>
+   <property name="hibernate.connection.url">jdbc:mysql://localhost/mt</property>
    <property name="hibernate.connection.username">root</property>
-   <property name="hibernate.connection.password">Migrate@2013</property>
+   <property name="hibernate.connection.password">Mastery@2020</property>
    
    <property name="hibernate.hbm2ddl.auto">update</property>
    

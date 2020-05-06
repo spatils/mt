@@ -1,5 +1,5 @@
 package com.managetransfer.client;
-// Generated Mar 15, 2016 1:49:44 PM by Hibernate Tools 4.0.0
+// Generated 2 May, 2020 2:29:40 PM by Hibernate Tools 4.0.0
 
 
 import java.util.HashMap;

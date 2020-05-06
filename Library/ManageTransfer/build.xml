@@ -1,7 +1,7 @@
 <project name="ManagerTransfer Commands" default="InitializeDatabase">
 	<property name="compilationBasePath"  value="./CompilationLibraries"/>
 	<property name="RunTimeBasePath"      value="./RunTimeLibraries"/>
-	<property name="RunTimeTargetPath"    value="D:\ManageTransfer\Libraries"/>
+	<property name="RunTimeTargetPath"    value="D:\code\mtdocs\ManageTransfer\Libraries"/>
 	<!--This is Server1 for prod extraction <property name="RunTimeTargetPath3"    value="S:\ManageTransfer"/>-->
 	<!--property name="RunTimeTargetPath4"    value="T:\ManageTransfer"/>-->
 	<path id="tools">
@@ -21,8 +21,7 @@
 		<path location="${compilationBasePath}/Hibernate/lib/Hibernate.jar" />
 		<path location="${compilationBasePath}/Common/lib/GenerateCode.jar" />
 		<path location="${compilationBasePath}/Hibernate/lib/log4j-1.2.16.jar" />
-		<path location="${compilationBasePath}/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar" />
-		<path location="${compilationBasePath}/Hibernate/lib/ojdbc14.jar" />
+		<path location="${compilationBasePath}/Hibernate/lib/mysql-connector-java-8.0.20.jar" />
 		<path location="${RunTimeBasePath}/Project/lib/BusinessObject.jar" />
 		<path location="${RunTimeBasePath}/Project/lib/FrameworkObject.jar" />
 	</path>

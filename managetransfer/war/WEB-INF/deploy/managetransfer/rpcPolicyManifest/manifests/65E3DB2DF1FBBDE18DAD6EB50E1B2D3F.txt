@@ -1,2 +1,0 @@
-serviceClass: com.managetransfer.client.ManageTransferService
-path: A223F77FE244E2101DFEC9E45BFF8C0B.gwt.rpc

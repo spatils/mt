@@ -129,10 +129,11 @@ public class GenerateCodeRecord {
 										"public HashMap<String,Integer> ohmInteger = new HashMap() ; \n" +
 										"public HashMap<String,Date> ohmDate = new HashMap() ; \n" +
 										"public HashMap<String,Long> ohmLong = new HashMap() ; \n");
+		System.out.println(ReadProperty.getJavaClassPath());
 		javaClassFile = new File(ReadProperty.getJavaClassPath());
 		 
 		// if file doesnt exists, then create it
-		System.out.println("javaClassFile"+javaClassFile.getPath());
+		//System.out.println("javaClassFile"+javaClassFile.getPath());
 		if (!javaClassFile.exists()) {
 			javaClassFile.createNewFile();
 		}

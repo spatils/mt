@@ -39,8 +39,6 @@
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/javassist-3.15.0-GA.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-logging-3.1.0.GA.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/mysql-connector-java-5.1.26-bin.jar"/>
-	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/Batches.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/BusinessObject.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Project/lib/FrameWorkObject.jar"/>
@@ -107,5 +105,6 @@
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Documentum/lib/XformsChiba.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Documentum/lib/XformsEngine.jar"/>
 	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Documentum/lib/xml-ca.jar"/>
+	<classpathentry kind="lib" path="/Library/ManageTransfer/RunTimeLibraries/Hibernate/lib/mysql-connector-java-8.0.20.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
