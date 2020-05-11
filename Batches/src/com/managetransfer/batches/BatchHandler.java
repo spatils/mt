@@ -23,6 +23,7 @@ public class BatchHandler {
     private boolean batchExist = false;
     private BatchDetails batchDetails = new BatchDetails();
 	public static void main(String[] args)    {
+		/* this code was add to get the sample bach name*/
 		BatchHandler bd1 = new BatchHandler();
 		 System.out.println(bd1.getBatchName("ACLMigration",1,0));
 	}
